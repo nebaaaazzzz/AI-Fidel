@@ -5,7 +5,7 @@ const links = ['Find Work', 'Hire Pro', 'Inspiration', 'Community', 'Market'];
 const logos = [fidel, fidelLogo];
 function Header() {
   return (
-    <div className="navbar px-5">
+    <div className="navbar px-5 mb-10">
       <a>
         {logos.map((logo, index) => {
           return (
