@@ -1,11 +1,11 @@
-import fidel from '@assets/images/fidel.png';
-import fidelLogo from '@assets/images/fidel-text.png';
+import fidel from '@assets/logo/fidel.png';
+import fidelLogo from '@assets/logo/fidel-text.png';
 import Search from './Search';
 const links = ['Find Work', 'Hire Pro', 'Inspiration', 'Community', 'Market'];
 const logos = [fidel, fidelLogo];
 function Header() {
   return (
-    <div className="navbar ">
+    <div className="navbar px-5">
       <a>
         {logos.map((logo, index) => {
           return (

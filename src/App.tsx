@@ -1,4 +1,3 @@
-// import { BrowserRouter, Route, Routes } from 'react-router-dom';
 // import InitialPage from './pages/InitialPage';
 // import SelectLevel from './pages/SelectLevel';
 // import Game from './pages/Game';
@@ -35,15 +34,23 @@
 // }
 // export default App;
 
-import React from 'react';
-import Header from '@components/Header';
-import SideBar from '@components/SideBar';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import SelectHand from '@pages/SelectHand';
+import RootLayout from '@components/Layout/RootLayout';
+import SelectLevel from '@pages/SelectLevel';
 
 function App() {
   return (
-    <div>
-      <Header />
-      <SideBar />
+    <div data-theme="forest">
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<RootLayout />}>
+            <Route path="select-hand" element={<SelectHand />} />
+            <Route path="select-level" element={<SelectLevel />} />
+          </Route>
+          <Route path="*" element={<p>path not found</p>}></Route>
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
