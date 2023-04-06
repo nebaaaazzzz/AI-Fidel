@@ -38,6 +38,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import SelectHand from '@pages/SelectHand';
 import RootLayout from '@components/Layout/RootLayout';
 import SelectLevel from '@pages/SelectLevel';
+import StartLevel from '@pages/StartLevel';
 
 function App() {
   return (
@@ -47,6 +48,7 @@ function App() {
           <Route path="/" element={<RootLayout />}>
             <Route path="select-hand" element={<SelectHand />} />
             <Route path="select-level" element={<SelectLevel />} />
+            <Route path="start-level" element={<StartLevel />} />
           </Route>
           <Route path="*" element={<p>path not found</p>}></Route>
         </Routes>
