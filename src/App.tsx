@@ -40,7 +40,7 @@ import RootLayout from '@components/Layout/RootLayout';
 import SelectLevel from '@pages/SelectLevel';
 import StartLevel from '@pages/StartLevel';
 import LevelCompleted from '@pages/LevelCompleted';
-
+import Game from '@pages/Game';
 function App() {
   return (
     <div data-theme="forest">
@@ -51,6 +51,7 @@ function App() {
             <Route path="select-level" element={<SelectLevel />} />
             <Route path="start-level" element={<StartLevel />} />
             <Route path="level-completed" element={<LevelCompleted />} />
+            <Route path="game" element={<Game />} />
           </Route>
           <Route path="*" element={<p>path not found</p>}></Route>
         </Routes>
