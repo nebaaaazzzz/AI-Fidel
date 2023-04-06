@@ -1,0 +1,14 @@
+@keyframes animate {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+.changing-width {
+  animation-name: animate;
+  animation-duration: 1s;
+  animation-timing-function: ease-in;
+  animation-iteration-count: 1;
+}
