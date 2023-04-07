@@ -15,6 +15,7 @@ import { getLevelAmharicWords } from '@/utils/amharicindex';
 import reactToDOMCursor from '@/HandUtils/reactToDom';
 import { storeSessionInfo } from '@/utils/localsession';
 import TimerProgress from '@components/TimerProgress';
+import moment from 'moment';
 const handAnalyzer = new HandAnalyzer();
 let skipPrediction = false;
 let score = 0;
@@ -257,6 +258,7 @@ function Game() {
       }
     })();
   }, [isGameStarted]);
+  const percentage = ((currentTime - startTime) / 180000).toFixed(2) * 100;
   return (
     <div className="flex flex-col items-center">
       <div className="flex gap-10">
@@ -285,7 +287,14 @@ function Game() {
           ></canvas>
         </div>
       </div>
-      <TimerProgress />
+      {isGameStarted && (
+        <div className="flex items-center gap-10">
+          <p>{moment(currentTime - startTime).format('mm : ss')}</p>
+          <TimerProgress percentage={percentage} />
+          <p>{percentage}%</p>
+        </div>
+      )}
+
       <button
         onClick={handleSkip}
         className="btn mt-10 btn-primary rounded-md btn-wide "

@@ -1,10 +1,10 @@
 import React from 'react';
 
-function TimerProgress() {
+function TimerProgress(percentage) {
   return (
     <progress
       className="progress progress-accent w-56"
-      value="10"
+      value={percentage}
       max="100"
     ></progress>
   );
