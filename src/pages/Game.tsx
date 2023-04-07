@@ -12,7 +12,10 @@ import {
 import getLanguageWords from '@/data';
 import { getLevelWords } from '@/utils';
 import { getLevelAmharicWords } from '@/utils/amharicindex';
+import reactToDOMCursor from '@/HandUtils/reactToDom';
 const handAnalyzer = new HandAnalyzer();
+let skipPrediction = false;
+let score = 0;
 function useGetGameConfig(
   searchParams: URLSearchParams,
   navigate: NavigateFunction
@@ -41,6 +44,10 @@ function Game() {
   );
   const videoElement = useRef<HTMLVideoElement>(null);
   const canvasElement = useRef<HTMLCanvasElement>(null);
+  //to show percentage accuracy
+  const [lookForLetter, setLookForLetter] =
+    useState<AlphabetDefinationI | null>(null);
+
   const [isMediaPipeModelLoading, setIsMediaPipeModelLoading] = useState(true);
   //if the user show his hand
   const [isGameStarted, setIsGameStarted] = useState(false);
@@ -56,22 +63,19 @@ function Game() {
 
   const handleNext = () => {
     //level compelted go to level completed page
-    if (wordIndex == 9) {
-      navigate(
-        `/level-completed?hand=${hand}&level=${level}&points=${score}&lang=${searchParams[0].get(
-          'lang'
-        )}`
-      );
-      score = 0;
-    }
-    if (currentWordLength == selectedWord.length && selectedWord) {
-      setSelectWord(levelWords[wordIndex + 1]);
-      setCurrentWordLength(1);
+    const selectedWord = levelWords[wordIndex];
+    if (currentWordLength == selectedWord.length - 1) {
+      setCurrentWordLength(0);
+      if (wordIndex == levelWords.length - 1) {
+        navigate(
+          `/level-completed?hand=${hand}&level=${level}&points=${score}&lang=${searchParams[0].get(
+            'lang'
+          )}`
+        );
+        score = 0;
+      }
       setWordIndex((prevWordIndex) => prevWordIndex + 1);
-      setSelectedLetter(levelWords[wordIndex + 1][0]);
-    } else if (currentWordLength != selectedWord.length && selectedWord) {
-      setCurrentWordLength(currentWordLength + 1);
-      setSelectedLetter(selectedWord[currentWordLength]);
+    } else if (currentWordLength != selectedWord.length - 1) {
       setCurrentWordLength(currentWordLength + 1);
     }
   };
@@ -128,6 +132,31 @@ function Game() {
             color: 'transparent',
             lineWidth: 0
           });
+          if (isGameStarted && !skipPrediction) {
+            const response = reactToDOMCursor(
+              fingerPoseResults,
+              newLandMarks,
+              levelWords[wordIndex][currentWordLength],
+              lang
+            );
+            if (response.countCorrectFingers == 5) {
+              //stop detecting hand this value change after a delay
+              skipPrediction = true;
+              score++;
+              //this time out to delay change of current letter after detecting the hand
+              setTimeout(() => {
+                handleNext();
+                skipPrediction = false;
+              }, 200);
+            } else if (response?.message) {
+              // console.log(response.message);
+            }
+            if (response?.lookForLetter) {
+              setLookForLetter(response?.lookForLetter);
+            }
+          }
+        } else {
+          setLookForLetter(null);
         }
         canvasCtx?.restore();
       }
@@ -145,7 +174,6 @@ function Game() {
       minDetectionConfidence: 0.5,
       minTrackingConfidence: 0.5
     });
-    hands.onResults(onResults);
     return hands;
   }, []);
   useEffect(() => {
@@ -159,9 +187,10 @@ function Game() {
         camera.start();
       }
     })();
-    if (isGameStarted) {
-    }
   }, [isGameStarted]);
+  useEffect(() => {
+    hands.onResults(onResults);
+  }, [isGameStarted, currentWordLength, wordIndex]);
   return (
     <div className="flex flex-col items-center">
       <div className="flex gap-10">
@@ -170,6 +199,7 @@ function Game() {
           isGameStarted={isGameStarted}
         />
         <GameLeftSide
+          score={score}
           levelWords={levelWords}
           isGameStarted={isGameStarted}
           wordIndex={wordIndex}

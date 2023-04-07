@@ -5,11 +5,13 @@ function GameLeftSide({
   wordIndex,
   currentWordLength,
   lang,
+  score,
   levelWords
 }: {
   isGameStarted: boolean;
   currentWordLength: number;
   wordIndex: number;
+  score: number;
   lang: string;
   levelWords: string[];
 }) {
@@ -19,7 +21,7 @@ function GameLeftSide({
     <div className="border-2 flex flex-col self-center border-primary  items-center justify-center rounded-lg p-5">
       {isGameStarted ? (
         <>
-          <p className="self-end">2 ነጥብ</p>
+          <p className="self-end">{score} ነጥብ</p>
           <div className="flex prose gap-5 items-center mx-10">
             <img className="w-44" src={`/images/english/${letter}.png`} />
             <h1 className="text-accent">{letter}</h1>
