@@ -1,17 +1,11 @@
 import amharicWords from './amharicwords';
-
-async function getLanguageWords(lang, mode, levelIndex) {
+import englishWords from './englishwords';
+function getLanguageWords(lang: string, mode: string, level: string) {
   if (lang == 'en') {
     if (mode == 'learn') {
-      const { default: words } = await import(
-        `../data/english/level-${levelIndex}.ts`
-      );
-      return words;
+      return englishWords[`level${level}`];
     } else {
-      const { default: words } = await import(
-        `../data/english/level-${4}.ts` // get level 4
-      );
-      return words;
+      return englishWords['level4'];
     }
   } else {
     return amharicWords;
