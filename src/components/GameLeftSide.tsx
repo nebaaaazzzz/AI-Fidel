@@ -4,20 +4,30 @@ function GameLeftSide({
   isGameStarted,
   wordIndex,
   currentWordLength,
-  lang
+  lang,
+  levelWords
 }: {
   isGameStarted: boolean;
   currentWordLength: number;
   wordIndex: number;
   lang: string;
+  levelWords: string[];
 }) {
-  console.log(lang);
-  console.log(wordIndex);
-  console.log(currentWordLength);
+  const word = levelWords[wordIndex];
+  const letter = word[currentWordLength].toUpperCase();
   return (
-    <div className="border-2 self-center border-primary flex items-center justify-center rounded-lg p-10">
+    <div className="border-2 flex flex-col self-center border-primary  items-center justify-center rounded-lg p-5">
       {isGameStarted ? (
-        <img src="/" />
+        <>
+          <p className="self-end">2 ነጥብ</p>
+          <div className="flex prose gap-5 items-center mx-10">
+            <img className="w-44" src={`/images/english/${letter}.png`} />
+            <h1 className="text-accent">{letter}</h1>
+          </div>
+          <div className="flex items-center justify-center px-16 py-2  bg-[#2E2E2E] rounded-lg">
+            <p className="text-white">{word}</p>
+          </div>
+        </>
       ) : (
         <img src={hand} className="object-contain w-72 aspect-square" />
       )}

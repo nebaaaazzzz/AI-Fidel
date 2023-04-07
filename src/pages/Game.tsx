@@ -170,6 +170,7 @@ function Game() {
           isGameStarted={isGameStarted}
         />
         <GameLeftSide
+          levelWords={levelWords}
           isGameStarted={isGameStarted}
           wordIndex={wordIndex}
           lang={lang}
@@ -189,7 +190,7 @@ function Game() {
         </div>
       </div>
       <button className="btn mt-10 btn-primary rounded-md btn-wide ">
-        ቀጥል
+        ፊደሉን ዝለል{' '}
       </button>
     </div>
   );
