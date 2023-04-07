@@ -2,8 +2,8 @@
 import { FingerPoseEstimator } from '../FingerUtils/FingerPostEstimator';
 import { HandAnalyzer } from '../HandUtils/HandAnalyzer';
 import { useMemo, useRef, useEffect, useState } from 'react';
-import PlaceYourHand from '@/components/PlaceYourHand';
-import GameLeftSide from '@/components/GameLeftSide';
+import PlaceYourHand from '@components/PlaceYourHand';
+import GameLeftSide from '@components/GameLeftSide';
 import {
   NavigateFunction,
   useNavigate,
@@ -14,6 +14,7 @@ import { getLevelWords } from '@/utils';
 import { getLevelAmharicWords } from '@/utils/amharicindex';
 import reactToDOMCursor from '@/HandUtils/reactToDom';
 import { storeSessionInfo } from '@/utils/localsession';
+import TimerProgress from '@components/TimerProgress';
 const handAnalyzer = new HandAnalyzer();
 let skipPrediction = false;
 let score = 0;
@@ -284,6 +285,7 @@ function Game() {
           ></canvas>
         </div>
       </div>
+      <TimerProgress />
       <button
         onClick={handleSkip}
         className="btn mt-10 btn-primary rounded-md btn-wide "
