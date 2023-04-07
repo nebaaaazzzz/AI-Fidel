@@ -13,6 +13,7 @@ import getLanguageWords from '@/data';
 import { getLevelWords } from '@/utils';
 import { getLevelAmharicWords } from '@/utils/amharicindex';
 import reactToDOMCursor from '@/HandUtils/reactToDom';
+import { storeSessionInfo } from '@/utils/localsession';
 const handAnalyzer = new HandAnalyzer();
 let skipPrediction = false;
 let score = 0;
@@ -38,50 +39,78 @@ function useGetGameConfig(
   return { mode, hand, level, lang, levelWords };
 }
 function Game() {
-  const { hand, levelWords, lang } = useGetGameConfig(
-    useSearchParams()[0],
-    useNavigate()
-  );
-  const videoElement = useRef<HTMLVideoElement>(null);
-  const canvasElement = useRef<HTMLCanvasElement>(null);
-  //to show percentage accuracy
+  const navigate = useNavigate();
+  const searchParams = useSearchParams()[0];
+  const {
+    lang,
+    mode,
+    hand: handDirection,
+    level,
+    levelWords
+  } = useGetGameConfig(searchParams, navigate);
   const [lookForLetter, setLookForLetter] =
     useState<AlphabetDefinationI | null>(null);
-
-  const [isMediaPipeModelLoading, setIsMediaPipeModelLoading] = useState(true);
-  //if the user show his hand
   const [isGameStarted, setIsGameStarted] = useState(false);
+  const [isMediaPipeModelLoading, setIsMediaPipeModelLoading] =
+    useState<boolean>(true);
+
+  const [startTime, setStartTime] = useState<Date | undefined>();
+  const [currentTime, setCurrentTime] = useState<Date | undefined>();
+
   /**
-   * @description TO track current index from level words it is from 0 - 9
+   * @description TO track current index from level words it is from 0 - 10
    */
   const [wordIndex, setWordIndex] = useState(0);
 
   /**
-   * @description TO track current current letter from current word
+   * @description TO track current current letter from selected word
    */
-  const [currentWordLength, setCurrentWordLength] = useState<number>(0);
+  const [currentWordLength, setCurrentWordLength] = useState(1);
+  const [selectedWord, setSelectWord] = useState<string>();
+  const [selectedLetter, setSelectedLetter] = useState<string>();
 
-  const handleNext = () => {
+  /**
+   * @description TO to show modal after each word completion
+   */
+  const [showModal, setShowModal] = useState(false);
+
+  /**
+   * @description just to count number of frame media pipe detected
+   */
+  let [countPrediction, setCountPrediction] = useState(0);
+
+  const videoElement = useRef(null);
+  const canvasElement = useRef<HTMLCanvasElement>(null);
+
+  const handleSkip = () => {
     //level compelted go to level completed page
-    const selectedWord = levelWords[wordIndex];
-    if (currentWordLength == selectedWord.length - 1) {
-      setCurrentWordLength(0);
-      if (wordIndex == levelWords.length - 1) {
-        navigate(
-          `/level-completed?hand=${hand}&level=${level}&points=${score}&lang=${searchParams[0].get(
-            'lang'
-          )}`
-        );
-        score = 0;
-      }
+
+    if (wordIndex == 9) {
+      navigate(
+        `/level-completed?hand=${hand}&level=${level}&points=${score}&lang=${searchParams[0].get(
+          'lang'
+        )}`
+      );
+      score = 0;
+    }
+    if (currentWordLength == selectedWord.length && selectedWord) {
+      setSelectWord(levelWords[wordIndex + 1]);
+      setCurrentWordLength(1);
       setWordIndex((prevWordIndex) => prevWordIndex + 1);
-    } else if (currentWordLength != selectedWord.length - 1) {
+      setSelectedLetter(levelWords[wordIndex + 1][0]);
+    } else if (currentWordLength != selectedWord.length && selectedWord) {
+      setCurrentWordLength(currentWordLength + 1);
+      setSelectedLetter(selectedWord[currentWordLength]);
       setCurrentWordLength(currentWordLength + 1);
     }
   };
   const onResults = async (results) => {
-    setIsMediaPipeModelLoading(false);
     let canvasCtx = canvasElement?.current?.getContext('2d');
+    setCountPrediction(countPrediction++);
+    if (countPrediction == 1) {
+      setIsMediaPipeModelLoading(false);
+    }
+
     canvasCtx?.save();
     canvasCtx?.clearRect(
       0,
@@ -110,7 +139,7 @@ function Game() {
           // if (results.multiHandedness[0].label === "Right") {
           //   newLandMarks[i][0] = newLandMarks[i][0] * -1;
           // }
-          if (hand == 'right') {
+          if (handDirection == 'right') {
             newLandMarks[i][0] = newLandMarks[i][0] * -1;
           }
         }
@@ -132,21 +161,22 @@ function Game() {
             color: 'transparent',
             lineWidth: 0
           });
-          if (isGameStarted && !skipPrediction) {
+          if (selectedLetter && !skipPrediction) {
             const response = reactToDOMCursor(
               fingerPoseResults,
               newLandMarks,
-              levelWords[wordIndex][currentWordLength],
+              selectedLetter,
               lang
             );
+
             if (response.countCorrectFingers == 5) {
               //stop detecting hand this value change after a delay
               skipPrediction = true;
               score++;
+              skipPrediction = true;
               //this time out to delay change of current letter after detecting the hand
               setTimeout(() => {
-                handleNext();
-                skipPrediction = false;
+                handleSkip();
               }, 200);
             } else if (response?.message) {
               // console.log(response.message);
@@ -158,9 +188,11 @@ function Game() {
         } else {
           setLookForLetter(null);
         }
-        canvasCtx?.restore();
       }
+    } else {
+      setLookForLetter(null);
     }
+    canvasCtx?.restore();
   };
   const hands = useMemo(() => {
     let hands = new window.Hands({
@@ -177,7 +209,35 @@ function Game() {
     return hands;
   }, []);
   useEffect(() => {
+    if (wordIndex !== 0 && wordIndex !== levelWords.length - 1) {
+      setShowModal(true);
+      setTimeout(() => {
+        setShowModal(false);
+      }, 1000);
+    }
+  }, [wordIndex]);
+  useEffect(() => {
+    if (hands) {
+      setStartTime(new Date().getTime());
+      hands.onResults(onResults);
+    }
+    if (countPrediction != 0) {
+      setTimeout(() => {
+        skipPrediction = false;
+      }, 2000);
+    }
+    let intervalId = setInterval(() => {
+      if (startTime) {
+        setCurrentTime(new Date());
+      }
+    }, 1000);
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, [selectedLetter, currentWordLength]);
+  useEffect(() => {
     (async () => {
+      storeSessionInfo(lang, handDirection, level);
       if (videoElement.current) {
         const camera = new window.Camera(videoElement.current, {
           onFrame: async () => {
@@ -186,11 +246,16 @@ function Game() {
         });
         camera.start();
       }
+
+      if (isGameStarted) {
+        setSelectWord(levelWords[0]);
+        setSelectedLetter(levelWords[0][0]);
+        setTimeout(() => {
+          setShowModal(false);
+        }, 1000);
+      }
     })();
   }, [isGameStarted]);
-  useEffect(() => {
-    hands.onResults(onResults);
-  }, [isGameStarted, currentWordLength, wordIndex]);
   return (
     <div className="flex flex-col items-center">
       <div className="flex gap-10">
@@ -200,26 +265,29 @@ function Game() {
         />
         <GameLeftSide
           score={score}
-          levelWords={levelWords}
           isGameStarted={isGameStarted}
-          wordIndex={wordIndex}
           lang={lang}
-          currentWordLength={currentWordLength}
+          selectedLetter={selectedLetter}
+          selectedWord={selectedWord}
         />
         <div className="flex items-center justify-center w-96 aspect-square rounded-lg p-10">
           <video
             ref={videoElement}
-            className="hidden w-full aspect-square"
+            className="input_video hidden w-full aspect-square"
           ></video>
           <canvas
-            className={`W-full apect-square object-fill ${
-              isMediaPipeModelLoading ? 'none' : 'bloack'
-            } `}
+            className="output_canvas rounded-lg aspect-square w-full object-fill"
+            style={{
+              display: isMediaPipeModelLoading ? 'none' : 'block'
+            }}
             ref={canvasElement}
           ></canvas>
         </div>
       </div>
-      <button className="btn mt-10 btn-primary rounded-md btn-wide ">
+      <button
+        onClick={handleSkip}
+        className="btn mt-10 btn-primary rounded-md btn-wide "
+      >
         ፊደሉን ዝለል{' '}
       </button>
     </div>
