@@ -47,6 +47,8 @@ import Login from '@pages/Login';
 import SelectGame from '@pages/SelectGame';
 import StartLearning from '@pages/StartLearning';
 import SelectProfile from '@pages/select-profile';
+import Welcome from '@pages/Welcome';
+import LearnNew from '@pages/learn-new';
 function App() {
   return (
     <div data-theme="forest">
@@ -58,7 +60,9 @@ function App() {
             <Route path="start-level" element={<StartLevel />} />
             <Route path="level-completed" element={<LevelCompleted />} />
             <Route path="game" element={<Game />} />
+            <Route path="welcome" element={<Welcome />} />
             <Route path="start-learning" element={<StartLearning />} />
+            <Route path="learn-new" element={<LearnNew />} />
           </Route>
           <Route path="landing" element={<Landing />} />
           <Route path="select-mode" element={<SelectMode />} />
