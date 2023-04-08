@@ -66,13 +66,14 @@
 // }
 
 // export default StartLevel;
+import LinkwithQuery from '@/components/LinkwithQuery';
 import pointhand from '@assets/images/pointinghand.png';
 import { AiOutlineCamera } from 'react-icons/ai';
 import { MdKeyboardArrowDown } from 'react-icons/md';
 function StartLevel() {
   return (
     <div className="flex justify-center">
-      <div className="w-2/3 flex flex-col items-center gap-10">
+      <div className="w-2/3 flex flex-col items-center gap-5">
         <button className="btn btn-accent rounded-md w-full flex justify-between">
           <div> </div>
           <p>ደረጃ 1</p>
@@ -97,11 +98,11 @@ function StartLevel() {
             );
           })}
         </div>
-        <button className="btn capitalize btn-primary rounded-md w-full flex justify-between">
+        <LinkwithQuery query={''} path={'/game'} ref={null}>
           <div></div>
           <p>Turn on Camera</p>
           <AiOutlineCamera size={20} color="white" />
-        </button>
+        </LinkwithQuery>
       </div>
     </div>
   );

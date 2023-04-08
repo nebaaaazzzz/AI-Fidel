@@ -27,7 +27,7 @@ function SideBar() {
     >
       {images.map((image, index) => {
         return (
-          <a href="">
+          <a href="" key={index}>
             <img src={image} className="object-contain mx-auto" key={index} />
           </a>
         );

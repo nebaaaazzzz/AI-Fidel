@@ -11,9 +11,9 @@ function Left({ word }: { word: string }) {
         infinite
         canSwipe={false}
       >
-        {word.split('').map((letter) => {
+        {word.split('').map((letter, i) => {
           return (
-            <div className="each-fade">
+            <div className="each-fade" key={i}>
               <img
                 src={`/spelling/lefthand/` + letter.toUpperCase() + '.png'}
                 alt="F"

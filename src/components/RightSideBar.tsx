@@ -13,7 +13,7 @@ const categories = [
 const modes = ['Education', 'Game'];
 function RightSideBar() {
   return (
-    <div className="flex  flex-col items-center gap-10 ">
+    <div className="flex  flex-col items-center gap-5 ">
       <Icon />
       <div
         className="flex flex-col items-center"
@@ -46,14 +46,14 @@ function RightSideBar() {
 function Icon() {
   return (
     <div className="relative flex">
-      <div className="w-14 aspect-square rounded-full bg-primary"></div>
+      <div className="w-12 aspect-square rounded-full bg-primary"></div>
       <div
         style={{
           background:
             'linear-gradient(92.98deg, rgba(255, 255, 255, 0.41) -10.29%, rgba(255, 252, 252, 0.1) 138.28%)',
           backdropFilter: 'blur(10.5px)'
         }}
-        className="w-28 absolute  top-8 -left-6 h-14 bg-primary rounded-b-full"
+        className="w-24 absolute  top-4 -left-6 h-14 bg-primary rounded-b-full"
       ></div>
     </div>
   );

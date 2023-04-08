@@ -131,7 +131,10 @@ function SelectLevel() {
       <div className="flex flex-col gap-5 ">
         {[1, 2, 3, 4].map((i) => {
           return (
-            <button className="btn btn-primary rounded-md flex justify-between px-5">
+            <button
+              key={i}
+              className="btn btn-primary rounded-md flex justify-between px-5"
+            >
               <div></div>
               <p className="text-white ">ደረጃ {i}</p>
               <MdLock fontSize={20} color="white" />

@@ -5,7 +5,7 @@ import RightSideBar from '@components/RightSideBar';
 import { Outlet } from 'react-router';
 function RootLayout() {
   return (
-    <>
+    <div className="bg-[#0d0d0d]">
       <Header />
       <div className="flex gap-10 px-2 ">
         <LeftSideBar />
@@ -14,7 +14,7 @@ function RootLayout() {
         </div>
         <RightSideBar />
       </div>
-    </>
+    </div>
   );
 }
 

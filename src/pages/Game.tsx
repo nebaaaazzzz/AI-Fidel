@@ -237,6 +237,7 @@ function Game() {
       clearInterval(intervalId);
     };
   }, [selectedLetter, currentWordLength]);
+
   useEffect(() => {
     (async () => {
       storeSessionInfo(lang, handDirection, level);
@@ -259,6 +260,9 @@ function Game() {
     })();
   }, [isGameStarted]);
   const percentage = ((currentTime - startTime) / 180000).toFixed(2) * 100;
+  if (percentage >= 100) {
+    handleSkip();
+  }
   return (
     <div className="flex flex-col items-center">
       <div className="flex gap-10">
