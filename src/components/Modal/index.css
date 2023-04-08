@@ -12,3 +12,18 @@
   animation-timing-function: ease-in;
   animation-iteration-count: 1;
 }
+.glass {
+  position: absolute;
+  width: 1300px;
+  height: 500px;
+  left: 100px;
+  top: 130px;
+  border-radius: 49px;
+
+  background: rgba(255, 255, 255, 0.09);
+
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+
+  -webkit-backdrop-filter: blur(0.3px);
+  border: 1px solid rgba(255, 255, 255, 0.64);
+}
