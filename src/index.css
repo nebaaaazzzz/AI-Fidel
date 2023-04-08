@@ -9,3 +9,6 @@ body {
   font-family: 'Poppins', sans-serif;
   overflow: hidden;
 }
+html {
+  background-color: #0d0d0d;
+}

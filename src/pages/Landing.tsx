@@ -11,13 +11,13 @@ function Landing() {
         <img src={eclips} />
       </div>
       <Glass />
-      <div className="absolute inset-x-[500px] inset-y-[300px] w-40">
+      <div className="absolute inset-x-[550px] inset-y-[350px] w-40">
         <img src={fidel} />
       </div>
-      <div className="absolute inset-x-[660px] inset-y-[300px] w-96  font-semibold text-6xl">
+      <div className="absolute inset-x-[710px] inset-y-[350px] w-96  font-semibold text-6xl">
         Fidel
       </div>
-      <div className="absolute inset-x-[800px] inset-y-[290px] w-3 ">
+      <div className="absolute inset-x-[850px] inset-y-[340px] w-3 ">
         <img src={vector} />
       </div>
       <div className="absolute inset-x-[660px] inset-y-[650px] font-light ">

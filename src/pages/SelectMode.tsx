@@ -20,30 +20,25 @@ function SelectMode() {
       <div className="absolute inset-x-16 top-[207px] w-1/3 h-1/3 ">
         <img src={boy1} />
       </div>
-      <div className="absolute left-[1100px] top-24 w-24 h-24 ">
+      <div className="absolute left-[1100px] top-20 w-24 h-24 ">
         <img src={vector} />
       </div>
-      <div className="absolute left-[955px] top-32 w-1/3 h-1/3  ">
+      <div className="absolute left-[950px] top-24 w-1/3 h-1/3  ">
         <img src={fidel} />
       </div>
-      <div className="absolute inset-x-[920px] inset-y-[600px] font-light w-[400px]">
-        Powered by ablaze laps
+      <div className="absolute inset-x-[960px] inset-y-[600px] font-light w-[400px]">
+        Powered by ablaze labs
       </div>
-      <div className="absolute inset-x-[945px] inset-y-60 text-4xl text-justify  font-semibold w-64 center">
-        <p>What do </p>
-      </div>
-      <div className="absolute inset-x-[910px] inset-y-[270px] text-4xl text-justify  font-semibold w-72">
-        <p>you Like to do</p>
-      </div>
-      <div className="absolute inset-x-[800px] inset-y-[350px]  text-justify font-light w-[470px]">
-        Learn the ABC in sign language with machine language. The game
-      </div>
-      <div className="absolute inset-x-[815px] inset-y-[370px]  text-justify font-light indent-1 w-[400px]">
-        will using your camera and machine learning to analyze
-      </div>
-      <div className="absolute inset-x-[950px] inset-y-[390px]  text-justify font-light indent-1 w-[400px]">
-        handshapes
-      </div>
+      <h1
+        style={{ lineHeight: '66px' }}
+        className="text-center text-[55px] font-bold text-white absolute w-[400px]  left-[800px] top-[184px]"
+      >
+        Welcome back
+      </h1>
+      <p className="absolute w-[561px] text-center h-[119px] top-[330px] left-[742px]">
+        Learn the ABC in sign language with machine language .The game will
+        using your camera and machine learning to analyze your handshapes{' '}
+      </p>
 
       <button className="btn absolute inset-x-[800px] inset-y-[420px] w-[470px] capitalize text-black bg-[#F8B936] rounded-xl ">
         Education

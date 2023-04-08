@@ -5,7 +5,7 @@ function LevelCompleted() {
     <div className="flex justify-center">
       <div className="w-2/3 flex flex-col items-center gap-5">
         <button className="btn btn-primary rounded-md w-full ">ደረጃ 1</button>
-        <Stars />
+        {/* <Stars /> */}
         <p className="">እነዚህን የአማርኛ ሆሄ ይማሩ</p>
         <img src={stars} className="object-contain w-28" />
         <p>ያገኘሺው ነጥብ</p>
