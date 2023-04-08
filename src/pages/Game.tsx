@@ -95,12 +95,12 @@ function Game() {
       );
       score = 0;
     }
-    if (currentWordLength == selectedWord.length && selectedWord) {
+    if (currentWordLength == selectedWord?.length && selectedWord) {
       setSelectWord(levelWords[wordIndex + 1]);
       setCurrentWordLength(1);
       setWordIndex((prevWordIndex) => prevWordIndex + 1);
       setSelectedLetter(levelWords[wordIndex + 1][0]);
-    } else if (currentWordLength != selectedWord.length && selectedWord) {
+    } else if (currentWordLength != selectedWord?.length && selectedWord) {
       setCurrentWordLength(currentWordLength + 1);
       setSelectedLetter(selectedWord[currentWordLength]);
       setCurrentWordLength(currentWordLength + 1);
@@ -259,7 +259,7 @@ function Game() {
       }
     })();
   }, [isGameStarted]);
-  const percentage = ((currentTime - startTime) / 180000).toFixed(2) * 100;
+  const percentage = (((currentTime - startTime) / 180000) * 100).toFixed(2);
   if (percentage >= 100) {
     handleSkip();
   }
@@ -292,19 +292,20 @@ function Game() {
         </div>
       </div>
       {isGameStarted && (
-        <div className="flex items-center gap-10">
-          <p>{moment(currentTime - startTime).format('mm : ss')}</p>
-          <TimerProgress percentage={percentage} />
-          <p>{percentage}%</p>
-        </div>
+        <>
+          <div className="flex items-center gap-10">
+            <p>{moment(currentTime - startTime).format('mm : ss')}</p>
+            <TimerProgress percentage={percentage} />
+            <p>{percentage}%</p>
+          </div>
+          <button
+            onClick={handleSkip}
+            className="btn mt-10 btn-primary rounded-md btn-wide "
+          >
+            ፊደሉን ዝለል{' '}
+          </button>
+        </>
       )}
-
-      <button
-        onClick={handleSkip}
-        className="btn mt-10 btn-primary rounded-md btn-wide "
-      >
-        ፊደሉን ዝለል{' '}
-      </button>
     </div>
   );
 }
