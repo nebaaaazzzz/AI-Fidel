@@ -1,22 +1,11 @@
-import fidel from '@assets/logo/fidel.png';
-import fidelLogo from '@assets/logo/fidel-text.png';
+import Logo from './Logo';
 import Search from './Search';
 const links = ['Find Work', 'Hire Pro', 'Inspiration', 'Community', 'Market'];
-const logos = [fidel, fidelLogo];
+
 function Header() {
   return (
     <div className="navbar px-5 mb-10">
-      <a>
-        {logos.map((logo, index) => {
-          return (
-            <img
-              src={logo}
-              className="w-14 object-contain mx-auto"
-              key={index}
-            />
-          );
-        })}
-      </a>
+      <Logo />
       <div className="flex-1 justify-center gap-10">
         {links.map((link, index) => {
           return (

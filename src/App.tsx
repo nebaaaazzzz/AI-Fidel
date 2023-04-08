@@ -44,8 +44,9 @@ import Game from '@pages/Game';
 import Landing from '@pages/Landing';
 import SelectMode from '@pages/SelectMode';
 import Login from '@pages/Login';
-import SelectGame from './pages/SelectGame';
-import StartLearning from './pages/StartLearning';
+import SelectGame from '@pages/SelectGame';
+import StartLearning from '@pages/StartLearning';
+import SelectProfile from '@pages/select-profile';
 function App() {
   return (
     <div data-theme="forest">
@@ -59,11 +60,13 @@ function App() {
             <Route path="game" element={<Game />} />
             <Route path="start-learning" element={<StartLearning />} />
           </Route>
-          <Route path="*" element={<p>path not found</p>}></Route>
-          <Route path="landing" element={<Landing />}></Route>
-          <Route path="select-mode" element={<SelectMode />}></Route>
-          <Route path="login" element={<Login />}></Route>
-          <Route path="select-game" element={<SelectGame />}></Route>
+          <Route path="landing" element={<Landing />} />
+          <Route path="select-mode" element={<SelectMode />} />
+          <Route path="login" element={<Login />} />
+          <Route path="select-profile" element={<SelectProfile />} />
+          <Route path="login" element={<Login />} />
+          <Route path="select-game" element={<SelectGame />} />
+          <Route path="*" element={<p>path not found</p>} />
         </Routes>
       </BrowserRouter>
     </div>
