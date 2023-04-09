@@ -7,7 +7,7 @@ function RootLayout() {
   return (
     <div className="bg-[#0d0d0d]">
       <Header />
-      <div className="flex gap-10 px-2 ">
+      <div className="flex gap-10 pt-14 md:mt-0 px-2 ">
         <LeftSideBar />
         <div className="flex-[3] flex-shrink">
           <Outlet />

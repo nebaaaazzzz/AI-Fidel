@@ -72,7 +72,7 @@ import { AiOutlineCamera } from 'react-icons/ai';
 import { MdKeyboardArrowDown } from 'react-icons/md';
 function StartLevel() {
   return (
-    <div className="mt-16 md:mt-0 flex justify-center">
+    <div className="flex justify-center">
       <div className="w-2/3 flex flex-col items-center gap-5">
         <button className="btn btn-accent rounded-md w-full flex justify-between">
           <div> </div>

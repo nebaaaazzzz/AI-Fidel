@@ -7,7 +7,7 @@ const socialMediaIcons = [AiOutlineInstagram, GrFacebookOption, ImTwitter];
 
 function SelectLevel() {
   return (
-    <div className="flex mt-14 md:mt-0 flex-col gap-10">
+    <div className="flex  flex-col gap-10">
       <div
         className="flex justify-between px-3 pl-10 py-5"
         style={{
