@@ -9,7 +9,7 @@ function RootLayout() {
       <Header />
       <div className="flex gap-10 px-2 ">
         <LeftSideBar />
-        <div className="flex-[3]">
+        <div className="flex-[3] flex-shrink">
           <Outlet />
         </div>
         <RightSideBar />

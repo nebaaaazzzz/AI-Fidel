@@ -13,17 +13,15 @@ const categories = [
 const modes = ['Education', 'Game'];
 function RightSideBar() {
   return (
-    <div className="flex  flex-col items-center gap-5 ">
+    <div className="hidden md:flex shrink-0   flex-col items-center gap-5 ">
       <Icon />
       <div
-        className="flex flex-col items-center"
+        className="flex flex-col md:w-42 lg:w-56 items-center px-5"
         style={{
-          // position: 'absolute',
-          width: '300px',
           backgroundImage:
             'linear-gradient(104.13deg, rgba(0, 0, 0, 0.4) 17.81%, rgba(0, 0, 0, 0.45) 90.16%)',
           backdropFilter: 'blur(20.5px)',
-          borderRadius: '20px'
+          borderRadius: '20px w-full px-5'
         }}
       >
         <div className="flex gap-2 border-primary border-2 rounded-lg px-6 my-3">
@@ -70,7 +68,7 @@ function Header({ text }: { text: string }) {
 }
 function TextContainer({ text }: { text: string }) {
   return (
-    <div className="mt-2">
+    <div className="mt-2 w-full">
       <p className="text-white text-center">{text}</p>
       <Divider />
     </div>
@@ -80,10 +78,10 @@ function Divider() {
   return (
     <div
       style={{
-        width: '250px',
         height: '0px',
         border: '0.6px solid rgba(255, 255, 255, 0.19)'
       }}
+      className="w-full"
     ></div>
   );
 }

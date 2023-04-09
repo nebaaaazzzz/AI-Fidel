@@ -72,7 +72,7 @@ import { AiOutlineCamera } from 'react-icons/ai';
 import { MdKeyboardArrowDown } from 'react-icons/md';
 function StartLevel() {
   return (
-    <div className="flex justify-center">
+    <div className="mt-16 md:mt-0 flex justify-center">
       <div className="w-2/3 flex flex-col items-center gap-5">
         <button className="btn btn-accent rounded-md w-full flex justify-between">
           <div> </div>
@@ -81,7 +81,7 @@ function StartLevel() {
         </button>
         <img className="object-contain w-40" src={pointhand} />
         <p className="">እነዚህን የአማርኛ ሆሄ ይማሩ</p>
-        <div className="flex gap-8">
+        <div className="flex gap-2 md:gap-4 lg:gap-8">
           {['ሀ', 'ሰ', 'ነ', 'ነ', 'ኘ', 'የ', 'ተ'].map((letter, i) => {
             return (
               <p
@@ -91,7 +91,7 @@ function StartLevel() {
                   boxShadow: '0px 2px 26px rgba(0, 0, 0, 0.08)',
                   borderRadius: '6px'
                 }}
-                className="w-14 aspect-square flex items-center justify-center text-white text-2xl"
+                className="w-10 md:w-14 aspect-square flex items-center justify-center text-white text-2xl"
               >
                 {letter}
               </p>

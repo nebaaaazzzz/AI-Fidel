@@ -23,7 +23,7 @@ function LeftSideBar() {
         background:
           'linear-gradient(104.13deg, rgba(78, 78, 78, 0.4) 17.81%, rgba(52, 52, 52, 0.45) 90.16%)'
       }}
-      className="w-14  h-[500px] bg flex px-3 flex-col justify-between py-4 "
+      className="fixed top-[90vh] mx-auto left-0 right-0 w-[calc(100vw-2rem)]  shrink-0  flex px-3  justify-between py-4 md:w-14 md:static md:flex-col md:h-[500px]"
     >
       {images.map((image, index) => {
         return (
