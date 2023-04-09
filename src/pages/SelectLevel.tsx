@@ -7,7 +7,7 @@ const socialMediaIcons = [AiOutlineInstagram, GrFacebookOption, ImTwitter];
 
 function SelectLevel() {
   return (
-    <div className="flex flex-col gap-10">
+    <div className="flex mt-14 md:mt-0 flex-col gap-10">
       <div
         className="flex justify-between px-3 pl-10 py-5"
         style={{
@@ -20,11 +20,11 @@ function SelectLevel() {
       >
         <div className="flex prose flex-col items-start ">
           <div className="leading-none">
-            <h1 className="text-4xl text-white m-1">Start learning </h1>
+            <h1 className="md:text-4xl text-white m-1">Start learning </h1>
             <h1 className="leading-none text-4xl m-1 text-white">Your</h1>
             <h1 className="text-white text-4xl m-1 mb-6">Language</h1>
           </div>
-          <button className="capitalize btn btn-primary  rounded-lg btn-md btn-wide py-0 ">
+          <button className="capitalize btn btn-primary  rounded-lg btn-md md:btn-wide py-0 ">
             Register
           </button>
         </div>

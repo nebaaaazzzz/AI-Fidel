@@ -264,8 +264,8 @@ function Game() {
     handleSkip();
   }
   return (
-    <div className="flex flex-col items-center">
-      <div className="flex gap-10">
+    <div className="flexmd:mt-0 mt-14  flex-col items-center">
+      <div className="flex flex-col items md:flex-row gap-10">
         <PlaceYourHand
           isMediaPipeModelLoading={isMediaPipeModelLoading}
           isGameStarted={isGameStarted}
