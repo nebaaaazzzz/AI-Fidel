@@ -14,16 +14,21 @@
 }
 .glass {
   position: absolute;
-  width: 1300px;
+  width: 1100px;
   height: 500px;
   left: 100px;
-  top: 130px;
+  top: 80px;
   border-radius: 49px;
 
-  background: rgba(255, 255, 255, 0.09);
+  /* background: linear-gradient(
+    150.11deg,
+    rgba(217, 217, 217, 0.87) -8.45%,
+    rgba(255, 255, 255, 0.2175) -8.45%,
+    rgba(255, 255, 255, 0.0783) 113.16%
+  ); */
+  box-shadow: 0px 4px 23px 10px rgba(0, 0, 0, 0.13);
+  backdrop-filter: blur(29px);
+  /* Note: backdrop-filter has minimal browser support */
 
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-
-  -webkit-backdrop-filter: blur(0.3px);
-  border: 1px solid rgba(255, 255, 255, 0.64);
+  border-radius: 49px;
 }

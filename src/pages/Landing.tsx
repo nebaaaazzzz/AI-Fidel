@@ -1,28 +1,28 @@
-import Glass from '../components/Glass';
-import fidel from '@assets/logo/logo.png';
-import fidelLogo from '@assets/logo/fidel-text.png';
-import vector from '@assets/logo/Vector.png';
 import eclips from '@assets/icons/Ellipse1.png';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Logo from '@/components/Logo';
 function Landing() {
+  const navigate = useNavigate();
+  useEffect(() => {
+    setTimeout(() => {
+      navigate('select-mode');
+    }, 3000);
+  }, []);
   return (
-    <div className="flex justify-center">
-      <div className="circleTop bg-[#008867] w-[170px] h-[334px] rounded-tr-full rounded-br-full absolute inset-x-0 inset-y-10 justify-self-start"></div>
-      <div className="absolute right-0 inset-y-80 h-56 w-56">
+    <div>
+      <div className="absolute right-2 inset-y-56 h-56 w-60">
         <img src={eclips} />
       </div>
-      <Glass />
-      <div className="absolute inset-x-[550px] inset-y-[350px] w-40">
-        <img src={fidel} />
+      <div className="relative h-screen flex items-center justify-center">
+        <div className="circleTop bg-[#008867] w-[12rem] h-[22rem] rounded-tr-full rounded-br-full absolute inset-x-0 inset-y-5 justify-self-start"></div>
+        <div className="glass flex items-center justify-center bg-red-600 w-10/12 aspect-[16/7]">
+          <Logo />
+        </div>
       </div>
-      <div className="absolute inset-x-[710px] inset-y-[350px] w-96  font-semibold text-6xl">
-        Fidel
-      </div>
-      <div className="absolute inset-x-[850px] inset-y-[340px] w-3 ">
-        <img src={vector} />
-      </div>
-      <div className="absolute inset-x-[660px] inset-y-[650px] font-light ">
-        Powered by ablaze laps
-      </div>
+      <h1 className="absolute text-center bottom-5  left-0 right-0 mx-auto">
+        Powered by ablaze labs{' '}
+      </h1>
     </div>
   );
 }

@@ -3,6 +3,7 @@ import handshake from '@assets/images/handshake.png';
 import { AiOutlineInstagram } from 'react-icons/ai';
 import { GrFacebookOption } from 'react-icons/gr';
 import { ImTwitter } from 'react-icons/im';
+import { Link } from 'react-router-dom';
 const socialMediaIcons = [AiOutlineInstagram, GrFacebookOption, ImTwitter];
 
 function SelectHand() {
@@ -51,14 +52,15 @@ function SelectHand() {
       <div className="flex gap-10">
         {['Right', 'Left'].map((hand, i) => {
           return (
-            <button
+            <Link
+              to="/select-level"
               key={i}
               className={`btn capitalize px-20 rounded-xl ${
                 i == 0 ? 'bg-accent' : 'bg-primary'
               }`}
             >
               {hand}
-            </button>
+            </Link>
           );
         })}
       </div>

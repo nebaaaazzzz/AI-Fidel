@@ -260,12 +260,12 @@ function Game() {
     })();
   }, [isGameStarted]);
   const percentage = (((currentTime - startTime) / 180000) * 100).toFixed(2);
-  if (percentage >= 100) {
-    handleSkip();
-  }
+  // if (percentage >= 100) {
+  //   handleSkip();
+  // }
   return (
-    <div className="flexmd:mt-0 mt-14  flex-col items-center">
-      <div className="flex flex-col items md:flex-row gap-10">
+    <div className="flex -mt-20 flex-col items-center">
+      <div className="flex  w-full flex-col  md:flex-row gap-5">
         <PlaceYourHand
           isMediaPipeModelLoading={isMediaPipeModelLoading}
           isGameStarted={isGameStarted}
@@ -277,7 +277,7 @@ function Game() {
           selectedLetter={selectedLetter}
           selectedWord={selectedWord}
         />
-        <div className="flex items-center justify-center w-96 aspect-square rounded-lg p-10">
+        <div className="flex items-center justify-center w-full aspect-square rounded-lg p-10">
           <video
             ref={videoElement}
             className="input_video hidden w-full aspect-square"

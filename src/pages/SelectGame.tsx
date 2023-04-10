@@ -9,6 +9,7 @@ import eclips139 from '@assets/icons/Ellipse 139.png';
 import eclips140 from '@assets/icons/Ellipse 140.png';
 import rectangle783 from '@assets/icons/Rectangle 783.png';
 import rectangle784 from '@assets/icons/Rectangle 784.png';
+import { Link } from 'react-router-dom';
 function SelectGame() {
   return (
     <div className="justify-center">
@@ -34,28 +35,36 @@ function SelectGame() {
       <div className="absolute inset-x-[920px] inset-y-[650px] font-light w-[400px]">
         Powered by ablaze laps
       </div>
-      <div className="absolute inset-x-[945px] inset-y-60 text-4xl text-justify  font-semibold w-64 center">
-        <p>What do </p>
-      </div>
-      <div className="absolute inset-x-[910px] inset-y-[270px] text-4xl text-justify  font-semibold w-72">
-        <p>you Like to do</p>
-      </div>
-      <div className="absolute inset-x-[800px] inset-y-[350px]  text-justify font-light w-[470px]">
-        Learn the ABC in sign language with machine language. The game
-      </div>
-      <div className="absolute inset-x-[815px] inset-y-[370px]  text-justify font-light indent-1 w-[400px]">
-        will using your camera and machine learning to analyze
-      </div>
-      <div className="absolute inset-x-[950px] inset-y-[390px]  text-justify font-light indent-1 w-[400px]">
-        handshapes
-      </div>
+      <h1
+        style={{ lineHeight: '66px' }}
+        className="text-center text-[50px] font-bold text-white absolute w-[400px]  left-[800px] top-[200px]"
+      >
+        Welcome
+      </h1>
+      <h1
+        style={{ lineHeight: '66px' }}
+        className="text-center text-[50px] font-bold text-white absolute w-[400px]  left-[800px] top-[250px]"
+      >
+        back
+      </h1>
+      <p className="absolute w-[561px] text-center h-[119px] top-[330px] left-[742px]">
+        Learn the ABC in sign language with machine language .The game will
+        using your camera and machine learning to analyze your handshapes{' '}
+      </p>
 
-      <button className="btn absolute inset-x-[800px] inset-y-[420px] w-[470px] capitalize text-black bg-[#F8B936] rounded-xl ">
+      <Link
+        to="/select-level"
+        className="btn absolute inset-x-[800px] inset-y-[420px] w-[470px] hover:text-white capitalize text-black bg-[#F8B936] rounded-xl "
+      >
         Resume
-      </button>
-      <button className="btn absolute inset-x-[800px] inset-y-[490px] w-[470px] capitalize bg-[#008867] rounded-xl ">
+      </Link>
+      {/* TODO delete existing session */}
+      <Link
+        to="/select-level"
+        className="btn absolute inset-x-[800px] inset-y-[490px] w-[470px] capitalize bg-[#008867] rounded-xl "
+      >
         New game
-      </button>
+      </Link>
     </div>
   );
 }

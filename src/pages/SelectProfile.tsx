@@ -3,11 +3,12 @@ import EthiopiaIcon from '@assets/icons/ethiopia-icon.png';
 import UKIcon from '@assets/icons/uk-icon.png';
 import { RxAvatar } from 'react-icons/rx';
 import avatar from '@assets/images/avatar/avatar.png';
+import { Link } from 'react-router-dom';
 function SelectProfile() {
   return (
     <div className="flex">
       <div className=" h-screen flex flex-col items-center justify-around flex-[1] px-20">
-        <h2 className="text-xl text-white">Select profile picture</h2>
+        <h2 className="text-xl text-white">Select profile avatar</h2>
         <div
           style={{
             background:
@@ -74,16 +75,22 @@ function SelectProfile() {
             <img src={avatar} />
           </div>
           <div className="flex flex-col w-full gap-5">
-            <button className="flex items-center btn bg-[#2E2E2E] rounded-md justify-between">
+            <Link
+              to="/select-hand"
+              className="flex items-center btn bg-[#2E2E2E] rounded-md justify-between"
+            >
               <img src={EthiopiaIcon} />
               <p>Amharic</p>
               <div></div>
-            </button>
-            <button className="flex items-center btn bg-[#2E2E2E] rounded-md justify-between">
+            </Link>
+            <Link
+              to="/select-hand"
+              className="flex items-center btn bg-[#2E2E2E] rounded-md justify-between"
+            >
               <img src={UKIcon} />
               <p>English</p>
               <div></div>
-            </button>
+            </Link>
             <button className="btn btn-accent rounded-md">continue</button>
           </div>
         </div>

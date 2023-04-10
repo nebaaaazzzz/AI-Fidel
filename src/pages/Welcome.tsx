@@ -5,6 +5,7 @@ import { GrFacebookOption } from 'react-icons/gr';
 import { ImTwitter } from 'react-icons/im';
 import { BsArrowRightCircle } from 'react-icons/bs';
 import circleDashed from '@assets/images/circle-dashed.png';
+import { Link } from 'react-router-dom';
 const socialMediaIcons = [AiOutlineInstagram, GrFacebookOption, ImTwitter];
 
 function Welcome() {
@@ -61,10 +62,13 @@ function Welcome() {
             ))}
         </div>
       </div>
-      <a className="flex gap-10 items-center text-3xl">
+      <Link
+        to="/game?level=1&hand=right&lang=am&mode=learn"
+        className="flex gap-10 items-center text-3xl"
+      >
         <h1 className="text-white">Getting Started</h1>
         <BsArrowRightCircle className="text-accent font-bold" />
-      </a>
+      </Link>
     </div>
   );
 }

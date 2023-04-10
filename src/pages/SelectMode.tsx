@@ -4,6 +4,7 @@ import boy1 from '@assets/icons/boy1.png';
 import glass from '@assets/images/glass.png';
 import eclips139 from '@assets/icons/Ellipse 139.png';
 import eclips140 from '@assets/icons/Ellipse 140.png';
+import { Link, useLocation } from 'react-router-dom';
 function SelectMode() {
   return (
     <div className="justify-center">
@@ -31,21 +32,33 @@ function SelectMode() {
       </div>
       <h1
         style={{ lineHeight: '66px' }}
-        className="text-center text-[55px] font-bold text-white absolute w-[400px]  left-[800px] top-[184px]"
+        className="text-center text-[50px] font-bold text-white absolute w-[400px]  left-[800px] top-[200px]"
       >
-        Welcome back
+        What do
+      </h1>
+      <h1
+        style={{ lineHeight: '66px' }}
+        className="text-center text-[50px] font-bold text-white absolute w-[400px]  left-[800px] top-[250px]"
+      >
+        you Like to do
       </h1>
       <p className="absolute w-[561px] text-center h-[119px] top-[330px] left-[742px]">
         Learn the ABC in sign language with machine language .The game will
         using your camera and machine learning to analyze your handshapes{' '}
       </p>
 
-      <button className="btn absolute inset-x-[800px] inset-y-[420px] w-[470px] capitalize text-black bg-[#F8B936] rounded-xl ">
+      <Link
+        to={`/login?mode=learn`}
+        className="btn absolute inset-x-[800px] inset-y-[420px] w-[470px] capitalize text-black hover:text-white bg-[#F8B936] rounded-xl "
+      >
         Education
-      </button>
-      <button className="btn absolute inset-x-[800px] inset-y-[490px] w-[470px] capitalize bg-[#008867] rounded-xl ">
+      </Link>
+      <Link
+        to={`/select-game?mode=game`}
+        className="btn absolute inset-x-[800px] inset-y-[490px] w-[470px] capitalize bg-[#008867] rounded-xl "
+      >
         Game
-      </button>
+      </Link>
     </div>
   );
 }

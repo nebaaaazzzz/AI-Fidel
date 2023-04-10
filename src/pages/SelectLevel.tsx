@@ -3,6 +3,7 @@ import { AiOutlineInstagram } from 'react-icons/ai';
 import { GrFacebookOption } from 'react-icons/gr';
 import { ImTwitter } from 'react-icons/im';
 import { MdLock } from 'react-icons/md';
+import { Link } from 'react-router-dom';
 const socialMediaIcons = [AiOutlineInstagram, GrFacebookOption, ImTwitter];
 
 function SelectLevel() {
@@ -25,7 +26,7 @@ function SelectLevel() {
             <h1 className="text-white text-4xl m-1 mb-6">Language</h1>
           </div>
           <button className="capitalize btn btn-primary  rounded-lg btn-md md:btn-wide py-0 ">
-            Register
+            ተመዝገብ{' '}
           </button>
         </div>
         <div className="flex items-center gap-10">
@@ -48,14 +49,18 @@ function SelectLevel() {
       <div className="flex flex-col gap-5 ">
         {[1, 2, 3, 4].map((i) => {
           return (
-            <button
+            <Link
+              //TODO if it is game mod  e go to game
+              // TODO if there is no previous session deactivate the resume button
+              //TODO
+              to="/welcome"
               key={i}
               className="btn btn-primary rounded-md flex justify-between px-5"
             >
               <div></div>
               <p className="text-white ">ደረጃ {i}</p>
               <MdLock fontSize={20} color="white" />
-            </button>
+            </Link>
           );
         })}
       </div>
