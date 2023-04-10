@@ -2,9 +2,10 @@ import React from 'react';
 import fidelLogo from '@assets/logo/fidel-text.png';
 import vector from '@assets/logo/Vector.png';
 import fidel from '@assets/logo/logo.png';
+import fidelwhite from '@assets/logo/logo1.png';
 
 const logos = [fidel, fidelLogo];
-function Logo() {
+function LogoWithText() {
   return (
     <a className=" relative flex justify-center items-center gap-1">
       <img src={fidel} className="relative object-contain w-44" />
@@ -13,5 +14,13 @@ function Logo() {
     </a>
   );
 }
+export function Logo() {
+  return (
+    <a className="relative flex justify-center items-center gap-1">
+      <img className="absolute left-[62%] -top-5" src={vector} />
+      <img src={fidelwhite} className="relative object-contain w-32" />
+    </a>
+  );
+}
 
-export default Logo;
+export default LogoWithText;

@@ -1,66 +1,53 @@
-import fidel from '@assets/logo/logo1.png';
-import vector from '@assets/logo/Vector.png';
 import boy1 from '@assets/icons/boy1.png';
-import glass from '@assets/images/glass.png';
 import eclips139 from '@assets/icons/Ellipse 139.png';
 import eclips140 from '@assets/icons/Ellipse 140.png';
-import { Link, useLocation } from 'react-router-dom';
+import { Logo } from '@/components/Logo';
 function SelectMode() {
   return (
-    <div className="justify-center">
-      <div className="absolute inset-x-0.5 inset-y-3.5 w-1/3 h-1/3 ">
-        <img src={eclips140} />
+    <div className="flex h-screen">
+      <div className="relative mt-14 w-full  flex-1">
+        <div className="w-full relative flex justify-center">
+          <img src={eclips140} className="absolute left-0 -top-10" />
+          <img src={eclips139} className="w-3/12 absolute right-0 top-[55%]" />
+          <div className="glass relative w-10/12 aspect-video"></div>
+        </div>
+        <img
+          src={boy1}
+          className="absolute mx-auto left-0 right-0 w-2/3 bottom-0 object-contain"
+        />
       </div>
-
-      <div className="absolute left-[430px] inset-y-[230px] w-1/3 h-1/3 ">
-        <img src={eclips139} />
+      <div className="flex-1 relative flex h-screen  justify-center items-center">
+        <div className="flex  gap-5 w-9/12  flex-col justify-center">
+          <Logo />
+          <div>
+            <h1 className="text-white text-5xl font-bold text-center">
+              What do
+            </h1>
+            <h1 className="text-white text-5xl font-bold text-center">
+              you Like to do
+            </h1>
+          </div>
+          <div className="flex flex-col items-center justify-center b">
+            <h1 className="font-extralight text-center text-sm ">
+              Learn the ABC in sign language with machine language .The game{' '}
+            </h1>
+            <span className="font-extralight text-center text-sm ">
+              will using your camera and machine learning to analyze your
+            </span>
+            <p className="font-extralight text-center">handshapes </p>
+          </div>
+          <div className="flex flex-col gap-4">
+            <button className="btn  capitalize btn-accent rounded-md">
+              Education
+            </button>
+            <button className="btn capitalize btn-primary rounded-md">
+              Game
+            </button>
+          </div>
+        </div>
+        <p className=" absolute bottom-10">Powered by ablaze labs </p>
       </div>
-      <div className="absolute inset-x-7 inset-y-[50px] w-1/3 h-1/3 ">
-        <img src={glass} />
-      </div>
-      <div className="absolute inset-x-16 top-[207px] w-1/3 h-1/3 ">
-        <img src={boy1} />
-      </div>
-      <div className="absolute left-[1100px] top-20 w-24 h-24 ">
-        <img src={vector} />
-      </div>
-      <div className="absolute left-[950px] top-24 w-1/3 h-1/3  ">
-        <img src={fidel} />
-      </div>
-      <div className="absolute inset-x-[960px] inset-y-[600px] font-light w-[400px]">
-        Powered by ablaze labs
-      </div>
-      <h1
-        style={{ lineHeight: '66px' }}
-        className="text-center text-[50px] font-bold text-white absolute w-[400px]  left-[800px] top-[200px]"
-      >
-        What do
-      </h1>
-      <h1
-        style={{ lineHeight: '66px' }}
-        className="text-center text-[50px] font-bold text-white absolute w-[400px]  left-[800px] top-[250px]"
-      >
-        you Like to do
-      </h1>
-      <p className="absolute w-[561px] text-center h-[119px] top-[330px] left-[742px]">
-        Learn the ABC in sign language with machine language .The game will
-        using your camera and machine learning to analyze your handshapes{' '}
-      </p>
-
-      <Link
-        to={`/login?mode=learn`}
-        className="btn absolute inset-x-[800px] inset-y-[420px] w-[470px] capitalize text-black hover:text-white bg-[#F8B936] rounded-xl "
-      >
-        Education
-      </Link>
-      <Link
-        to={`/select-game?mode=game`}
-        className="btn absolute inset-x-[800px] inset-y-[490px] w-[470px] capitalize bg-[#008867] rounded-xl "
-      >
-        Game
-      </Link>
     </div>
   );
 }
-
 export default SelectMode;
