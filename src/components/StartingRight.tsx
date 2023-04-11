@@ -1,8 +1,37 @@
-import React from 'react';
 import { Logo } from './Logo';
-import { Link } from 'react-router-dom';
-
+import { Link, useNavigate } from 'react-router-dom';
+import { GoogleAuthProvider, signInWithRedirect } from 'firebase/auth';
+import { signInWithPopup } from 'firebase/auth';
+import { auth } from '@/config/firebase';
+import { toastError, toastSuccess } from '@/utils/toast';
 function StartingRight({ header1, header2, btns }) {
+  const navigate = useNavigate();
+  function loginWithGoogle(to: string) {
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        toastSuccess('Successfully loggedin');
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        navigate(to);
+        // The signed-in user info.
+        // const user = result.user;
+        // IdP data available using getAdditionalUserInfo(result)
+        // ...
+      })
+      .catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        toastError(errorMessage);
+        // The email of the user's account used.
+        const email = error.customData.email;
+        // The AuthCredential type that was used.
+        const credential = GoogleAuthProvider.credentialFromError(error);
+        // ...
+      });
+  }
   return (
     <div className="flex-1 relative flex h-screen  justify-center items-center">
       <div className="flex  gap-5 w-9/12  flex-col justify-center">
@@ -25,9 +54,10 @@ function StartingRight({ header1, header2, btns }) {
           <p className="font-[100] text-center">handshapes </p>
         </div>
         <div className="flex w-11/12 items-center self-center  flex-col gap-4">
-          {btns.map(({ text, link }, i) => {
+          {btns.map(({ text, link, to }, i) => {
             return (
               <Link
+                {...(to ? { onClick: () => loginWithGoogle(to) } : {})}
                 key={i}
                 to={link}
                 className={`btn w-full text-lg capitalize ${

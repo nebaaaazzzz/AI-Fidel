@@ -11,7 +11,7 @@ function Login() {
         header2={'Sign Language'}
         btns={[
           { text: 'Learn as a guest', link: '/select-profile' },
-          { text: 'Login with google', link: '' }
+          { text: 'Login with google', to: '/select-profile' }
         ]}
       />
     </div>

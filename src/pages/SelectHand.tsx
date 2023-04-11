@@ -3,10 +3,11 @@ import handshake from '@assets/images/handshake.png';
 import { AiOutlineInstagram } from 'react-icons/ai';
 import { GrFacebookOption } from 'react-icons/gr';
 import { ImTwitter } from 'react-icons/im';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 const socialMediaIcons = [AiOutlineInstagram, ImTwitter, GrFacebookOption];
 
 function SelectHand() {
+  const { search } = useLocation();
   return (
     <div className="flex gap-10 relative  h-[calc(100vh-64px)] flex-col w-full  items-center">
       <div className="absolute w-[14%] aspect-square top-40 left-5 rounded-full  bg-primary"></div>
@@ -45,10 +46,10 @@ function SelectHand() {
         {['Left', 'Right'].map((hand, i) => {
           return (
             <Link
-              to="/select-level"
+              to={`/select-level${search}&hand=${hand.toLowerCase()}`}
               key={i}
               className={`btn capitalize px-20 rounded-xl ${
-                i == 0 ? 'bg-accent' : 'bg-primary'
+                i == 0 ? 'btn-accent' : 'btn-primary'
               }`}
             >
               {hand}

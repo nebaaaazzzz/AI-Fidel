@@ -3,9 +3,13 @@ import EthiopiaIcon from '@assets/icons/ethiopia-icon.png';
 import UKIcon from '@assets/icons/uk-icon.png';
 import { RxAvatar } from 'react-icons/rx';
 import avatar from '@assets/images/avatar/avatar.png';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import ellipse from '@assets/icons/Ellipse 99.png';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from '@/config/firebase';
 function SelectProfile() {
+  const [user] = useAuthState(auth);
+  const { search } = useLocation();
   return (
     <div className="flex">
       <div className=" h-screen flex flex-col items-end justify-around  flex-[1] px-20">
@@ -24,7 +28,7 @@ function SelectProfile() {
               {' '}
               <img
                 className="w-2/3 aspect-1/1 object contain"
-                src={`/images/avatar/avatar1.png`}
+                src={`/images/avatar/avatar${i}.png`}
                 alt=""
               />
             </div>
@@ -54,7 +58,9 @@ function SelectProfile() {
               className="p-2 rounded-md flex-1"
             >
               <div className="border-dashed bg-transparent rounded-md border-2 p-1 px-10">
-                <h1 className="text-center">Guest2112</h1>
+                <h1 className="text-center">
+                  {user ? user.displayName : 'Guest2112'}
+                </h1>
               </div>
             </div>
             <div></div>
@@ -66,7 +72,15 @@ function SelectProfile() {
             }}
             className="w-7/12 aspect-square rounded-full flex items-center justify-center "
           >
-            <img src={avatar} />
+            {user ? (
+              <img
+                src={user.photoURL}
+                alt="user profile picture"
+                className="w-full rounded-full"
+              />
+            ) : (
+              <img src={avatar} />
+            )}
           </div>
           <div className="flex flex-col w-full gap-3">
             {[
@@ -76,8 +90,8 @@ function SelectProfile() {
               return (
                 <Link
                   key={i}
-                  to="/select-hand"
-                  className="flex capitalize items-center btn bg-[#2E2E2E] rounded-md justify-between"
+                  to={`/select-hand${search}&lang=${text.toLowerCase()}`}
+                  className="flex capitalize items-center btn bg-[#2E2E2E] hover:bg-[#3f3f3f] rounded-md justify-between"
                 >
                   <img src={icon} className="w-1/12" />
                   <p>{text}</p>

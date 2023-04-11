@@ -3,10 +3,12 @@ import { AiOutlineInstagram } from 'react-icons/ai';
 import { GrFacebookOption } from 'react-icons/gr';
 import { ImTwitter } from 'react-icons/im';
 import { MdLock } from 'react-icons/md';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useSearchParams } from 'react-router-dom';
 const socialMediaIcons = [AiOutlineInstagram, GrFacebookOption, ImTwitter];
 
 function SelectLevel() {
+  const { search } = useLocation();
+  const [searchParams] = useSearchParams();
   return (
     <div className="flex  flex-col gap-10">
       <div className="custom-glass smrounded  flex justify-between px-3 pl-10 py-5">
@@ -40,24 +42,32 @@ function SelectLevel() {
         </div>
       </div>
       <div className="flex flex-col gap-5 ">
-        {[1, 2, 3, 4].map((i) => {
-          return (
-            <Link
-              //TODO if it is game mod  e go to game
-              // TODO if there is no previous session deactivate the resume button
-              //TODO
-              to="/welcome"
-              key={i}
-              className="btn btn-primary rounded-md flex justify-between px-5"
-            >
-              <div></div>
-              <p className="text-white ">ደረጃ {i}</p>
-              <MdLock fontSize={20} color="white" />
-            </Link>
-          );
-        })}
+        {buildLevelButtons(searchParams)}
       </div>
     </div>
+  );
+}
+
+function buildLevelButtons(searchParams: URLSearchParams) {
+  return (
+    <>
+      {[1, 2, 3, 4].map((i) => {
+        // 013201076808100
+        return (
+          <Link
+            //TODO if it is game mod  e go to game
+            // TODO if there is no previous session deactivate the resume button
+            to="/welcome"
+            key={i}
+            className="btn btn-primary rounded-md flex justify-between px-5"
+          >
+            <div></div>
+            <p className="text-white ">ደረጃ {i}</p>
+            <MdLock fontSize={20} color="white" />
+          </Link>
+        );
+      })}
+    </>
   );
 }
 export default SelectLevel;
