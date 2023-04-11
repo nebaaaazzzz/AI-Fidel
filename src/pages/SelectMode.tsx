@@ -9,7 +9,10 @@ function SelectMode() {
       <StartingRight
         header1={'What do'}
         header2={'you Like to do'}
-        btns={['Education', 'Game']}
+        btns={[
+          { text: 'Education', link: '/login' },
+          { text: 'Game', link: '/select-game' }
+        ]}
       />
     </div>
   );

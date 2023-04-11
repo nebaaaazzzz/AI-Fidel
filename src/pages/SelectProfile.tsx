@@ -4,12 +4,15 @@ import UKIcon from '@assets/icons/uk-icon.png';
 import { RxAvatar } from 'react-icons/rx';
 import avatar from '@assets/images/avatar/avatar.png';
 import { Link } from 'react-router-dom';
+import ellipse from '@assets/icons/Ellipse 99.png';
 function SelectProfile() {
   return (
     <div className="flex">
-      <div className=" h-screen flex flex-col items-center justify-around flex-[1] px-20">
-        <h2 className="text-xl text-white">Select profile avatar</h2>
-        <div className="glass w-11/12 flex flex-wrap gap-10 p-5 justify-center">
+      <div className=" h-screen flex flex-col items-end justify-around flex-[1] px-20">
+        <h2 className="text-xl self-center text-white">
+          Select profile avatar
+        </h2>
+        <div className="custom-glass w-11/12 flex flex-wrap gap-10 p-5 justify-center">
           {[1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4].map((i) => (
             <div
               style={{
@@ -27,11 +30,11 @@ function SelectProfile() {
             </div>
           ))}
         </div>
-        <div>
+        <div className="self-center">
           <LogoWithTextSM />
         </div>
       </div>
-      <div className="flex-[1] flex justify-center items-center flex-col h-screen">
+      <div className="flex-[1] flex  justify-center items-start flex-col h-screen">
         <div className="flex flex-col items-center gap-10 w-2/3 ">
           <div className="flex items-center gap-10 w-full ">
             <div
@@ -82,10 +85,12 @@ function SelectProfile() {
                 </Link>
               );
             })}
-            <button className="btn btn-accent rounded-md">continue</button>
           </div>
+          <img src={ellipse} className="absolute right-0 top-1/3 w-1/12" />
         </div>
-        <p className=" absolute bottom-5">Powered by ablaze labs </p>
+        <p className="absolute right-72 text-center  items-center bottom-5">
+          Powered by ablaze labs{' '}
+        </p>
       </div>
     </div>
   );

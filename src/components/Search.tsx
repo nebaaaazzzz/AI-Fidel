@@ -2,7 +2,7 @@ import React from 'react';
 
 function Search() {
   return (
-    <form action="flex-1">
+    <form action="flex-1 ">
       <label
         htmlFor="default-search"
         className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
@@ -30,7 +30,7 @@ function Search() {
         <input
           type="search"
           id="default-search"
-          className="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-primary dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-primary"
+          className="block  w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:border-primary dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-primary bg-transparent"
           required
         />
         <p className="text-white absolute top-0 right-2.5 bottom-2.5  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2">

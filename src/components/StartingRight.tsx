@@ -1,5 +1,6 @@
 import React from 'react';
 import { Logo } from './Logo';
+import { Link } from 'react-router-dom';
 
 function StartingRight({ header1, header2, btns }) {
   return (
@@ -7,10 +8,10 @@ function StartingRight({ header1, header2, btns }) {
       <div className="flex  gap-5 w-9/12  flex-col justify-center">
         <Logo />
         <div>
-          <h1 className="text-white text-5xl font-bold text-center">
+          <h1 className="text-white text-4xl font-bold text-center">
             {header1}
           </h1>
-          <h1 className="text-white text-5xl font-bold text-center">
+          <h1 className="text-white text-4xl font-bold text-center">
             {header2}
           </h1>
         </div>
@@ -24,15 +25,17 @@ function StartingRight({ header1, header2, btns }) {
           <p className="font-extralight text-center">handshapes </p>
         </div>
         <div className="flex flex-col gap-4">
-          {btns.map((btn, i) => {
+          {btns.map(({ text, link }, i) => {
             return (
-              <button
+              <Link
+                key={i}
+                to={link}
                 className={`btn  capitalize ${
                   i == 0 ? 'btn-accent' : 'btn-primary'
                 }  rounded-md`}
               >
-                {btn}
-              </button>
+                {text}
+              </Link>
             );
           })}
         </div>

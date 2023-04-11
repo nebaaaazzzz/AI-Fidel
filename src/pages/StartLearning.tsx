@@ -1,18 +1,3 @@
-import React from 'react';
-import Header from '@components/Header';
-import LeftSideBar from '@components/LeftSideBar';
-import RightSideBar from '@components/RightSideBar';
-import { Outlet } from 'react-router';
-import Glass from '../components/Glass';
-import fidel from '@assets/logo/logo1.png';
-import fidelLogo from '@assets/logo/fidel-text.png';
-import vector from '@assets/logo/Vector.png';
-import eclips from '@assets/images/Ellipse1.png';
-import boy2 from '@assets/icons/boy2.png';
-import glass from '@assets/images/glass.png';
-import eclips139 from '@assets/icons/Ellipse 139.png';
-import eclips140 from '@assets/icons/Ellipse 140.png';
-import rectangle783 from '@assets/icons/Rectangle 783.png';
 import rectangle802 from '@assets/icons/Rectangle 802.png';
 import Circle from '@assets/images/Circle 1.png';
 function StartLearning() {

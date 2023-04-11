@@ -9,7 +9,10 @@ function Login() {
       <StartingRight
         header1={'Learn'}
         header2={'Sign Language'}
-        btns={['Get Started', 'Learn as a guest', 'Login with google']}
+        btns={[
+          { text: 'Learn as a guest', link: '/select-profile' },
+          { text: 'Login with google', link: '' }
+        ]}
       />
     </div>
   );

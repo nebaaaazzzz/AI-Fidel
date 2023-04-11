@@ -12,10 +12,10 @@ body {
 html {
   background-color: #0d0d0d;
 }
-div {
+/* div {
   background-color: #0d0d0d;
-}
-.glass {
+} */
+.custom-glass {
   background: linear-gradient(
     150.11deg,
     rgba(217, 217, 217, 0.87) -8.45%,

@@ -9,18 +9,9 @@ const socialMediaIcons = [AiOutlineInstagram, GrFacebookOption, ImTwitter];
 function SelectLevel() {
   return (
     <div className="flex  flex-col gap-10">
-      <div
-        className="flex justify-between px-3 pl-10 py-5"
-        style={{
-          background:
-            'linear-gradient(104.13deg, rgba(78, 78, 78, 0.4) 17.81%, rgba(52, 52, 52, 0.45) 90.16%)',
-          border: '4px solid rgba(255, 255, 255, 0.09)',
-          backdropFilter: 'blur(19.5px)',
-          borderRadius: '17px'
-        }}
-      >
-        <div className="flex prose flex-col items-start ">
-          <div className="leading-none">
+      <div className="custom-glass flex justify-between px-3 pl-10 py-5">
+        <div className="flex  prose flex-col items-start ">
+          <div className="leading-none bg-transparent">
             <h1 className="md:text-4xl text-white m-1">Start learning </h1>
             <h1 className="leading-none text-4xl m-1 text-white">Your</h1>
             <h1 className="text-white text-4xl m-1 mb-6">Language</h1>

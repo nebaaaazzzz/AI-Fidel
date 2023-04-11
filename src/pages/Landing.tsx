@@ -2,6 +2,8 @@ import eclips from '@assets/icons/Ellipse1.png';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Logo from '@/components/Logo';
+import vector from '@assets/logo/Vector.png';
+
 function Landing() {
   const navigate = useNavigate();
   useEffect(() => {
@@ -11,12 +13,14 @@ function Landing() {
   }, []);
   return (
     <div>
-      <div className="absolute right-2 inset-y-56 h-56 w-60">
-        <img src={eclips} />
+      <div className="absolute inset-x-[400px] inset-y-[290px] w-3 ">
+        <img src={vector} />
       </div>
       <div className="relative h-screen flex items-center justify-center">
+        <img src={eclips} className="w-2/12 absolute right-0 bottom-[15%]" />
+
         <div className="circleTop bg-[#008867] w-[12rem] h-[22rem] rounded-tr-full rounded-br-full absolute inset-x-0 inset-y-5 justify-self-start"></div>
-        <div className="glass flex items-center justify-center bg-red-600 w-10/12 aspect-[16/7]">
+        <div className="custom-glass flex items-center justify-center bg-red-600 w-10/12 aspect-[16/7]">
           <Logo />
         </div>
       </div>
