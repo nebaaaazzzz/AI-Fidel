@@ -5,12 +5,12 @@ import Logo from '@/components/Logo';
 import vector from '@assets/logo/Vector.png';
 
 function Landing() {
-  // const navigate = useNavigate();
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     navigate('select-mode');
-  //   }, 2000);
-  // }, []);
+  const navigate = useNavigate();
+  useEffect(() => {
+    setTimeout(() => {
+      navigate('select-mode');
+    }, 2000);
+  }, []);
   return (
     <div>
       <div className="relative h-screen flex items-center justify-center">

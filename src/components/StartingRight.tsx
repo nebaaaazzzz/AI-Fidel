@@ -53,7 +53,7 @@ function StartingRight({ header1, header2, btns }) {
           </span>
           <p className="font-[100] text-center">handshapes </p>
         </div>
-        <div className="flex w-11/12 items-center self-center  flex-col gap-4">
+        <div className="flex w-11/12 mt-5 items-center self-center  flex-col gap-4">
           {btns.map(({ text, link, to }, i) => {
             return (
               <Link

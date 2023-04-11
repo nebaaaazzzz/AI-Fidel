@@ -10,8 +10,8 @@ function SelectHand() {
   const { search } = useLocation();
   return (
     <div className="flex gap-10 relative  h-[calc(100vh-64px)] flex-col w-full  items-center">
-      <div className="absolute w-[14%] aspect-square top-40 left-5 rounded-full  bg-primary"></div>
-      <div className="custom-glass flex w-5/6 pr-5 justify-between py-2 pt-10 ">
+      <div className="absolute w-[14%] aspect-square top-40 left-7 rounded-full  bg-primary"></div>
+      <div className="custom-glass flex w-[80%] pr-5 justify-between py-2 pt-10 ">
         <div className=""></div>
         <div className="w-10"></div>
         <div className="flex   gap-5 flex-col items-center">
@@ -48,7 +48,7 @@ function SelectHand() {
             <Link
               to={`/select-level${search}&hand=${hand.toLowerCase()}`}
               key={i}
-              className={`btn capitalize px-20 rounded-xl ${
+              className={` capitalize px-20 btn-sm  py-5 font-bold flex items-center justify-center rounded-xl ${
                 i == 0 ? 'btn-accent' : 'btn-primary'
               }`}
             >

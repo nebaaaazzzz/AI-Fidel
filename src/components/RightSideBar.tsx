@@ -13,7 +13,7 @@ const categories = [
 const modes = ['Education', 'Game'];
 function RightSideBar() {
   return (
-    <div className="hidden md:flex shrink-0  mr-10 flex-col items-center gap-5">
+    <div className="hidden md:flex shrink-0   flex-col items-center gap-5">
       <Icon />
       <div
         className="flex flex-col md:w-42 mt-3 lg:w-56 items-center px-5 rounded-lg py-2"

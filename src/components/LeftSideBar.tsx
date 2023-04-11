@@ -27,7 +27,13 @@ function LeftSideBar() {
     >
       {images.map((image, index) => {
         return (
-          <a href="">
+          <a
+            href=""
+            style={{
+              boxShadow:
+                index == 0 ? '' : `0px 0px 20px 5px rgba(0, 136, 103,0.9)`
+            }}
+          >
             <img src={image} className="object-contain mx-auto" key={index} />
           </a>
         );

@@ -1,4 +1,3 @@
-import React from 'react';
 import fidelLogo from '@assets/logo/fidel-text.png';
 import vector from '@assets/logo/Vector.png';
 import fidel from '@assets/logo/logo.png';

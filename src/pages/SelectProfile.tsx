@@ -84,13 +84,13 @@ function SelectProfile() {
           </div>
           <div className="flex flex-col w-full gap-3">
             {[
-              { text: 'Amarhic', icon: EthiopiaIcon },
+              { text: 'Amharic', icon: EthiopiaIcon },
               { text: 'English', icon: UKIcon }
             ].map(({ text, icon }, i) => {
               return (
                 <Link
                   key={i}
-                  to={`/select-hand${search}&lang=${text.toLowerCase()}`}
+                  to={`/select-hand?${search}&lang=${text.toLowerCase()}`}
                   className="flex capitalize items-center btn bg-[#2E2E2E] hover:bg-[#3f3f3f] rounded-md justify-between"
                 >
                   <img src={icon} className="w-1/12" />
