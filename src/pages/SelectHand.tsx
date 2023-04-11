@@ -8,16 +8,17 @@ const socialMediaIcons = [AiOutlineInstagram, ImTwitter, GrFacebookOption];
 
 function SelectHand() {
   return (
-    <div className="flex gap-5 relative  h-[calc(100vh-64px)] flex-col w-full  items-center">
-      <div className="absolute w-[14%] aspect-square top-32 left-5 rounded-full  bg-primary"></div>
+    <div className="flex gap-10 relative  h-[calc(100vh-64px)] flex-col w-full  items-center">
+      <div className="absolute w-[14%] aspect-square top-40 left-5 rounded-full  bg-primary"></div>
       <div className="custom-glass flex w-5/6 pr-5 justify-between py-2 pt-10 ">
         <div className=""></div>
+        <div className="w-10"></div>
         <div className="flex   gap-5 flex-col items-center">
-          <h1 className="pan font-semibold text-4xl text-center [word-spacing:5px] w-3/4 text-white">
+          <h1 className="pan font-semibold text-5xl text-center [word-spacing:5px] w-3/4 text-white">
             Are you left or right handed?
           </h1>
           <img className="object-contain w-5/12 " src={handshake} />
-          <div className="w-2/3 grow flex flex-col gap-4 text-white text-center leading-3">
+          <div className="w-2/3 grow flex flex-col  font-light gap-3 text-sm text-white text-center leading-3">
             <p> Choose the hand you want to use for </p>
             <p>fingerspelling you should use your</p>
             <p>dominant hand</p>

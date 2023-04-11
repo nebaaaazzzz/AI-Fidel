@@ -6,6 +6,18 @@ module.exports = {
   },
   plugins: [require('@tailwindcss/typography'), require('daisyui')],
   daisyui: {
-    themes: ['forest', 'light', 'dark']
+    themes: [
+      {
+        forest: {
+          ...require('daisyui/src/colors/themes')['[data-theme=forest]'],
+          primary: '#008867',
+          accent: '#F8B936'
+          ///TODO hover color
+          // '.btn:hover': {
+          //   opacity: 0.,
+          // }
+        }
+      }
+    ]
   }
 };

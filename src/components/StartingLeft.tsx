@@ -11,7 +11,7 @@ function StartingLeft({ path }) {
       </div>
       <img
         src={path}
-        className="absolute mx-auto left-0 right-0 w-2/3 bottom-0 object-contain"
+        className="absolute mx-auto left-0 right-0 w-3/4 bottom-0 object-contain"
       />
     </div>
   );

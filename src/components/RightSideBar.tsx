@@ -13,7 +13,7 @@ const categories = [
 const modes = ['Education', 'Game'];
 function RightSideBar() {
   return (
-    <div className="hidden md:flex shrink-0   flex-col items-center gap-5">
+    <div className="hidden md:flex shrink-0  mr-10 flex-col items-center gap-5">
       <Icon />
       <div
         className="flex flex-col md:w-42 mt-3 lg:w-56 items-center px-5 rounded-lg py-2"
@@ -58,7 +58,7 @@ function Icon() {
 function Header({ text }: { text: string }) {
   return (
     <>
-      <h1 className="mt-2 mb-1  font-bold text-xl propse text-primary">
+      <h1 className="mt-5 mb-1  font-bold text-xl propse text-primary">
         {text}
       </h1>
       <Divider />
@@ -78,7 +78,7 @@ function Divider() {
     <div
       style={{
         height: '0px',
-        border: '0.6px solid rgba(255, 255, 255, 0.19)'
+        border: '0.03px solid rgba(255, 255, 255, 0.09)'
       }}
       className="w-full"
     ></div>

@@ -13,9 +13,6 @@ function Landing() {
   }, []);
   return (
     <div>
-      <div className="absolute inset-x-[400px] inset-y-[290px] w-3 ">
-        <img src={vector} />
-      </div>
       <div className="relative h-screen flex items-center justify-center">
         <img src={eclips} className="w-2/12 absolute right-0 bottom-[15%]" />
 

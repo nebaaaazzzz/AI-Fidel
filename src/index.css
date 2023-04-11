@@ -26,5 +26,8 @@ html {
   backdrop-filter: blur(29px);
   /* Note: backdrop-filter has minimal browser support */
   border-radius: 49px;
-  border: solid rgb(217, 217, 217, 0.27) 2px;
+  border: solid rgba(255, 255, 255, 0.09) 2px;
+}
+.custom-glass.smrounded {
+  border-radius: 20px;
 }

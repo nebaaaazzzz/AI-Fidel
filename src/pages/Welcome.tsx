@@ -3,19 +3,19 @@ import profile from '@assets/images/avatar/avatar.png';
 import { AiOutlineInstagram } from 'react-icons/ai';
 import { GrFacebookOption } from 'react-icons/gr';
 import { ImTwitter } from 'react-icons/im';
-import { BsArrowRightCircle } from 'react-icons/bs';
 import circleDashed from '@assets/images/circle-dashed.png';
 import { Link } from 'react-router-dom';
+import LeftArrowIcon from '@assets/icons/left-arrow.png';
 const socialMediaIcons = [AiOutlineInstagram, GrFacebookOption, ImTwitter];
 
 function Welcome() {
   return (
-    <div className="flex gap-5 mt-10 relative  h-[calc(100vh-64px)] flex-col w-full  items-center">
+    <div className="flex gap-5 mt-20 relative  h-[calc(100vh-64px)] flex-col w-full  items-center">
       <img
         src={circleDashed}
-        className="absolute -top-64 -right-52 object-contain aspect-square w-2/3"
+        className="absolute -top-56 -right-32 object-contain aspect-square w-6/12"
       />
-      <div className="absolute w-28 aspect-square top-44 left-10 rounded-full  bg-primary"></div>
+      <div className="absolute w-32 aspect-square top-32 left-5 rounded-full  bg-primary"></div>
       <div
         className="flex w-5/6 pr-5 justify-between py-2"
         style={{
@@ -40,20 +40,20 @@ function Welcome() {
               className="object-contain aspect-square w-full rounded-full"
             />
           </div>
-          <div className="grow text-2xl text-white text-center flex flex-col my-10">
-            <h1 className="m-1">Welcome </h1>
-            <h1 className="m-1">to your first</h1>
-            <h1 className="m-1">lesson</h1>
+          <div className="grow text-2xl  text-white text-center flex flex-col my-10">
+            <h1 className="m-1 font-bold text-white">Welcome </h1>
+            <h1 className="m-1 font-bold text-white">to your first</h1>
+            <h1 className="m-1 font-bold text-white">lesson</h1>
           </div>
         </div>
         <div className="flex flex-col justify-between">
-          {Array(2)
+          {Array(1)
             .fill(0)
             .map((_, i) => (
               <div></div>
             ))}
           {socialMediaIcons.map((Icon, i) => {
-            return <Icon key={i} size={20} color="white" />;
+            return <Icon key={i} size={25} color="white" />;
           })}
           {Array(1)
             .fill(0)
@@ -64,10 +64,10 @@ function Welcome() {
       </div>
       <Link
         to="/game?level=1&hand=right&lang=am&mode=learn"
-        className="flex gap-10 items-center text-3xl"
+        className="flex gap-3 items-center "
       >
-        <h1 className="text-white">Getting Started</h1>
-        <BsArrowRightCircle className="text-accent font-bold" />
+        <h1 className="text-white text-xl">Get Started</h1>
+        <img src={LeftArrowIcon} className="w-2/12" />
       </Link>
     </div>
   );

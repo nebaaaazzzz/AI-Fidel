@@ -8,8 +8,8 @@ import ellipse from '@assets/icons/Ellipse 99.png';
 function SelectProfile() {
   return (
     <div className="flex">
-      <div className=" h-screen flex flex-col items-end justify-around flex-[1] px-20">
-        <h2 className="text-xl self-center text-white">
+      <div className=" h-screen flex flex-col items-end justify-around  flex-[1] px-20">
+        <h2 className="text-xl self-center mt-5 text-white">
           Select profile avatar
         </h2>
         <div className="custom-glass w-11/12 flex flex-wrap gap-10 p-5 justify-center">
@@ -30,17 +30,17 @@ function SelectProfile() {
             </div>
           ))}
         </div>
-        <div className="self-center">
+        <div className="self-center relative -top-5">
           <LogoWithTextSM />
         </div>
       </div>
-      <div className="flex-[1] flex  justify-center items-start flex-col h-screen">
-        <div className="flex flex-col items-center gap-10 w-2/3 ">
-          <div className="flex items-center gap-10 w-full ">
+      <div className="flex-[1] flex  justify-center items-center mr-20 flex-col h-screen">
+        <div className="flex flex-col items-center gap-14 w-2/3 ">
+          <div className="flex items-center gap-5 w-full ">
             <div
               style={{
                 background: '#008867',
-                boxShadow: '0px 2px 26px rgba(0, 0, 0, 0.08)'
+                boxShadow: '0px 2px 16px rgba(0, 0, 0, 0.08)'
               }}
               className="rounded-md p-2"
             >
@@ -62,7 +62,7 @@ function SelectProfile() {
           <div
             style={{
               background: '#2E2E2E',
-              boxShadow: '0px 0px 46px 4px #FFAF52'
+              boxShadow: '0px 0px 26px 4px #FFAF52'
             }}
             className="w-7/12 aspect-square rounded-full flex items-center justify-center "
           >
@@ -88,7 +88,8 @@ function SelectProfile() {
           </div>
           <img src={ellipse} className="absolute right-0 top-1/3 w-1/12" />
         </div>
-        <p className="absolute right-72 text-center  items-center bottom-5">
+
+        <p className="font-extralight text-[12px] text-[#a4a4a4] absolute right-72 text-center  items-center bottom-5">
           Powered by ablaze labs{' '}
         </p>
       </div>
