@@ -27,15 +27,29 @@ function LeftSideBar() {
     >
       {images.map((image, index) => {
         return (
-          <a
-            href=""
+          <div
+            className="relative"
             style={{
               boxShadow:
-                index == 0 ? '' : `0px 0px 20px 5px rgba(0, 136, 103,0.9)`
+                index == 0 ? '' : ` 0px 5px 20px 5px rgba(0, 136, 103,0.9)`
             }}
           >
-            <img src={image} className="object-contain mx-auto" key={index} />
-          </a>
+            <a href="">
+              <img
+                src={image}
+                className="object-cover h-6 mx-auto"
+                key={index}
+              />
+            </a>
+            {index != 0 && (
+              <p
+                style={{
+                  backdropFilter: 'blur(100px)'
+                }}
+                className="absolute top-0 -z-10 bg-[rgb(20,83,67)]  w-full h-6 backdrop-blur-3xl"
+              ></p>
+            )}
+          </div>
         );
       })}
     </div>

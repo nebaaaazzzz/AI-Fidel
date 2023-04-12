@@ -17,8 +17,9 @@ function SelectProfile() {
           Select profile avatar
         </h2>
         <div className="custom-glass w-11/12 flex flex-wrap gap-10 p-5 justify-center">
-          {[1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4].map((i) => (
+          {[1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4].map((i, index) => (
             <div
+              key={index}
               style={{
                 background: '#2E2E2E',
                 boxShadow: '0px 0px 12px 4px #00A28D'
@@ -84,13 +85,13 @@ function SelectProfile() {
           </div>
           <div className="flex flex-col w-full gap-3">
             {[
-              { text: 'Amharic', icon: EthiopiaIcon },
-              { text: 'English', icon: UKIcon }
-            ].map(({ text, icon }, i) => {
+              { text: 'Amharic', icon: EthiopiaIcon, langCode: 'am' },
+              { text: 'English', icon: UKIcon, langCode: 'en' }
+            ].map(({ text, icon, langCode }, i) => {
               return (
                 <Link
                   key={i}
-                  to={`/select-hand${search}&lang=${text.toLowerCase()}`}
+                  to={`/select-hand${search}&lang=${langCode}`}
                   className="flex capitalize items-center btn bg-[#2E2E2E] hover:bg-[#3f3f3f] rounded-md justify-between"
                 >
                   <img src={icon} className="w-1/12" />

@@ -4,10 +4,12 @@ import { HandAnalyzer } from '../HandUtils/HandAnalyzer';
 import { useMemo, useRef, useEffect, useState } from 'react';
 import PlaceYourHand from '@components/PlaceYourHand';
 import girl from '@assets/images/girl.png';
+import { DotLoader } from 'react-spinners';
 import GameLeftSide from '@components/GameLeftSide';
 import {} from 'react-spinners';
 import {
   NavigateFunction,
+  useLocation,
   useNavigate,
   useSearchParams
 } from 'react-router-dom';
@@ -41,10 +43,12 @@ function useGetGameConfig(
   if (lang == 'am') {
     levelWords = getLevelAmharicWords(languageWords, level);
   }
+
   return { mode, hand, level, lang, levelWords };
 }
 function Game() {
   const navigate = useNavigate();
+  const { search } = useLocation();
   const searchParams = useSearchParams()[0];
   const {
     lang,
@@ -91,7 +95,7 @@ function Game() {
     //level compelted go to level completed page
 
     if (wordIndex == 9) {
-      navigate(`/level-completed?level=${level}&points=${score}&lang}`);
+      navigate(`/level-completed${search}&points=${score}`);
       score = 0;
     }
     if (currentWordLength == selectedWord?.length && selectedWord) {
@@ -263,8 +267,8 @@ function Game() {
   //   handleSkip();
   // }
   return (
-    <div className="flex flex-col -mt-10 items-center">
-      <div className="flex gap-10">
+    <div className="flex flex-col -mt-5 items-center">
+      <div className="flex  relative">
         <PlaceYourHand
           isMediaPipeModelLoading={isMediaPipeModelLoading}
           isGameStarted={isGameStarted}
@@ -277,7 +281,7 @@ function Game() {
           selectedLetter={selectedLetter}
           selectedWord={selectedWord}
         />
-        <div className="flex flex-1 items-center justify-center w-96 aspect-square rounded-lg p-10">
+        <div className="flex flex-1  items-center justify-center w-96 aspect-square rounded-lg p-10">
           {isMediaPipeModelLoading && (
             <img
               src={girl}
@@ -308,13 +312,16 @@ function Game() {
           {/* <p>{percentage}%</p> */}
         </div>
       )}
-
-      <button
-        onClick={handleSkip}
-        className="btn mt-10 btn-primary rounded-md btn-wide "
-      >
-        ፊደሉን ዝለል{' '}
-      </button>
+      {!isMediaPipeModelLoading ? (
+        <button
+          onClick={handleSkip}
+          className="btn mt-10 btn-primary rounded-md btn-wide "
+        >
+          ፊደሉን ዝለል{' '}
+        </button>
+      ) : (
+        <DotLoader color="#008867" />
+      )}
     </div>
   );
 }

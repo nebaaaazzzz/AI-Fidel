@@ -78,7 +78,8 @@ function Divider() {
     <div
       style={{
         height: '0px',
-        border: '0.03px solid rgba(255, 255, 255, 0.09)'
+        border: '0.03px solid rgba(255, 255, 255, 0.09)',
+        boxShadow: '0px 15px 25px 10px rgb(19, 25, 28)'
       }}
       className="w-full"
     ></div>
