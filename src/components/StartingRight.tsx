@@ -1,11 +1,12 @@
 import { Logo } from './Logo';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { GoogleAuthProvider, signInWithRedirect } from 'firebase/auth';
 import { signInWithPopup } from 'firebase/auth';
 import { auth } from '@/config/firebase';
 import { toastError, toastSuccess } from '@/utils/toast';
 function StartingRight({ header1, header2, btns }) {
   const navigate = useNavigate();
+  const { search } = useLocation();
   function loginWithGoogle(to: string) {
     const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider)

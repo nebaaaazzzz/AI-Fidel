@@ -1,11 +1,12 @@
 import eclips from '@assets/icons/Ellipse1.png';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Logo from '@/components/Logo';
 import vector from '@assets/logo/Vector.png';
 
 function Landing() {
   const navigate = useNavigate();
+
   useEffect(() => {
     setTimeout(() => {
       navigate('select-mode');

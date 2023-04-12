@@ -17,7 +17,7 @@ import reactToDOMCursor from '@/HandUtils/reactToDom';
 import { storeSessionInfo } from '@/utils/localsession';
 import TimerProgress from '@components/TimerProgress';
 import moment from 'moment';
-import { PulseLoader } from 'react-spinners';
+import Percentage from '@/components/Percentage';
 const handAnalyzer = new HandAnalyzer();
 let skipPrediction = false;
 let score = 0;
@@ -90,11 +90,7 @@ function Game() {
     //level compelted go to level completed page
 
     if (wordIndex == 9) {
-      navigate(
-        `/level-completed?hand=${hand}&level=${level}&points=${score}&lang=${searchParams[0].get(
-          'lang'
-        )}`
-      );
+      navigate(`/level-completed?level=${level}&points=${score}&lang}`);
       score = 0;
     }
     if (currentWordLength == selectedWord?.length && selectedWord) {
@@ -266,21 +262,20 @@ function Game() {
   //   handleSkip();
   // }
   return (
-    <div className="flex -mt-20 flex-col items-center">
-      <div className="flex  w-full flex-col  md:flex-row gap-5">
+    <div className="flex flex-col -mt-10 items-center">
+      <div className="flex gap-10">
         <PlaceYourHand
           isMediaPipeModelLoading={isMediaPipeModelLoading}
           isGameStarted={isGameStarted}
         />
         <GameLeftSide
           score={score}
-          isMediaPipeModelLoading={isMediaPipeModelLoading}
           isGameStarted={isGameStarted}
           lang={lang}
           selectedLetter={selectedLetter}
           selectedWord={selectedWord}
         />
-        <div className="flex items-center justify-center w-full aspect-square rounded-lg p-10">
+        <div className="flex flex-1 items-center justify-center w-96 aspect-square rounded-lg p-10">
           <video
             ref={videoElement}
             className="input_video hidden w-full aspect-square"
@@ -295,20 +290,23 @@ function Game() {
         </div>
       </div>
       {isGameStarted && (
-        <>
-          <div className="flex items-center gap-10">
-            <p>{moment(currentTime - startTime).format('mm : ss')}</p>
-            <TimerProgress percentage={percentage} />
-            <p>{percentage}%</p>
-          </div>
-          <button
-            onClick={handleSkip}
-            className="btn mt-10 btn-primary rounded-md btn-wide "
-          >
-            ፊደሉን ዝለል{' '}
-          </button>
-        </>
+        <div className="flex items-center gap-10">
+          <p>{moment(currentTime - startTime).format('mm : ss')}</p>
+          <TimerProgress percentage={percentage} />
+          <Percentage
+            lookForLetter={lookForLetter}
+            skipPrediction={skipPrediction}
+          />
+          {/* <p>{percentage}%</p> */}
+        </div>
       )}
+
+      <button
+        onClick={handleSkip}
+        className="btn mt-10 btn-primary rounded-md btn-wide "
+      >
+        ፊደሉን ዝለል{' '}
+      </button>
     </div>
   );
 }

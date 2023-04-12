@@ -90,7 +90,7 @@ function SelectProfile() {
               return (
                 <Link
                   key={i}
-                  to={`/select-hand?${search}&lang=${text.toLowerCase()}`}
+                  to={`/select-hand${search}&lang=${text.toLowerCase()}`}
                   className="flex capitalize items-center btn bg-[#2E2E2E] hover:bg-[#3f3f3f] rounded-md justify-between"
                 >
                   <img src={icon} className="w-1/12" />

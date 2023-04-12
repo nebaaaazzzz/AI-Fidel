@@ -9,11 +9,7 @@ function Percentage({
   skipPrediction: boolean;
 }) {
   if (!lookForLetter || skipPrediction) {
-    return (
-      <div className="absolute top-80">
-        <p className="text-white text-xl">{0}%</p>
-      </div>
-    );
+    return <p className="text-white text-xl">{0}%</p>;
   }
   let sum =
     lookForLetter?.thumb?.percentageCorrect +
@@ -23,16 +19,7 @@ function Percentage({
     lookForLetter?.little?.percentageCorrect;
   let avg = sum / 5;
 
-  return (
-    <div className="absolute top-80">
-      <p className="text-white text-xl">{(avg * 100).toFixed(2)}%</p>
-      {/* <p>thumb {lookForLetter.thumb.percentageCorrect.toFixed(2) * 100}%</p>
-        <p>index {lookForLetter.index.percentageCorrect.toFixed(2) * 100}%</p>
-        <p>middle {lookForLetter.middle.percentageCorrect.toFixed(2) * 100}%</p>
-        <p>ring {lookForLetter.ring.percentageCorrect.toFixed(2) * 100}%</p>
-        <p>little {lookForLetter.little.percentageCorrect.toFixed(2) * 100}%</p> */}
-    </div>
-  );
+  return <p className="text-white text-xl">{(avg * 100).toFixed(2)}%</p>;
 }
 
 export default Percentage;

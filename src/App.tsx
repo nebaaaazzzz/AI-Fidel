@@ -20,7 +20,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const [user, loading, error] = useAuthState(auth);
-  if (loading) return <p>loading</p>;
+  // if (loading) return <p>loading</p>;
   if (error) return <p>{error.message}</p>;
   return (
     <div data-theme="forest">

@@ -15,7 +15,7 @@ function SelectMode() {
         btns={[
           {
             text: 'Education',
-            link: user ? '/select-profile?mode=game' : '/login'
+            link: user ? '/select-profile?mode=learn' : '/login'
           },
           { text: 'Game', link: '/select-game' }
         ]}
