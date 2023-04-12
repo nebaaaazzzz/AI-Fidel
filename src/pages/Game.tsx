@@ -3,6 +3,7 @@ import { FingerPoseEstimator } from '../FingerUtils/FingerPostEstimator';
 import { HandAnalyzer } from '../HandUtils/HandAnalyzer';
 import { useMemo, useRef, useEffect, useState } from 'react';
 import PlaceYourHand from '@components/PlaceYourHand';
+import girl from '@assets/images/girl.png';
 import GameLeftSide from '@components/GameLeftSide';
 import {} from 'react-spinners';
 import {
@@ -272,10 +273,17 @@ function Game() {
           score={score}
           isGameStarted={isGameStarted}
           lang={lang}
+          isMediaPipeModelLoading={isMediaPipeModelLoading}
           selectedLetter={selectedLetter}
           selectedWord={selectedWord}
         />
         <div className="flex flex-1 items-center justify-center w-96 aspect-square rounded-lg p-10">
+          {isMediaPipeModelLoading && (
+            <img
+              src={girl}
+              className="output_canvas rounded-lg aspect-square w-full object-fill"
+            />
+          )}
           <video
             ref={videoElement}
             className="input_video hidden w-full aspect-square"

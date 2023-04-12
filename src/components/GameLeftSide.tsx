@@ -37,14 +37,12 @@ function GameLeftSide({
         </div>
       </div>
     );
-  } else if (isMediaPipeModelLoading) {
-    return (
-      <div className="border-2 w-:full flex flex-col self-center border-primary  items-center justify-center rounded-lg p-5">
-        <img src={hand} className="object-contain w-72 aspect-square" />
-      </div>
-    );
   }
-  return null;
+  return (
+    <div className="border-2 w-:full flex flex-col self-center border-primary  items-center justify-center rounded-lg p-5">
+      <img src={hand} className="object-contain w-72 aspect-square" />
+    </div>
+  );
 }
 
 export default GameLeftSide;
