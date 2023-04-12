@@ -1,11 +1,14 @@
 import boy2 from '@assets/icons/boy2.png';
 import StartingLeft from '@/components/StartingLeft';
 import StartingRight from '@/components/StartingRight';
-import { useSearchParams } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from '@/config/firebase';
 
 function Login() {
   const mode = useSearchParams()[0].get('mode');
-
+  const { search } = useLocation();
+  const [user] = useAuthState(auth);
   return (
     <div className="flex h-screen">
       <StartingLeft path={boy2} />
@@ -16,9 +19,11 @@ function Login() {
         btns={[
           {
             text: mode == 'game' ? 'Play a guest' : 'Learn as a guest',
-            link: '/select-profile'
+            link: `/select-profile${search}`
           },
-          { text: 'Login with google', to: '/select-profile' }
+          ...(!user
+            ? [{ text: 'Login with google', to: `/select-profile${search}` }]
+            : [])
         ]}
       />
     </div>
