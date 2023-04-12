@@ -4,6 +4,7 @@ import { HandAnalyzer } from '../HandUtils/HandAnalyzer';
 import { useMemo, useRef, useEffect, useState } from 'react';
 import PlaceYourHand from '@components/PlaceYourHand';
 import GameLeftSide from '@components/GameLeftSide';
+import {} from 'react-spinners';
 import {
   NavigateFunction,
   useNavigate,
@@ -16,6 +17,7 @@ import reactToDOMCursor from '@/HandUtils/reactToDom';
 import { storeSessionInfo } from '@/utils/localsession';
 import TimerProgress from '@components/TimerProgress';
 import moment from 'moment';
+import { PulseLoader } from 'react-spinners';
 const handAnalyzer = new HandAnalyzer();
 let skipPrediction = false;
 let score = 0;
@@ -272,6 +274,7 @@ function Game() {
         />
         <GameLeftSide
           score={score}
+          isMediaPipeModelLoading={isMediaPipeModelLoading}
           isGameStarted={isGameStarted}
           lang={lang}
           selectedLetter={selectedLetter}

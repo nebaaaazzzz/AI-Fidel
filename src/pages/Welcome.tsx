@@ -27,7 +27,7 @@ function Welcome() {
         }}
       >
         <div className=""></div>
-        <div className="flex prose flex-col items-center">
+        <div className="flex prose ml-8 flex-col items-center">
           <div
             className="rounded-full w-32 h-32 p-5 -mt-14 flex items-center justify-center"
             style={{
@@ -41,9 +41,9 @@ function Welcome() {
             />
           </div>
           <div className="grow text-2xl  text-white text-center flex flex-col my-10">
-            <h1 className="m-1 font-bold text-white">Welcome </h1>
-            <h1 className="m-1 font-bold text-white">to your first</h1>
-            <h1 className="m-1 font-bold text-white">lesson</h1>
+            <h1 className="m-1 font-semibold text-white">Welcome </h1>
+            <h1 className="m-1 font-semibold text-white">to your first</h1>
+            <h1 className="m-1 font-semibold text-white">lesson</h1>
           </div>
         </div>
         <div className="flex flex-col justify-between">
