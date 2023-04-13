@@ -17,14 +17,16 @@ const useGetSearchParams = (searchParams: URLSearchParams) => {
   return { mode, hand, level, lang, points };
 };
 function LevelCompleted() {
+  const searchParams = useSearchParams()[0];
   const {
     mode,
     hand,
     level,
     lang,
     points: score
-  } = useGetSearchParams(useSearchParams()[0]);
-  const [points, setPoints] = useState<number | string>();
+  } = useGetSearchParams(searchParams);
+  searchParams.delete('level');
+  const [points, setPoints] = useState<number | string>(0);
   const [levelesScore, setLevelsScore] = useState<Record<string, number>>();
   useEffect(() => {
     (async () => {
@@ -72,9 +74,21 @@ function LevelCompleted() {
         <button className="btn btn-primary  rounded-md w-full text-xl text-white">
           ተጠናቀቀ{' '}
         </button>
-        <p className="text-white text-center rounded-md w-full ">ደረጃ 1</p>
-        {/* <Stars /> */}
-        <img src={stars} className="object-contain w-28" />
+        <p className="text-white text-center rounded-md w-full ">ደረጃ {level}</p>
+        {/* {mode == 'game' ? (
+          
+        ) : (
+        )} */}
+        {mode === 'game' ? (
+          <ul className="steps text-2xl">
+            <li data-content="★" className="step  step-accent"></li>
+            <li data-content="★" className="step step-accent "></li>
+            <li data-content="★" className="step step-neutral"></li>
+            <li data-content="★" className="step"></li>
+          </ul>
+        ) : (
+          <img src={stars} className="object-contain w-52" />
+        )}
         <p>ያገኘሺው ነጥብ</p>
         <h1 className="text-white font-extrabold text-6xl">
           {(Number(points) * 100) / 40}%
@@ -83,7 +97,7 @@ function LevelCompleted() {
           <p className="text-white font-bold text-xl"> Learn Again</p>
         </button>
         <Link
-          to="/game?level=1&hand=right&lang=am&mode=learn&"
+          to={`/game?${searchParams.toString()}&level=${Number(level) + 1}`}
           className="btn font-bold capitalize text-xl text-black btn-accent rounded-md w-full"
         >
           ቀጥል

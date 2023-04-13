@@ -18,7 +18,7 @@ function GameLeftSide({
 }) {
   if (isGameStarted) {
     return (
-      <div className="border-2 relative w-full flex flex-1 flex-col self-center border-primary  items-center justify-center rounded-lg p-5">
+      <div className="border-2 bg-red-700 relative w-full aspect-1/3 flex flex-1 flex-col self-center border-primary  items-center justify-center rounded-lg p-2">
         <p className="self-end top-2 absolute font-extrabold text-xl">
           {score}
           {'  '} ነጥብ

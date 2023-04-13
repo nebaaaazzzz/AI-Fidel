@@ -267,7 +267,7 @@ function Game() {
   //   handleSkip();
   // }
   return (
-    <div className="flex flex-col -mt-5 items-center">
+    <div className="flex flex-col items-center">
       <div className="flex  relative">
         <PlaceYourHand
           isMediaPipeModelLoading={isMediaPipeModelLoading}
@@ -281,7 +281,7 @@ function Game() {
           selectedLetter={selectedLetter}
           selectedWord={selectedWord}
         />
-        <div className="flex flex-1  items-center justify-center w-96 aspect-square rounded-lg p-10">
+        <div className="flex flex-1  items-center justify-center w-1/2 aspect-square rounded-lg p-2">
           {isMediaPipeModelLoading && (
             <img
               src={girl}
