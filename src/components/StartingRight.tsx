@@ -4,6 +4,7 @@ import { GoogleAuthProvider, signInWithRedirect } from 'firebase/auth';
 import { signInWithPopup } from 'firebase/auth';
 import { auth } from '@/config/firebase';
 import { toastError, toastSuccess } from '@/utils/toast';
+import { addDocToCollection } from '@/utils/db';
 function StartingRight({ header1, header2, btns }) {
   const navigate = useNavigate();
   const { search } = useLocation();
@@ -11,6 +12,14 @@ function StartingRight({ header1, header2, btns }) {
     const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider)
       .then((result) => {
+        const user = {
+          name: result.user.displayName,
+          email: result.user.email,
+          photo: result.user.photoURL,
+          phoneNumber: result.user.phoneNumber,
+          id: result.user.uid
+        };
+        addDocToCollection('users', user);
         toastSuccess('Successfully loggedin');
         // This gives you a Google Access Token. You can use it to access the Google API.
         const credential = GoogleAuthProvider.credentialFromResult(result);

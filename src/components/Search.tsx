@@ -1,8 +1,27 @@
-import React from 'react';
-
+import React, { useRef } from 'react';
+import { useEffect, useState } from 'react';
+const words = [
+  'aabcd',
+  'bdsacv',
+  'Dsacw',
+  'fdscrez',
+  'dsACOAEWC',
+  'DSMCODMC',
+  'DCMOCDSMC'
+];
 function Search() {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filterdWords, setFilterdWords] = useState<string[]>();
+
+  useEffect(() => {
+    setFilterdWords(
+      words.filter((word) => {
+        return word.toLowerCase().includes(searchTerm.toLowerCase());
+      })
+    );
+  }, [searchTerm]);
   return (
-    <form action="flex-1 ">
+    <div>
       <label
         htmlFor="default-search"
         className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
@@ -28,16 +47,23 @@ function Search() {
           </svg>
         </div>
         <input
+          onChange={(e) => {
+            setSearchTerm(e.target.value);
+          }}
           type="search"
-          id="default-search"
-          className="block  w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:border-primary dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-primary bg-transparent"
+          className="block  w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:border-primary dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500  bg-transparent"
           required
         />
         <p className="text-white absolute top-0 right-2.5 bottom-2.5  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2">
           Search
         </p>
       </div>
-    </form>
+      <div className="absolute flex flex-col top-20">
+        {filterdWords?.map((word) => {
+          return <p>{word}</p>;
+        })}
+      </div>
+    </div>
   );
 }
 

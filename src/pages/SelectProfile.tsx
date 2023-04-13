@@ -6,10 +6,26 @@ import avatar from '@assets/images/avatar/avatar.png';
 import { Link, useLocation } from 'react-router-dom';
 import ellipse from '@assets/icons/Ellipse 99.png';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth } from '@/config/firebase';
+import { auth, db } from '@/config/firebase';
+import { useEffect } from 'react';
+import { addDoc, collection } from 'firebase/firestore';
 function SelectProfile() {
   const [user] = useAuthState(auth);
   const { search } = useLocation();
+  useEffect(() => {
+    (async () => {
+      try {
+        const docRef = await addDoc(collection(db, 'users'), {
+          first: 'Ada',
+          last: 'Lovelace',
+          born: 1815
+        });
+        console.log('Document written with ID: ', docRef.id);
+      } catch (e) {
+        console.error('Error adding document: ', e);
+      }
+    })();
+  }, []);
   return (
     <div className="flex">
       <div className=" h-screen flex flex-col items-end justify-around  flex-[1] px-20">
