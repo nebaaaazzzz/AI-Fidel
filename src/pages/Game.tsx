@@ -267,8 +267,8 @@ function Game() {
   //   handleSkip();
   // }
   return (
-    <div className="flex flex-col items-center">
-      <div className="flex  relative">
+    <div className="flex flex-col  items-center">
+      <div className="flex gap-10  w-10/12 relative">
         <PlaceYourHand
           isMediaPipeModelLoading={isMediaPipeModelLoading}
           isGameStarted={isGameStarted}
@@ -281,7 +281,7 @@ function Game() {
           selectedLetter={selectedLetter}
           selectedWord={selectedWord}
         />
-        <div className="flex flex-1  items-center justify-center w-1/2 aspect-square rounded-lg p-2">
+        <div className="flex flex-[1]  items-center justify-center w-1/2 aspect-square rounded-lg p-2">
           {isMediaPipeModelLoading && (
             <img
               src={girl}
@@ -303,7 +303,11 @@ function Game() {
       </div>
       {isGameStarted && (
         <div className="flex items-center gap-10">
-          <p>{moment(currentTime - startTime).format('mm : ss')}</p>
+          <p>
+            {moment(
+              currentTime - startTime >= 0 ? currentTime - startTime : 0
+            ).format('mm : ss')}
+          </p>
           <TimerProgress percentage={percentage} />
           <Percentage
             lookForLetter={lookForLetter}
