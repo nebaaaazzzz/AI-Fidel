@@ -14,7 +14,7 @@ import { ImTwitter } from 'react-icons/im';
 import { doc, setDoc } from 'firebase/firestore';
 import { db } from '@/config/firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { AuthContext } from '@/context/AuthContext';
+import { AuthContext } from '../context/AuthContext';
 const useGetSearchParams = (searchParams: URLSearchParams) => {
   const mode = searchParams.get('mode');
   const hand = searchParams.get('hand');
@@ -78,11 +78,11 @@ function LevelCompleted() {
         let va = ((Number(score) * 10) / 3).toFixed(1);
         await storeLevelScore(level, va, mode);
         setPoints(va);
-        if (user) {
+        if (user && mode == 'game') {
           updateUserFirebaseLevel(user.uid, level);
         }
       }
-      if (user) {
+      if (user && mode == 'game') {
         updateUserFirebaseLevel(user.uid, level);
       }
     })();

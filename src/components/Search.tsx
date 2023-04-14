@@ -8,6 +8,7 @@ const words = [...amharicwords, ...level1, ...level2, ...level3, ...level4];
 function Search() {
   const [searchTerm, setSearchTerm] = useState('');
   const [filterdWords, setFilterdWords] = useState<string[]>();
+  const [searchHasFocus, setSearchHasFocus] = useState(false);
   const { search } = useLocation();
   useEffect(() => {
     setFilterdWords(
@@ -47,6 +48,8 @@ function Search() {
           onChange={(e) => {
             setSearchTerm(e.target.value);
           }}
+          onFocus={() => setSearchHasFocus(true)}
+          onBlur={() => setSearchHasFocus(false)}
           type="search"
           className="block  w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:border-primary dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500  bg-transparent"
           required
@@ -55,16 +58,24 @@ function Search() {
           Search
         </p>
       </div>
-      <div className="absolute flex flex-col top-20">
-        {filterdWords?.map((word, i) => {
+      <div
+        className={`${
+          searchHasFocus && searchTerm.length ? 'block' : 'hidden'
+        } absolute bg-white z-10 flex flex-col top-14 right-7 w-[22%]`}
+      >
+        {filterdWords?.slice(0, 6).map((word, i) => {
           return (
-            <Link
-              to={`/game${search}`}
-              key={i}
-              onClick={() => console.log('hello world')}
-            >
-              {word}
-            </Link>
+            <>
+              <Link
+                to={`/game${search}`}
+                key={i}
+                className="text-center text-black"
+                onClick={() => console.log('hello world')}
+              >
+                {word}
+              </Link>
+              <div className="w-full h-[1px] bg-slate-200"></div>
+            </>
           );
         })}
       </div>

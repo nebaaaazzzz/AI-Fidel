@@ -13,8 +13,6 @@ import StartLearning from '@pages/StartLearning';
 import SelectProfile from '@/pages/SelectProfile';
 import Welcome from '@pages/Welcome';
 import LearnNew from '@pages/learn-new';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth } from './config/firebase';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import AuthContextProvider from './context/AuthContext';

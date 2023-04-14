@@ -18,6 +18,7 @@ function autoGenerateUsername() {
 function SelectProfile() {
   const user = useContext(AuthContext);
   const [username, setUsername] = useState<string>();
+  const [selectedAvatar, setSelectedAvatar] = useState();
   useEffect(() => {
     (async () => {
       if (user) {
@@ -42,7 +43,14 @@ function SelectProfile() {
         <div className="custom-glass w-11/12 flex flex-wrap gap-10 p-5 justify-center">
           {[1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4].map((i, index) => (
             <div
-              onClick={() => alert('hello world')}
+              onClick={() => {
+                if (user) {
+                  const docRef = doc(db, 'users', user.uid);
+                  setDoc(docRef, { displayName: username }, { merge: true });
+                } else {
+                  //TODO store in localstorage for guest user
+                }
+              }}
               key={index}
               style={{
                 background: '#2E2E2E',
