@@ -1,18 +1,14 @@
 import React, { useRef } from 'react';
 import { useEffect, useState } from 'react';
-const words = [
-  'aabcd',
-  'bdsacv',
-  'Dsacw',
-  'fdscrez',
-  'dsACOAEWC',
-  'DSMCODMC',
-  'DCMOCDSMC'
-];
+import amharicwords from '@/data/amharicwords';
+import englishwords from '@/data/englishwords';
+import { Link, useLocation, useSearchParams } from 'react-router-dom';
+const { level1, level2, level3, level4 } = englishwords;
+const words = [...amharicwords, ...level1, ...level2, ...level3, ...level4];
 function Search() {
   const [searchTerm, setSearchTerm] = useState('');
   const [filterdWords, setFilterdWords] = useState<string[]>();
-
+  const { search } = useLocation();
   useEffect(() => {
     setFilterdWords(
       words.filter((word) => {
@@ -22,6 +18,7 @@ function Search() {
   }, [searchTerm]);
   return (
     <div>
+      <Modal />
       <label
         htmlFor="default-search"
         className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
@@ -59,12 +56,32 @@ function Search() {
         </p>
       </div>
       <div className="absolute flex flex-col top-20">
-        {filterdWords?.map((word) => {
-          return <p>{word}</p>;
+        {filterdWords?.map((word, i) => {
+          return (
+            <Link
+              to={`/game${search}`}
+              key={i}
+              onClick={() => console.log('hello world')}
+            >
+              {word}
+            </Link>
+          );
         })}
       </div>
     </div>
   );
 }
 
+function Modal() {
+  const overlayRef = useRef(null);
+  function toggleModal() {
+    const body = document.querySelector('body');
+    const modal = document.querySelector('.modal');
+    modal.classList.toggle('opacity-0');
+    modal.classList.toggle('pointer-events-none');
+    body.classList.toggle('modal-active');
+  }
+  useEffect(() => {}, []);
+  return <> </>;
+}
 export default Search;

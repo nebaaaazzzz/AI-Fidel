@@ -1,6 +1,6 @@
 import stars from '@assets/images/stars.png';
 import Stars from '@components/Stars';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import {
   getLevelScore,
@@ -8,15 +8,28 @@ import {
   storeSessionInfo,
   storeLevelScore
 } from '../utils/localsession';
+import { AiOutlineInstagram } from 'react-icons/ai';
+import { GrFacebookOption } from 'react-icons/gr';
+import { ImTwitter } from 'react-icons/im';
+import { doc, setDoc } from 'firebase/firestore';
+import { db } from '@/config/firebase';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { AuthContext } from '@/context/AuthContext';
 const useGetSearchParams = (searchParams: URLSearchParams) => {
-  const mode = searchParams.get('game');
+  const mode = searchParams.get('mode');
   const hand = searchParams.get('hand');
   const level = searchParams.get('level');
   const lang = searchParams.get('lang');
   const points = searchParams.get('points');
   return { mode, hand, level, lang, points };
 };
+async function updateUserFirebaseLevel(userId, level) {
+  const docRef = doc(db, 'users', userId);
+  await setDoc(docRef, { level: level }, { merge: true });
+}
+const socialMediaIcons = [AiOutlineInstagram, ImTwitter, GrFacebookOption];
 function LevelCompleted() {
+  const user = useContext(AuthContext);
   const searchParams = useSearchParams()[0];
   const {
     mode,
@@ -25,7 +38,7 @@ function LevelCompleted() {
     lang,
     points: score
   } = useGetSearchParams(searchParams);
-  searchParams.delete('level');
+  // searchParams.delete('level');
   const [points, setPoints] = useState<number | string>(0);
   const [levelesScore, setLevelsScore] = useState<Record<string, number>>();
   useEffect(() => {
@@ -65,42 +78,58 @@ function LevelCompleted() {
         let va = ((Number(score) * 10) / 3).toFixed(1);
         await storeLevelScore(level, va, mode);
         setPoints(va);
+        if (user) {
+          updateUserFirebaseLevel(user.uid, level);
+        }
+      }
+      if (user) {
+        updateUserFirebaseLevel(user.uid, level);
       }
     })();
   }, []);
   return (
-    <div className="flex justify-center">
-      <div className="w-1/2 flex flex-col items-center gap-5">
-        <button className="btn btn-primary  rounded-md w-full text-xl text-white">
-          ተጠናቀቀ{' '}
+    <div className="flex justify-center relative">
+      <div className="w-1/2 flex  flex-col items-center gap-5">
+        <div className="absolute right-0 flex flex-col gap-14">
+          {socialMediaIcons.map((Icon) => {
+            return <Icon size={20} />;
+          })}
+        </div>
+        <button className="btn btn-primary capitalize mb-5  rounded-md w-full text-xl text-white">
+          {mode == 'game' ? `Level ${level}` : 'Completed'}
         </button>
-        <p className="text-white text-center rounded-md w-full ">ደረጃ {level}</p>
+        {mode == 'learn' && (
+          <p className="text-white font-bold text-center rounded-md w-full ">
+            Level {level}
+          </p>
+        )}
         {/* {mode == 'game' ? (
           
         ) : (
         )} */}
-        {mode === 'game' ? (
-          <ul className="steps text-2xl">
+        {mode === 'game' && (
+          <ul className="steps text-2xl self-stretch">
             <li data-content="★" className="step  step-accent"></li>
             <li data-content="★" className="step step-accent "></li>
             <li data-content="★" className="step step-neutral"></li>
-            <li data-content="★" className="step"></li>
+            <li data-content="★" className="step step-secondary"></li>
           </ul>
-        ) : (
-          <img src={stars} className="object-contain w-52" />
         )}
-        <p>ያገኘሺው ነጥብ</p>
+        <img src={stars} className="object-contain w-52" />
+
+        <p className="font-bold">you have learned</p>
         <h1 className="text-white font-extrabold text-6xl">
           {(Number(points) * 100) / 40}%
         </h1>
-        <button className="btn font-bold capitalize btn-outline rounded-md w-full">
+        {mode != 'game' && <p className="font-bold">of the lesson</p>}
+        <button className="btn mt-5 font-bold capitalize bg-[#2E2E2E] hover:bg-[#3f3f3f] rounded-md w-full">
           <p className="text-white font-bold text-xl"> Learn Again</p>
         </button>
         <Link
           to={`/game?${searchParams.toString()}&level=${Number(level) + 1}`}
           className="btn font-bold capitalize text-xl text-black btn-accent rounded-md w-full"
         >
-          ቀጥል
+          Next{' '}
         </Link>
       </div>
     </div>

@@ -18,14 +18,14 @@ function GameLeftSide({
 }) {
   if (isGameStarted) {
     return (
-      <div className="border-2  relative w-full gap-8  flex flex-[1] flex-col self-center border-primary  items-center justify-center rounded-lg p-4">
+      <div className="border-2  relative w-full gap-5 pt-12 overflow-hidden  flex flex-[1] flex-col self-center border-primary  items-center justify-center rounded-lg p-4">
         <p className="self-end top-2 absolute font-extrabold text-xl">
           {score}
           {'  '} ነጥብ
         </p>
-        <div className="flex  gap-2 items-center text-white mx-5">
+        <div className="flex items-center text-white">
           <img
-            className="w-9/12"
+            className="w-8/12"
             src={`/images/${
               lang == 'am' ? 'amharic' : 'english'
             }/${selectedLetter?.toUpperCase()}.png`}

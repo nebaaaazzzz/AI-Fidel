@@ -3,9 +3,12 @@ import { Logo } from '@/components/Logo';
 import StartingLeft from '@/components/StartingLeft';
 import StartingRight from '@/components/StartingRight';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth } from '@/config/firebase';
+import { auth, db } from '@/config/firebase';
+import { useEffect } from 'react';
+import { addDoc, collection } from 'firebase/firestore';
 function SelectMode() {
   const [user] = useAuthState(auth);
+  useEffect(() => {}, []);
   return (
     <div className="flex h-screen">
       <StartingLeft path={boy1} />

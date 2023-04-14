@@ -1,5 +1,7 @@
-import { auth } from '@/config/firebase';
+import { auth, db } from '@/config/firebase';
 import profile from '@assets/images/avatar/avatar.png';
+import { doc, getDoc } from 'firebase/firestore';
+import { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { AiOutlineInstagram } from 'react-icons/ai';
 import { GrFacebookOption } from 'react-icons/gr';
@@ -12,6 +14,23 @@ function SelectLevel() {
   const [user] = useAuthState(auth);
   const { search } = useLocation();
   const [searchParams] = useSearchParams();
+  const [levelOffset, setLevelOffset] = useState<number>(0);
+  useEffect(() => {
+    (async () => {
+      if (user) {
+        const docRef = doc(db, 'users', user.uid);
+        const docSnap = await getDoc(docRef);
+        const level = docSnap.get('level');
+        if (level) {
+          setLevelOffset(level);
+        } else {
+          setLevelOffset(0);
+        }
+      } else {
+        //TODO for guest user check THERE local storage
+      }
+    })();
+  }, [user]);
   return (
     <div className="flex  flex-col gap-10">
       <div className="custom-glass smrounded  flex justify-between px-3 pl-10 py-5">
@@ -61,28 +80,43 @@ function SelectLevel() {
         </div>
       </div>
       <div className="flex flex-col gap-5 ">
-        {buildLevelButtons(searchParams, search)}
+        {buildLevelButtons(searchParams, search, levelOffset)}
       </div>
     </div>
   );
 }
 
-function buildLevelButtons(searchParams: URLSearchParams, search: string) {
+function buildLevelButtons(
+  searchParams: URLSearchParams,
+  search: string,
+  levelOffset: number
+) {
+  const levels = [1, 2, 3, 4];
   const mode = searchParams.get('mode');
   if (mode == 'game') {
     return (
       <>
-        {[1, 2, 3, 4].map((i) => {
+        {levels.slice(0, levelOffset + 1).map((i) => {
           return (
             <Link
               to={`/game${search}&level=${i}`}
+              key={i}
+              className="btn btn-accent rounded-md flex justify-center px-5"
+            >
+              <p className="">ደረጃ {i}</p>
+            </Link>
+          );
+        })}
+        {levels.slice(levelOffset + 1).map((i) => {
+          return (
+            <button
               key={i}
               className="btn btn-primary rounded-md flex justify-between px-5"
             >
               <div></div>
               <p className="text-white ">ደረጃ {i}</p>
               <MdLock fontSize={20} color="white" />
-            </Link>
+            </button>
           );
         })}
       </>
@@ -90,7 +124,7 @@ function buildLevelButtons(searchParams: URLSearchParams, search: string) {
   } else {
     return (
       <>
-        {[1, 2, 3, 4].map((i) => {
+        {levels.map((i) => {
           return (
             <Link
               to={`/welcome${search}&level=${i}`}

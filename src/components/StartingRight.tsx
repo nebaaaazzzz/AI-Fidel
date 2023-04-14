@@ -2,29 +2,32 @@ import { Logo } from './Logo';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { GoogleAuthProvider, signInWithRedirect } from 'firebase/auth';
 import { signInWithPopup } from 'firebase/auth';
-import { auth } from '@/config/firebase';
+import { auth, db } from '@/config/firebase';
 import { toastError, toastSuccess } from '@/utils/toast';
 import { addDocToCollection } from '@/utils/db';
+import { collection, getDocs, query, where } from 'firebase/firestore';
 function StartingRight({ header1, header2, btns }) {
   const navigate = useNavigate();
   const { search } = useLocation();
   function loginWithGoogle(to: string) {
     const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider)
-      .then((result) => {
+      .then(async (result) => {
+        //TODO if user already exist in db DONT ADD TO COLLECTION
         const user = {
-          name: result.user.displayName,
+          displayName: result.user.displayName,
           email: result.user.email,
           photo: result.user.photoURL,
           phoneNumber: result.user.phoneNumber,
           id: result.user.uid
         };
-        addDocToCollection('users', user);
+        await addDocToCollection('users', user);
         toastSuccess('Successfully loggedin');
-        // This gives you a Google Access Token. You can use it to access the Google API.
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential.accessToken;
         navigate(to);
+
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        // const credential = GoogleAuthProvider.credentialFromResult(result);
+        // const token = credential.accessToken;
         // The signed-in user info.
         // const user = result.user;
         // IdP data available using getAdditionalUserInfo(result)
@@ -69,7 +72,8 @@ function StartingRight({ header1, header2, btns }) {
               <Link
                 {...(to ? { onClick: () => loginWithGoogle(to) } : {})}
                 key={i}
-                to={link}
+                to="/"
+                {...(link ? { to: link } : { to: '.' + search })}
                 className={`btn w-full text-lg capitalize ${
                   i == 0 ? 'btn-accent' : 'btn-primary'
                 }  rounded-md`}

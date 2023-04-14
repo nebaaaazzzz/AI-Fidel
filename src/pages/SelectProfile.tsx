@@ -7,25 +7,32 @@ import { Link, useLocation } from 'react-router-dom';
 import ellipse from '@assets/icons/Ellipse 99.png';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth, db } from '@/config/firebase';
-import { useEffect } from 'react';
-import { addDoc, collection } from 'firebase/firestore';
+import { useContext, useEffect, useState } from 'react';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
+import { addDocToCollection } from '@/utils/db';
+import { AuthContext } from '@/context/AuthContext';
+function autoGenerateUsername() {
+  const random = Math.floor(Math.random() * 10000) + 10000;
+  return `Guest${random}`;
+}
 function SelectProfile() {
-  const [user] = useAuthState(auth);
-  const { search } = useLocation();
+  const user = useContext(AuthContext);
+  const [username, setUsername] = useState<string>();
   useEffect(() => {
     (async () => {
-      try {
-        const docRef = await addDoc(collection(db, 'users'), {
-          first: 'Ada',
-          last: 'Lovelace',
-          born: 1815
-        });
-        console.log('Document written with ID: ', docRef.id);
-      } catch (e) {
-        console.error('Error adding document: ', e);
+      if (user) {
+        const docRef = doc(db, 'users', user.uid);
+        const docSnap = await getDoc(docRef);
+        const displayName = docSnap.get('displayName');
+        setUsername(displayName ? displayName : autoGenerateUsername());
+      } else {
+        setUsername(autoGenerateUsername());
       }
     })();
-  }, []);
+  }, [user]);
+  const [avatar, setAvatar] = useState(user?.photoURL || '');
+  const [userNameUpdated, setUsernameUpdated] = useState(false);
+  const { search } = useLocation();
   return (
     <div className="flex">
       <div className=" h-screen flex flex-col items-end justify-around  flex-[1] px-20">
@@ -35,6 +42,7 @@ function SelectProfile() {
         <div className="custom-glass w-11/12 flex flex-wrap gap-10 p-5 justify-center">
           {[1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4].map((i, index) => (
             <div
+              onClick={() => alert('hello world')}
               key={index}
               style={{
                 background: '#2E2E2E',
@@ -75,9 +83,29 @@ function SelectProfile() {
               className="p-2 rounded-md flex-1"
             >
               <div className="border-dashed bg-transparent rounded-md border-2 p-1 px-10">
-                <h1 className="text-center">
-                  {user ? user.displayName : 'Guest2112'}
-                </h1>
+                <input
+                  className="text-center w-full focus:border-0 focus:outline-dashed"
+                  value={username}
+                  onBlur={async () => {
+                    if (userNameUpdated) {
+                      if (user) {
+                        const docRef = doc(db, 'users', user.uid);
+                        setDoc(
+                          docRef,
+                          { displayName: username },
+                          { merge: true }
+                        );
+                      } else {
+                        //TODO store in localstorage for guest user
+                      }
+                    }
+                    setUsernameUpdated(false);
+                  }}
+                  onChange={(e) => {
+                    setUsernameUpdated(true);
+                    setUsername(e.target.value);
+                  }}
+                />
               </div>
             </div>
             <div></div>

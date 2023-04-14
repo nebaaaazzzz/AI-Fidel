@@ -11,7 +11,8 @@ module.exports = {
         forest: {
           ...require('daisyui/src/colors/themes')['[data-theme=forest]'],
           primary: '#008867',
-          accent: '#F8B936'
+          accent: '#F8B936',
+          'bg-base-300': 'red'
           ///TODO hover color
           // '.btn:hover': {
           //   opacity: 0.,
