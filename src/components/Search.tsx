@@ -3,12 +3,14 @@ import { useEffect, useState } from 'react';
 import amharicwords from '@/data/amharicwords';
 import englishwords from '@/data/englishwords';
 import { Link, useLocation, useSearchParams } from 'react-router-dom';
+import ReactModal from 'react-modal';
+ReactModal.setAppElement('#root');
+
 const { level1, level2, level3, level4 } = englishwords;
 const words = [...amharicwords, ...level1, ...level2, ...level3, ...level4];
 function Search() {
   const [searchTerm, setSearchTerm] = useState('');
   const [filterdWords, setFilterdWords] = useState<string[]>();
-  const [searchHasFocus, setSearchHasFocus] = useState(false);
   const { search } = useLocation();
   useEffect(() => {
     setFilterdWords(
@@ -18,8 +20,7 @@ function Search() {
     );
   }, [searchTerm]);
   return (
-    <div>
-      <Modal />
+    <div onBlur={() => setSearchTerm('')}>
       <label
         htmlFor="default-search"
         className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
@@ -48,9 +49,8 @@ function Search() {
           onChange={(e) => {
             setSearchTerm(e.target.value);
           }}
-          onFocus={() => setSearchHasFocus(true)}
-          onBlur={() => setSearchHasFocus(false)}
           type="search"
+          value={searchTerm}
           className="block  w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:border-primary dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500  bg-transparent"
           required
         />
@@ -60,7 +60,7 @@ function Search() {
       </div>
       <div
         className={`${
-          searchHasFocus && searchTerm.length ? 'block' : 'hidden'
+          searchTerm.length ? 'block' : 'hidden'
         } absolute bg-white z-10 flex flex-col top-14 right-7 w-[22%]`}
       >
         {filterdWords?.slice(0, 6).map((word, i) => {
@@ -70,7 +70,7 @@ function Search() {
                 to={`/game${search}`}
                 key={i}
                 className="text-center text-black"
-                onClick={() => console.log('hello world')}
+                onClick={() => alert('hello world')}
               >
                 {word}
               </Link>
@@ -81,18 +81,5 @@ function Search() {
       </div>
     </div>
   );
-}
-
-function Modal() {
-  const overlayRef = useRef(null);
-  function toggleModal() {
-    const body = document.querySelector('body');
-    const modal = document.querySelector('.modal');
-    modal.classList.toggle('opacity-0');
-    modal.classList.toggle('pointer-events-none');
-    body.classList.toggle('modal-active');
-  }
-  useEffect(() => {}, []);
-  return <> </>;
 }
 export default Search;

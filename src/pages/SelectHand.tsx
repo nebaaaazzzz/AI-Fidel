@@ -46,7 +46,9 @@ function SelectHand() {
         {['Left', 'Right'].map((hand, i) => {
           return (
             <Link
-              to={`/select-level${search}&hand=${hand.toLowerCase()}`}
+              to={`/select-level${
+                search.length ? search : '?'
+              }&hand=${hand.toLowerCase()}`}
               key={i}
               className={` capitalize px-20 btn-sm  py-5 font-bold flex items-center justify-center rounded-xl ${
                 i == 0 ? 'btn-accent' : 'btn-primary'

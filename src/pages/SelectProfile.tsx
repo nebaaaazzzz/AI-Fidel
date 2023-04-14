@@ -1,31 +1,35 @@
-import Logo, { LogoWithTextSM } from '@/components/Logo';
+import { LogoWithTextSM } from '@/components/Logo';
 import EthiopiaIcon from '@assets/icons/ethiopia-icon.png';
 import UKIcon from '@assets/icons/uk-icon.png';
 import { RxAvatar } from 'react-icons/rx';
-import avatar from '@assets/images/avatar/avatar.png';
 import { Link, useLocation } from 'react-router-dom';
 import ellipse from '@assets/icons/Ellipse 99.png';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth, db } from '@/config/firebase';
+import { db } from '@/config/firebase';
 import { useContext, useEffect, useState } from 'react';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
-import { addDocToCollection } from '@/utils/db';
 import { AuthContext } from '@/context/AuthContext';
+import ReactModal from 'react-modal';
 function autoGenerateUsername() {
   const random = Math.floor(Math.random() * 10000) + 10000;
   return `Guest${random}`;
 }
+const avatarUrls = [
+  'https://res.cloudinary.com/etmedia/image/upload/v1681508368/avatar3_gkgc7n.png',
+  'https://res.cloudinary.com/etmedia/image/upload/v1681508368/avatar2_qpyenc.png',
+  'https://res.cloudinary.com/etmedia/image/upload/v1681508368/avatar4_kvml4s.png',
+  'https://res.cloudinary.com/etmedia/image/upload/v1681508368/avatar1_xvx2pg.png'
+];
 function SelectProfile() {
   const user = useContext(AuthContext);
   const [username, setUsername] = useState<string>();
-  const [selectedAvatar, setSelectedAvatar] = useState();
+  const [selectedAvatar, setSelectedAvatar] = useState<string>();
+
   useEffect(() => {
     (async () => {
       if (user) {
-        const docRef = doc(db, 'users', user.uid);
-        const docSnap = await getDoc(docRef);
-        const displayName = docSnap.get('displayName');
-        setUsername(displayName ? displayName : autoGenerateUsername());
+        setUsername(
+          user.displayName ? user.displayName : autoGenerateUsername()
+        );
       } else {
         setUsername(autoGenerateUsername());
       }
@@ -42,11 +46,12 @@ function SelectProfile() {
         </h2>
         <div className="custom-glass w-11/12 flex flex-wrap gap-10 p-5 justify-center">
           {[1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4].map((i, index) => (
-            <div
+            <button
               onClick={() => {
+                setSelectedAvatar(avatarUrls[i - 1]);
                 if (user) {
-                  const docRef = doc(db, 'users', user.uid);
-                  setDoc(docRef, { displayName: username }, { merge: true });
+                  const docRef = doc(db, 'users', user.id);
+                  setDoc(docRef, { photo: avatarUrls[i - 1] }, { merge: true });
                 } else {
                   //TODO store in localstorage for guest user
                 }
@@ -61,10 +66,15 @@ function SelectProfile() {
               {' '}
               <img
                 className="w-2/3 aspect-1/1 object contain"
-                src={`/images/avatar/avatar${i}.png`}
+                src={avatarUrls[i - 1]}
                 alt=""
               />
-            </div>
+              {/* <img
+                className="w-2/3 aspect-1/1 object contain"
+                src={`/images/avatar/avatar${i}.png`}
+                alt=""
+              /> */}
+            </button>
           ))}
         </div>
         <div className="self-center relative -top-5">
@@ -97,8 +107,8 @@ function SelectProfile() {
                   onBlur={async () => {
                     if (userNameUpdated) {
                       if (user) {
-                        const docRef = doc(db, 'users', user.uid);
-                        setDoc(
+                        const docRef = doc(db, 'users', user.id);
+                        await setDoc(
                           docRef,
                           { displayName: username },
                           { merge: true }
@@ -123,16 +133,19 @@ function SelectProfile() {
               background: '#2E2E2E',
               boxShadow: '0px 0px 26px 4px #FFAF52'
             }}
-            className="w-7/12 aspect-square rounded-full flex items-center justify-center "
+            className="w-52 h-52 rounded-full flex items-center justify-center "
           >
-            {user ? (
+            {user && !Boolean(selectedAvatar) ? (
               <img
-                src={user.photoURL}
+                src={user.photo}
+                className="w-2/3 object-contain"
                 alt="user profile picture"
-                className="w-full rounded-full"
               />
             ) : (
-              <img src={avatar} />
+              <img
+                className="w-2/3 object-contain"
+                src={selectedAvatar ? selectedAvatar : avatar}
+              />
             )}
           </div>
           <div className="flex flex-col w-full gap-3">
@@ -143,10 +156,12 @@ function SelectProfile() {
               return (
                 <Link
                   key={i}
-                  to={`/select-hand${search}&lang=${langCode}`}
+                  to={`/select-hand${
+                    search.length ? search + '&' : '?'
+                  }lang=${langCode}`}
                   className="flex capitalize items-center btn bg-[#2E2E2E] hover:bg-[#3f3f3f] rounded-md justify-between"
                 >
-                  <img src={icon} className="w-1/12" />
+                  <img src={icon} className="w-1/12 " />
                   <p>{text}</p>
                   <div></div>
                 </Link>
