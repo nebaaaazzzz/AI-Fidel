@@ -13,7 +13,6 @@ import { GrFacebookOption } from 'react-icons/gr';
 import { ImTwitter } from 'react-icons/im';
 import { doc, setDoc } from 'firebase/firestore';
 import { db } from '@/config/firebase';
-import { useAuthState } from 'react-firebase-hooks/auth';
 import { AuthContext } from '../context/AuthContext';
 const useGetSearchParams = (searchParams: URLSearchParams) => {
   const mode = searchParams.get('mode');
@@ -22,6 +21,8 @@ const useGetSearchParams = (searchParams: URLSearchParams) => {
   searchParams.delete('level');
   const lang = searchParams.get('lang');
   const points = searchParams.get('points');
+  searchParams.delete('points');
+
   return { mode, hand, level, lang, points };
 };
 async function updateUserFirebaseLevel(userId, level) {
@@ -80,11 +81,11 @@ function LevelCompleted() {
         await storeLevelScore(level, va, mode);
         setPoints(va);
         if (user && mode == 'game') {
-          updateUserFirebaseLevel(user.uid, level);
+          await updateUserFirebaseLevel(user.id, level);
         }
       }
       if (user && mode == 'game') {
-        updateUserFirebaseLevel(user.uid, level);
+        await updateUserFirebaseLevel(user.id, level);
       }
     })();
   }, []);
@@ -126,7 +127,9 @@ function LevelCompleted() {
         )}
         <img src={stars} className="object-contain w-52" />
 
-        <p className="font-bold">you have learned</p>
+        <p className="font-bold">
+          {mode == 'game' ? 'you scored' : 'you have learned'}
+        </p>
         <h1 className="text-white font-extrabold text-6xl">
           {(Number(points) * 100) / 40}%
         </h1>

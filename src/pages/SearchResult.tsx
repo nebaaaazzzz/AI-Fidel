@@ -13,11 +13,7 @@ import {
   useNavigate,
   useSearchParams
 } from 'react-router-dom';
-import getLanguageWords from '@/data';
-import { getLevelWords } from '@/utils';
-import { getLevelAmharicWords } from '@/utils/amharicindex';
 import reactToDOMCursor from '@/HandUtils/reactToDom';
-import { storeSessionInfo } from '@/utils/localsession';
 import TimerProgress from '@components/TimerProgress';
 import moment from 'moment';
 import Percentage from '@/components/Percentage';
@@ -28,35 +24,20 @@ function useGetGameConfig(
   searchParams: URLSearchParams,
   navigate: NavigateFunction
 ) {
-  const hand = searchParams.get('hand');
-  const level = searchParams.get('level');
-  const lang = searchParams.get('lang');
-  const mode = searchParams.get('mode');
-  if (!hand || !level || !lang || !mode) {
-    navigate('/');
-  }
-  const languageWords = getLanguageWords(lang, mode, level);
-  let levelWords = [];
-  if (lang == 'en') {
-    levelWords = getLevelWords(languageWords, level);
-  }
-  if (lang == 'am') {
-    levelWords = getLevelAmharicWords(languageWords, level);
-  }
+  const word = searchParams.get('search');
+  searchParams.delete('search');
+  let lang = 'am';
+  /^[A-Za-z]*$/g.test(word) ? (lang = 'en') : (lang = 'am');
 
-  return { mode, hand, level, lang, levelWords };
+  let levelWords = [word];
+
+  return { lang, levelWords };
 }
-function Game() {
+function SearchResult() {
   const navigate = useNavigate();
   const { search } = useLocation();
   const searchParams = useSearchParams()[0];
-  const {
-    lang,
-    mode,
-    hand: handDirection,
-    level,
-    levelWords
-  } = useGetGameConfig(searchParams, navigate);
+  const { lang, levelWords } = useGetGameConfig(searchParams, navigate);
   const [lookForLetter, setLookForLetter] =
     useState<AlphabetDefinationI | null>(null);
   const [isGameStarted, setIsGameStarted] = useState(false);
@@ -95,7 +76,7 @@ function Game() {
     //level compelted go to level completed page
 
     if (wordIndex == levelWords.length - 1) {
-      navigate(`/level-completed${search}&points=${score}`);
+      navigate(`/select-profile$`);
       score = 0;
     }
     if (currentWordLength == selectedWord?.length && selectedWord) {
@@ -144,9 +125,6 @@ function Game() {
           // if (results.multiHandedness[0].label === "Right") {
           //   newLandMarks[i][0] = newLandMarks[i][0] * -1;
           // }
-          if (handDirection == 'right') {
-            newLandMarks[i][0] = newLandMarks[i][0] * -1;
-          }
         }
         let fingerPoseEstimator = new FingerPoseEstimator(null);
         let fingerPoseResults = fingerPoseEstimator.estimate(newLandMarks);
@@ -243,7 +221,6 @@ function Game() {
 
   useEffect(() => {
     (async () => {
-      storeSessionInfo(lang, handDirection, level);
       if (videoElement.current) {
         const camera = new window.Camera(videoElement.current, {
           onFrame: async () => {
@@ -316,18 +293,9 @@ function Game() {
           {/* <p>{percentage}%</p> */}
         </div>
       )}
-      {!isMediaPipeModelLoading ? (
-        <button
-          onClick={handleSkip}
-          className="btn mt-10 btn-primary rounded-md btn-wide "
-        >
-          ፊደሉን ዝለል{' '}
-        </button>
-      ) : (
-        <DotLoader color="#008867" />
-      )}
+      {!isMediaPipeModelLoading ? <></> : <DotLoader color="#008867" />}
     </div>
   );
 }
 
-export default Game;
+export default SearchResult;

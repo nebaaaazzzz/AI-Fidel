@@ -9,6 +9,11 @@ body {
   font-family: 'Poppins', sans-serif;
   overflow: hidden;
 }
+@media screen and (max-width: 768px) {
+  body {
+    overflow: hidden;
+  }
+}
 html {
   background-color: #0d0d0d;
 }

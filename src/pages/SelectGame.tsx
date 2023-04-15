@@ -20,7 +20,14 @@ function SelectGame() {
         header1={'Welcome'}
         header2={'back'}
         btns={[
-          ...(configuration?.level ? [{ text: 'Resume', link: '' }] : []),
+          ...(configuration?.level
+            ? [
+                {
+                  text: 'Resume',
+                  link: `/select-level?level=${configuration?.level}&lang=${configuration?.lang}&hand=${configuration?.hand}&mode=game`
+                }
+              ]
+            : []),
           ...(user
             ? [{ text: 'New Game', link: '/select-profile?mode=game' }]
             : [{ text: 'New Game', link: '/login?mode=game' }])

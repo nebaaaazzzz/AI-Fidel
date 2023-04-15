@@ -20,7 +20,7 @@ function Search() {
     );
   }, [searchTerm]);
   return (
-    <div onBlur={() => setSearchTerm('')}>
+    <div>
       <label
         htmlFor="default-search"
         className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
@@ -46,12 +46,13 @@ function Search() {
           </svg>
         </div>
         <input
+          onBlur={() => setTimeout(() => setSearchTerm(''), 500)}
           onChange={(e) => {
             setSearchTerm(e.target.value);
           }}
           type="search"
           value={searchTerm}
-          className="block  w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:border-primary dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500  bg-transparent"
+          className="block text-white  w-full p-2 pl-10 text-sm border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:border-primary dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500  bg-transparent"
           required
         />
         <p className="text-white absolute top-0 right-2.5 bottom-2.5  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2">
@@ -66,14 +67,14 @@ function Search() {
         {filterdWords?.slice(0, 6).map((word, i) => {
           return (
             <>
-              <Link
-                to={`/game${search}`}
+              <button
+                // to={`/game${search}`}
                 key={i}
                 className="text-center text-black"
                 onClick={() => alert('hello world')}
               >
                 {word}
-              </Link>
+              </button>
               <div className="w-full h-[1px] bg-slate-200"></div>
             </>
           );

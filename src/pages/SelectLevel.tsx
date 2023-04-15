@@ -33,8 +33,8 @@ function SelectLevel() {
     })();
   }, [user]);
   return (
-    <div className="flex  flex-col gap-10">
-      <div className="custom-glass smrounded  flex justify-between px-3 pl-10 py-5">
+    <div className="flex  flex-col gap-6">
+      <div className="custom-glass smrounded  flex justify-between px-3 pl-10 py-2">
         <div className="flex  prose flex-col items-start ">
           <div className="leading-none bg-transparent">
             <h1 className="md:text-4xl text-white m-1">Start learning </h1>
