@@ -67,14 +67,13 @@ function Search() {
         {filterdWords?.slice(0, 6).map((word, i) => {
           return (
             <>
-              <button
-                // to={`/game${search}`}
+              <Link
+                to={`/search-result${search}&search=${word}`}
                 key={i}
                 className="text-center text-black"
-                onClick={() => alert('hello world')}
               >
                 {word}
-              </button>
+              </Link>
               <div className="w-full h-[1px] bg-slate-200"></div>
             </>
           );

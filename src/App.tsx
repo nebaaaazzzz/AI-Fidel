@@ -16,6 +16,7 @@ import LearnNew from '@pages/learn-new';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import AuthContextProvider from './context/AuthContext';
+import SearchResult from './pages/SearchResult';
 
 function App() {
   // if (loading) return <p>loading</p>;
@@ -41,6 +42,7 @@ function App() {
                 <Route path="welcome" element={<Welcome />} />
                 <Route path="start-learning" element={<StartLearning />} />
                 <Route path="learn-new" element={<LearnNew />} />
+                <Route path="search-result" element={<SearchResult />} />
               </Route>
               <Route path="*" element={<p>path not found</p>} />
             </Route>
