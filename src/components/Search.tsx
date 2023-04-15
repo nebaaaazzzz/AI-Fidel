@@ -6,9 +6,19 @@ import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import ReactModal from 'react-modal';
 ReactModal.setAppElement('#root');
 
-const { level1, level2, level3, level4 } = englishwords;
-const words = [...amharicwords, ...level1, ...level2, ...level3, ...level4];
+function getWords(lang: string) {
+  const words = [];
+  if ((lang = 'am')) {
+    words.push(...amharicwords);
+  } else {
+    const { level1, level2, level3, level4 } = englishwords;
+    words.push(...level1, ...level2, ...level3, ...level4);
+  }
+  return words;
+}
 function Search() {
+  const lang = useSearchParams[0].get('lang');
+  const words = getWords(lang);
   const [searchTerm, setSearchTerm] = useState('');
   const [filterdWords, setFilterdWords] = useState<string[]>();
   const { search } = useLocation();
