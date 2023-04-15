@@ -1,17 +1,19 @@
 import eclips from '@assets/icons/Ellipse1.png';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Logo from '@/components/Logo';
 import vector from '@assets/logo/Vector.png';
+import { AuthContext } from '@/context/AuthContext';
 
 function Landing() {
+  const user = useContext(AuthContext);
   const navigate = useNavigate();
 
   useEffect(() => {
-    setTimeout(() => {
+    if (!user.loading) {
       navigate('select-mode');
-    }, 2000);
-  }, []);
+    }
+  }, [user]);
   return (
     <div>
       <div className="relative h-screen flex items-center justify-center">

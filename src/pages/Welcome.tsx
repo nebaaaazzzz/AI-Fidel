@@ -42,7 +42,7 @@ function Welcome() {
           </div>
           <div className="grow text-2xl  text-white text-center flex flex-col my-10">
             <h1 className="m-1 font-semibold text-white">Welcome </h1>
-            <h1 className="m-1 font-semibold text-white">to your first</h1>
+            <h1 className="m-1 font-semibold text-white">to your </h1>
             <h1 className="m-1 font-semibold text-white">lesson</h1>
           </div>
         </div>

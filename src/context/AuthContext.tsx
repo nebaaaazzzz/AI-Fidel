@@ -1,10 +1,11 @@
 import { auth, db } from '@/config/firebase';
+import Landing from '@/pages/Landing';
 import { doc, getDoc } from 'firebase/firestore';
 import { createContext, useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 export const AuthContext = createContext(null);
 function AuthContextProvider({ children }) {
-  const [user] = useAuthState(auth);
+  const [user, loading, error] = useAuthState(auth);
   const [dbUser, setdbUser] = useState<any>();
   useEffect(() => {
     (async () => {
@@ -15,7 +16,11 @@ function AuthContextProvider({ children }) {
       }
     })();
   }, [user]);
-  return <AuthContext.Provider value={dbUser}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={{ ...dbUser, loading }}>
+      {children}
+    </AuthContext.Provider>
+  );
 }
 
 export default AuthContextProvider;

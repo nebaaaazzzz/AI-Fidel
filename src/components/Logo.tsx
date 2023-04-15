@@ -16,7 +16,10 @@ function LogoWithText() {
 }
 export function LogoWithTextSM() {
   return (
-    <Link to="/" className=" relative flex justify-center items-center gap-1">
+    <Link
+      to="/"
+      className="relative mt-5 flex justify-center items-center gap-1"
+    >
       <img src={fidel} className="relative object-contain w-14" />
       <h1 className="text-2xl self-end font-semibold text-white">Fidel</h1>
       <img className="absolute -right-4 w-[6%] -top-1" src={vector} />

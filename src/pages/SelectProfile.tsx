@@ -38,6 +38,7 @@ function SelectProfile() {
   const [avatar, setAvatar] = useState(user?.photoURL || '');
   const [userNameUpdated, setUsernameUpdated] = useState(false);
   const { search } = useLocation();
+  const [selectedAvatarIndex, setSelectedAvatarIndex] = useState<number>();
   return (
     <div className="flex">
       <div className=" h-screen flex flex-col items-end justify-around  flex-[1] px-20">
@@ -50,6 +51,7 @@ function SelectProfile() {
               onClick={() => {
                 setSelectedAvatar(avatarUrls[i - 1]);
                 if (user) {
+                  setSelectedAvatarIndex(index);
                   const docRef = doc(db, 'users', user.id);
                   setDoc(docRef, { photo: avatarUrls[i - 1] }, { merge: true });
                 } else {
@@ -59,7 +61,10 @@ function SelectProfile() {
               key={index}
               style={{
                 background: '#2E2E2E',
-                boxShadow: '0px 0px 12px 4px #00A28D'
+                boxShadow:
+                  index == selectedAvatarIndex
+                    ? '0px 0px 26px 4px #FFAF52'
+                    : '0px 0px 12px 4px #00A28D'
               }}
               className="rounded-full px aspect-square w-20 flex items-center justify-center"
             >
@@ -102,7 +107,7 @@ function SelectProfile() {
             >
               <div className="border-dashed bg-transparent rounded-md border-2 p-1 px-10">
                 <input
-                  className="text-center w-full focus:border-0 focus:outline-dashed"
+                  className="text-center bg-transparent w-full focus:border-0 focus:outline-dashed"
                   value={username}
                   onBlur={async () => {
                     if (userNameUpdated) {
