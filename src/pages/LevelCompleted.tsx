@@ -19,6 +19,7 @@ const useGetSearchParams = (searchParams: URLSearchParams) => {
   const mode = searchParams.get('mode');
   const hand = searchParams.get('hand');
   const level = searchParams.get('level');
+  searchParams.delete('level');
   const lang = searchParams.get('lang');
   const points = searchParams.get('points');
   return { mode, hand, level, lang, points };
@@ -109,10 +110,18 @@ function LevelCompleted() {
         )} */}
         {mode === 'game' && (
           <ul className="steps text-2xl self-stretch">
-            <li data-content="★" className="step  step-accent"></li>
-            <li data-content="★" className="step step-accent "></li>
-            <li data-content="★" className="step step-neutral"></li>
-            <li data-content="★" className="step step-secondary"></li>
+            {Array(level)
+              .fill('0')
+              .map((_, i) => {
+                return <li data-content="★" className="step  step-accent"></li>;
+              })}
+            {Array(4 - Number(level))
+              .fill('0')
+              .map((_, i) => {
+                return (
+                  <li data-content="★" className="step  step-neutral"></li>
+                );
+              })}
           </ul>
         )}
         <img src={stars} className="object-contain w-52" />
@@ -122,9 +131,12 @@ function LevelCompleted() {
           {(Number(points) * 100) / 40}%
         </h1>
         {mode != 'game' && <p className="font-bold">of the lesson</p>}
-        <button className="btn mt-5 font-bold capitalize bg-[#2E2E2E] hover:bg-[#3f3f3f] rounded-md w-full">
+        <Link
+          to={`/game?${searchParams.toString()}&level=${Number(level)}`}
+          className="btn mt-5 font-bold capitalize bg-[#2E2E2E] hover:bg-[#3f3f3f] rounded-md w-full"
+        >
           <p className="text-white font-bold text-xl"> Learn Again</p>
-        </button>
+        </Link>
         <Link
           to={`/game?${searchParams.toString()}&level=${Number(level) + 1}`}
           className="btn font-bold capitalize text-xl text-black btn-accent rounded-md w-full"

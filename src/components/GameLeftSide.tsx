@@ -25,7 +25,7 @@ function GameLeftSide({
         </p>
         <div className="flex items-center text-white">
           <img
-            className="w-8/12"
+            className="w-[63%]"
             src={`/images/${
               lang == 'am' ? 'amharic' : 'english'
             }/${selectedLetter?.toUpperCase()}.png`}
@@ -40,7 +40,7 @@ function GameLeftSide({
   }
   return (
     <div className="border-2 flex flex-col self-center border-primary  items-center justify-center rounded-lg p-5">
-      <img src={hand} className="object-contain w-72 aspect-square" />
+      <img src={hand} className="object-contain w-80 aspect-square" />
     </div>
   );
 }

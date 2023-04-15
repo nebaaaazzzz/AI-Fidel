@@ -1,7 +1,8 @@
 import { auth, db } from '@/config/firebase';
+import { AuthContext } from '@/context/AuthContext';
 import profile from '@assets/images/avatar/avatar.png';
 import { doc, getDoc } from 'firebase/firestore';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { AiOutlineInstagram } from 'react-icons/ai';
 import { GrFacebookOption } from 'react-icons/gr';
@@ -11,7 +12,7 @@ import { Link, useLocation, useSearchParams } from 'react-router-dom';
 const socialMediaIcons = [AiOutlineInstagram, GrFacebookOption, ImTwitter];
 
 function SelectLevel() {
-  const [user] = useAuthState(auth);
+  const user = useContext(AuthContext);
   const { search } = useLocation();
   const [searchParams] = useSearchParams();
   const [levelOffset, setLevelOffset] = useState<number>(0);
@@ -50,7 +51,7 @@ function SelectLevel() {
         </div>
         <div className="flex items-center gap-2">
           <div
-            className={`rounded-full w-32 h-32 aspect-square ${
+            className={`rounded-full flex items-center justify-center w-32 h-32 aspect-square ${
               user ? '' : 'p-4'
             }`}
             style={{
@@ -60,9 +61,9 @@ function SelectLevel() {
           >
             {user ? (
               <img
-                src={user.photoURL}
+                src={user.photo}
                 alt="user profile picture"
-                className="object-contain w-full rounded-full"
+                className="object-contain w-2/3 rounded-full"
               />
             ) : (
               <img
