@@ -76,7 +76,7 @@ function SearchResult() {
     //level compelted go to level completed page
 
     if (wordIndex == levelWords.length - 1) {
-      navigate(`/select-profile$`);
+      navigate(`/select-profile${search}`);
       score = 0;
     }
     if (currentWordLength == selectedWord?.length && selectedWord) {
