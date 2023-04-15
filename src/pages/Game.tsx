@@ -29,10 +29,11 @@ function useGetGameConfig(
   navigate: NavigateFunction
 ) {
   const hand = searchParams.get('hand');
-  const level = searchParams.get('level');
+  let level = searchParams.get('level');
   const lang = searchParams.get('lang');
   const mode = searchParams.get('mode');
-  if (!hand || !level || !lang || !mode) {
+  const searchWord = searchParams.get('search');
+  if (!hand || !lang || !mode || (!level && !searchWord)) {
     navigate('/');
   }
   const languageWords = getLanguageWords(lang, mode, level);
@@ -43,7 +44,12 @@ function useGetGameConfig(
   if (lang == 'am') {
     levelWords = getLevelAmharicWords(languageWords, level);
   }
-
+  if (searchWord) {
+    level = searchWord.length;
+    levelWords.unshift(searchWord);
+    levelWords.pop();
+  }
+  levelWords;
   return { mode, hand, level, lang, levelWords };
 }
 function Game() {

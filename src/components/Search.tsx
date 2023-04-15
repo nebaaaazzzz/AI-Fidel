@@ -8,7 +8,7 @@ ReactModal.setAppElement('#root');
 
 function getWords(lang: string) {
   const words = [];
-  if ((lang = 'am')) {
+  if (lang == 'am') {
     words.push(...amharicwords);
   } else {
     const { level1, level2, level3, level4 } = englishwords;
@@ -17,7 +17,8 @@ function getWords(lang: string) {
   return words;
 }
 function Search() {
-  const lang = useSearchParams[0].get('lang');
+  const { pathname } = useLocation();
+  const lang = useSearchParams()[0].get('lang');
   const words = getWords(lang);
   const [searchTerm, setSearchTerm] = useState('');
   const [filterdWords, setFilterdWords] = useState<string[]>();
@@ -30,7 +31,9 @@ function Search() {
     );
   }, [searchTerm]);
   return (
-    <div>
+    <div
+      className={`${pathname.startsWith('/select-level') ? '' : 'invisible'} `}
+    >
       <label
         htmlFor="default-search"
         className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
@@ -78,7 +81,7 @@ function Search() {
           return (
             <>
               <Link
-                to={`/search-result${search}&search=${word}`}
+                to={`/game${search}&search=${word}`}
                 key={i}
                 className="text-center text-black"
               >
