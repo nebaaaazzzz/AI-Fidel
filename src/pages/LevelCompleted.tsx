@@ -20,7 +20,7 @@ const useGetSearchParams = (searchParams: URLSearchParams) => {
   const level = searchParams.get('level');
   const lang = searchParams.get('lang');
   const points = searchParams.get('points');
-  searchParams.delete('points');
+  // searchParams.delete('points');
 
   return { mode, hand, level, lang, points };
 };
@@ -43,6 +43,8 @@ function LevelCompleted() {
   // searchParams.delete('level');
   const [points, setPoints] = useState<number | string>(0);
   const [levelesScore, setLevelsScore] = useState<Record<string, number>>();
+  const factor =
+    lang == 'en' ? (mode == 'learn' ? Number(level) * 10 : 40) : 40;
   useEffect(() => {
     (async () => {
       if (Number(level) == 4) {
@@ -131,7 +133,7 @@ function LevelCompleted() {
           {mode == 'game' ? 'you scored' : 'you have learned'}
         </p>
         <h1 className="text-white font-extrabold text-6xl">
-          {((Number(points) * 100) / 40).toFixed(2)}%
+          {((Number(score) * 100) / factor).toFixed(2)}%
         </h1>
         {mode != 'game' && <p className="font-bold">{t('otl')}</p>}
         <Link

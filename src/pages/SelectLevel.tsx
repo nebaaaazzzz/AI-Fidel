@@ -22,7 +22,7 @@ function SelectLevel() {
       if (user?.user) {
         const docRef = doc(db, 'users', user.id);
         const docSnap = await getDoc(docRef);
-        const level = docSnap.get('level');
+        const level = docSnap.get('level' + '-' + searchParams.get('lang'));
         if (level) {
           setLevelOffset(level);
         } else {
