@@ -151,6 +151,7 @@ function LevelCompleted() {
           <button
             onClick={() => {
               searchParams.delete('level');
+              searchParams.delete('points');
               navigate(
                 `/game?${searchParams.toString()}&level=${Number(level) + 1}`
               );
