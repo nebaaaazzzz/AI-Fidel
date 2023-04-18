@@ -112,12 +112,13 @@ function buildLevelButtons(
   levelOffset: number,
   t
 ) {
+  console.log(levelOffset + 1);
   const levels = [1, 2, 3, 4];
   const mode = searchParams.get('mode');
   if (mode == 'game') {
     return (
       <>
-        {levels.slice(0, levelOffset).map((i) => {
+        {levels.slice(0, Number(levelOffset) + 1).map((i) => {
           return (
             <Link
               to={`/game${search}&level=${i}`}
@@ -132,7 +133,7 @@ function buildLevelButtons(
             </Link>
           );
         })}
-        {levels.slice(levelOffset).map((i) => {
+        {levels.slice(Number(levelOffset) + 1).map((i) => {
           return (
             <button
               key={i}

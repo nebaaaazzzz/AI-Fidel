@@ -138,7 +138,7 @@ function LevelCompleted() {
           to={`/game?${searchParams.toString()}&level=${Number(level)}`}
           className="btn mt-5 font-bold capitalize bg-[#2E2E2E] hover:bg-[#3f3f3f] rounded-md w-full"
         >
-          {mode != 'game' ? (
+          {mode == 'game' ? (
             <p className="text-white font-bold text-xl"> {t('pa')}</p>
           ) : (
             <p className="text-white font-bold text-xl"> {t('la')}</p>

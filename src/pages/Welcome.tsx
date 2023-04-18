@@ -4,7 +4,7 @@ import { AiOutlineInstagram } from 'react-icons/ai';
 import { GrFacebookOption } from 'react-icons/gr';
 import { ImTwitter } from 'react-icons/im';
 import circleDashed from '@assets/images/circle-dashed.png';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import LeftArrowIcon from '@assets/icons/left-arrow.png';
 import { useTranslation } from 'react-i18next';
 import { AuthContext } from '@/context/AuthContext';
@@ -12,6 +12,7 @@ import { useContext } from 'react';
 const socialMediaIcons = [AiOutlineInstagram, GrFacebookOption, ImTwitter];
 
 function Welcome() {
+  const { search } = useLocation();
   const user = useContext(AuthContext);
   const { t } = useTranslation();
   return (
@@ -67,10 +68,7 @@ function Welcome() {
             ))}
         </div>
       </div>
-      <Link
-        to="/game?level=1&hand=right&lang=am&mode=learn"
-        className="flex gap-3 items-center "
-      >
+      <Link to={`/game${search}`} className="flex gap-3 items-center ">
         <h1 className="text-white ml-10 text-xl">{t('gs')}</h1>
         <img src={LeftArrowIcon} className="w-2/12" />
       </Link>

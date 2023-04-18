@@ -49,8 +49,8 @@ function SelectProfile() {
             <button
               onClick={() => {
                 setSelectedAvatar(avatarUrls[i - 1]);
+                setSelectedAvatarIndex(index);
                 if (user?.user) {
-                  setSelectedAvatarIndex(index);
                   const docRef = doc(db, 'users', user.id);
                   setDoc(docRef, { photo: avatarUrls[i - 1] }, { merge: true });
                 } else {
