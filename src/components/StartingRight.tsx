@@ -2,13 +2,14 @@ import { Logo } from './Logo';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { GoogleAuthProvider, signInWithRedirect } from 'firebase/auth';
 import { signInWithPopup } from 'firebase/auth';
-import { auth, db } from '@/config/firebase';
+import { auth } from '@/config/firebase';
 import { toastError, toastSuccess } from '@/utils/toast';
 import { addDocToCollection } from '@/utils/db';
-import { collection, getDocs, query, where } from 'firebase/firestore';
+import { useTranslation } from 'react-i18next';
 function StartingRight({ header1, header2, btns }) {
   const navigate = useNavigate();
   const { search } = useLocation();
+  const { t } = useTranslation();
   function loginWithGoogle(to: string) {
     const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider)
@@ -22,7 +23,7 @@ function StartingRight({ header1, header2, btns }) {
           id: result.user.uid
         };
         await addDocToCollection('users', user);
-        toastSuccess('Successfully loggedin');
+        toastSuccess(t('success'));
         navigate(to);
 
         // This gives you a Google Access Token. You can use it to access the Google API.
@@ -58,13 +59,9 @@ function StartingRight({ header1, header2, btns }) {
           </h1>
         </div>
         <div className="flex flex-col items-center justify-center b">
-          <h1 className="font-[100] text-center text-sm ">
-            Learn the ABC in sign language with machine language .The game{' '}
-          </h1>
-          <span className="font-[100] text-center text-sm ">
-            will using your camera and machine learning to analyze your
-          </span>
-          <p className="font-[100] text-center">handshapes </p>
+          <h1 className="font-[100] text-center text-sm ">{t('lslwml')}</h1>
+          <span className="font-[100] text-center text-sm ">{t('urcml')}</span>
+          <p className="font-[100] text-center">{t('hps')} </p>
         </div>
         <div className="flex w-11/12 mt-5 items-center self-center  flex-col gap-4">
           {btns.map(({ text, link, to }, i) => {
@@ -85,7 +82,7 @@ function StartingRight({ header1, header2, btns }) {
         </div>
       </div>
       <p className="font-extralight text-[12px] text-[#a4a4a4] absolute bottom-6">
-        Powered by ablaze labs{' '}
+        {t('pbal')}
       </p>
     </div>
   );

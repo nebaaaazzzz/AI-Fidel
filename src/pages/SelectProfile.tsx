@@ -9,6 +9,7 @@ import { useContext, useEffect, useState } from 'react';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { AuthContext } from '@/context/AuthContext';
 import ReactModal from 'react-modal';
+import { useTranslation } from 'react-i18next';
 function autoGenerateUsername() {
   const random = Math.floor(Math.random() * 10000) + 10000;
   return `Guest${random}`;
@@ -23,10 +24,10 @@ function SelectProfile() {
   const user = useContext(AuthContext);
   const [username, setUsername] = useState<string>();
   const [selectedAvatar, setSelectedAvatar] = useState<string>();
-
+  const { t } = useTranslation();
   useEffect(() => {
     (async () => {
-      if (user) {
+      if (user?.user) {
         setUsername(
           user.displayName ? user.displayName : autoGenerateUsername()
         );
@@ -35,22 +36,20 @@ function SelectProfile() {
       }
     })();
   }, [user]);
-  const [avatar, setAvatar] = useState(user?.photoURL || '');
+  const [avatar, setAvatar] = useState(user?.photoURL || avatarUrls[0]);
   const [userNameUpdated, setUsernameUpdated] = useState(false);
   const { search } = useLocation();
   const [selectedAvatarIndex, setSelectedAvatarIndex] = useState<number>();
   return (
     <div className="flex">
       <div className=" h-screen flex flex-col items-end justify-around  flex-[1] px-20">
-        <h2 className="text-xl self-center mt-5 text-white">
-          Select profile avatar
-        </h2>
+        <h2 className="text-xl self-center mt-5 text-white">{t('spa')}</h2>
         <div className="custom-glass w-11/12 flex flex-wrap gap-10 p-5 justify-center">
           {[1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4].map((i, index) => (
             <button
               onClick={() => {
                 setSelectedAvatar(avatarUrls[i - 1]);
-                if (user) {
+                if (user?.user) {
                   setSelectedAvatarIndex(index);
                   const docRef = doc(db, 'users', user.id);
                   setDoc(docRef, { photo: avatarUrls[i - 1] }, { merge: true });
@@ -111,7 +110,7 @@ function SelectProfile() {
                   value={username}
                   onBlur={async () => {
                     if (userNameUpdated) {
-                      if (user) {
+                      if (user?.user) {
                         const docRef = doc(db, 'users', user.id);
                         await setDoc(
                           docRef,
@@ -140,7 +139,7 @@ function SelectProfile() {
             }}
             className="w-52 h-52 rounded-full flex items-center justify-center "
           >
-            {user && !Boolean(selectedAvatar) ? (
+            {user?.user && !Boolean(selectedAvatar) ? (
               <img
                 src={user.photo}
                 className="w-2/3 object-contain"
@@ -177,7 +176,7 @@ function SelectProfile() {
         </div>
 
         <p className="font-extralight text-[12px] text-[#a4a4a4] absolute right-72 text-center  items-center bottom-5">
-          Powered by ablaze labs{' '}
+          {t('pbal')}{' '}
         </p>
       </div>
     </div>

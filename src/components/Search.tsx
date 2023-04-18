@@ -4,6 +4,7 @@ import amharicwords from '@/data/amharicwords';
 import englishwords from '@/data/englishwords';
 import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import ReactModal from 'react-modal';
+import { useTranslation } from 'react-i18next';
 ReactModal.setAppElement('#root');
 
 function getWords(lang: string) {
@@ -30,15 +31,16 @@ function Search() {
       })
     );
   }, [searchTerm]);
+  const { t } = useTranslation();
   return (
     <div
-      className={`${pathname.startsWith('/select-level') ? '' : 'invisible'} `}
+    // className={`${pathname.startsWith('/select-level') ? '' : 'invisible'} `}
     >
       <label
         htmlFor="default-search"
         className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
       >
-        Search
+        {t('search')}
       </label>
       <div className="relative">
         <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -75,7 +77,7 @@ function Search() {
       <div
         className={`${
           searchTerm.length ? 'block' : 'hidden'
-        } absolute bg-white z-10 flex flex-col top-14 right-7 w-[22%]`}
+        } absolute bg-[#080808] px-5 p-5 z-10 flex flex-col top-14 right-20 w-[15%]`}
       >
         {filterdWords?.slice(0, 6).map((word, i) => {
           return (
@@ -83,11 +85,11 @@ function Search() {
               <Link
                 to={`/game${search}&search=${word}`}
                 key={i}
-                className="text-center text-black"
+                className="text-center text-white"
               >
                 {word}
               </Link>
-              <div className="w-full h-[1px] bg-slate-200"></div>
+              <div className="w-full h-[0.1px] bg-slate-200"></div>
             </>
           );
         })}

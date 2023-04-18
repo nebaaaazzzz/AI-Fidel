@@ -6,9 +6,11 @@ import { ImTwitter } from 'react-icons/im';
 import circleDashed from '@assets/images/circle-dashed.png';
 import { Link } from 'react-router-dom';
 import LeftArrowIcon from '@assets/icons/left-arrow.png';
+import { useTranslation } from 'react-i18next';
 const socialMediaIcons = [AiOutlineInstagram, GrFacebookOption, ImTwitter];
 
 function Welcome() {
+  const { t } = useTranslation();
   return (
     <div className="flex gap-5 mt-20 relative  h-[calc(100vh-64px)] flex-col w-full  items-center">
       <img
@@ -41,9 +43,9 @@ function Welcome() {
             />
           </div>
           <div className="grow text-2xl  text-white text-center flex flex-col my-10">
-            <h1 className="m-1 font-semibold text-white">Welcome </h1>
-            <h1 className="m-1 font-semibold text-white">to your </h1>
-            <h1 className="m-1 font-semibold text-white">lesson</h1>
+            <h1 className="m-1 font-semibold text-white">{t('welcome')} </h1>
+            <h1 className="m-1 font-semibold text-white">{t('to your')} </h1>
+            <h1 className="m-1 font-semibold text-white">{t('lesson')}</h1>
           </div>
         </div>
         <div className="flex flex-col justify-between">
@@ -66,7 +68,7 @@ function Welcome() {
         to="/game?level=1&hand=right&lang=am&mode=learn"
         className="flex gap-3 items-center "
       >
-        <h1 className="text-white text-xl">Get Started</h1>
+        <h1 className="text-white ml-10 text-xl">{t('gs')}</h1>
         <img src={LeftArrowIcon} className="w-2/12" />
       </Link>
     </div>

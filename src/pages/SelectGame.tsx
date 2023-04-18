@@ -2,12 +2,13 @@ import StartingLeft from '@/components/StartingLeft';
 import StartingRight from '@/components/StartingRight';
 import boy3 from '@assets/icons/boy3.png';
 import { getSessionInfo } from '../utils/localsession';
-import { useEffect, useState } from 'react';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth } from '@/config/firebase';
+import { useContext, useEffect, useState } from 'react';
+import { AuthContext } from '@/context/AuthContext';
+import { useTranslation } from 'react-i18next';
 function SelectGame() {
+  const { t } = useTranslation();
+  const user = useContext(AuthContext);
   const [configuration, setConfiguration] = useState<any>();
-  const [user] = useAuthState(auth);
   useEffect(() => {
     (async () => {
       setConfiguration(await getSessionInfo());
@@ -23,14 +24,14 @@ function SelectGame() {
           ...(configuration?.level
             ? [
                 {
-                  text: 'Resume',
+                  text: t('resume'),
                   link: `/select-level?level=${configuration?.level}&lang=${configuration?.lang}&hand=${configuration?.hand}&mode=game`
                 }
               ]
             : []),
-          ...(user
-            ? [{ text: 'New Game', link: '/select-profile?mode=game' }]
-            : [{ text: 'New Game', link: '/login?mode=game' }])
+          ...(user?.user
+            ? [{ text: t('ng'), link: '/select-profile?mode=game' }]
+            : [{ text: t('ng'), link: '/login?mode=game' }])
         ]}
       />
     </div>

@@ -4,8 +4,10 @@ import { useNavigate } from 'react-router-dom';
 import Logo from '@/components/Logo';
 import vector from '@assets/logo/Vector.png';
 import { AuthContext } from '@/context/AuthContext';
+import { useTranslation } from 'react-i18next';
 
 function Landing() {
+  const { t } = useTranslation();
   const user = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -25,7 +27,7 @@ function Landing() {
         </div>
       </div>
       <h1 className="absolute text-center bottom-5  left-0 right-0 mx-auto">
-        Powered by ablaze labs{' '}
+        {t('pbal')}{' '}
       </h1>
     </div>
   );

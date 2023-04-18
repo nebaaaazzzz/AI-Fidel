@@ -21,6 +21,7 @@ import { storeSessionInfo } from '@/utils/localsession';
 import TimerProgress from '@components/TimerProgress';
 import moment from 'moment';
 import Percentage from '@/components/Percentage';
+import { useTranslation } from 'react-i18next';
 const handAnalyzer = new HandAnalyzer();
 let skipPrediction = false;
 let score = 0;
@@ -53,12 +54,12 @@ function useGetGameConfig(
   return { mode, hand, level, lang, levelWords };
 }
 function Game() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const { search } = useLocation();
   const searchParams = useSearchParams()[0];
   const {
     lang,
-    mode,
     hand: handDirection,
     level,
     levelWords
@@ -327,7 +328,7 @@ function Game() {
           onClick={handleSkip}
           className="btn mt-10 btn-primary rounded-md btn-wide "
         >
-          ፊደሉን ዝለል{' '}
+          {t('skip')}{' '}
         </button>
       ) : (
         <DotLoader color="#008867" />

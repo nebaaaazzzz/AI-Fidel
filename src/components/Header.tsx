@@ -1,8 +1,10 @@
 import Logo, { LogoWithTextSM } from './Logo';
 import Search from './Search';
-const links = ['Find Work', 'Hire Pro', 'Inspiration', 'Community', 'Market'];
+import { useTranslation } from 'react-i18next';
 
 function Header() {
+  const { t } = useTranslation();
+  const links = [t('fw'), t('hp'), t('insp'), t('cmty'), t('mkt')];
   return (
     <div className="navbar px-5 mb-10 hidden md:flex ">
       <LogoWithTextSM />

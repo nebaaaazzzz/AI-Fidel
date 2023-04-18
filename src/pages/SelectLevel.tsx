@@ -1,25 +1,26 @@
-import { auth, db } from '@/config/firebase';
+import { db } from '@/config/firebase';
 import { AuthContext } from '@/context/AuthContext';
 import profile from '@assets/images/avatar/avatar.png';
 import { doc, getDoc } from 'firebase/firestore';
 import { useContext, useEffect, useState } from 'react';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { AiOutlineInstagram } from 'react-icons/ai';
+import { useTranslation } from 'react-i18next';
+import { AiFillUnlock, AiOutlineInstagram } from 'react-icons/ai';
 import { GrFacebookOption } from 'react-icons/gr';
 import { ImTwitter } from 'react-icons/im';
-import { MdLock, MdKeyboardArrowDown } from 'react-icons/md';
+import { MdLock } from 'react-icons/md';
 import { Link, useLocation, useSearchParams } from 'react-router-dom';
 const socialMediaIcons = [AiOutlineInstagram, GrFacebookOption, ImTwitter];
 
 function SelectLevel() {
   const user = useContext(AuthContext);
   const { search } = useLocation();
+  const { t } = useTranslation();
   const [searchParams] = useSearchParams();
   const [levelOffset, setLevelOffset] = useState<number>(0);
   useEffect(() => {
     (async () => {
-      if (user) {
-        const docRef = doc(db, 'users', user.uid);
+      if (user?.user) {
+        const docRef = doc(db, 'users', user.id);
         const docSnap = await getDoc(docRef);
         const level = docSnap.get('level');
         if (level) {
@@ -37,14 +38,32 @@ function SelectLevel() {
       <div className="custom-glass smrounded  flex justify-between px-3 pl-10 py-2">
         <div className="flex  prose flex-col items-start ">
           <div className="leading-none bg-transparent">
-            <h1 className="md:text-4xl text-white m-1">Start learning </h1>
-            <h1 className="leading-none text-4xl m-1 text-white">Your</h1>
-            <h1 className="text-white text-4xl m-1 mb-6">Language</h1>
+            {searchParams.get('mode') == 'game' ? (
+              <>
+                <h1 className="md:text-4xl text-white m-1">{t('sp')}</h1>
+                <h1 className="leading-none text-4xl m-1 text-white">
+                  {t('sgn')}
+                </h1>
+                <h1 className="text-white text-4xl m-1 mb-6">
+                  {t('language')}
+                </h1>
+              </>
+            ) : (
+              <>
+                <h1 className="md:text-4xl text-white m-1">{t('sl')} </h1>
+                <h1 className="leading-none text-4xl m-1 text-white">
+                  {t('ur')}
+                </h1>
+                <h1 className="text-white text-4xl m-1 mb-6">
+                  {t('language')}
+                </h1>
+              </>
+            )}
           </div>
           <div className="w-8/12">
             {!user && (
               <button className="capitalize btn btn-primary w-full rounded-lg btn-md py-0 ">
-                ተመዝገብ{' '}
+                {t('rgstr')}{' '}
               </button>
             )}
           </div>
@@ -81,7 +100,7 @@ function SelectLevel() {
         </div>
       </div>
       <div className="flex flex-col gap-5 ">
-        {buildLevelButtons(searchParams, search, levelOffset)}
+        {buildLevelButtons(searchParams, search, levelOffset, t)}
       </div>
     </div>
   );
@@ -90,32 +109,39 @@ function SelectLevel() {
 function buildLevelButtons(
   searchParams: URLSearchParams,
   search: string,
-  levelOffset: number
+  levelOffset: number,
+  t
 ) {
   const levels = [1, 2, 3, 4];
   const mode = searchParams.get('mode');
   if (mode == 'game') {
     return (
       <>
-        {levels.slice(0, levelOffset + 1).map((i) => {
+        {levels.slice(0, levelOffset).map((i) => {
           return (
             <Link
               to={`/game${search}&level=${i}`}
               key={i}
-              className="btn btn-accent rounded-md flex justify-center px-5"
+              className="btn btn-accent capitalize rounded-md flex justify-between px-5"
             >
-              <p className="">ደረጃ {i}</p>
+              <div></div>
+              <p className=" capitalize">
+                {t('level')} {i}
+              </p>
+              <AiFillUnlock fontSize={20} color="white" />
             </Link>
           );
         })}
-        {levels.slice(levelOffset + 1).map((i) => {
+        {levels.slice(levelOffset).map((i) => {
           return (
             <button
               key={i}
               className="btn btn-primary rounded-md flex justify-between px-5"
             >
               <div></div>
-              <p className="text-white ">ደረጃ {i}</p>
+              <p className="text-white capitalize">
+                {t('level')} {i}
+              </p>
               <MdLock fontSize={20} color="white" />
             </button>
           );
@@ -132,7 +158,9 @@ function buildLevelButtons(
               key={i}
               className="btn btn-accent rounded-md flex justify-center px-5"
             >
-              <p className="">ደረጃ {i}</p>
+              <p className="">
+                {t('level')} {i}
+              </p>
             </Link>
           );
         })}

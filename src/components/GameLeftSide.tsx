@@ -1,12 +1,11 @@
 import hand from '@assets/images/hand.png';
+import { useTranslation } from 'react-i18next';
 function GameLeftSide({
   isGameStarted,
   selectedWord,
   selectedLetter,
   lang,
-  score,
-  isMediaPipeModelLoading,
-  levelWords
+  score
 }: {
   isGameStarted: boolean;
   selectedWord: string;
@@ -16,12 +15,13 @@ function GameLeftSide({
   lang: string;
   levelWords: string[];
 }) {
+  const { t } = useTranslation();
   if (isGameStarted) {
     return (
       <div className="border-2  relative w-full gap-5 pt-12 overflow-hidden  flex flex-[1] flex-col self-center border-primary  items-center justify-center rounded-lg p-4">
         <p className="self-end top-2 absolute font-extrabold text-xl">
           {score}
-          {'  '} ነጥብ
+          {'  '} {t('pt')}
         </p>
         <div className="flex items-center text-white">
           <img

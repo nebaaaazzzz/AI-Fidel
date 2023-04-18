@@ -1,17 +1,20 @@
 import React from 'react';
 import filterIcon from '@assets/icons/filter-icon.png';
-const categories = [
-  'Signs',
-  'Numbers',
-  'Quantities',
-  'Colors',
-  'Time',
-  'Patterns',
-  'Seasons',
-  'People'
-];
-const modes = ['Education', 'Game'];
+import { useTranslation } from 'react-i18next';
+
 function RightSideBar() {
+  const { t } = useTranslation();
+  const categories = [
+    t('sign'),
+    t('nums'),
+    t('qtys'),
+    t('clrs'),
+    t('time'),
+    t('prtns'),
+    t('seasons'),
+    t('ppl')
+  ];
+  const modes = [t('education'), t('game')];
   return (
     <div className="hidden md:flex shrink-0   flex-col items-center gap-1">
       <Icon />
@@ -24,14 +27,14 @@ function RightSideBar() {
         }}
       >
         <div className="flex gap-2 border-primary border-2 rounded-lg px-6 my-3">
-          <p>filter</p>
+          <p>{t('filter')}</p>
           <img src={filterIcon} className="object-contain" />
         </div>
-        <Header text="Categories" />
+        <Header text={t('categories')} />
         {categories.map((category, index) => {
           return <TextContainer key={index} text={category} />;
         })}
-        <Header text="Modes" />
+        <Header text={t('modes')} />
 
         {modes.map((mode, index) => {
           return <TextContainer key={index} text={mode} />;

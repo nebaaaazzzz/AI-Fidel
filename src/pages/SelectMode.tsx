@@ -1,26 +1,24 @@
 import boy1 from '@assets/icons/boy1.png';
-import { Logo } from '@/components/Logo';
 import StartingLeft from '@/components/StartingLeft';
 import StartingRight from '@/components/StartingRight';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth, db } from '@/config/firebase';
-import { useEffect } from 'react';
-import { addDoc, collection } from 'firebase/firestore';
+import { useContext, useEffect } from 'react';
+import { AuthContext } from '@/context/AuthContext';
+import { useTranslation } from 'react-i18next';
 function SelectMode() {
-  const [user] = useAuthState(auth);
-  useEffect(() => {}, []);
+  const user = useContext(AuthContext);
+  const { t } = useTranslation();
   return (
     <div className="flex h-screen">
       <StartingLeft path={boy1} />
       <StartingRight
-        header1={'What do'}
-        header2={'you Like to do'}
+        header1={t('wd')}
+        header2={t('yld')}
         btns={[
           {
-            text: 'Education',
-            link: user ? '/select-profile?mode=learn' : '/login'
+            text: t('education'),
+            link: user?.user ? '/select-profile?mode=learn' : '/login'
           },
-          { text: 'Game', link: '/select-game' }
+          { text: t('game'), link: '/select-game' }
         ]}
       />
     </div>

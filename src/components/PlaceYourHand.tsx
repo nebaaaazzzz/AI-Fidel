@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 function PlaceYourHand({
   isMediaPipeModelLoading,
   isGameStarted
@@ -5,6 +7,7 @@ function PlaceYourHand({
   isMediaPipeModelLoading: boolean;
   isGameStarted: boolean;
 }) {
+  const { t } = useTranslation();
   if (!isMediaPipeModelLoading && !isGameStarted) {
     return (
       <div
@@ -16,14 +19,10 @@ function PlaceYourHand({
         className="absolute flex w-2/3 aspect-[5/2] md:w-6/12  top-0 bottom-0 left-0 right-0 m-auto items-center gap-5 justify-center flex-col"
       >
         <div>
-          <h1 className="text-center text-white text-2xl">
-            Place your hand , so it’s
-          </h1>
-          <h1 className="text-center text-white text-2xl">
-            visible on the screen
-          </h1>
+          <h1 className="text-center text-white text-2xl">{t('pyh')}</h1>
+          <h1 className="text-center text-white text-2xl">{t('vots')}</h1>
         </div>
-        <p className="text-white">To get started</p>
+        <p className="text-white">{t('tgs')}</p>
       </div>
     );
   }
