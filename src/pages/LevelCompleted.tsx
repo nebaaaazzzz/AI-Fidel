@@ -113,7 +113,7 @@ function LevelCompleted() {
         )} */}
         {mode === 'game' && (
           <ul className="steps text-2xl self-stretch">
-            {Array(level)
+            {Array(Number(level))
               .fill('0')
               .map((_, i) => {
                 return <li data-content="★" className="step  step-accent"></li>;
