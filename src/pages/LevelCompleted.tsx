@@ -1,6 +1,6 @@
 import stars from '@assets/images/stars.png';
 import { useContext, useEffect, useState, useTransition } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import {
   getLevelScore,
   clearAllScore,
@@ -30,6 +30,7 @@ async function updateUserFirebaseLevel(userId, level) {
 }
 const socialMediaIcons = [AiOutlineInstagram, ImTwitter, GrFacebookOption];
 function LevelCompleted() {
+  const navigate = useNavigate();
   const { t } = useTranslation();
   const user = useContext(AuthContext);
   const searchParams = useSearchParams()[0];
@@ -146,15 +147,19 @@ function LevelCompleted() {
             <p className="text-white font-bold text-xl"> {t('la')}</p>
           )}
         </Link>
-        <Link
-          onClick={() => {
-            searchParams.delete('level');
-          }}
-          to={`/game?${searchParams.toString()}&level=${Number(level) + 1}`}
-          className="btn font-bold capitalize text-xl text-black btn-accent rounded-md w-full"
-        >
-          {t('nxt')}{' '}
-        </Link>
+        {Number(level) !== 4 ? (
+          <button
+            onClick={() => {
+              searchParams.delete('level');
+              navigate(
+                `/game?${searchParams.toString()}&level=${Number(level) + 1}`
+              );
+            }}
+            className="btn font-bold capitalize text-xl text-black btn-accent rounded-md w-full"
+          >
+            {t('nxt')}{' '}
+          </button>
+        ) : null}
       </div>
     </div>
   );
