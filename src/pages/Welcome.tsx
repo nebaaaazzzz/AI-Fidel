@@ -7,9 +7,12 @@ import circleDashed from '@assets/images/circle-dashed.png';
 import { Link } from 'react-router-dom';
 import LeftArrowIcon from '@assets/icons/left-arrow.png';
 import { useTranslation } from 'react-i18next';
+import { AuthContext } from '@/context/AuthContext';
+import { useContext } from 'react';
 const socialMediaIcons = [AiOutlineInstagram, GrFacebookOption, ImTwitter];
 
 function Welcome() {
+  const user = useContext(AuthContext);
   const { t } = useTranslation();
   return (
     <div className="flex gap-5 mt-20 relative  h-[calc(100vh-64px)] flex-col w-full  items-center">
@@ -38,7 +41,7 @@ function Welcome() {
             }}
           >
             <img
-              src={profile}
+              src={user?.dbUser ? user?.dbUser.photoURL : profile}
               className="object-contain aspect-square w-full rounded-full"
             />
           </div>
