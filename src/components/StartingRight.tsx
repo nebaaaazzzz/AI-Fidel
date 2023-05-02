@@ -6,6 +6,8 @@ import { auth } from '@/config/firebase';
 import { toastError, toastSuccess } from '@/utils/toast';
 import { addDocToCollection } from '@/utils/db';
 import { useTranslation } from 'react-i18next';
+import leftArrow from '@assets/icons/arrow-back-roundedleft-arrow.png';
+
 function StartingRight({ header1, header2, btns }) {
   const navigate = useNavigate();
   const { search } = useLocation();
@@ -79,6 +81,11 @@ function StartingRight({ header1, header2, btns }) {
               </Link>
             );
           })}
+          <button className="btn w-full capitalize rounded-md text-lg border-[#fff] justify-between">
+            <img src={leftArrow} alt="" className="h-4 w-4" />
+            <span>Back</span>
+            <div></div>
+          </button>
         </div>
       </div>
       <p className="font-extralight text-[12px] text-[#a4a4a4] absolute bottom-6">
