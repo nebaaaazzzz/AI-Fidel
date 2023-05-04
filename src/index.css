@@ -33,6 +33,48 @@ html {
   border-radius: 49px;
   border: solid rgba(255, 255, 255, 0.09) 2px;
 }
+
+.button-glass {
+  background: linear-gradient(
+    150.11deg,
+    rgba(217, 217, 217, 0.87) -8.45%,
+    rgba(255, 255, 255, 0.2175) -8.45%,
+    rgba(255, 255, 255, 0.0783) 113.16%
+  );
+  box-shadow: 0px 4px 23px 10px rgba(0, 0, 0, 0.13);
+  backdrop-filter: blur(29px);
+  /* Note: backdrop-filter has minimal browser support */
+  border-radius: 5px;
+  border: solid rgba(255, 255, 255, 0.09) 2px;
+}
+
+.profile-glass {
+  background: linear-gradient(
+    150.11deg,
+    rgba(217, 217, 217, 0.87) -8.45%,
+    rgba(255, 255, 255, 0.2175) -8.45%,
+    rgba(255, 255, 255, 0.0783) 113.16%
+  );
+  box-shadow: 0px 4px 23px 10px rgba(0, 0, 0, 0.13);
+  backdrop-filter: blur(29px);
+  /* Note: backdrop-filter has minimal browser support */
+  border-radius: 15px;
+  border: solid rgba(255, 255, 255, 0.09) 2px;
+}
 .custom-glass.smrounded {
   border-radius: 20px;
+}
+
+.box-glass {
+  background: linear-gradient(
+    150.11deg,
+    rgba(217, 217, 217, 0.87) -8.45%,
+    rgba(255, 255, 255, 0.2175) -8.45%,
+    rgba(255, 255, 255, 0.0783) 113.16%
+  );
+  box-shadow: 0px 4px 23px 10px rgba(0, 0, 0, 0.13);
+  backdrop-filter: blur(29px);
+  /* Note: backdrop-filter has minimal browser support */
+  border-radius: 49px;
+  border: solid rgba(250, 255, 0, 1) 3px;
 }
