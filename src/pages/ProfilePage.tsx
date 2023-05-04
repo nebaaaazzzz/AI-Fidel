@@ -1,11 +1,12 @@
-import instagram from '@assets/icons/instagram.png';
-import twitter from '@assets/icons/twitter-icon.png';
-import facebook from '@assets/icons/facebook-icon.png';
-import leftArrow from '@assets/icons/arrow-back-rounded.png';
-import downArrow from '@assets/icons/downArrow.png';
+import { RxInstagramLogo } from 'react-icons/rx';
+import { RiFacebookFill } from 'react-icons/ri';
+import { SiTwitter } from 'react-icons/si';
+import { MdKeyboardArrowDown } from 'react-icons/md';
+import { MdArrowBack } from 'react-icons/md';
+import { MdKeyboardArrowLeft } from 'react-icons/md';
+import { MdKeyboardArrowRight } from 'react-icons/md';
+import { MdModeEdit } from 'react-icons/md';
 import edit from '@assets/icons/edit.png';
-import left from '@assets/icons/left.png';
-import right from '@assets/icons/right.png';
 import profile from '@assets/icons/profile.png';
 import profile1 from '@assets/icons/profile1.png';
 import profile2 from '@assets/icons/profile2.png';
@@ -17,8 +18,8 @@ const ProfilePage = () => {
       <div className="flex items-center justify-between space px-8 pt-6 rounded-md  mb-8">
         <div className="flex flex-col gap-20">
           <div className="flex">
-            <img src={leftArrow} className="w-6" />
-            <h1>Back</h1>
+            <MdArrowBack className=" mt-1" size="18px" />
+            <h1 className=" ml-1">Back</h1>
           </div>
           <div></div>
           <div></div>
@@ -27,77 +28,78 @@ const ProfilePage = () => {
           <button className="bg-[#2E2E2E] shadow-[0px_2px_16px_rgba(255,175,82,0.8)] py-2 px-2 rounded-full h-36 w-36 flex items-center justify-center">
             <img src={profile} className=" w-11/12" />
           </button>
-          <img src={downArrow} className="h-3 w-5  mt-[4.4rem] ml-6" />
+          <MdKeyboardArrowDown size="23px" className="mt-[4rem] ml-3" />
         </div>
-        <div className="flex flex-col gap-12">
+        <div className="flex flex-col gap-8">
           <div>
-            <img src={instagram} className="w-5 h-5" />
+            <RxInstagramLogo size="18px" />
+          </div>
+          <div className="">
+            <SiTwitter size="18px" />
           </div>
           <div>
-            <img src={twitter} className="w-5 h-5" />
-          </div>
-          <div className=" mb-4">
-            <img src={facebook} className="w-5" />
+            <RiFacebookFill size="18px" />
           </div>
         </div>
       </div>
-      <div className="flex justify-between button-glass  rounded-md  w-full mb-7    py-1  px-6">
+      <div className="flex   gap-1  rounded-md  bg-[#2E2E2E]  mb-7  py-2  px-2  ml-6 mr-4 w-[95%]">
         <div>
-          <img src={left} className="w-2 mt-3" />
+          <MdKeyboardArrowLeft size="24px" className=" mt-4 mr-2" />
         </div>
         <div className="flex gap-6">
-          <button className="bg-[#2E2E2E] shadow-[0px_2px_16px_rgba(0,162,141,0.8)] py-2 px-2 rounded-full   h-10 w-10 flex items-center justify-center">
-            <img src={profile} className=" w-12  h-8" />
+          <button className="bg-[#2E2E2E] shadow-[0px_2px_16px_rgba(0,162,141,0.9)] py-2 px-2 rounded-full   h-14 w-14 flex items-center justify-center">
+            <img src={profile1} className="h-11 " />
           </button>
-          <button className="bg-[#2E2E2E] shadow-[0px_2px_16px_rgba(0,162,141,0.8)] py-2 px-2 rounded-full   h-10 w-10 flex items-center justify-center">
-            <img src={profile1} className=" w-12  h-8" />
+          <button className="bg-[#2E2E2E] shadow-[0px_2px_16px_rgba(0,162,141,0.9)] py-2 px-2 rounded-full   h-14 w-14 flex items-center justify-center">
+            <img src={profile3} className="h-11 " />
           </button>
-          <button className="bg-[#2E2E2E] shadow-[0px_2px_16px_rgba(0,162,141,0.8)] py-2 px-2 rounded-full   h-10 w-10 flex items-center justify-center">
-            <img src={profile2} className=" w-12  h-8" />
+          <button className="bg-[#2E2E2E] shadow-[0px_2px_16px_rgba(0,162,141,0.9)] py-2 px-2 rounded-full   h-14 w-14 flex items-center justify-center">
+            <img src={profile2} className="h-11 " />
           </button>
-          <button className="bg-[#2E2E2E] shadow-[0px_2px_16px_rgba(0,162,141,0.8)] py-2 px-2 rounded-full   h-10 w-10 flex items-center justify-center">
-            <img src={profile3} className=" w-12  h-8" />
+          <button className="bg-[#2E2E2E] shadow-[0px_2px_16px_rgba(0,162,141,0.9)] py-2 px-2 rounded-full   h-14 w-14 flex items-center justify-center">
+            <img src={profile} className="h-11 " />
           </button>
-          <button className="bg-[#2E2E2E] shadow-[0px_2px_16px_rgba(0,162,141,0.8)] py-2 px-2 rounded-full   h-10 w-10 flex items-center justify-center">
-            <img src={profile2} className=" w-12  h-8" />
+          <button className="bg-[#2E2E2E] shadow-[0px_2px_16px_rgba(0,162,141,0.8)] py-2 px-2 rounded-full   h-14 w-14 flex items-center justify-center">
+            <img src={profile1} className=" w-11" />
           </button>
-          <button className="bg-[#2E2E2E] shadow-[0px_2px_16px_rgba(0,162,141,0.8)] py-2 px-2 rounded-full   h-10 w-10 flex items-center justify-center">
-            <img src={profile1} className=" w-12  h-8" />
+          <button className="bg-[#2E2E2E] shadow-[0px_2px_16px_rgba(0,162,141,0.8)] py-2 px-2 rounded-full   h-14 w-14 flex items-center justify-center">
+            <img src={profile2} className=" w-11" />
           </button>
-          <button className="bg-[#2E2E2E] shadow-[0px_2px_16px_rgba(0,162,141,0.8)] py-2 px-2 rounded-full   h-10 w-10 flex items-center justify-center">
-            <img src={profile3} className=" w-12  h-8" />
+          <button className="bg-[#2E2E2E] shadow-[0px_2px_16px_rgba(0,162,141,0.8)] py-2 px-2 rounded-full   h-14 w-14 flex items-center justify-center">
+            <img src={profile3} className=" w-11" />
           </button>
-          <button className="bg-[#2E2E2E] shadow-[0px_2px_16px_rgba(0,162,141,0.8)] py-2 px-2 rounded-full   h-10 w-10 flex items-center justify-center">
-            <img src={profile} className=" w-12  h-8" />
+          <button className="bg-[#2E2E2E] shadow-[0px_2px_16px_rgba(0,162,141,0.8)] py-2 px-2 rounded-full  h-14 w-14 flex items-center justify-center">
+            <img src={profile2} className=" w-11" />
           </button>
-          <button className="bg-[#2E2E2E] shadow-[0px_2px_16px_rgba(0,162,141,0.8)] py-2 px-2 rounded-full   h-10 w-10 flex items-center justify-center">
-            <img src={profile2} className=" w-12  h-8" />
+          <button className="bg-[#2E2E2E] shadow-[0px_2px_16px_rgba(0,162,141,0.8)] py-2 px-2 rounded-full   h-14 w-14 flex items-center justify-center">
+            <img src={profile1} className=" w-11" />
+          </button>
+          <button className="bg-[#2E2E2E] shadow-[0px_2px_16px_rgba(0,162,141,0.8)] py-2 px-2 rounded-full   h-14 w-14 flex items-center justify-center">
+            <img src={profile3} className=" w-11" />
           </button>
         </div>
 
         <div>
-          <img src={right} className="w-2 mt-3" />
+          <MdKeyboardArrowRight size="24px" className=" mt-4 ml-2" />
         </div>
       </div>
       <div>
-        <h1 className="text-center">Username</h1>
+        <h1 className="text-center  font-semibold mb-1">Username</h1>
       </div>
-      <div className="flex flex-col gap-2">
-        <div className="button-glass flex  py-2 px-5 justify-between">
+      <div className="flex flex-col gap-2 ml-6 mr-6">
+        <div className=" rounded-md  bg-[#2E2E2E] flex  py-2 px-5 justify-between">
           <div></div>
           <div>
             <h1 className="text-[#FFF] text-lg   font-bold">Ablaze</h1>
           </div>
           <div className=" mt-[4px]">
-            <img src={edit} className=" w-4" />
+            <MdModeEdit />
           </div>
         </div>
-        <div className="flex justify-between mt-4 bg-[#008867] py-1 px-3 rounded-md">
-          <div className=" mt-[4px]">
-            {/* <img src={logout} className=" w-4" /> */}
-          </div>
+        <div className="flex justify-between mt-4 bg-[#008867] py-2 px-3 rounded-md">
+          <div className=" mt-[4px]"></div>
           <div>
-            <h1 className="text-[#FFF] text-lg">Save</h1>
+            <h1 className="text-[#FFF]  text-base font-semibold">Save</h1>
           </div>
           <div></div>
         </div>
