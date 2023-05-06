@@ -6,7 +6,6 @@ import { MdArrowBack } from 'react-icons/md';
 import { MdKeyboardArrowLeft } from 'react-icons/md';
 import { MdKeyboardArrowRight } from 'react-icons/md';
 import { MdModeEdit } from 'react-icons/md';
-import edit from '@assets/icons/edit.png';
 import profile from '@assets/icons/profile.png';
 import profile1 from '@assets/icons/profile1.png';
 import profile2 from '@assets/icons/profile2.png';
@@ -25,7 +24,7 @@ const ProfilePage = () => {
           <div></div>
         </div>
         <div className="flex">
-          <button className="bg-[#2E2E2E] shadow-[0px_2px_16px_rgba(255,175,82,0.8)] py-2 px-2 rounded-full h-36 w-36 flex items-center justify-center">
+          <button className="bg-[#2E2E2E] shadow-[0px_2px_20px_rgba(255,175,82,1)] py-2 px-2 rounded-full h-36 w-36 flex items-center justify-center">
             <img src={profile} className=" w-11/12" />
           </button>
           <MdKeyboardArrowDown size="23px" className="mt-[4rem] ml-3" />
@@ -42,7 +41,7 @@ const ProfilePage = () => {
           </div>
         </div>
       </div>
-      <div className="flex   gap-1  rounded-md  bg-[#2E2E2E]  mb-7  py-2  px-2  ml-6 mr-4 w-[95%]">
+      <div className="flex   gap-1  rounded-md  bg-[#2E2E2E]  mb-9  py-2  px-2  ml-6 mr-4 w-[95%]">
         <div>
           <MdKeyboardArrowLeft size="24px" className=" mt-4 mr-2" />
         </div>
@@ -84,7 +83,12 @@ const ProfilePage = () => {
         </div>
       </div>
       <div>
-        <h1 className="text-center  font-semibold mb-1">Username</h1>
+        <h1
+          className="text-center  font-semibold mb-1 text-[#9D9D9D]"
+          style={{ marginLeft: '-14px' }}
+        >
+          Username
+        </h1>
       </div>
       <div className="flex flex-col gap-2 ml-6 mr-6">
         <div className=" rounded-md  bg-[#2E2E2E] flex  py-2 px-5 justify-between">
@@ -96,9 +100,9 @@ const ProfilePage = () => {
             <MdModeEdit />
           </div>
         </div>
-        <div className="flex justify-between mt-4 bg-[#008867] py-2 px-3 rounded-md">
+        <div className="flex justify-between mt-5 bg-[#008867] py-2 px-3 rounded-md ">
           <div className=" mt-[4px]"></div>
-          <div>
+          <div className="px-7" style={{ marginLeft: '-17px' }}>
             <h1 className="text-[#FFF]  text-base font-semibold">Save</h1>
           </div>
           <div></div>
