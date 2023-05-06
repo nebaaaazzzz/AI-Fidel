@@ -21,6 +21,9 @@ import ScoreBoard from './pages/ScoreBoard';
 import { SpecificLevel } from './pages/SpecificLevel';
 import EditProfile from './pages/EditProfile';
 import ProfilePage from './pages/ProfilePage';
+import Result from './pages/Result';
+import Complete1 from './pages/Complete1';
+import Complete2 from './pages/Complete2';
 
 function App() {
   return (
@@ -38,6 +41,8 @@ function App() {
               <Route path="select-game" element={<SelectGame />} />
               <Route path="complete" element={<Complete />} />
               <Route path="score-board" element={<ScoreBoard />} />
+              <Route path="trial" element={<Complete1 />} />
+              <Route path="trial1" element={<Complete2 />} />
               <Route element={<RootLayout />}>
                 <Route path="select-hand" element={<SelectHand />} />
                 <Route path="select-level" element={<SelectLevel />} />
@@ -50,6 +55,7 @@ function App() {
                 <Route path="specific-level" element={<SpecificLevel />} />
                 <Route path="edit-profile" element={<EditProfile />} />
                 <Route path="profile" element={<ProfilePage />} />
+                <Route path="result" element={<Result />} />
               </Route>
               <Route path="*" element={<p>path not found</p>} />
             </Route>
