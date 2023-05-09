@@ -24,44 +24,47 @@ import ProfilePage from './pages/ProfilePage';
 import Result from './pages/Result';
 import Complete1 from './pages/Complete1';
 import Complete2 from './pages/Complete2';
+import { Provider } from 'jotai';
 
 function App() {
   return (
     <div data-theme="forest">
       <ToastContainer />
-      <AuthContextProvider>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/">
-              <Route index element={<Landing />} />
-              <Route path="select-mode" element={<SelectMode />} />
-              <Route path="login" element={<Login />} />
-              <Route path="select-profile" element={<SelectProfile />} />
-              <Route path="login" element={<Login />} />
-              <Route path="select-game" element={<SelectGame />} />
-              <Route path="complete" element={<Complete />} />
-              <Route path="score-board" element={<ScoreBoard />} />
-              <Route path="trial" element={<Complete1 />} />
-              <Route path="trial1" element={<Complete2 />} />
-              <Route element={<RootLayout />}>
-                <Route path="select-hand" element={<SelectHand />} />
-                <Route path="select-level" element={<SelectLevel />} />
-                <Route path="start-level" element={<StartLevel />} />
-                <Route path="level-completed" element={<LevelCompleted />} />
-                <Route path="game" element={<Game />} />
-                <Route path="welcome" element={<Welcome />} />
-                <Route path="start-learning" element={<StartLearning />} />
-                <Route path="learn-new" element={<LearnNew />} />
-                <Route path="specific-level" element={<SpecificLevel />} />
-                <Route path="edit-profile" element={<EditProfile />} />
-                <Route path="profile" element={<ProfilePage />} />
-                <Route path="result" element={<Result />} />
+      <Provider>
+        <AuthContextProvider>
+          <BrowserRouter>
+            <Routes>
+              <Route path="/">
+                <Route index element={<Landing />} />
+                <Route path="select-mode" element={<SelectMode />} />
+                <Route path="login" element={<Login />} />
+                <Route path="select-profile" element={<SelectProfile />} />
+                <Route path="login" element={<Login />} />
+                <Route path="select-game" element={<SelectGame />} />
+                <Route path="complete" element={<Complete />} />
+                <Route path="score-board" element={<ScoreBoard />} />
+                <Route path="trial" element={<Complete1 />} />
+                <Route path="trial1" element={<Complete2 />} />
+                <Route element={<RootLayout />}>
+                  <Route path="select-hand" element={<SelectHand />} />
+                  <Route path="select-level" element={<SelectLevel />} />
+                  <Route path="start-level" element={<StartLevel />} />
+                  <Route path="level-completed" element={<LevelCompleted />} />
+                  <Route path="game" element={<Game />} />
+                  <Route path="welcome" element={<Welcome />} />
+                  <Route path="start-learning" element={<StartLearning />} />
+                  <Route path="learn-new" element={<LearnNew />} />
+                  <Route path="specific-level" element={<SpecificLevel />} />
+                  <Route path="edit-profile" element={<EditProfile />} />
+                  <Route path="profile" element={<ProfilePage />} />
+                  <Route path="result" element={<Result />} />
+                </Route>
+                <Route path="*" element={<p>path not found</p>} />
               </Route>
-              <Route path="*" element={<p>path not found</p>} />
-            </Route>
-          </Routes>
-        </BrowserRouter>
-      </AuthContextProvider>
+            </Routes>
+          </BrowserRouter>
+        </AuthContextProvider>
+      </Provider>
     </div>
   );
 }
