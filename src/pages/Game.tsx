@@ -4,7 +4,7 @@ import { HandAnalyzer } from '../HandUtils/HandAnalyzer';
 import { useMemo, useRef, useEffect, useState } from 'react';
 import PlaceYourHand from '@components/PlaceYourHand';
 import girl from '@assets/images/girl.png';
-import { DotLoader } from 'react-spinners';
+import loading from '@assets/images/loading.gif';
 import GameLeftSide from '@components/GameLeftSide';
 import {} from 'react-spinners';
 import {
@@ -331,7 +331,9 @@ function Game() {
           {t('skip')}{' '}
         </button>
       ) : (
-        <DotLoader color="#008867" />
+        <div className="fixed top-0 bottom-0 right-0 left-0 z-50  opacity-90">
+          <img src={loading} alt="" />
+        </div>
       )}
     </div>
   );

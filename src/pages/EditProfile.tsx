@@ -8,15 +8,42 @@ import { MdLanguage } from 'react-icons/md';
 import { FiLogOut } from 'react-icons/fi';
 import { IoMdNotificationsOutline } from 'react-icons/io';
 import loadingGif from '@assets/images/loading.gif';
+import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { getAuth, signOut } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
 
 import { useState } from 'react';
 
 const EditProfile = () => {
+  const navigate = useNavigate();
+  const auth = getAuth();
   const [loading, setLoading] = useState(false);
+  const { i18n } = useTranslation();
+  const changeLanguage = (e) => {
+    if (i18n.language == 'am') {
+      i18n.changeLanguage('en');
+      return;
+    }
+    i18n.changeLanguage('am');
+  };
+
+  const handleSignOut = () => {
+    console.log('Sign out');
+    signOut(auth)
+      .then(() => {
+        console.log('Sign-out successful.');
+        navigate('/');
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
     <div className="relative">
       {loading ? (
-        <div className="absolute top-0 bottom-0 right-0 left-0">
+        <div className="fixed top-0 bottom-0 right-0 left-0 z-50">
           <div>
             <img src={loadingGif} />
           </div>
@@ -49,18 +76,23 @@ const EditProfile = () => {
           </div>
           <div className="">
             <div className="flex flex-col gap-5">
-              <div className=" bg-[#2E2E2E] rounded-md flex  py-2 px-5 justify-between">
-                <div className=" mt-[4px] ml-3">
-                  <MdModeEdit size="18px" />
+              <Link to="/profile">
+                <div className=" bg-[#2E2E2E] rounded-md flex  py-2 px-5 justify-between cursor-pointer">
+                  <div className=" mt-[4px] ml-3">
+                    <MdModeEdit size="18px" />
+                  </div>
+                  <div>
+                    <h1 className="text-[#FFF]">Edit Profile</h1>
+                  </div>
+                  <div className=" mt-[4px] ml-3">
+                    <MdKeyboardArrowRight size="20px" />
+                  </div>
                 </div>
-                <div>
-                  <h1 className="text-[#FFF]">Edit Profile</h1>
-                </div>
-                <div className=" mt-[4px] ml-3">
-                  <MdKeyboardArrowRight size="20px" />
-                </div>
-              </div>
-              <div className=" bg-[#2E2E2E] rounded-md flex py-2 px-5 justify-between">
+              </Link>
+              <div
+                className=" bg-[#2E2E2E] rounded-md flex py-2 px-5 justify-between cursor-pointer"
+                onClick={changeLanguage}
+              >
                 <div className=" mt-[4px] ml-3">
                   <MdLanguage size="18px" />
                 </div>
@@ -71,7 +103,7 @@ const EditProfile = () => {
                   <MdKeyboardArrowRight size="20px" />
                 </div>
               </div>
-              <div className=" bg-[#2E2E2E] rounded-md flex py-2 px-5 justify-between">
+              <div className=" bg-[#2E2E2E] rounded-md flex py-2 px-5 justify-between cursor-pointer">
                 <div className=" mt-[4px] ml-3">
                   <IoMdNotificationsOutline size="20px" />
                 </div>
@@ -83,7 +115,10 @@ const EditProfile = () => {
                 </div>
               </div>
             </div>
-            <div className="flex justify-between mt-6 bg-[#008867] py-2 px-3 rounded-md">
+            <div
+              className="flex justify-between mt-6 bg-[#008867] py-2 px-3 rounded-md cursor-pointer btn w-full"
+              onClick={handleSignOut}
+            >
               <div className="mt-1 ml-6">
                 <FiLogOut />
               </div>

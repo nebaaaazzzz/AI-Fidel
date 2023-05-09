@@ -20,6 +20,22 @@ html {
 /* div {
   background-color: #0d0d0d;
 } */
+
+.large-glass {
+  border-radius: 16px;
+  background: linear-gradient(
+    150.11deg,
+    rgba(217, 217, 217, 0.87) -8.45%,
+    rgba(255, 255, 255, 0.2175) -8.45%,
+    rgba(255, 255, 255, 0.0783) 113.16%
+  );
+  box-shadow: 0px 0px 18px 10px rgba(0, 0, 0, 0.13);
+  backdrop-filter: blur(29px);
+  /* Note: backdrop-filter has minimal browser support */
+  border-radius: 45px;
+  border: solid rgba(255, 255, 255, 0.09) 2px;
+}
+
 .custom-glass {
   background: linear-gradient(
     150.11deg,
@@ -36,8 +52,8 @@ html {
 
 .button-glass {
   background: #2e2e2e;
-  border: 3px solid rgba(195, 195, 195, 0.99);
-  box-shadow: 0px 0px 10px #dcdcdc;
+  border: 2px solid rgba(195, 195, 195, 0.99);
+  box-shadow: 0px 0px 8px #dcdcdc;
   border-radius: 10px;
 }
 

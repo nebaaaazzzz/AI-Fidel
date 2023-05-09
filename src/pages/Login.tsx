@@ -10,6 +10,7 @@ function Login() {
   const mode = useSearchParams()[0].get('mode');
   const { search } = useLocation();
   const user = useContext(AuthContext);
+  console.log(user?.user);
   const { t } = useTranslation();
   return (
     <div className="flex h-screen">
@@ -18,6 +19,7 @@ function Login() {
         {...(mode == 'game'
           ? { header1: t('sgnl'), header2: t('game') }
           : { header1: t('learn'), header2: t('sgnl') })}
+        firstPage="true"
         btns={[
           {
             text: mode == 'game' ? t('paag') : t('laag'),

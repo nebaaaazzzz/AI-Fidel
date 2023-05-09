@@ -22,7 +22,7 @@ const Complete1 = () => {
     }
   ]);
   return (
-    <div className=" h-3/4">
+    <div className="">
       <LevelComplete>
         {results.map((result) => {
           return (

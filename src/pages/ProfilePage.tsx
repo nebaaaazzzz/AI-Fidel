@@ -10,13 +10,17 @@ import profile from '@assets/icons/profile.png';
 import profile1 from '@assets/icons/profile1.png';
 import profile2 from '@assets/icons/profile2.png';
 import profile3 from '@assets/icons/profile3.png';
+import { useNavigate } from 'react-router-dom';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation } from 'swiper';
 
 const ProfilePage = () => {
+  const navigate = useNavigate();
   return (
     <div className="">
       <div className="flex items-center justify-between space px-8 pt-6 rounded-md  mb-8">
         <div className="flex flex-col gap-20">
-          <div className="flex">
+          <div className="flex cursor-pointer" onClick={() => navigate(-1)}>
             <MdArrowBack className=" mt-1" size="18px" />
             <h1 className=" ml-1">Back</h1>
           </div>
@@ -27,7 +31,7 @@ const ProfilePage = () => {
           <button className="bg-[#2E2E2E] shadow-[0px_2px_20px_rgba(255,175,82,1)] py-2 px-2 rounded-full h-36 w-36 flex items-center justify-center">
             <img src={profile} className=" w-11/12" />
           </button>
-          <MdKeyboardArrowDown size="23px" className="mt-[4rem] ml-3" />
+          <div className="mt-[4rem] ml-3"></div>
         </div>
         <div className="flex flex-col gap-8">
           <div>
