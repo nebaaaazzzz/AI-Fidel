@@ -1,5 +1,5 @@
 import profile from '@assets/images/avatar/avatar.png';
-
+import { BsArrowLeftShort } from 'react-icons/bs';
 import { AiOutlineInstagram } from 'react-icons/ai';
 import { GrFacebookOption } from 'react-icons/gr';
 import { ImTwitter } from 'react-icons/im';
@@ -10,13 +10,22 @@ import { useTranslation } from 'react-i18next';
 import { AuthContext } from '@/context/AuthContext';
 import { useContext } from 'react';
 const socialMediaIcons = [AiOutlineInstagram, GrFacebookOption, ImTwitter];
+import { useNavigate } from 'react-router-dom';
 
 function Welcome() {
   const { search } = useLocation();
   const user = useContext(AuthContext);
   const { t } = useTranslation();
+  const navigate = useNavigate();
   return (
     <div className="flex gap-5 mt-20 relative  h-[calc(100vh-64px)] flex-col w-full  items-center">
+      <div
+        className="flex absolute left-0 -top-16 cursor-pointer"
+        onClick={() => navigate(-1)}
+      >
+        <BsArrowLeftShort size={28} />
+        <span className=" mt-0.5">Back</span>
+      </div>
       <img
         src={circleDashed}
         className="absolute -top-56 -right-32 object-contain aspect-square w-6/12"

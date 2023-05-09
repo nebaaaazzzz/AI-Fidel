@@ -13,6 +13,7 @@ function SelectMode() {
       <StartingRight
         header1={t('wd')}
         header2={t('yld')}
+        firstPage=""
         btns={[
           {
             text: t('education'),

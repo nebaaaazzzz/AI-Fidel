@@ -5,6 +5,7 @@ import { getSessionInfo } from '../utils/localsession';
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '@/context/AuthContext';
 import { useTranslation } from 'react-i18next';
+
 function SelectGame() {
   const { t } = useTranslation();
   const user = useContext(AuthContext);
@@ -20,6 +21,7 @@ function SelectGame() {
       <StartingRight
         header1={'Welcome'}
         header2={'back'}
+        firstPage="true"
         btns={[
           ...(configuration?.level
             ? [
