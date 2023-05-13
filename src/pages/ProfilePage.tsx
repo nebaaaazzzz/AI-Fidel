@@ -11,10 +11,10 @@ import profile1 from '@assets/icons/profile1.png';
 import profile2 from '@assets/icons/profile2.png';
 import profile3 from '@assets/icons/profile3.png';
 import { useNavigate } from 'react-router-dom';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation } from 'swiper';
+import { useTranslation } from 'react-i18next';
 
 const ProfilePage = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   return (
     <div className="">
@@ -22,7 +22,7 @@ const ProfilePage = () => {
         <div className="flex flex-col gap-20">
           <div className="flex cursor-pointer" onClick={() => navigate(-1)}>
             <MdArrowBack className=" mt-1" size="18px" />
-            <h1 className=" ml-1">Back</h1>
+            <h1 className=" ml-1">{t('bc')}</h1>
           </div>
           <div></div>
           <div></div>
@@ -107,7 +107,7 @@ const ProfilePage = () => {
         <div className="flex justify-between mt-5 bg-[#008867] py-2 px-3 rounded-md ">
           <div className=" mt-[4px]"></div>
           <div className="px-7" style={{ marginLeft: '-17px' }}>
-            <h1 className="text-[#FFF]  text-base font-semibold">Save</h1>
+            <h1 className="text-[#FFF]  text-base font-semibold">{t('sv')}</h1>
           </div>
           <div></div>
         </div>
