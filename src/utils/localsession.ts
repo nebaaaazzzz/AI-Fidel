@@ -5,13 +5,17 @@ export const configLocalForage = () => {
   });
 };
 export const storeSessionInfo = async (
-  lang: string,
-  hand: string,
-  level: string | number
+  lang?: string,
+  hand?: string,
+  level?: string | number
 ): Promise<void> => {
   await localforage.setItem('lang', lang);
   await localforage.setItem('hand', hand);
   await localforage.setItem('level', level);
+};
+
+export const setLanguage = async (lang: string): Promise<void> => {
+  await localforage.setItem('lang', lang);
 };
 export const storeLevelScore = async (
   level: string,
