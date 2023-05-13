@@ -5,13 +5,24 @@ import { GrFacebookOption } from 'react-icons/gr';
 import { ImTwitter } from 'react-icons/im';
 import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { BsArrowLeftShort } from 'react-icons/bs';
+import { useNavigate } from 'react-router-dom';
 const socialMediaIcons = [AiOutlineInstagram, ImTwitter, GrFacebookOption];
 
 function SelectHand() {
   const { search } = useLocation();
   const { t } = useTranslation();
+  const navigate = useNavigate();
   return (
     <div className="flex gap-10 relative  h-[calc(100vh-64px)] flex-col w-full  items-center">
+      <button
+        className="flex capitalize  justify-between absolute left-0 top-2"
+        onClick={() => navigate(-1)}
+      >
+        <BsArrowLeftShort size={26} />
+        <span>{t('bc')}</span>
+        <div></div>
+      </button>
       <div className="absolute w-[14%] aspect-square top-40 left-7 rounded-full  bg-primary"></div>
       <div className="custom-glass flex w-[80%] pr-5 justify-between py-2 pt-10 ">
         <div className=""></div>
@@ -45,7 +56,7 @@ function SelectHand() {
         </div>
       </div>
       <div className="flex gap-10">
-        {[t('left'), t('Right')].map((hand, i) => {
+        {[t('left'), t('right')].map((hand, i) => {
           return (
             <Link
               to={`/select-level${
