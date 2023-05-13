@@ -84,6 +84,7 @@ function Game() {
   const [currentWordLength, setCurrentWordLength] = useState(1);
   const [selectedWord, setSelectWord] = useState<string>();
   const [selectedLetter, setSelectedLetter] = useState<string>();
+  const [se, setSe] = useState<number>(0);
 
   /**
    * @description TO to show modal after each word completion
@@ -104,6 +105,7 @@ function Game() {
     if (wordIndex == levelWords.length - 1) {
       navigate(`/level-completed${search}&points=${score}`);
       score = 0;
+      setSe(se + 1);
     }
     if (currentWordLength == selectedWord?.length && selectedWord) {
       setSelectWord(levelWords[wordIndex + 1]);
@@ -189,7 +191,7 @@ function Game() {
               //this time out to delay change of current letter after detecting the hand
               setTimeout(() => {
                 handleSkip();
-              }, 200);
+              }, 400);
             } else if (response?.message) {
               // console.log(response.message);
             }
@@ -209,7 +211,12 @@ function Game() {
   const hands = useMemo(() => {
     let hands = new window.Hands({
       locateFile: (file) => {
-        return `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`;
+        try {
+          console.log(file);
+          return `/src/mediapipe/hands/${file}`;
+        } catch (error) {
+          console.log(error);
+        }
       }
     });
     hands.setOptions({
@@ -219,7 +226,7 @@ function Game() {
       minTrackingConfidence: 0.5
     });
     return hands;
-  }, []);
+  }, [level]);
   useEffect(() => {
     if (wordIndex !== 0 && wordIndex !== levelWords.length - 1) {
       setShowModal(true);
@@ -269,6 +276,9 @@ function Game() {
       }
     })();
   }, [isGameStarted]);
+  useEffect(() => {
+    console.log(se);
+  }, [se]);
   const percentage = (((currentTime - startTime) / 180000) * 100).toFixed(2);
   // if (percentage >= 100) {
   //   handleSkip();
