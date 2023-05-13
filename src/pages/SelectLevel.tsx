@@ -9,6 +9,11 @@ import { GrFacebookOption } from 'react-icons/gr';
 import { ImTwitter } from 'react-icons/im';
 import { MdLock } from 'react-icons/md';
 import { Link, useLocation, useSearchParams } from 'react-router-dom';
+import { langAtom } from '../store/store';
+import { handAtom } from '../store/store';
+import { useAtom } from 'jotai';
+import { BsArrowLeftShort } from 'react-icons/bs';
+import { useNavigate } from 'react-router-dom';
 const socialMediaIcons = [AiOutlineInstagram, GrFacebookOption, ImTwitter];
 
 function SelectLevel() {
@@ -17,6 +22,11 @@ function SelectLevel() {
   const { t } = useTranslation();
   const [searchParams] = useSearchParams();
   const [levelOffset, setLevelOffset] = useState<number>(0);
+  const [hand, setHand] = useAtom(handAtom);
+  const [lang, setLang] = useAtom(langAtom);
+  const navigate = useNavigate();
+  setLang(searchParams.get('lang'));
+  setHand(searchParams.get('hand'));
   useEffect(() => {
     (async () => {
       if (user?.user) {
@@ -35,31 +45,16 @@ function SelectLevel() {
   }, [user]);
   return (
     <div className="flex  flex-col gap-6">
-      <div className="custom-glass smrounded  flex justify-between px-3 pl-10 py-2">
+      <div className="flex justify-between px-3 pl-10 py-2">
         <div className="flex  prose flex-col items-start ">
-          <div className="leading-none bg-transparent">
-            {searchParams.get('mode') == 'game' ? (
-              <>
-                <h1 className="md:text-4xl text-white m-1">{t('sp')}</h1>
-                <h1 className="leading-none text-4xl m-1 text-white">
-                  {t('sgn')}
-                </h1>
-                <h1 className="text-white text-4xl m-1 mb-6">
-                  {t('language')}
-                </h1>
-              </>
-            ) : (
-              <>
-                <h1 className="md:text-4xl text-white m-1">{t('sl')} </h1>
-                <h1 className="leading-none text-4xl m-1 text-white">
-                  {t('ur')}
-                </h1>
-                <h1 className="text-white text-4xl m-1 mb-6">
-                  {t('language')}
-                </h1>
-              </>
-            )}
-          </div>
+          <button
+            className="flex capitalize  justify-between -ml-6"
+            onClick={() => navigate(-1)}
+          >
+            <BsArrowLeftShort size={26} />
+            <span>{t('bc')}</span>
+            <div></div>
+          </button>
           <div className="w-8/12">
             {!user && (
               <button className="capitalize btn btn-primary w-full rounded-lg btn-md py-0 ">
@@ -92,11 +87,11 @@ function SelectLevel() {
               />
             )}
           </div>
-          <div className="flex mr-5 self-stretch flex-col justify-between">
-            {socialMediaIcons.map((Icon, i) => {
-              return <Icon key={i} size={20} color="white" />;
-            })}
-          </div>
+        </div>
+        <div className="flex mr-5 self-stretch flex-col justify-between">
+          {socialMediaIcons.map((Icon, i) => {
+            return <Icon key={i} size={20} color="white" />;
+          })}
         </div>
       </div>
       <div className="flex flex-col gap-5 ">
