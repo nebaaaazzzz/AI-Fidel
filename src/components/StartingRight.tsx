@@ -6,7 +6,7 @@ import { auth } from '@/config/firebase';
 import { toastError, toastSuccess } from '@/utils/toast';
 import { addDocToCollection } from '@/utils/db';
 import { useTranslation } from 'react-i18next';
-import leftArrow from '@assets/icons/arrow-back-roundedleft-arrow.png';
+import { BsArrowLeftShort } from 'react-icons/bs';
 
 function StartingRight({ header1, header2, btns, firstPage }) {
   const navigate = useNavigate();
@@ -86,8 +86,9 @@ function StartingRight({ header1, header2, btns, firstPage }) {
               className="btn w-full capitalize rounded-md text-lg border-[#fff] justify-between"
               onClick={() => navigate(-1)}
             >
-              <img src={leftArrow} alt="" className="h-4 w-4" />
-              <span>Back</span>
+              <BsArrowLeftShort />
+              {/* <img src={leftArrow} alt="" className="h-4 w-4" /> */}
+              <span>{t('bc')}</span>
               <div></div>
             </button>
           ) : null}
