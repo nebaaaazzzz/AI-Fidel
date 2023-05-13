@@ -8,6 +8,7 @@ import { addDocToCollection } from '@/utils/db';
 import { useTranslation } from 'react-i18next';
 import { BsArrowLeftShort } from 'react-icons/bs';
 
+
 function StartingRight({ header1, header2, btns, firstPage }) {
   const navigate = useNavigate();
   const { search } = useLocation();
@@ -49,23 +50,23 @@ function StartingRight({ header1, header2, btns, firstPage }) {
       });
   }
   return (
-    <div className="flex-1 relative flex h-screen  justify-center items-center">
-      <div className="flex  gap-5 w-9/12  flex-col justify-center">
-        <Logo />
-        <div>
-          <h1 className="text-white text-4xl font-bold text-center">
+    <div className="flex-1 relative m-[-30px] flex h-screen  justify-center items-center">
+      <div className="flex gap-2 md:gap-5 w-9/12  flex-col justify-center">
+        <div className='hidden md:block'>
+          <Logo />
+        </div>
+        <div className='mt-8'>
+          <h1 className="text-white text-2xl md:text-4xl font-bold text-center">
             {header1}
           </h1>
-          <h1 className="text-white text-4xl font-bold text-center">
+          <h1 className="text-white text-2xl md:text-4xl font-bold text-center">
             {header2}
           </h1>
         </div>
-        <div className="flex flex-col items-center justify-center b">
-          <h1 className="font-[100] text-center text-sm ">{t('lslwml')}</h1>
-          <span className="font-[100] text-center text-sm ">{t('urcml')}</span>
-          <p className="font-[100] text-center">{t('hps')} </p>
+        <div className="flex flex-col items-center justify-center b text-sm md:text-md">
+          <p className="font-[100] text-center text-sm ">{t('lslwml')}{' '}{t('urcml')}{' '}{t('hps')} </p>
         </div>
-        <div className="flex w-11/12 mt-5 items-center self-center  flex-col gap-4">
+        <div className="flex w-11/12 md:mt-5 items-center self-center  flex-col md:gap-4 gap-2">
           {btns.map(({ text, link, to }, i) => {
             return (
               <Link
@@ -75,7 +76,7 @@ function StartingRight({ header1, header2, btns, firstPage }) {
                 {...(link ? { to: link } : { to: '.' + search })}
                 className={`btn w-full text-lg capitalize ${
                   i == 0 ? 'btn-accent' : 'btn-primary'
-                }  rounded-md`}
+                } rounded-2xl md:rounded-md`}
               >
                 {text}
               </Link>
@@ -94,7 +95,7 @@ function StartingRight({ header1, header2, btns, firstPage }) {
           ) : null}
         </div>
       </div>
-      <p className="font-extralight text-[12px] text-[#a4a4a4] absolute bottom-6">
+      <p className="font-extralight text-[12px] text-[#a4a4a4] fixed bottom-3">
         {t('pbal')}
       </p>
     </div>

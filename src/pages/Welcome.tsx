@@ -18,21 +18,29 @@ function Welcome() {
   const { t } = useTranslation();
   const navigate = useNavigate();
   return (
-    <div className="flex gap-5 mt-20 relative  h-[calc(100vh-64px)] flex-col w-full  items-center">
+    <div className="flex gap-5 mt-20 relative h-[calc(100vh-64px)] flex-col w-full  items-center">
       <div
-        className="flex absolute left-0 -top-16 cursor-pointer"
+        className="hidden md:flex absolute left-0 -top-16 cursor-pointer"
         onClick={() => navigate(-1)}
       >
         <BsArrowLeftShort size={28} />
         <span className=" mt-0.5">{t('bc')}</span>
       </div>
-      <img
-        src={circleDashed}
-        className="absolute -top-56 -right-32 object-contain aspect-square w-6/12"
-      />
-      <div className="absolute w-32 aspect-square top-32 left-5 rounded-full  bg-primary"></div>
+      <div className='bg'>
+        <img
+          src={circleDashed}
+          className="absolute md:block md:-top-56 md:-right-32 object-contain aspect-square md:w-6/12 w-[400px] top-[100px] right-[-220px]"
+        />
+      </div>
+      <div className='absolute md:hidden border-8 z-10 border-white w-[250px] h-[250px] rounded-full top-[-120px] right-[-50px]'></div>
+      <div className="absolute md:w-32 w-[400px] aspect-square md:top-32 top-[-100px] md:left-5 left-[-120px] rounded-full  bg-primary"></div>
+      <div className="grow text-5xl absolute md:hidden text-white text-center flex flex-col top-[30%]">
+        <h1 className="m-1 font-semibold text-white">{t('welcome')} </h1>
+        <h1 className="m-1 font-semibold text-white">{t('to your')} </h1>
+        <h1 className="m-1 font-semibold text-white">{t('lesson')}</h1>
+      </div>
       <div
-        className="flex w-5/6 pr-5 justify-between py-2"
+        className="hidden md:flex w-5/6 pr-5 justify-between py-2"
         style={{
           background:
             'linear-gradient(150.11deg, rgba(217, 217, 217, 0.87) -8.45%, rgba(255, 255, 255, 0.2175) -8.45%, rgba(255, 255, 255, 0.0783) 113.16%)',
@@ -55,7 +63,7 @@ function Welcome() {
               className="object-contain aspect-square w-full rounded-full"
             />
           </div>
-          <div className="grow text-2xl  text-white text-center flex flex-col my-10">
+          <div className="grow text-2xl text-white text-center flex flex-col my-10">
             <h1 className="m-1 font-semibold text-white">{t('welcome')} </h1>
             <h1 className="m-1 font-semibold text-white">{t('to your')} </h1>
             <h1 className="m-1 font-semibold text-white">{t('lesson')}</h1>
@@ -77,7 +85,7 @@ function Welcome() {
             ))}
         </div>
       </div>
-      <Link to={`/game${search}`} className="flex gap-3 items-center ">
+      <Link to={`/game${search}`} className="flex absolute bottom-[15%] md:bottom-[30%] gap-3 items-center ">
         <h1 className="text-white ml-10 text-xl">{t('gs')}</h1>
         <img src={LeftArrowIcon} className="w-2/12" />
       </Link>

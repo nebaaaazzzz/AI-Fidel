@@ -105,7 +105,7 @@ function Game() {
     if (wordIndex == levelWords.length - 1) {
       navigate(`/level-completed${search}&points=${score}`);
       score = 0;
-      setSe(se + 1);
+      setSe(se + 1)
     }
     if (currentWordLength == selectedWord?.length && selectedWord) {
       setSelectWord(levelWords[wordIndex + 1]);
@@ -212,11 +212,12 @@ function Game() {
     let hands = new window.Hands({
       locateFile: (file) => {
         try {
-          console.log(file);
+          console.log(file)
           return `/src/mediapipe/hands/${file}`;
         } catch (error) {
           console.log(error);
         }
+       
       }
     });
     hands.setOptions({
@@ -277,8 +278,8 @@ function Game() {
     })();
   }, [isGameStarted]);
   useEffect(() => {
-    console.log(se);
-  }, [se]);
+    console.log(se)
+  },[se])
   const percentage = (((currentTime - startTime) / 180000) * 100).toFixed(2);
   // if (percentage >= 100) {
   //   handleSkip();

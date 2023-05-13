@@ -14,8 +14,9 @@ import { getAuth, signOut } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
+
 const EditProfile = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation()
   const navigate = useNavigate();
   const auth = getAuth();
   const [loading, setLoading] = useState(false);
@@ -26,8 +27,8 @@ const EditProfile = () => {
     signOut(auth)
       .then(() => {
         console.log('Sign-out successful.');
-        localStorage.removeItem('language');
-        i18n.changeLanguage('en');
+        localStorage.removeItem("language")
+        i18n.changeLanguage('en')
         navigate('/');
       })
       .catch((error) => {
@@ -85,17 +86,19 @@ const EditProfile = () => {
                 </div>
               </Link>
               <Link to="/change-language">
-                <div className=" bg-[#2E2E2E] rounded-md flex py-2 px-5 justify-between cursor-pointer">
-                  <div className=" mt-[4px] ml-3">
-                    <MdLanguage size="18px" />
-                  </div>
-                  <div className=" px-4" style={{ marginLeft: '-12px' }}>
-                    <h1 className="text-[#FFF]">{t('ln')}</h1>
-                  </div>
-                  <div className=" mt-[4px] ">
-                    <MdKeyboardArrowRight size="20px" />
-                  </div>
+              <div
+                className=" bg-[#2E2E2E] rounded-md flex py-2 px-5 justify-between cursor-pointer"
+              >
+                <div className=" mt-[4px] ml-3">
+                  <MdLanguage size="18px" />
                 </div>
+                <div className=" px-4" style={{ marginLeft: '-12px' }}>
+                  <h1 className="text-[#FFF]">{t('ln')}</h1>
+                </div>
+                <div className=" mt-[4px] ">
+                  <MdKeyboardArrowRight size="20px" />
+                </div>
+              </div>
               </Link>
               <div className=" bg-[#2E2E2E] rounded-md flex py-2 px-5 justify-between cursor-pointer">
                 <div className=" mt-[4px] ml-3">

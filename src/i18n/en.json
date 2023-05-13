@@ -35,7 +35,6 @@
   "sltl": "Start learning this letters",
   "level": "Level",
   "spa": "Select profile avatar",
-  "syl": "Select your language",
   "wd": "What do",
   "yld": "you Like to do",
   "sp": "Start playing",
@@ -68,14 +67,5 @@
   "h": "Home",
   "ls": "Level Scores",
   "iys": "is your score",
-  "l": "Level",
-  "sh": "Share",
-  "sc": "Score",
-  "bc": "Back",
-  "sv": "Save",
-  "ed": "Edit Profile",
-  "ln": "Language",
-  "nf": "Notification",
-  "lg": "Log out",
-  "next": "Next"
+  "l": "Level"
 }

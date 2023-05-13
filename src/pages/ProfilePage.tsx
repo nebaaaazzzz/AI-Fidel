@@ -6,82 +6,15 @@ import { MdArrowBack } from 'react-icons/md';
 import { MdKeyboardArrowLeft } from 'react-icons/md';
 import { MdKeyboardArrowRight } from 'react-icons/md';
 import { MdModeEdit } from 'react-icons/md';
-import { useState } from 'react';
-import { getFirestore, doc, setDoc, getDoc } from 'firebase/firestore';
-import profile1 from '@assets/EditProfile/profile1.png';
-import profile2 from '@assets/EditProfile/profile2.png';
-import profile3 from '@assets/EditProfile/profile3.png';
-import profile4 from '@assets/EditProfile/profile4.png';
-import profile5 from '@assets/EditProfile/profile5.png';
-import profile6 from '@assets/EditProfile/profile6.png';
-import profile7 from '@assets/EditProfile/profile7.png';
-import profile8 from '@assets/EditProfile/profile8.png';
-import profile9 from '@assets/EditProfile/profile9.png';
-import { db } from '@/config/firebase';
-
+import profile from '@assets/icons/profile.png';
+import profile1 from '@assets/icons/profile1.png';
+import profile2 from '@assets/icons/profile2.png';
+import profile3 from '@assets/icons/profile3.png';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { useContext } from 'react';
-import { AuthContext } from '@/context/AuthContext';
 
 const ProfilePage = () => {
-  const user = useContext(AuthContext);
-
-  const [currentProfile, setCurrentProfile] = useState(profile1);
-  const handleChangeProfile = async (profileImage) => {
-    const docRef = doc(db, 'users', user.id);
-    setDoc(docRef, { photo: profileImage.imgLink }, { merge: true });
-    const docSnap = await getDoc(docRef);
-    setCurrentProfile(profileImage.profile);
-  };
-  const profileImages = [
-    {
-      profile: profile1,
-      imgLink:
-        'https://res.cloudinary.com/dkwc18qwr/image/upload/v1683966847/profile1_xzkxw5.png'
-    },
-    {
-      profile: profile2,
-      imgLink:
-        'https://res.cloudinary.com/dkwc18qwr/image/upload/v1683964107/person2_kn31qp.png'
-    },
-    {
-      profile: profile3,
-      imgLink:
-        'https://res.cloudinary.com/dkwc18qwr/image/upload/v1683966847/profile3_allbtw.png'
-    },
-    {
-      profile: profile4,
-      imgLink:
-        'https://res.cloudinary.com/dkwc18qwr/image/upload/v1683966847/profile4_wbkqdo.png'
-    },
-    {
-      profile: profile5,
-      imgLink:
-        'https://res.cloudinary.com/dkwc18qwr/image/upload/v1683966847/profile5_ogjenu.png'
-    },
-    {
-      profile: profile6,
-      imgLink:
-        'https://res.cloudinary.com/dkwc18qwr/image/upload/v1683966847/profile6_e0am5a.png'
-    },
-    {
-      profile: profile7,
-      imgLink:
-        'https://res.cloudinary.com/dkwc18qwr/image/upload/v1683966847/profile7_diq0j6.png'
-    },
-    {
-      profile: profile8,
-      imgLink:
-        'https://res.cloudinary.com/dkwc18qwr/image/upload/v1683966848/profile8_bap7kj.png'
-    },
-    {
-      profile: profile9,
-      imgLink:
-        'https://res.cloudinary.com/dkwc18qwr/image/upload/v1683966848/profile9_d2mxbd.png'
-    }
-  ];
-  const { t } = useTranslation();
+  const { t } = useTranslation()
   const navigate = useNavigate();
   return (
     <div className="">
@@ -96,7 +29,7 @@ const ProfilePage = () => {
         </div>
         <div className="flex">
           <button className="bg-[#2E2E2E] shadow-[0px_2px_20px_rgba(255,175,82,1)] py-2 px-2 rounded-full h-36 w-36 flex items-center justify-center">
-            <img src={currentProfile} className=" w-11/12" />
+            <img src={profile} className=" w-11/12" />
           </button>
           <div className="mt-[4rem] ml-3"></div>
         </div>
@@ -117,19 +50,36 @@ const ProfilePage = () => {
           <MdKeyboardArrowLeft size="24px" className=" mt-4 mr-2" />
         </div>
         <div className="flex gap-6">
-          {profileImages.map((profileImage, index) => {
-            return (
-              <button
-                key={index}
-                className="bg-[#2E2E2E] shadow-[0px_2px_16px_rgba(0,162,141,0.9)] py-2 px-2 rounded-full   h-14 w-14 flex items-center justify-center"
-                onClick={() => {
-                  handleChangeProfile(profileImage);
-                }}
-              >
-                <img src={profileImage.profile} className="h-11 " />
-              </button>
-            );
-          })}
+          <button className="bg-[#2E2E2E] shadow-[0px_2px_16px_rgba(0,162,141,0.9)] py-2 px-2 rounded-full   h-14 w-14 flex items-center justify-center">
+            <img src={profile1} className="h-11 " />
+          </button>
+          <button className="bg-[#2E2E2E] shadow-[0px_2px_16px_rgba(0,162,141,0.9)] py-2 px-2 rounded-full   h-14 w-14 flex items-center justify-center">
+            <img src={profile3} className="h-11 " />
+          </button>
+          <button className="bg-[#2E2E2E] shadow-[0px_2px_16px_rgba(0,162,141,0.9)] py-2 px-2 rounded-full   h-14 w-14 flex items-center justify-center">
+            <img src={profile2} className="h-11 " />
+          </button>
+          <button className="bg-[#2E2E2E] shadow-[0px_2px_16px_rgba(0,162,141,0.9)] py-2 px-2 rounded-full   h-14 w-14 flex items-center justify-center">
+            <img src={profile} className="h-11 " />
+          </button>
+          <button className="bg-[#2E2E2E] shadow-[0px_2px_16px_rgba(0,162,141,0.8)] py-2 px-2 rounded-full   h-14 w-14 flex items-center justify-center">
+            <img src={profile1} className=" w-11" />
+          </button>
+          <button className="bg-[#2E2E2E] shadow-[0px_2px_16px_rgba(0,162,141,0.8)] py-2 px-2 rounded-full   h-14 w-14 flex items-center justify-center">
+            <img src={profile2} className=" w-11" />
+          </button>
+          <button className="bg-[#2E2E2E] shadow-[0px_2px_16px_rgba(0,162,141,0.8)] py-2 px-2 rounded-full   h-14 w-14 flex items-center justify-center">
+            <img src={profile3} className=" w-11" />
+          </button>
+          <button className="bg-[#2E2E2E] shadow-[0px_2px_16px_rgba(0,162,141,0.8)] py-2 px-2 rounded-full  h-14 w-14 flex items-center justify-center">
+            <img src={profile2} className=" w-11" />
+          </button>
+          <button className="bg-[#2E2E2E] shadow-[0px_2px_16px_rgba(0,162,141,0.8)] py-2 px-2 rounded-full   h-14 w-14 flex items-center justify-center">
+            <img src={profile1} className=" w-11" />
+          </button>
+          <button className="bg-[#2E2E2E] shadow-[0px_2px_16px_rgba(0,162,141,0.8)] py-2 px-2 rounded-full   h-14 w-14 flex items-center justify-center">
+            <img src={profile3} className=" w-11" />
+          </button>
         </div>
 
         <div>

@@ -5,19 +5,17 @@ import trophyIcon from '@assets/icons/trophy-icon.png';
 import avatarIcon from '@assets/icons/avatar-icon.png';
 import famecontrollerIcon from '@assets/icons/gamecontroller-icon.png';
 import { Link } from 'react-router-dom';
-import { handAtom } from '../store/store';
-import { langAtom } from '../store/store';
+import { handAtom } from '../store/store'
+import { langAtom } from '../store/store'
 import { useAtom } from 'jotai';
 
+
 function LeftSideBar() {
-  const [lang] = useAtom(langAtom);
-  const [hand] = useAtom(handAtom);
+  const [lang] = useAtom(langAtom)
+  const [hand] = useAtom(handAtom)
   const images = [
     { image: appIcon, to: '/' },
-    {
-      image: checklistIcon,
-      to: `/select-level?mode=learn&lang=${lang}&hand=${hand}`
-    },
+    { image: checklistIcon, to: `/select-level?mode=learn&lang=${lang}&hand=${hand}` },
     {
       image: famecontrollerIcon,
       to: `/select-level?mode=game&lang=${lang}&hand=${hand}`
@@ -36,7 +34,7 @@ function LeftSideBar() {
         background:
           'linear-gradient(104.13deg, rgba(78, 78, 78, 0.4) 17.81%, rgba(52, 52, 52, 0.45) 90.16%)'
       }}
-      className="fixed top-[90vh] mx-auto left-0 right-0 w-[calc(100vw-2rem)]  shrink-0  flex px-3  justify-between py-4 md:w-14 md:static md:flex-col md:h-[500px]"
+      className="fixed flex flex-row top-[90vh] md:top-[90vh] mx-auto left-0 right-0 w-[calc(100vw-2rem)]  shrink-0 px-3  justify-between py-4 md:w-14 md:static md:flex-col md:h-[500px]"
     >
       {images.map(({ image, to }, index) => {
         return (

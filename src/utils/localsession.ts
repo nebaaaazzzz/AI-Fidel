@@ -16,7 +16,7 @@ export const storeSessionInfo = async (
 
 export const setLanguage = async (lang: string): Promise<void> => {
   await localforage.setItem('lang', lang);
-};
+}
 export const storeLevelScore = async (
   level: string,
   score: number | string,

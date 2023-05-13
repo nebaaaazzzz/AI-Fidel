@@ -2,6 +2,7 @@ import LevelComplete from './ParentScoreBoard';
 import stars from '@assets/icons/starts.png';
 import { useTranslation } from 'react-i18next';
 
+
 const FinalScoreBoard = () => {
   const { t } = useTranslation();
   return (
