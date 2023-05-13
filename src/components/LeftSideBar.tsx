@@ -1,4 +1,3 @@
-import React from 'react';
 import appIcon from '@assets/icons/app-icon.png';
 import checklistIcon from '@assets/icons/checklist-icon.png';
 import editIcon from '@assets/icons/edit-icon.png';
@@ -6,24 +5,28 @@ import trophyIcon from '@assets/icons/trophy-icon.png';
 import avatarIcon from '@assets/icons/avatar-icon.png';
 import famecontrollerIcon from '@assets/icons/gamecontroller-icon.png';
 import { Link } from 'react-router-dom';
-import i18next from 'i18next';
+import { handAtom } from '../store/store';
+import { langAtom } from '../store/store';
+import { useAtom } from 'jotai';
 
-const lang = i18next.language;
-console.log(i18next.language);
-console.log(`select-level?mode=learn&lang=${lang}&hand=right`);
-
-const images = [
-  { image: appIcon, to: '/' },
-  { image: checklistIcon, to: '/select-level?mode=learn&lang=en&hand=right' },
-  { image: editIcon, to: '/edit' },
-  {
-    image: famecontrollerIcon,
-    to: '/select-level?mode=game&lang=en&hand=right'
-  },
-  { image: trophyIcon, to: '/trophy' },
-  { image: avatarIcon, to: '/edit-profile' }
-];
 function LeftSideBar() {
+  const [lang] = useAtom(langAtom);
+  const [hand] = useAtom(handAtom);
+  const images = [
+    { image: appIcon, to: '/' },
+    {
+      image: checklistIcon,
+      to: `/select-level?mode=learn&lang=${lang}&hand=${hand}`
+    },
+    {
+      image: famecontrollerIcon,
+      to: `/select-level?mode=game&lang=${lang}&hand=${hand}`
+    },
+    { image: editIcon, to: '/trial' },
+    { image: trophyIcon, to: '/final-score-board' },
+    { image: avatarIcon, to: '/edit-profile' }
+  ];
+
   return (
     <div
       style={{
