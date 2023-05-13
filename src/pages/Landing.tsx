@@ -13,7 +13,7 @@ function Landing() {
 
   useEffect(() => {
     if (!user.loading) {
-      // navigate('select-mode');
+      navigate('select-mode');
     }
   }, [user]);
   return (
