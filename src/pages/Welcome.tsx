@@ -24,7 +24,7 @@ function Welcome() {
         onClick={() => navigate(-1)}
       >
         <BsArrowLeftShort size={28} />
-        <span className=" mt-0.5">Back</span>
+        <span className=" mt-0.5">{t('bc')}</span>
       </div>
       <img
         src={circleDashed}
