@@ -17,13 +17,14 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import AuthContextProvider from './context/AuthContext';
 import Complete from './pages/Complete';
-import ScoreBoard from './pages/ScoreBoard';
+import FinalScoreBoard from './pages/FinalScoreBoard';
 import { SpecificLevel } from './pages/SpecificLevel';
 import EditProfile from './pages/EditProfile';
 import ProfilePage from './pages/ProfilePage';
 import Result from './pages/Result';
-import Complete1 from './pages/Complete1';
-import Complete2 from './pages/Complete2';
+import LevelScoreBoard from './pages/LevelScoreBoard';
+import { ChangeLanguage } from './pages/ChangeLanguage';
+
 import { Provider } from 'jotai';
 
 function App() {
@@ -42,9 +43,8 @@ function App() {
                 <Route path="login" element={<Login />} />
                 <Route path="select-game" element={<SelectGame />} />
                 <Route path="complete" element={<Complete />} />
-                <Route path="score-board" element={<ScoreBoard />} />
-                <Route path="trial" element={<Complete1 />} />
-                <Route path="trial1" element={<Complete2 />} />
+                <Route path="final-score-board" element={<FinalScoreBoard />} />
+                <Route path="level-score-board" element={<LevelScoreBoard />} />
                 <Route element={<RootLayout />}>
                   <Route path="select-hand" element={<SelectHand />} />
                   <Route path="select-level" element={<SelectLevel />} />
@@ -58,6 +58,7 @@ function App() {
                   <Route path="edit-profile" element={<EditProfile />} />
                   <Route path="profile" element={<ProfilePage />} />
                   <Route path="result" element={<Result />} />
+                  <Route path="change-language" element={<ChangeLanguage />} />
                 </Route>
                 <Route path="*" element={<p>path not found</p>} />
               </Route>
