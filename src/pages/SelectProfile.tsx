@@ -10,6 +10,11 @@ import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { AuthContext } from '@/context/AuthContext';
 import ReactModal from 'react-modal';
 import { useTranslation } from 'react-i18next';
+import { useAtom } from 'jotai';
+import { BsArrowLeftShort } from 'react-icons/bs';
+import { useNavigate } from 'react-router-dom';
+import localforage from 'localforage';
+
 function autoGenerateUsername() {
   const random = Math.floor(Math.random() * 10000) + 10000;
   return `Guest${random}`;
@@ -25,9 +30,10 @@ function SelectProfile() {
   const [username, setUsername] = useState<string>();
   const [selectedAvatar, setSelectedAvatar] = useState<string>();
   const { t } = useTranslation();
+  const navigate = useNavigate();
   useEffect(() => {
     (async () => {
-      if (user?.user) {
+      if (user && user.user) {
         setUsername(
           user.displayName ? user.displayName : autoGenerateUsername()
         );
@@ -86,7 +92,7 @@ function SelectProfile() {
         </div>
       </div>
       <div className="flex-[1] flex  justify-center items-center mr-20 flex-col h-screen">
-        <div className="flex flex-col items-center gap-14 w-2/3 ">
+        <div className="flex flex-col items-center gap-10 w-2/3 -mt-14">
           <div className="flex items-center gap-5 w-full ">
             <div
               style={{
@@ -171,6 +177,15 @@ function SelectProfile() {
                 </Link>
               );
             })}
+            <button
+              className="btn w-full capitalize rounded-md text-lg border-[#fff] justify-between"
+              onClick={() => navigate(-1)}
+            >
+              <BsArrowLeftShort />
+              {/* <img src={leftArrow} alt="" className="h-4 w-4" /> */}
+              <span>{t('bc')}</span>
+              <div></div>
+            </button>
           </div>
           <img src={ellipse} className="absolute right-0 top-1/3 w-1/12" />
         </div>
