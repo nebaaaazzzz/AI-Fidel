@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host",
     "test": "jest ./src",
     "build": "tsc && vite build",
     "preview": "vite preview",
@@ -14,6 +14,10 @@
     "**/*": "prettier --write --ignore-unknown"
   },
   "dependencies": {
+    "@mediapipe/camera_utils": "^0.3.1675466862",
+    "@mediapipe/control_utils": "^0.6.1675466023",
+    "@mediapipe/drawing_utils": "^0.3.1675466124",
+    "@mediapipe/hands": "^0.4.1675469240",
     "@tensorflow-models/handpose": "^0.0.7",
     "daisyui": "^2.49.0",
     "firebase": "^9.19.1",
@@ -49,6 +53,8 @@
     "prettier": "2.8.4",
     "tailwindcss": "^3.2.4",
     "typescript": "^4.9.3",
-    "vite": "^4.1.1"
+    "vite": "^4.1.1",
+    "vite-plugin-pwa": "^0.14.7",
+    "vite-plugin-service-worker": "^0.0.0-alpha.0"
   }
 }
