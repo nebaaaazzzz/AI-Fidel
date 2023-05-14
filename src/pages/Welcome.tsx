@@ -29,12 +29,12 @@ function Welcome() {
       <div className='bg'>
         <img
           src={circleDashed}
-          className="absolute md:block md:-top-56 md:-right-32 object-contain aspect-square md:w-6/12 w-[400px] top-[100px] right-[-220px]"
+          className="absolute md:block md:-top-56 md:-right-32 object-contain aspect-square md:w-6/12 w-[400px] top-[100px] right-[-170px]"
         />
       </div>
-      <div className='absolute md:hidden border-8 z-10 border-white w-[250px] h-[250px] rounded-full top-[-120px] right-[-50px]'></div>
-      <div className="absolute md:w-32 w-[400px] aspect-square md:top-32 top-[-100px] md:left-5 left-[-120px] rounded-full  bg-primary"></div>
-      <div className="grow text-5xl absolute md:hidden text-white text-center flex flex-col top-[30%]">
+      <div className='absolute md:hidden border-8 z-10 border-white w-[220px] h-[220px] rounded-full top-[-120px] right-[-50px]'></div>
+      <div className="absolute md:w-32 w-[300px] aspect-square md:top-32 top-[-100px] md:left-5 left-[-90px] rounded-full  bg-primary"></div>
+      <div className="grow text-4xl md:text-5xl absolute md:hidden text-white text-center flex flex-col top-[25%]">
         <h1 className="m-1 font-semibold text-white">{t('welcome')} </h1>
         <h1 className="m-1 font-semibold text-white">{t('to your')} </h1>
         <h1 className="m-1 font-semibold text-white">{t('lesson')}</h1>
@@ -63,7 +63,7 @@ function Welcome() {
               className="object-contain aspect-square w-full rounded-full"
             />
           </div>
-          <div className="grow text-2xl text-white text-center flex flex-col my-10">
+          <div className="grow text-2xl text-white text-center flex flex-col my-10 md:my-0">
             <h1 className="m-1 font-semibold text-white">{t('welcome')} </h1>
             <h1 className="m-1 font-semibold text-white">{t('to your')} </h1>
             <h1 className="m-1 font-semibold text-white">{t('lesson')}</h1>
@@ -85,8 +85,8 @@ function Welcome() {
             ))}
         </div>
       </div>
-      <Link to={`/game${search}`} className="flex absolute bottom-[15%] md:bottom-[30%] gap-3 items-center ">
-        <h1 className="text-white ml-10 text-xl">{t('gs')}</h1>
+      <Link to={`/game${search}`} className="flex absolute md:relative bottom-[15%] md:bottom-[0%] gap-3 items-center ">
+        <h1 className="text-white ml-10 text-sm md:text-xl">{t('gs')}</h1>
         <img src={LeftArrowIcon} className="w-2/12" />
       </Link>
     </div>

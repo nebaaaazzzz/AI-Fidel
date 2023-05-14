@@ -63,9 +63,9 @@ function SelectLevel() {
             )}
           </div>
         </div>
-        <div className="flex items-center flex-row md:flex-col gap-2 p-4 py-8 mr-auto md:ml-auto mt-8 md:mt-0 md:p-0">
+        <div className="flex items-center flex-row md:flex-col gap-2 mr-auto md:ml-auto mt-12 md:mt-0 md:p-0">
           <div
-            className={`rounded-full flex items-center justify-center w-32 h-32 aspect-square ${
+            className={`rounded-full flex items-center justify-center w-20 h-20 md:w-32 md:h-32 aspect-square ${
               user ? '' : 'p-4'
             }`}
             style={{
@@ -87,9 +87,10 @@ function SelectLevel() {
               />
             )}
           </div>
-          <div>
-            <h2 className='text-center text-white text-xl md:text-2xl font-[500] pt-2'>Ablaze Labs</h2>
-            <p className='opacity-50 text-sm text-center'>ablazelabs@gmail.com</p>
+          <div className='pl-4 text-sm'>
+            <p className='block md:hidden'>Hello</p>
+            <h2 className='text-left md:text-center text-white text-md md:text-2xl font-[500] pt-0 md:pt-2'>Ablaze Labs</h2>
+            <p className='opacity-50 text-sm text-center hidden md:block'>ablazelabs@gmail.com</p>
           </div>
         </div>
         <div className="hidden md:flex mr-5 self-stretch flex-col justify-between">
@@ -98,7 +99,7 @@ function SelectLevel() {
             })}
           </div>
       </div>
-      <div className="flex flex-col mt-8 md:mt-0 gap-5 w-10/12 md:w-full mr-auto ml-auto">
+      <div className="flex flex-col mt-12 md:mt-0 gap-5 w-10/12 md:w-full mr-auto ml-auto">
         {buildLevelButtons(searchParams, search, levelOffset, t)}
       </div>
     </div>
