@@ -55,7 +55,7 @@ function StartingRight({ header1, header2, btns, firstPage }) {
         <div className='hidden md:block'>
           <Logo />
         </div>
-        <div className='mt-8'>
+        <div className='mt-4'>
           <h1 className="text-white text-2xl md:text-4xl font-bold text-center">
             {header1}
           </h1>
@@ -64,9 +64,10 @@ function StartingRight({ header1, header2, btns, firstPage }) {
           </h1>
         </div>
         <div className="flex flex-col items-center justify-center b text-sm md:text-md">
-          <p className="font-[100] text-center text-sm ">{t('lslwml')}{' '}{t('urcml')}{' '}{t('hps')} </p>
+          <p className="font-[100] hidden md:block text-center text-sm ">{t('lslwml')}{' '}{t('urcml')}{' '}{t('hps')} </p>
+          <p className="font-[100] text-center text-sm block md:hidden ">The platforms that you are going to use for adobe premier pro. </p>
         </div>
-        <div className="flex w-11/12 md:mt-5 items-center self-center  flex-col md:gap-4 gap-2">
+        <div className="flex w-11/12 md:mt-5 items-center self-center flex-col md:gap-4 gap-2">
           {btns.map(({ text, link, to }, i) => {
             return (
               <Link
@@ -74,7 +75,7 @@ function StartingRight({ header1, header2, btns, firstPage }) {
                 key={i}
                 to="/"
                 {...(link ? { to: link } : { to: '.' + search })}
-                className={`btn w-full text-lg capitalize ${
+                className={`btn w-full h-[10px] text-md md:text-lg capitalize ${
                   i == 0 ? 'btn-accent' : 'btn-primary'
                 } rounded-2xl md:rounded-md`}
               >

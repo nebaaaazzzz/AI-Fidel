@@ -50,8 +50,8 @@ function SelectProfile() {
   return (
     <div className="overflow-auto flex md:flex-row flex-col">
       <div className="overflow-auto h-screen flex flex-col items-end justify-around  flex-[1] md:px-20 px-4 ml-4">
-        <h2 className="md:text-xl text-lg self-center mt-28 md:mt-5 text-white">{t('spa')}</h2>
-        <div className="overflow-auto custom-glass md:w-11/12 md:h-auto w-full h-[300px] flex flex-wrap gap-10 p-5 justify-center m-2">
+        <h2 className="md:text-xl text-lg self-center mt-20 p-2 md:mt-5 text-white">{t('spa')}</h2>
+        <div className="overflow-auto custom-glass md:w-11/12 md:h-auto w-full h-[200px] flex flex-wrap gap-10 p-5 justify-center mx-2">
           {[1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4].map((i, index) => (
             <button
               onClick={() => {
@@ -92,7 +92,7 @@ function SelectProfile() {
           <LogoWithTextSM />
         </div>
       </div>
-      <div className="flex-[1] flex ml-auto mr-auto justify-center items-center mr-20 flex-col h-screen">
+      <div className="flex-[1] flex ml-auto mr-auto justify-center items-center  flex-col h-screen">
         <div className="flex flex-col items-center gap-10 w-2/3 -mt-14">
           <div className="flex items-center gap-5 w-full fixed md:relative top-0 m-8">
             <div
@@ -159,7 +159,7 @@ function SelectProfile() {
               />
             )}
           </div>
-          <div className="flex flex-col w-[300px] md:w-full gap-3 md:mt-0">
+          <div className="flex flex-col w-[300px] md:w-full gap-3 mt-[-15px] md:mt-0">
           <h2 className="md:hidden block text-lg self-center mt-20 w-[200px] text-white">{t('syl')}</h2>
             {[
               { text: 'Amharic', icon: EthiopiaIcon, langCode: 'am' },
