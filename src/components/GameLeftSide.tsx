@@ -18,7 +18,7 @@ function GameLeftSide({
   const { t } = useTranslation();
   if (isGameStarted) {
     return (
-      <div className="border-2  relative w-full gap-5 pt-12 overflow-hidden  flex flex-[1] flex-col self-center border-primary  items-center justify-center rounded-lg p-4">
+      <div className="border-2 relative w-full gap-5 md:pt-12 mt-12 md:mt-0 overflow-hidden  flex flex-[1] flex-row md:flex-col self-center border-primary  items-center justify-center rounded-lg p-4">
         <p className="self-end top-2 absolute font-extrabold text-xl">
           {score}
           {'  '} {t('pt')}

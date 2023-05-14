@@ -285,8 +285,8 @@ function Game() {
   //   handleSkip();
   // }
   return (
-    <div className="flex flex-col  items-center">
-      <div className="flex gap-10  w-10/12 relative">
+    <div className="flex flex-col items-center">
+      <div className="flex flex-col md:flex-row gap-3 md:gap-10  w-10/12 relative">
         <PlaceYourHand
           isMediaPipeModelLoading={isMediaPipeModelLoading}
           isGameStarted={isGameStarted}
@@ -299,7 +299,7 @@ function Game() {
           selectedLetter={selectedLetter}
           selectedWord={selectedWord}
         />
-        <div className="flex flex-[1]  items-center justify-center w-1/2 aspect-square rounded-lg p-2">
+        <div className="flex flex-[1] items-center justify-center w-[80%] ml-auto mr-auto overflow-hidden md:w-1/2 aspect-square rounded-lg p-2">
           {isMediaPipeModelLoading && (
             <img
               src={girl}
@@ -337,7 +337,7 @@ function Game() {
       {!isMediaPipeModelLoading ? (
         <button
           onClick={handleSkip}
-          className="btn mt-10 btn-primary rounded-md btn-wide "
+          className="btn mt-10 md:btn-primary md:relative absolute top-[-40px] right-[-40px] bg-transparent rounded-md btn-wide "
         >
           {t('skip')}{' '}
         </button>
