@@ -17,7 +17,7 @@ const ParentScoreBoard = ({ children }) => {
           <img src={complete} className="hidden md:block max-h-[87%]  mx-auto" />
           <div className="flex md:hidden items-center flex-row md:flex-col gap-2 p-4 py-8 mr-auto md:ml-auto mt-8 md:mt-0 md:p-0">
           <div
-            className={`rounded-full flex items-center justify-center w-32 h-32 aspect-square ${
+            className={`rounded-full flex items-center justify-center w-[80px] h-[80px] aspect-square ${
               ''
             }`}
             style={{
@@ -34,8 +34,8 @@ const ParentScoreBoard = ({ children }) => {
             )}
           </div>
           <div className='pl-4'>
-            <p className='opacity-50 text-md text-left'>Hello</p>
-            <h2 className='text-left text-white text-xl md:text-2xl font-[500] w-[200px]'>Ablaze Labs</h2>
+            <p className='opacity-50 text-sm text-left'>Hello</p>
+            <h2 className='text-left text-white text-md md:text-2xl font-[500] w-[200px]'>Ablaze Labs</h2>
           </div>
         </div>
           <Link className="md:flex hidden justify-center w-full mt-1" to="/">
@@ -50,18 +50,18 @@ const ParentScoreBoard = ({ children }) => {
             <button className="bg-[#F8B936] hidden md:block uppercase w-full rounded-md text-[#FFF] text-2xl font-bold border-[4px] border-[#FAFF00] py-1 shadow-[0px_2px_10px_rgba(254,198,0,.8)]">
               {t('sb')}
             </button>
-            <div className="md:hidden flex w-[full] py-2 text-[24px] text-white mt-4 bg-[#008867] font-bold justify-center rounded-xl">
+            <div className="md:hidden flex w-[full] py-[7px] text-lg text-white mt-[5px] bg-[#008867] font-semibold justify-center rounded-xl">
               Completed
             </div>
-            <p className='flex md:hidden text-xl text-white mt-4 font-bold text-center ml-auto mr-auto'>Level 1</p>
+            <p className='flex md:hidden text- text-white mt-4 font-semibold text-center ml-auto mr-auto'>Level 1</p>
             <div className="mb-7 bg-transparent md:bg-[#2E2E2E] border-transparent md:border-[#FAFF00] border-[3px]  md:mt-7 rounded-md pt-7 px-4">
               {children}
             </div>
             <div className='md:hidden flex flex-col gap-3'>
-              <button className="bg-[#4b4a4a] md:hidden block w-full rounded-lg text-[#FFF] text-xl font-[700] h-[50px] py-1">
+              <button className="bg-[#4b4a4a] md:hidden block w-full rounded-lg text-[#FFF] text-md font-[600] h-[40px] py-1">
                 Learn Again
               </button>
-              <button className="bg-[#F8B936] md:hidden block w-full rounded-lg text-[#000] text-xl font-[700] h-[50px] py-1">
+              <button className="bg-[#F8B936] md:hidden block w-full rounded-lg text-[#000] text-md font-[600] h-[40px] py-1">
                 Take Exam
               </button>
             </div>
