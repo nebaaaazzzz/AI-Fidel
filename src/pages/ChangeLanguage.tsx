@@ -45,7 +45,8 @@ export const ChangeLanguage = () => {
           </h1>
         </div>
       </div>
-      <div className="flex flex-col gap-12">
+      <div className='block md:hidden'></div>
+      <div className="hidden md:flex flex-col gap-12">
         <div>
           <RxInstagramLogo />
         </div>
