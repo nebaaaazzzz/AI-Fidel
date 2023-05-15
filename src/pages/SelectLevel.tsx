@@ -45,16 +45,16 @@ function SelectLevel() {
   }, [user]);
   return (
     <div className="flex flex-col gap-6 items-center md:items-stretch">
-      <div className="flex justify-between px-3 pl-10 py-2 md:py-4">
-        <div className="flex  prose flex-col items-start ">
-        <button
-        className="md:flex hidden capitalize  justify-between -ml-6"
-        onClick={() => navigate(-1)}
-      >
-        <BsArrowLeftShort size={26} />
-        <span>{t('bc')}</span>
-        <div></div>
-      </button>
+      <div className="flex bg-whit w-full justify-between items-center md:items-stretch px-0 pl-10 py-2 md:py-4">
+        <div className="flex prose flex-col items-start mr-[20%] md:mr-0">
+          <button
+            className="flex capitalize justify-between -ml-6"
+            onClick={() => navigate(-1)}
+          >
+            <BsArrowLeftShort size={26} />
+            <span>{t('bc')}</span>
+            <div></div>
+          </button>
           <div className="w-8/12">
             {!user && (
               <button className="capitalize btn btn-primary w-full rounded-lg btn-md py-0 ">
@@ -97,7 +97,7 @@ function SelectLevel() {
             {socialMediaIcons.map((Icon, i) => {
               return <Icon key={i} size={20} color="white" />;
             })}
-          </div>
+        </div>
       </div>
       <div className="flex flex-col mt-12 md:mt-0 gap-5 w-10/12 md:w-full mr-auto ml-auto">
         {buildLevelButtons(searchParams, search, levelOffset, t)}
