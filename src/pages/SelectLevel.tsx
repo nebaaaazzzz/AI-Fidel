@@ -45,8 +45,8 @@ function SelectLevel() {
   }, [user]);
   return (
     <div className="flex flex-col gap-6 items-center md:items-stretch">
-      <div className="flex bg-whit w-full justify-between items-center md:items-stretch px-0 pl-10 py-2 md:py-4">
-        <div className="flex prose flex-col items-start mr-[20%] md:mr-0">
+      <div className="flex bg-whit w-full justify-center md:justify-between items-center md:items-stretch px-0 pl-10 py-2 md:py-4">
+        <div className="absolute md:flex md:relative md:top-0 md:left-0 top-[20px] left-[40px] prose flex-col items-start md:mr-0">
           <button
             className="flex capitalize justify-between -ml-6"
             onClick={() => navigate(-1)}
@@ -63,7 +63,7 @@ function SelectLevel() {
             )}
           </div>
         </div>
-        <div className="flex items-center flex-row md:flex-col gap-2 mr-auto md:ml-auto mt-12 md:mt-0 md:p-0">
+        <div className="flex items-center flex-row md:flex-col gap-2 md:mr-auto md:ml-auto mt-12 md:mt-0 md:p-0">
           <div
             className={`rounded-full flex items-center justify-center w-20 h-20 md:w-32 md:h-32 aspect-square ${
               user ? '' : 'p-4'
