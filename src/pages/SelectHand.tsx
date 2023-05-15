@@ -30,7 +30,7 @@ function SelectHand() {
         className="absolute block md:hidden object-contain aspect-square cxs:w-[350px] w-[300px] cxs:left-[-120px] left-[-120px] cxs:top-[-50px] top-[-60px]"
       />
       <div className="absolute hidden md:block w-[14%] aspect-square top-40 left-7 rounded-full  bg-primary"></div>
-      <h1 className="flex justify-center cxs:mt-[190px] mt-[150px] cxl:text-5xl md:hidden pan font-semibold text-4xl text-center w-3/4 text-white">
+      <h1 className="flex justify-center cxs:mt-[190px] cxl:mt-[180px] mt-[150px] cxl:text-5xl md:hidden pan font-semibold text-4xl text-center w-3/4 text-white">
             {t('aylrh')}
       </h1>
       <img className="block md:hidden object-contain w-[12rem] mt-[-30px] " src={handshake} />
