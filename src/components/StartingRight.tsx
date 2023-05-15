@@ -50,12 +50,12 @@ function StartingRight({ header1, header2, btns, firstPage }) {
       });
   }
   return (
-    <div className="flex-1 relative m-[-30px] flex h-screen  justify-center items-center">
+    <div className="md:flex-1 relative m-[-30px] flex md:h-screen justify-center items-center">
       <div className="flex gap-2 md:gap-5 w-9/12  flex-col justify-center">
         <div className='hidden md:block'>
           <Logo />
         </div>
-        <div className='mt-4'>
+        <div className='mt-12 md:mt-4'>
           <h1 className="text-white text-2xl md:text-4xl font-bold text-center">
             {header1}
           </h1>
@@ -64,10 +64,15 @@ function StartingRight({ header1, header2, btns, firstPage }) {
           </h1>
         </div>
         <div className="flex flex-col items-center justify-center b text-sm md:text-md">
-          <p className="font-[100] hidden md:block text-center text-sm ">{t('lslwml')}{' '}{t('urcml')}{' '}{t('hps')} </p>
-          <p className="font-[100] text-center text-sm block md:hidden ">The platforms that you are going to use for adobe premier pro. </p>
+          <p className="font-[100] block text-center text-sm ">{t('lslwml')}{' '}{t('urcml')}{' '}{t('hps')} </p>
+          {/* <p className="font-[100] text-center text-sm block md:hidden ">The platforms that you are going to use for adobe premier pro. </p> */}
         </div>
         <div className="flex w-11/12 md:mt-5 items-center self-center flex-col md:gap-4 gap-2">
+        {/* className={'btn w-full py-0 h-[10px] text-md md:text-lg capitalize bg-yellow-200 rounded-2xl md:rounded-md`'}> */}
+        {/* <div
+          className={'bg-yellow-200'}>
+            Test
+        </div> */}
           {btns.map(({ text, link, to }, i) => {
             return (
               <Link
@@ -75,9 +80,9 @@ function StartingRight({ header1, header2, btns, firstPage }) {
                 key={i}
                 to="/"
                 {...(link ? { to: link } : { to: '.' + search })}
-                className={`btn w-full h-[10px] text-md md:text-lg capitalize ${
+                className={`w-full py-[10px] md:py-[10px] font-semibold text-center text-sm md:text-lg capitalize ${
                   i == 0 ? 'btn-accent' : 'btn-primary'
-                } rounded-2xl md:rounded-md`}
+                } rounded-xl md:rounded-md`}
               >
                 {text}
               </Link>
@@ -85,7 +90,7 @@ function StartingRight({ header1, header2, btns, firstPage }) {
           })}
           {firstPage ? (
             <button
-              className="btn w-full capitalize rounded-md text-lg border-[#fff] justify-between"
+              className="p-2 px-4 md:px-8 items-center flex md:py-[10px] font-semibold text-center border-[1px] w-full capitalize rounded-md text-sm md:text-lg border-[#fff] justify-between"
               onClick={() => navigate(-1)}
             >
               <BsArrowLeftShort />

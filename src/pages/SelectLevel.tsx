@@ -44,8 +44,8 @@ function SelectLevel() {
     })();
   }, [user]);
   return (
-    <div className="flex flex-col gap-6">
-      <div className="flex justify-between px-3 pl-10 py-2">
+    <div className="flex flex-col gap-6 items-center md:items-stretch">
+      <div className="flex justify-between px-3 pl-10 py-2 md:py-4">
         <div className="flex  prose flex-col items-start ">
         <button
         className="md:flex hidden capitalize  justify-between -ml-6"

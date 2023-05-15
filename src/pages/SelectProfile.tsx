@@ -51,7 +51,7 @@ function SelectProfile() {
     <div className="overflow-auto flex md:flex-row flex-col">
       <div className="overflow-auto h-screen flex flex-col items-end justify-around  flex-[1] md:px-20 px-4 ml-4">
         <h2 className="md:text-xl text-lg self-center mt-20 p-2 md:mt-5 text-white">{t('spa')}</h2>
-        <div className="overflow-auto custom-glass md:w-11/12 md:h-auto w-full h-[200px] flex flex-wrap gap-10 p-5 justify-center mx-2">
+        <div className="overflow-auto scrollbar relative custom-glass md:w-11/12 md:h-auto w-full h-[200px] flex flex-wrap gap-10 p-5 justify-center mx-2">
           {[1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4].map((i, index) => (
             <button
               onClick={() => {
@@ -88,6 +88,7 @@ function SelectProfile() {
             </button>
           ))}
         </div>
+          {/* <div className='absolute right-0 top-0 scrollbar'></div> */}
         <div className="self-center relative -top-5 py-4 hidden md:block">
           <LogoWithTextSM />
         </div>

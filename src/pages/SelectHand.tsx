@@ -30,10 +30,10 @@ function SelectHand() {
         className="absolute block md:hidden object-contain aspect-square w-[350px] left-[-120px] top-[-50px]"
       />
       <div className="absolute hidden md:block w-[14%] aspect-square top-40 left-7 rounded-full  bg-primary"></div>
-      <h1 className="flex justify-center mt-[200px] md:hidden pan font-semibold text-xl text-center w-3/4 text-white">
+      <h1 className="flex justify-center mt-[200px] md:hidden pan font-semibold text-2xl text-center w-3/4 text-white">
             {t('aylrh')}
       </h1>
-      <img className="block md:hidden object-contain w-[150px] mt-[-30px] " src={handshake} />
+      <img className="block md:hidden object-contain w-[12rem] mt-[-30px] " src={handshake} />
       <div className="custom-glass hidden md:flex w-[80%] pr-5 justify-between py-2 pt-10 ">
         <div className=""></div>
         <div className="w-10"></div>
@@ -42,11 +42,8 @@ function SelectHand() {
             {t('aylrh')}
           </h1>
           <img className="object-contain w-5/12 " src={handshake} />
-          <div className="w-2/3 grow flex flex-col  font-light gap-3 text-sm text-white text-center leading-3">
-            <p> {t('cthywtuf')} </p>
-            <p>{t('fysur')}</p>
-            <p>{t('dh')}</p>
-            <p></p>
+          <div className="w-2/3 grow flex flex-col font-light gap-3 text-sm text-white text-center leading-loose">
+            <p> {t('cthywtuf')}{' '}{t('fysur')}{' '}{t('dh')}</p>
           </div>
         </div>
         <div className="flex flex-col justify-between">

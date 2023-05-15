@@ -32,7 +32,7 @@ export const ChangeLanguage = () => {
     return;
   }
   return (
-    <div className="">
+    <div className="m-8 md:m-0">
     <div className="profile-glass flex items-center justify-between space px-8 pt-6 rounded-md  mb-8">
       <div></div>
       <div className="">

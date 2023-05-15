@@ -45,13 +45,13 @@ const ProfilePage = () => {
           </div>
         </div>
       </div>
-      <div className="flex   gap-1  rounded-md  bg-[#2E2E2E]  mb-9  py-2  px-2  ml-6 mr-4 w-[95%]">
+      <div className="flex gap-1 justify-between overflow-x-scroll rounded-md  bg-[#2E2E2E]  mb-9  py-2  px-2 mx-auto md:ml-6 md:mr-4 w-[90%] md:w-[95%]">
         <div>
           <MdKeyboardArrowLeft size="24px" className=" mt-4 mr-2" />
         </div>
-        <div className="flex gap-6">
-          <button className="bg-[#2E2E2E] shadow-[0px_2px_16px_rgba(0,162,141,0.9)] py-2 px-2 rounded-full   h-14 w-14 flex items-center justify-center">
-            <img src={profile1} className="h-11 " />
+        <div className="flex gap-6 flex-row">
+          <button className="bg-[#2E2E2E] shadow-[0px_2px_16px_rgba(0,162,141,0.9)] py-2 px-2 rounded-full h-14 w-14 flex items-center justify-center">
+            <img src={profile1} className="h-11" />
           </button>
           <button className="bg-[#2E2E2E] shadow-[0px_2px_16px_rgba(0,162,141,0.9)] py-2 px-2 rounded-full   h-14 w-14 flex items-center justify-center">
             <img src={profile3} className="h-11 " />

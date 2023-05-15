@@ -85,7 +85,7 @@ function Welcome() {
             ))}
         </div>
       </div>
-      <Link to={`/game${search}`} className="flex absolute md:relative bottom-[15%] md:bottom-[0%] gap-3 items-center ">
+      <Link to={`/game${search}`} className="flex absolute md:relative bottom-[20%] md:bottom-[0%] gap-3 items-center ">
         <h1 className="text-white ml-10 text-sm md:text-xl">{t('gs')}</h1>
         <img src={LeftArrowIcon} className="w-2/12" />
       </Link>
