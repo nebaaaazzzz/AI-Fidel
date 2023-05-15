@@ -64,10 +64,10 @@ function StartingRight({ header1, header2, btns, firstPage }) {
           </h1>
         </div>
         <div className="flex flex-col items-center justify-center b text-sm md:text-md">
-          <p className="font-[100] block text-center text-sm ">{t('lslwml')}{' '}{t('urcml')}{' '}{t('hps')} </p>
+          <p className="font-[100] block text-center text-xs md:text-sm ">{t('lslwml')}{' '}{t('urcml')}{' '}{t('hps')} </p>
           {/* <p className="font-[100] text-center text-sm block md:hidden ">The platforms that you are going to use for adobe premier pro. </p> */}
         </div>
-        <div className="flex w-11/12 md:mt-5 items-center self-center flex-col md:gap-4 gap-2">
+        <div className="flex w-11/12 mt-2 md:mt-5 items-center self-center flex-col md:gap-4 gap-2">
         {/* className={'btn w-full py-0 h-[10px] text-md md:text-lg capitalize bg-yellow-200 rounded-2xl md:rounded-md`'}> */}
         {/* <div
           className={'bg-yellow-200'}>
