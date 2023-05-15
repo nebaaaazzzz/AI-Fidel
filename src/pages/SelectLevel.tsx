@@ -44,9 +44,9 @@ function SelectLevel() {
     })();
   }, [user]);
   return (
-    <div className="flex flex-col gap-6 items-center md:items-stretch">
+    <div className="flex flex-col gap-6 items-center mt-4 md:mt-0 md:items-stretch">
       <div className="flex bg-whit w-full justify-center md:justify-between items-center md:items-stretch px-0 pl-10 py-2 md:py-4">
-        <div className="absolute md:flex md:relative md:top-0 md:left-0 top-[20px] left-[40px] prose flex-col items-start md:mr-0">
+        <div className="absolute md:flex md:relative md:top-0 md:left-0 top-[25px] left-[40px] prose flex-col items-start md:mr-0">
           <button
             className="flex capitalize justify-between -ml-6"
             onClick={() => navigate(-1)}
