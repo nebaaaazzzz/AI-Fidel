@@ -62,7 +62,7 @@ function SelectHand() {
             ))}
         </div>
       </div>
-      <div className="w-2/3 mt-32 top-[47%] absolute grow opacity-50 flex md:hidden flex-col font-light text-xs text-white text-center">
+      <div className="w-2/3 mt-32 top-[50%] absolute grow opacity-50 flex md:hidden flex-col font-light text-xs text-white text-center">
         <p> {t('cthywtuf')}{' '}{t('fysur')}{' '}{t('dh')}</p>
       </div>
       <div className="flex gap-10 absolute md:relative top-[90%] md:top-[0]">
