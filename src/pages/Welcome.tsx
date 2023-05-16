@@ -26,10 +26,10 @@ function Welcome() {
         <BsArrowLeftShort size={28} />
         <span className=" mt-0.5">{t('bc')}</span>
       </div>
-      <div className='bg'>
+      <div className=''>
         <img
           src={circleDashed}
-          className="absolute md:top-[-6rem] md:right-[-5rem] csl:top-[-9rem] csl:right-[-6rem] cml:top-[-13rem] cml:right-[-7rem] object-contain aspect-square md:w-6/12 w-[400px] right-[-170px]"
+          className="absolute md:top-[-10rem] md:right-[-7rem] csl:top-[-9rem] csl:right-[-6rem] cml:top-[-13rem] cml:right-[-7rem] object-contain aspect-square md:w-6/12 w-[400px] right-[-170px] top-[6rem]"
         />
       </div>
       <div className='absolute md:hidden border-8 z-10 border-white w-[220px] h-[220px] rounded-full top-[-120px] right-[-50px]'></div>

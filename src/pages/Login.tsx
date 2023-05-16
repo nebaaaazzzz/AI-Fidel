@@ -13,7 +13,7 @@ function Login() {
   console.log(user?.user);
   const { t } = useTranslation();
   return (
-    <div className="flex h-screen flex-col md:flex-row overflow-auto p-8 sm:pt-12">
+    <div className="flex h-screen flex-col md:flex-row overflow-hidden p-8 sm:pt-12">
       <StartingLeft path={boy2} />
       <StartingRight
         {...(mode == 'game'

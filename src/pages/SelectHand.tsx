@@ -38,7 +38,7 @@ function SelectHand() {
         <div className=""></div>
         <div className="w-10"></div>
         <div className="flex  gap-5 flex-col items-center">
-          <h1 className="pan font-semibold csl:text-5xl text-4xl text-center [word-spacing:5px] w-3/4 text-white">
+          <h1 className="pan font-semibold csl:text-4xl text-4xl text-center [word-spacing:5px] w-3/4 text-white">
             {t('aylrh')}
           </h1>
           <img className="object-contain w-5/12 " src={handshake} />

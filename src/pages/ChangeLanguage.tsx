@@ -58,7 +58,7 @@ export const ChangeLanguage = () => {
         </div>
       </div>
     </div>
-    <div className="">
+    <div className="mt-24 md:mt-0">
       <div className="flex flex-col gap-5">
           <div className="bg-[#2E2E2E] rounded-md flex  py-2 px-5 justify-center cursor-pointer" onClick={changeLangtoAmh}>
             <div className='flex'>

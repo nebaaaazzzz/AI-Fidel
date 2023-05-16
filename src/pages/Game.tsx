@@ -299,7 +299,7 @@ function Game() {
           selectedLetter={selectedLetter}
           selectedWord={selectedWord}
         />
-        <div className="flex flex-[1] items-center rounded-3xl justify-center h-[40%] md:h-auto w-full cxm:w-[50%] ml-auto mr-auto overflow-hidden md:w-1/2 aspect-square md:rounded-lg cxm:p-0">
+        <div className="flex flex-[1] bg-red-50 max-h-[280px] items-center rounded-3xl justify-center h-[40%] md:h-auto w-full cxm:w-[50%] ml-auto mr-auto overflow-hidden md:w-1/2 aspect-square md:rounded-lg cxm:p-0">
           {isMediaPipeModelLoading && (
             <img
               src={girl}
@@ -311,7 +311,7 @@ function Game() {
             className="input_video hidden w-full aspect-square"
           ></video>
           <canvas
-            className="output_canvas rounded-lg aspect-square w-full object-fill"
+            className="output_canvas rounded-lg aspect-square w-full h-full object-fill"
             style={{
               display: isMediaPipeModelLoading ? 'none' : 'block'
             }}
@@ -321,7 +321,7 @@ function Game() {
       </div>
       {isGameStarted && (
         <div className=" absolute top-[43%] cxs:top-[42%] mt-0 md:mt-4 md:relative md:top-0 w-[80%] cxm:w-[50%] md:w-[90%] flex items-center gap-2 ml-auto mr-auto justify-between md:gap-10 ig:bg-blue-400">
-          <p className='text-xs md:text-[15px] w-[70px] md:w-auto'>
+          <p className='text-xs md:text-[15px] w-[90px] md:w-auto'>
             {moment(
               currentTime - startTime >= 0 ? currentTime - startTime : 0
             ).format('mm : ss')}

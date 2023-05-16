@@ -16,7 +16,7 @@ function RightSideBar() {
   ];
   const modes = [t('education'), t('game')];
   return (
-    <div className="hidden md:flex shrink-0   flex-col items-center gap-1">
+    <div className="hidden cxl:hidden csl:flex shrink-0 flex-col items-center gap-1">
       <Icon />
       <div
         className="flex flex-col md:w-42 mt-3 lg:w-56 items-center px-5 rounded-lg py-2"
