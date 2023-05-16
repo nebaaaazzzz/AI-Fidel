@@ -29,11 +29,11 @@ function Welcome() {
       <div className='bg'>
         <img
           src={circleDashed}
-          className="absolute md:block md:-top-56 md:-right-32 object-contain aspect-square md:w-6/12 w-[400px] top-[100px] right-[-170px]"
+          className="absolute md:top-[-6rem] md:right-[-5rem] csl:top-[-9rem] csl:right-[-6rem] cml:top-[-13rem] cml:right-[-7rem] object-contain aspect-square md:w-6/12 w-[400px] right-[-170px]"
         />
       </div>
       <div className='absolute md:hidden border-8 z-10 border-white w-[220px] h-[220px] rounded-full top-[-120px] right-[-50px]'></div>
-      <div className="absolute md:w-32 w-[300px] aspect-square md:top-32 top-[-100px] md:left-5 left-[-90px] rounded-full  bg-primary"></div>
+      <div className="absolute md:w-32 w-[300px] aspect-square md:top-32 top-[-100px] md:left-0 csl:left-2 cml:left-5 cml:top-[100px] left-[-90px] rounded-full  bg-primary"></div>
       <div className="grow text-4xl cxm:text-5xl cxl:top-[17%] cxl:text-6xl md:top-[25%] md:text-5xl absolute md:hidden text-white text-center flex flex-col top-[25%]">
         <h1 className="m-1 font-semibold text-white">{t('welcome')} </h1>
         <h1 className="m-1 font-semibold text-white">{t('to your')} </h1>

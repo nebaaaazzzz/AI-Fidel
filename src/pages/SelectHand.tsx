@@ -38,7 +38,7 @@ function SelectHand() {
         <div className=""></div>
         <div className="w-10"></div>
         <div className="flex  gap-5 flex-col items-center">
-          <h1 className="pan font-semibold text-5xl text-center [word-spacing:5px] w-3/4 text-white">
+          <h1 className="pan font-semibold csl:text-5xl text-4xl text-center [word-spacing:5px] w-3/4 text-white">
             {t('aylrh')}
           </h1>
           <img className="object-contain w-5/12 " src={handshake} />
@@ -62,10 +62,10 @@ function SelectHand() {
             ))}
         </div>
       </div>
-      <div className="w-2/3 mt-36 cxl:mt-40 top-[50%] absolute grow opacity-50 flex md:hidden flex-col font-light text-xs text-white text-center">
+      <div className="w-2/3 cxl:w-1/3 mt-36 cxl:mt-40 top-[50%] absolute grow opacity-50 flex md:hidden flex-col font-light text-xs text-white text-center">
         <p> {t('cthywtuf')}{' '}{t('fysur')}{' '}{t('dh')}</p>
       </div>
-      <div className="flex gap-10 absolute md:relative top-[90%] md:top-[0]">
+      <div className="flex gap-10 absolute md:relative top-[90%] cxl:top-[92%] md:top-[0]">
         {[t('left'), t('right')].map((hand, i) => {
           return (
             <Link
