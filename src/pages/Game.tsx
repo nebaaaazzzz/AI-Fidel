@@ -320,8 +320,8 @@ function Game() {
         </div>
       </div>
       {isGameStarted && (
-        <div className=" absolute top-[43%] cxs:top-[42%] md:relative md:top-0 w-[80%] cxm:w-[50%] md:w-[90%] flex items-center gap-2 ml-auto mr-auto justify-between md:gap-10 ig:bg-blue-400">
-          <p className='text-xs md:text-xl w-[70px] md:w-auto'>
+        <div className=" absolute top-[43%] cxs:top-[42%] mt-0 md:mt-4 md:relative md:top-0 w-[80%] cxm:w-[50%] md:w-[90%] flex items-center gap-2 ml-auto mr-auto justify-between md:gap-10 ig:bg-blue-400">
+          <p className='text-xs md:text-[15px] w-[70px] md:w-auto'>
             {moment(
               currentTime - startTime >= 0 ? currentTime - startTime : 0
             ).format('mm : ss')}
@@ -337,7 +337,7 @@ function Game() {
       {!isMediaPipeModelLoading ? (
         <button
           onClick={handleSkip}
-          className="md:mt-10 mt-0 btn-primary h-[30px] md:h-[45px] pb-[10px] pt-[5px] md:p-0 md:relative absolute bottom-[11%] mr-auto ml-auto md:bottom-0 md:right-0 rounded-md btn-wide "
+          className="md:mt-10 mt-0 w-[90%] cxs:w-[50%] btn-primary h-[30px] md:h-[40px] pb-[10px] pt-[5px] md:p-0 md:relative absolute bottom-[11%] mr-auto ml-auto md:bottom-0 md:right-0 rounded-md"
         >
           {t('skip')}{' '}
         </button>
