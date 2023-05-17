@@ -19,6 +19,7 @@ import { getLevelAmharicWords } from '@/utils/amharicindex';
 import reactToDOMCursor from '@/HandUtils/reactToDom';
 import { storeSessionInfo } from '@/utils/localsession';
 import TimerProgress from '@components/TimerProgress';
+import Modal from '@/components/Modal/Modal';
 import moment from 'moment';
 import Percentage from '@/components/Percentage';
 import { useTranslation } from 'react-i18next';
@@ -102,11 +103,13 @@ function Game() {
   const handleSkip = () => {
     //level compelted go to level completed page
 
-    if (wordIndex == levelWords.length - 1) {
+    if (wordIndex >= levelWords.length - 1) {
       navigate(`/level-completed${search}&points=${score}`);
       score = 0;
-      setSe(se + 1);
     }
+    setTimeout(() => {
+      skipPrediction = false;
+    }, 1000);
     if (currentWordLength == selectedWord?.length && selectedWord) {
       setSelectWord(levelWords[wordIndex + 1]);
       setCurrentWordLength(1);
@@ -185,19 +188,22 @@ function Game() {
 
             if (response.countCorrectFingers == 5) {
               //stop detecting hand this value change after a delay
-              skipPrediction = true;
               score++;
               skipPrediction = true;
               //this time out to delay change of current letter after detecting the hand
               setTimeout(() => {
+                setLookForLetter(null);
                 handleSkip();
-              }, 400);
-            } else if (response?.message) {
+              }, 200);
+            } else {
+              setLookForLetter(response?.lookForLetter);
+
               // console.log(response.message);
             }
-            if (response?.lookForLetter) {
-              setLookForLetter(response?.lookForLetter);
-            }
+          } else {
+            // setTimeout(()=>{
+            //    setLookForLetter(null);
+            // }, 600)
           }
         } else {
           setLookForLetter(null);
@@ -211,12 +217,7 @@ function Game() {
   const hands = useMemo(() => {
     let hands = new window.Hands({
       locateFile: (file) => {
-        try {
-          console.log(file);
-          return `/src/mediapipe/hands/${file}`;
-        } catch (error) {
-          console.log(error);
-        }
+        return `/src/mediapipe/hands/${file}`;
       }
     });
     hands.setOptions({
@@ -241,9 +242,7 @@ function Game() {
       hands.onResults(onResults);
     }
     if (countPrediction != 0) {
-      setTimeout(() => {
-        skipPrediction = false;
-      }, 2000);
+      // to fast predict the next letter decrease time
     }
     let intervalId = setInterval(() => {
       if (startTime) {
@@ -269,6 +268,7 @@ function Game() {
 
       if (isGameStarted) {
         setSelectWord(levelWords[0]);
+        setShowModal(true);
         setSelectedLetter(levelWords[0][0]);
         setTimeout(() => {
           setShowModal(false);
@@ -277,8 +277,13 @@ function Game() {
     })();
   }, [isGameStarted]);
   useEffect(() => {
-    console.log(se);
-  }, [se]);
+    const twoMinutesInMilliseconds = 120000; // 2 minutes in milliseconds
+    const elapsedTime = currentTime - startTime;
+
+    if (elapsedTime >= twoMinutesInMilliseconds) {
+      handleSkip();
+    }
+  }, [currentTime, startTime]);
   const percentage = (((currentTime - startTime) / 180000) * 100).toFixed(2);
   // if (percentage >= 100) {
   //   handleSkip();
@@ -286,6 +291,7 @@ function Game() {
   return (
     <div className="flex flex-col  items-center">
       <div className="flex gap-10  w-10/12 relative">
+        {showModal && <Modal wordIndex={wordIndex} nextWord={selectedWord} />}
         <PlaceYourHand
           isMediaPipeModelLoading={isMediaPipeModelLoading}
           isGameStarted={isGameStarted}
@@ -319,24 +325,30 @@ function Game() {
         </div>
       </div>
       {isGameStarted && (
-        <div className="flex items-center gap-10">
-          <p>
-            {moment(
-              currentTime - startTime >= 0 ? currentTime - startTime : 0
-            ).format('mm : ss')}
-          </p>
-          <TimerProgress percentage={percentage} />
-          <Percentage
-            lookForLetter={lookForLetter}
-            skipPrediction={skipPrediction}
-          />
-          {/* <p>{percentage}%</p> */}
-        </div>
+        <>
+          <div
+            className={`flex items-center gap-10 ${
+              showModal ? ' mt-8' : null
+            } $`}
+          >
+            <p>
+              {moment(
+                currentTime - startTime >= 0 ? currentTime - startTime : 0
+              ).format('mm : ss')}
+            </p>
+            <TimerProgress percentage={percentage} />
+            <Percentage
+              lookForLetter={lookForLetter}
+              skipPrediction={skipPrediction}
+            />
+            {/* <p>{percentage}%</p> */}
+          </div>
+        </>
       )}
       {!isMediaPipeModelLoading ? (
         <button
           onClick={handleSkip}
-          className="btn mt-10 btn-primary rounded-md btn-wide "
+          className="btn mt-10 btn-primary rounded-md w-[64%]"
         >
           {t('skip')}{' '}
         </button>
