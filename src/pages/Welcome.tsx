@@ -4,19 +4,28 @@ import { AiOutlineInstagram } from 'react-icons/ai';
 import { GrFacebookOption } from 'react-icons/gr';
 import { ImTwitter } from 'react-icons/im';
 import circleDashed from '@assets/images/circle-dashed.png';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import LeftArrowIcon from '@assets/icons/left-arrow.png';
 import { useTranslation } from 'react-i18next';
 import { AuthContext } from '@/context/AuthContext';
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 const socialMediaIcons = [AiOutlineInstagram, GrFacebookOption, ImTwitter];
 import { useNavigate } from 'react-router-dom';
 
-function Welcome() {
+const Welcome = () => {
   const { search } = useLocation();
+  const [isLevelOne, setIsLevelOne] = useState(false);
   const user = useContext(AuthContext);
   const { t } = useTranslation();
   const navigate = useNavigate();
+
+  const level = useSearchParams()[0].get('level');
+  useEffect(() => {
+    if (level == '1') {
+      setIsLevelOne(true);
+      console.log(isLevelOne);
+    }
+  }, [isLevelOne]);
   return (
     <div className="flex gap-5 mt-20 relative  h-[calc(100vh-64px)] flex-col w-full  items-center">
       <div
@@ -51,13 +60,15 @@ function Welcome() {
             }}
           >
             <img
-              src={user?.dbUser ? user?.dbUser.photoURL : profile}
+              src={user?.user ? user?.photo : localStorage.getItem('photo')}
               className="object-contain aspect-square w-full rounded-full"
             />
           </div>
           <div className="grow text-2xl  text-white text-center flex flex-col my-10">
             <h1 className="m-1 font-semibold text-white">{t('welcome')} </h1>
-            <h1 className="m-1 font-semibold text-white">{t('to your')} </h1>
+            <h1 className="m-1 font-semibold text-white">
+              {isLevelOne ? t('tyrf') : t('tyr')}
+            </h1>
             <h1 className="m-1 font-semibold text-white">{t('lesson')}</h1>
           </div>
         </div>
@@ -83,6 +94,6 @@ function Welcome() {
       </Link>
     </div>
   );
-}
+};
 
 export default Welcome;
