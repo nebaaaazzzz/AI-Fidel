@@ -20,10 +20,22 @@ function autoGenerateUsername() {
   return `Guest${random}`;
 }
 const avatarUrls = [
-  'https://res.cloudinary.com/etmedia/image/upload/v1681508368/avatar3_gkgc7n.png',
-  'https://res.cloudinary.com/etmedia/image/upload/v1681508368/avatar2_qpyenc.png',
-  'https://res.cloudinary.com/etmedia/image/upload/v1681508368/avatar4_kvml4s.png',
-  'https://res.cloudinary.com/etmedia/image/upload/v1681508368/avatar1_xvx2pg.png'
+  'https://res.cloudinary.com/dkwc18qwr/image/upload/v1683970014/person1_ho3kbr.png',
+  'https://res.cloudinary.com/dkwc18qwr/image/upload/v1683970014/person2_dh2g7c.png',
+  'https://res.cloudinary.com/dkwc18qwr/image/upload/v1683970014/person3_vzk4de.png',
+  'https://res.cloudinary.com/dkwc18qwr/image/upload/v1683970014/person4_aiqinm.png',
+  'https://res.cloudinary.com/dkwc18qwr/image/upload/v1683970014/person5_ijaiyp.png',
+  'https://res.cloudinary.com/dkwc18qwr/image/upload/v1683970014/person6_r3iqg5.png',
+  'https://res.cloudinary.com/dkwc18qwr/image/upload/v1683970015/person7_wr9lop.png',
+  'https://res.cloudinary.com/dkwc18qwr/image/upload/v1683970015/person8_cduptd.png',
+  'https://res.cloudinary.com/dkwc18qwr/image/upload/v1683970015/person9_abuymc.png',
+  'https://res.cloudinary.com/dkwc18qwr/image/upload/v1683970015/person10_ujer0g.png',
+  'https://res.cloudinary.com/dkwc18qwr/image/upload/v1683970015/person11_uziupx.png',
+  'https://res.cloudinary.com/dkwc18qwr/image/upload/v1683970015/person12_u0ulud.png',
+  'https://res.cloudinary.com/dkwc18qwr/image/upload/v1683970016/person13_lve8zw.png',
+  'https://res.cloudinary.com/dkwc18qwr/image/upload/v1683970016/person14_nsrder.png',
+  'https://res.cloudinary.com/dkwc18qwr/image/upload/v1683970016/person15_xlkjv2.png',
+  'https://res.cloudinary.com/dkwc18qwr/image/upload/v1683970015/person16_bqz8un.png'
 ];
 function SelectProfile() {
   const user = useContext(AuthContext);
@@ -46,46 +58,57 @@ function SelectProfile() {
   const [userNameUpdated, setUsernameUpdated] = useState(false);
   const { search } = useLocation();
   const [selectedAvatarIndex, setSelectedAvatarIndex] = useState<number>();
+  console.log(user);
   return (
     <div className="flex">
       <div className=" h-screen flex flex-col items-end justify-around  flex-[1] px-20">
         <h2 className="text-xl self-center mt-5 text-white">{t('spa')}</h2>
         <div className="custom-glass w-11/12 flex flex-wrap gap-10 p-5 justify-center">
-          {[1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4].map((i, index) => (
-            <button
-              onClick={() => {
-                setSelectedAvatar(avatarUrls[i - 1]);
-                setSelectedAvatarIndex(index);
-                if (user?.user) {
-                  const docRef = doc(db, 'users', user.id);
-                  setDoc(docRef, { photo: avatarUrls[i - 1] }, { merge: true });
-                } else {
-                  //TODO store in localstorage for guest user
-                }
-              }}
-              key={index}
-              style={{
-                background: '#2E2E2E',
-                boxShadow:
-                  index == selectedAvatarIndex
-                    ? '0px 0px 26px 4px #FFAF52'
-                    : '0px 0px 12px 4px #00A28D'
-              }}
-              className="rounded-full px aspect-square w-20 flex items-center justify-center"
-            >
-              {' '}
-              <img
-                className="w-2/3 aspect-1/1 object contain"
-                src={avatarUrls[i - 1]}
-                alt=""
-              />
-              {/* <img
+          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16].map(
+            (i, index) => (
+              <button
+                onClick={async () => {
+                  setSelectedAvatar(avatarUrls[i - 1]);
+                  setSelectedAvatarIndex(index);
+                  if (user?.user) {
+                    const docRef = doc(db, 'users', user.id);
+                    await setDoc(
+                      docRef,
+                      { photo: avatarUrls[i - 1] },
+                      { merge: true }
+                    ).then((res) => {
+                      user.photo = avatarUrls[i - 1];
+                    });
+                  } else {
+                    //TODO store in localstorage for guest user
+                    localStorage.setItem('photo', avatarUrls[i - 1]);
+                    localStorage.setItem('displayName', username);
+                  }
+                }}
+                key={index}
+                style={{
+                  background: '#2E2E2E',
+                  boxShadow:
+                    index == selectedAvatarIndex
+                      ? '0px 0px 26px 4px #FFAF52'
+                      : '0px 0px 12px 4px #00A28D'
+                }}
+                className="rounded-full px aspect-square w-20 flex items-center justify-center"
+              >
+                {' '}
+                <img
+                  className="w-2/3 aspect-1/1 object contain"
+                  src={avatarUrls[i - 1]}
+                  alt=""
+                />
+                {/* <img
                 className="w-2/3 aspect-1/1 object contain"
                 src={`/images/avatar/avatar${i}.png`}
                 alt=""
               /> */}
-            </button>
-          ))}
+              </button>
+            )
+          )}
         </div>
         <div className="self-center relative -top-5">
           <LogoWithTextSM />
@@ -125,6 +148,7 @@ function SelectProfile() {
                         );
                       } else {
                         //TODO store in localstorage for guest user
+                        localStorage.setItem('displayName', username);
                       }
                     }
                     setUsernameUpdated(false);
@@ -178,12 +202,12 @@ function SelectProfile() {
               );
             })}
             <button
-              className="btn w-full capitalize rounded-md text-lg border-[#fff] justify-between"
+              className="btn flex w-full capitalize rounded-md text-lg border-[#fff] justify-center relative"
               onClick={() => navigate(-1)}
             >
-              <BsArrowLeftShort />
+              <BsArrowLeftShort className="absolute left-5" />
               {/* <img src={leftArrow} alt="" className="h-4 w-4" /> */}
-              <span>{t('bc')}</span>
+              <span className=" ml-7">{t('bc')}</span>
               <div></div>
             </button>
           </div>
