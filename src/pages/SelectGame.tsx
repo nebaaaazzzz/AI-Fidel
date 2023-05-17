@@ -19,8 +19,8 @@ function SelectGame() {
     <div className="flex h-screen">
       <StartingLeft path={boy3} />
       <StartingRight
-        header1={'Welcome'}
-        header2={'back'}
+        header1={t('welcome')}
+        header2={t('bc')}
         firstPage="true"
         btns={[
           ...(configuration?.level

@@ -10,7 +10,6 @@ function Login() {
   const mode = useSearchParams()[0].get('mode');
   const { search } = useLocation();
   const user = useContext(AuthContext);
-  console.log(user?.user);
   const { t } = useTranslation();
   return (
     <div className="flex h-screen">

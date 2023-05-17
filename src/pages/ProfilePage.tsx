@@ -1,12 +1,12 @@
 import { RxInstagramLogo } from 'react-icons/rx';
 import { RiFacebookFill } from 'react-icons/ri';
-import { SiTwitter } from 'react-icons/si';
+import { SiSteelseries, SiTwitter } from 'react-icons/si';
 import { MdKeyboardArrowDown } from 'react-icons/md';
 import { MdArrowBack } from 'react-icons/md';
 import { MdKeyboardArrowLeft } from 'react-icons/md';
 import { MdKeyboardArrowRight } from 'react-icons/md';
 import { MdModeEdit } from 'react-icons/md';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { getFirestore, doc, setDoc, getDoc } from 'firebase/firestore';
 import profile1 from '@assets/EditProfile/profile1.png';
 import profile2 from '@assets/EditProfile/profile2.png';
@@ -23,16 +23,27 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useContext } from 'react';
 import { AuthContext } from '@/context/AuthContext';
+import { use } from 'i18next';
 
 const ProfilePage = () => {
   const user = useContext(AuthContext);
 
   const [currentProfile, setCurrentProfile] = useState(profile1);
+  const [currentProfileLink, setCurrentProfileLink] = useState('');
+  const [s, setS] = useState(true);
+
   const handleChangeProfile = async (profileImage) => {
-    const docRef = doc(db, 'users', user.id);
-    setDoc(docRef, { photo: profileImage.imgLink }, { merge: true });
-    const docSnap = await getDoc(docRef);
+    setS(false);
     setCurrentProfile(profileImage.profile);
+    setCurrentProfileLink(profileImage.imgLink);
+  };
+
+  useEffect(() => {}, [user]);
+
+  const save = async () => {
+    console.log(currentProfileLink);
+    const docRef = await doc(db, 'users', user.id);
+    setDoc(docRef, { photo: currentProfileLink }, { merge: true });
   };
   const profileImages = [
     {
@@ -96,7 +107,10 @@ const ProfilePage = () => {
         </div>
         <div className="flex">
           <button className="bg-[#2E2E2E] shadow-[0px_2px_20px_rgba(255,175,82,1)] py-2 px-2 rounded-full h-36 w-36 flex items-center justify-center">
-            <img src={currentProfile} className=" w-11/12" />
+            <img
+              src={user?.user && s ? user.photo : localStorage.getItem('photo')}
+              className=" w-11/12"
+            />
           </button>
           <div className="mt-[4rem] ml-3"></div>
         </div>
@@ -148,13 +162,20 @@ const ProfilePage = () => {
         <div className=" rounded-md  bg-[#2E2E2E] flex  py-2 px-5 justify-between">
           <div></div>
           <div>
-            <h1 className="text-[#FFF] text-lg   font-bold">Ablaze</h1>
+            <h1 className="text-[#FFF] text-lg   font-bold">
+              {user?.user
+                ? user.displayName
+                : localStorage.getItem('displayName')}
+            </h1>
           </div>
           <div className=" mt-[4px]">
             <MdModeEdit />
           </div>
         </div>
-        <div className="flex justify-between mt-5 bg-[#008867] py-2 px-3 rounded-md ">
+        <div
+          className="flex justify-between mt-5 bg-[#008867] py-2 px-3 rounded-md  cursor-pointer"
+          onClick={save}
+        >
           <div className=" mt-[4px]"></div>
           <div className="px-7" style={{ marginLeft: '-17px' }}>
             <h1 className="text-[#FFF]  text-base font-semibold">{t('sv')}</h1>

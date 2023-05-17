@@ -75,13 +75,13 @@ function SelectLevel() {
           >
             {user ? (
               <img
-                src={user.photo}
+                src={user?.user ? user?.photo : localStorage.getItem('photo')}
                 alt="user profile picture"
                 className="object-contain w-2/3 rounded-full"
               />
             ) : (
               <img
-                src={profile}
+                src={user?.user ? user?.photo : localStorage.getItem('photo')}
                 alt="user profile picture"
                 className="object-contain w-full rounded-full"
               />
@@ -122,7 +122,7 @@ function buildLevelButtons(
             >
               <div></div>
               <p className=" capitalize">
-                {t('level')} {i}
+                {t('l')} {i}
               </p>
               <AiFillUnlock fontSize={20} color="white" />
             </Link>
@@ -136,7 +136,7 @@ function buildLevelButtons(
             >
               <div></div>
               <p className="text-white capitalize">
-                {t('level')} {i}
+                {t('l')} {i}
               </p>
               <MdLock fontSize={20} color="white" />
             </button>
@@ -155,7 +155,7 @@ function buildLevelButtons(
               className="btn btn-accent rounded-md flex justify-center px-5"
             >
               <p className="">
-                {t('level')} {i}
+                {t('l')} {i}
               </p>
             </Link>
           );
