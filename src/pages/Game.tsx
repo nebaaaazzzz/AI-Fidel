@@ -299,7 +299,7 @@ function Game() {
           selectedLetter={selectedLetter}
           selectedWord={selectedWord}
         />
-        <div className="flex flex-[1] bg-red-50 max-h-[280px] items-center rounded-3xl justify-center h-[40%] md:h-auto w-full cxm:w-[50%] ml-auto mr-auto overflow-hidden md:w-1/2 aspect-square md:rounded-lg cxm:p-0">
+        <div className="flex flex-[1] ig:bg-red-50 max-h-[280px] items-center rounded-3xl justify-center h-[40%] md:h-auto w-full cxm:w-[70%] cvs:w-[50%] ml-auto mr-auto overflow-hidden md:w-1/2 aspect-square md:rounded-lg cxm:p-0">
           {isMediaPipeModelLoading && (
             <img
               src={girl}

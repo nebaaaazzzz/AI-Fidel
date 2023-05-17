@@ -6,6 +6,7 @@ module.exports = {
       screens: {
         'cxs': '344px',
         'cxm': '399px',
+        'cvs': '540px',
         'cxl': '640px',
         'csl': '920px',
         'cml': '1030px',
