@@ -337,7 +337,7 @@ function Game() {
       {!isMediaPipeModelLoading ? (
         <button
           onClick={handleSkip}
-          className="md:mt-10 mt-0 w-[90%] cxm:w-[50%] btn-primary h-[30px] md:h-[40px] pb-[10px] pt-[5px] md:p-0 md:relative absolute bottom-[11%] mr-auto ml-auto md:bottom-0 md:right-0 rounded-md"
+          className="md:mt-10 mt-0 w-[90%] cxm:w-[70%] cvs:w-[50%] btn-primary h-[30px] md:h-[40px] pb-[10px] pt-[5px] md:p-0 md:relative absolute bottom-[11%] mr-auto ml-auto md:bottom-0 md:right-0 rounded-md"
         >
           {t('skip')}{' '}
         </button>

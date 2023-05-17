@@ -39,7 +39,7 @@ function GameLeftSide({
     );
   }
   return (
-    <div className="border-2 flex flex-col self-center border-primary  items-center justify-center rounded-lg p-5">
+    <div className="border-2 rounded-3xl h-[240px] md:h-[280px] relative w-full cxm:w-[70%] cvs:w-[50%] md:w-full gap-5 md:pt-12 mt-2 md:mt-0 overflow-hidden  flex flex-[1] flex-col md:flex-col self-center border-primary  items-center justify-center md:rounded-lg p-4">
       <img src={hand} className="object-contain w-[50%] aspect-square" />
     </div>
   );
