@@ -83,13 +83,12 @@ function StartingRight({ header1, header2, btns, firstPage }) {
           })}
           {firstPage ? (
             <button
-              className="btn w-full capitalize rounded-md text-lg border-[#fff] justify-between"
+              className="relative btn w-full capitalize rounded-md text-lg border-[#fff] justify-center"
               onClick={() => navigate(-1)}
             >
-              <BsArrowLeftShort />
+              <BsArrowLeftShort className="absolute left-5" />
               {/* <img src={leftArrow} alt="" className="h-4 w-4" /> */}
               <span>{t('bc')}</span>
-              <div></div>
             </button>
           ) : null}
         </div>
