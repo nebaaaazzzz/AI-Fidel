@@ -15,23 +15,14 @@ function Modal({
     };
   }, []);
   return (
-    <div
-      style={{
-        width: '100vw',
-        height: '100vh',
-        backgroundColor: 'rgba(0,0,0,0.6)'
-      }}
-      className="absolute z-40   flex items-center justify-center"
-    >
-      <div className="text-white shadow-2xl bg-[#683aff] w-8/12 h-5/6 opacity-100 flex items-center justify-around flex-col z-50 text-bold text-2xl">
-        <div></div>
-        <div className="flex flex-col gap-5">
-          <h6 className="text-4xl">Spell The word</h6>
-          <p className="text-9xl capitalize">{nextWord}</p>
+    <div className="absolute z-40   flex items-center justify-center  w-[100%] h-[100%] bg-black bg-opacity-70">
+      <div className="text-white shadow-2xl bg-[#000] w-[100%] h-[100%] opacity-100 flex items-center justify-center flex-col z-50 text-bold text-2xl  bg-opacity-50 border-[#F8B936] border-[3px] rounded-md">
+        <div className="flex items-center justify-center  bg-[#F8B936] rounded-md w-[45%] h-[25%]">
+          <p className=" text-5xl font-extrabold capitalize text-[#000]">
+            {nextWord}
+          </p>
         </div>
-        <div></div>
-        <p>Word {wordIndex + 1} of 10 </p>
-        <p ref={loadingRef} className="bg-[#fff] h-2 "></p>
+        {/* <p ref={loadingRef} className="bg-[#fff] h-2 "></p> */}
       </div>
     </div>
   );
