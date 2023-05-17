@@ -8,7 +8,7 @@ function Percentage({
   lookForLetter: AlphabetDefinationI | null;
   skipPrediction: boolean;
 }) {
-  if (!lookForLetter || skipPrediction) {
+  if (!lookForLetter) {
     return <p className="text-white text-xl">{0}%</p>;
   }
   let sum =
