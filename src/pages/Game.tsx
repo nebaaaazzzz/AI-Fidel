@@ -85,7 +85,6 @@ function Game() {
   const [currentWordLength, setCurrentWordLength] = useState(1);
   const [selectedWord, setSelectWord] = useState<string>();
   const [selectedLetter, setSelectedLetter] = useState<string>();
-  const [se, setSe] = useState<number>(0);
 
   /**
    * @description TO to show modal after each word completion
@@ -233,7 +232,7 @@ function Game() {
       setShowModal(true);
       setTimeout(() => {
         setShowModal(false);
-      }, 1000);
+      }, 1500);
     }
   }, [wordIndex]);
   useEffect(() => {
