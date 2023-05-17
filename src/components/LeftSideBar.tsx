@@ -8,10 +8,15 @@ import { Link } from 'react-router-dom';
 import { handAtom } from '../store/store';
 import { langAtom } from '../store/store';
 import { useAtom } from 'jotai';
+import { AuthContext } from '@/context/AuthContext';
+import { useContext } from 'react';
+import { useEffect } from 'react';
 
 function LeftSideBar() {
   const [lang] = useAtom(langAtom);
   const [hand] = useAtom(handAtom);
+  const user = useContext(AuthContext);
+
   const images = [
     { image: appIcon, to: '/' },
     {
@@ -24,9 +29,11 @@ function LeftSideBar() {
     },
     { image: editIcon, to: '/trial' },
     { image: trophyIcon, to: '/final-score-board' },
-    { image: avatarIcon, to: '/edit-profile' }
+    {
+      image: user?.user ? user.photo : localStorage.getItem('photo'),
+      to: '/edit-profile'
+    }
   ];
-
   return (
     <div
       style={{
