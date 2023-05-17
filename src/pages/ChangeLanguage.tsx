@@ -33,8 +33,8 @@ export const ChangeLanguage = () => {
   }
   return (
     <div className="m-8 md:m-0">
-    <div className="profile-glass flex items-center justify-between space px-8 pt-6 rounded-md  mb-8">
-      <div></div>
+    <div className="profile-glass flex items-center justify-center md:justify-between space px-8 pt-6 rounded-md  mb-8">
+      <div className='hidden md:block'></div>
       <div className="">
         <button className="bg-[#2E2E2E] shadow-[0px_2px_20px_rgba(255,175,82,1)] py-2 px-2 ml-7 rounded-full h-36 w-36 flex items-center justify-center">
           <img src={profile} className=" w-11/12" />

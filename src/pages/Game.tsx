@@ -299,7 +299,7 @@ function Game() {
           selectedLetter={selectedLetter}
           selectedWord={selectedWord}
         />
-        <div className="flex flex-[1] ig:bg-red-50 max-h-[280px] items-center rounded-3xl justify-center h-[40%] md:h-auto w-full cxm:w-[70%] cvs:w-[50%] ml-auto mr-auto overflow-hidden md:w-1/2 aspect-square md:rounded-lg cxm:p-0">
+        <div className="flex flex-[1] ig:bg-red-50 max-h-[280px] items-center rounded-3xl justify-center h-[40%] md:h-auto w-[300px] ml-auto mr-auto overflow-hidden md:w-1/2 aspect-square md:rounded-lg cxm:p-0">
           {isMediaPipeModelLoading && (
             <img
               src={girl}
@@ -337,7 +337,7 @@ function Game() {
       {!isMediaPipeModelLoading ? (
         <button
           onClick={handleSkip}
-          className="md:mt-10 mt-0 w-[90%] cxm:w-[70%] cvs:w-[50%] btn-primary h-[30px] md:h-[40px] pb-[10px] pt-[5px] md:p-0 md:relative absolute bottom-[11%] mr-auto ml-auto md:bottom-0 md:right-0 rounded-md"
+          className="md:mt-10 mt-0 w-[90%] cxm:w-[300px] btn-primary h-[30px] md:h-[40px] pb-[10px] pt-[5px] md:p-0 md:relative absolute bottom-[11%] mr-auto ml-auto md:bottom-0 md:right-0 rounded-md"
         >
           {t('skip')}{' '}
         </button>

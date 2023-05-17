@@ -6,7 +6,7 @@ function Header() {
   const { t } = useTranslation();
   const links = [t('fw'), t('hp'), t('insp'), t('cmty'), t('mkt')];
   return (
-    <div className="navbar px-0 mb-10 hidden md:flex ">
+    <div className="navbar px-0 mb-10 hidden csl:flex ">
       <LogoWithTextSM />
       <div className="flex-1 justify-center gap-10 px-4">
         {links.map((link, index) => {

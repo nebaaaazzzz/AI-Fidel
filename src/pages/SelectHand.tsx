@@ -24,7 +24,7 @@ function SelectHand() {
         <span>{t('bc')}</span>
         <div></div>
       </button>
-      <div className='absolute md:hidden border-8 border-white cxs:w-[240px] w-[200px] cxs:h-[240px] h-[200px] rounded-full cxs:top-[-60px] top-[-90px] right-[-50px]'></div>
+      <div className='absolute md:hidden border-8 border-white cxs:w-[240px] w-[200px] cxs:h-[240px] h-[200px] rounded-full cxs:top-[-60px] top-[-70px] right-[-50px]'></div>
       <img
         src={circleDashed}
         className="absolute block md:hidden object-contain aspect-square cxs:w-[350px] w-[300px] cxs:left-[-120px] left-[-120px] cxs:top-[-50px] top-[-60px]"
