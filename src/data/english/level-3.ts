@@ -12,19 +12,16 @@ export default [
   'for',
   'pet',
   'act',
-  'got',
+
   'pat',
   'ask',
-  'get',
-  'peg',
+
   'arm',
-  'god',
+
   'paw',
-  'age',
-  'gel',
+
   'pup',
-  'ago',
-  'gas',
+
   'pit',
   'air',
   'hat',
@@ -43,8 +40,7 @@ export default [
   'rat',
   'bad',
   'her',
-  'rag',
-  'big',
+
   'his',
   'rub'
 ];
