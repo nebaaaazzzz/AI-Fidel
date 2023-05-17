@@ -9,12 +9,15 @@ import { useAtom } from 'jotai';
 import { langAtom } from '../store/store';
 import { useState } from 'react';
 import { TiTick } from 'react-icons/ti';
+import { AuthContext } from '@/context/AuthContext';
+import { useContext } from 'react';
 
 export const ChangeLanguage = () => {
   const { i18n } = useTranslation();
   const [lang, setLang] = useAtom(langAtom);
   const [amharic, setAmharic] = useState(false);
   const [english, setEnglish] = useState(true);
+  const user = useContext(AuthContext);
   const changeLangtoAmh = () => {
     i18n.changeLanguage('am');
     setLang('am');
@@ -37,11 +40,16 @@ export const ChangeLanguage = () => {
         <div></div>
         <div className="">
           <button className="bg-[#2E2E2E] shadow-[0px_2px_20px_rgba(255,175,82,1)] py-2 px-2 ml-7 rounded-full h-36 w-36 flex items-center justify-center">
-            <img src={profile} className=" w-11/12" />
+            <img
+              src={user?.user ? user.photo : localStorage.getItem('photo')}
+              className=" w-11/12"
+            />
           </button>
           <div className="mt-6 text-center mb-1">
             <h1 className="text-center text-[#FFF] font-bold text-lg px-6 ml-5">
-              Ablaze Labs
+              {user?.user
+                ? user.displayName
+                : localStorage.getItem('displayName')}
             </h1>
           </div>
         </div>
