@@ -172,12 +172,12 @@ function SelectProfile() {
             {user?.user && !Boolean(selectedAvatar) ? (
               <img
                 src={user.photo}
-                className="w-2/3 object-contain"
+                className="object-contain w-2/3 rounded-full"
                 alt="user profile picture"
               />
             ) : (
               <img
-                className="w-2/3 object-contain"
+                className="object-contain w-2/3 rounded-full"
                 src={selectedAvatar ? selectedAvatar : avatar}
               />
             )}

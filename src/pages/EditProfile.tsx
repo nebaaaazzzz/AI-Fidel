@@ -54,7 +54,7 @@ const EditProfile = () => {
               <button className="bg-[#2E2E2E] shadow-[0px_2px_20px_rgba(255,175,82,1)] py-2 px-2 ml-7 rounded-full h-36 w-36 flex items-center justify-center">
                 <img
                   src={user?.user ? user.photo : localStorage.getItem('photo')}
-                  className=" w-11/12"
+                  className="object-contain w-3/4 rounded-full"
                 />
               </button>
               <div className="mt-6 text-center mb-1">
