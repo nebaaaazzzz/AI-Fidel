@@ -154,7 +154,7 @@ function buildLevelButtons(
               key={i}
               className="btn btn-accent rounded-md flex justify-center px-5"
             >
-              <p className="">
+              <p className=" capitalize">
                 {t('l')} {i}
               </p>
             </Link>
