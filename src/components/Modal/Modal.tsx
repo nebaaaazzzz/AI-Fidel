@@ -22,7 +22,7 @@ function Modal({
             {nextWord}
           </p>
         </div>
-        <p ref={loadingRef} className="bg-[#fff] h-2 "></p>
+        {/* <p ref={loadingRef} className="bg-[#fff] h-2 "></p> */}
       </div>
     </div>
   );
