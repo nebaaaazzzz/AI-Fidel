@@ -39,7 +39,7 @@ function LeftSideBar() {
         background:
           'linear-gradient(104.13deg, rgba(78, 78, 78, 0.4) 17.81%, rgba(52, 52, 52, 0.45) 90.16%)'
       }}
-      className="fixed z-10  flex flex-row top-[90vh] md:top-[90vh] mx-auto left-0 right-0 w-[calc(100vw-2rem)]  shrink-0 px-3  justify-between py-4 csl:w-14 csl:static csl:flex-col csl:h-[500px]"
+      className="fixed z-10 transition-all flex flex-row top-[90vh] md:top-[90vh] mx-auto left-0 right-0 w-[calc(100vw-2rem)]  shrink-0 px-3  justify-between py-4 csl:w-14 csl:static csl:flex-col csl:h-[500px]"
     >
       {images.map(({ image, to }, index) => {
         return (

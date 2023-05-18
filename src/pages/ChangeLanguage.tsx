@@ -36,10 +36,10 @@ export const ChangeLanguage = () => {
   }
   return (
     <div className="m-8 md:m-0">
-      <div className="profile-glass flex items-center justify-between space px-8 pt-6 rounded-md  mb-8">
+      <div className="profile-glass flex items-center justify-center md:justify-between space px-8 pt-6 rounded-md  mb-8">
         <div className='hidden md:block'></div>
         <div className="">
-          <button className="bg-[#2E2E2E] shadow-[0px_2px_20px_rgba(255,175,82,1)] py-2 px-2 ml-7 rounded-full h-36 w-36 flex items-center justify-center">
+          <button className="bg-[#2E2E2E] shadow-[0px_2px_20px_rgba(255,175,82,1)] py-2 px-2 ml-4 md:ml-7 rounded-full h-36 w-36 flex items-center justify-center">
             <img
               src={user?.user ? user.photo : localStorage.getItem('photo')}
               className=" w-11/12"
@@ -53,17 +53,6 @@ export const ChangeLanguage = () => {
             </h1>
           </div>
         </div>
-        <div className="flex flex-col gap-12">
-          <div>
-            <RxInstagramLogo />
-          </div>
-          <div>
-            <SiTwitter />
-          </div>
-          <div className=" mb-4">
-            <RiFacebookFill />
-          </div>
-      </div>
       <div className='block md:hidden'></div>
       <div className="hidden md:flex flex-col gap-12">
         <div>

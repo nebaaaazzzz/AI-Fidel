@@ -50,7 +50,7 @@ function StartingRight({ header1, header2, btns, firstPage }) {
       });
   }
   return (
-    <div className="md:flex-1 md:top-0 top-[-15px] relative m-[-30px] overflow-hidden flex md:h-screen justify-center items-center">
+    <div className="md:flex-1 transition-all md:top-0 top-[-15px] relative m-[-30px] overflow-hidden flex md:h-screen justify-center items-center">
       <div className="flex gap-2 md:gap-5 w-9/12  flex-col justify-center">
         <div className='hidden md:block'>
           <Logo />
@@ -93,9 +93,10 @@ function StartingRight({ header1, header2, btns, firstPage }) {
               className="p-2 px-4 md:px-8 items-center flex md:py-[10px] font-semibold text-center border-[1px] w-full capitalize rounded-md text-sm md:text-lg border-[#fff] justify-between"
               onClick={() => navigate(-1)}
             >
-              <BsArrowLeftShort className="absolute left-5" />
+              <BsArrowLeftShort />
               {/* <img src={leftArrow} alt="" className="h-4 w-4" /> */}
               <span>{t('bc')}</span>
+              <div></div>
             </button>
           ) : null}
         </div>

@@ -88,24 +88,31 @@ html {
   border: solid rgba(250, 255, 0, 1) 3px;
 }
 
+.scrollbar {
+  /* scrollbar-color: rgb(12, 97, 76) rgb(49, 49, 49);
+  scrollbar-width: thin;
+  scroll-padding: 8rem; */
+  scrollbar-width: none;
+}
 
 /* Hide the scrollbar track */
-::-webkit-scrollbar-track {
+::-webkit-scrollbar-track,
+scrollbar-track {
   background: linear-gradient(180deg, rgb(57, 57, 57), rgb(43, 43, 43));
   border-radius: 9999px;
   margin-block: 2.5rem;
 }
 
-
 /* Set the width of the scrollbar */
-::-webkit-scrollbar {
+::-webkit-scrollbar,
+scrollbar-width {
   width: 6px;
   height: 6px;
 }
 
-
 /* Set the width of the scrollbar thumb */
-::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb,
+scrollbar-thumb {
   width: 6px;
   background-color: rgb(12, 97, 76);
   border-radius: 9999px;
@@ -113,6 +120,7 @@ html {
 }
 
 /* Set the color of the scrollbar thumb on hover */
-::-webkit-scrollbar-thumb:hover {
+::-webkit-scrollbar-thumb:hover,
+scrollbar-thumb:hover {
   background-color: rgb(18, 132, 104);
 }

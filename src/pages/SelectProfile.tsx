@@ -63,10 +63,10 @@ function SelectProfile() {
   const [selectedAvatarIndex, setSelectedAvatarIndex] = useState<number>();
   // localStorage.setItem('displayName', username);
   return (
-    <div className="overflow-auto flex md:flex-row flex-col">
+    <div className="overflow-auto transition-all flex md:flex-row flex-col">
       <div className=" overflow-auto h-screen flex flex-col items-end justify-around  flex-[1] md:px-20 px-4 ml-0 md:ml-4">
         <h2 className="md:text-xl text-lg self-center mt-20 p-2 md:mt-5 text-white">{t('spa')}</h2>
-        <div className="overflow-auto scrollbar relative custom-glass md:w-11/12 md:max-w-max md:h-auto max-w-[300px] mr-auto ml-auto h-[200px] flex flex-wrap gap-10 p-5 justify-center mx-2">
+        <div className="overflow-auto transition-all scrollbar relative custom-glass md:w-11/12 md:max-w-max md:h-auto max-w-[300px] mr-auto ml-auto h-[200px] flex flex-wrap gap-10 p-5 justify-center mx-2">
           {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16].map(
             (i, index) => (
               <button
@@ -96,11 +96,11 @@ function SelectProfile() {
                       ? '0px 0px 26px 4px #FFAF52'
                       : '0px 0px 12px 4px #00A28D'
                 }}
-                className="rounded-full px aspect-square md:w-20 w-12 flex items-center justify-center"
+                className="rounded-full transition-all px aspect-square md:w-20 w-12 flex items-center justify-center"
               >
                 {' '}
                 <img
-                  className="w-2/3 aspect-1/1 object contain"
+                  className="w-2/3 aspect-1/1 transition-all object contain"
                   src={avatarUrls[i - 1]}
                   alt=""
                 />
@@ -118,7 +118,7 @@ function SelectProfile() {
           <LogoWithTextSM />
         </div>
       </div>
-      <div className="flex-[1] flex ml-auto mr-auto justify-center items-center  flex-col h-screen">
+      <div className="flex-[1] flex ml-auto mr-auto justify-center items-center md:mr-[30px] flex-col h-screen">
         <div className="flex flex-col items-center gap-10 w-2/3 -mt-14">
           <div className="flex items-center gap-5 w-[350px] md:w-full fixed md:relative top-0 m-8">
             <div
@@ -137,9 +137,9 @@ function SelectProfile() {
               }}
               className="p-2 rounded-md flex-1"
             >
-              <div className="md:border-dashed bg-transparent rounded-md md:border-2 p-1 px-0 cml:px-10">
+              <div className="md:border-dashed bg-transparent rounded-md md:border-2 py-1 px-0 cml:px-10">
                 <input
-                  className="text-center bg-transparent w-full focus:border-0 focus:outline-dashed"
+                  className="text-center text-[14px] cml:text-[15px] bg-transparent w-full focus:border-0 focus:outline-dashed"
                   value={username}
                   onBlur={async () => {
                     if (userNameUpdated) {
@@ -219,7 +219,7 @@ function SelectProfile() {
           <img src={ellipse} className="absolute hidden md:block right-0 top-1/3 w-1/12" />
         </div>
 
-        <p className="font-extralight text-[12px] text-[#a4a4a4] fixed ml-auto mr-auto md:left-[75%] text-center  items-center bottom-3 md:bottom-0">
+        <p className="font-extralight text-[12px] text-[#a4a4a4] fixed ml-auto mr-auto md:left-[70%] cml:left-[73%] text-center  items-center bottom-3 md:bottom-0">
           {t('pbal')}{' '}
         </p>
       </div>

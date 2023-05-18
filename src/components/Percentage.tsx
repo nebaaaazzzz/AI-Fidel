@@ -9,7 +9,7 @@ function Percentage({
   skipPrediction: boolean;
 }) {
   if (!lookForLetter) {
-    return <p className="text-white text-xl">{0}%</p>;
+    return <p className="text-white text-sm md:text-xl">{0}%</p>;
   }
   let sum =
     lookForLetter?.thumb?.percentageCorrect +
