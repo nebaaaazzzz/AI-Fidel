@@ -35,7 +35,6 @@ function useGetGameConfig(
   const lang = searchParams.get('lang');
   const mode = searchParams.get('mode');
   const searchWord = searchParams.get('search');
-  const [zoomLevel, setZoomLevel] = useState(2);
   if (!hand || !lang || !mode || (!level && !searchWord)) {
     navigate('/');
   }
