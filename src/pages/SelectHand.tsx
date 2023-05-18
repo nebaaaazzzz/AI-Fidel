@@ -24,16 +24,16 @@ function SelectHand() {
         <span>{t('bc')}</span>
         <div></div>
       </button>
-      <div className='absolute md:hidden border-8 border-white cxs:w-[240px] w-[200px] cxs:h-[240px] h-[200px] rounded-full cxs:top-[-60px] top-[-70px] right-[-50px]'></div>
+      <div className='absolute transition-all md:hidden border-8 border-white cxs:w-[240px] w-[200px] cxs:h-[240px] h-[200px] rounded-full cxs:top-[-60px] top-[-70px] right-[-50px]'></div>
       <img
         src={circleDashed}
-        className="absolute block md:hidden object-contain aspect-square cxs:w-[350px] w-[300px] cxs:left-[-120px] left-[-120px] cxs:top-[-50px] top-[-60px]"
+        className="absolute transition-all block md:hidden object-contain aspect-square cxs:w-[350px] w-[300px] cxs:left-[-120px] left-[-120px] cxs:top-[-50px] top-[-60px]"
       />
       <div className="absolute hidden md:block w-[14%] aspect-square top-40 left-7 rounded-full  bg-primary"></div>
-      <h1 className="flex justify-center cxs:mt-[190px] cxl:mt-[180px] mt-[150px] cxl:text-5xl md:hidden pan font-semibold text-4xl text-center w-3/4 text-white">
+      <h1 className="flex transition-all justify-center cxs:mt-[190px] cxl:mt-[180px] mt-[150px] cxl:text-5xl md:hidden pan font-semibold text-4xl text-center w-3/4 text-white">
             {t('aylrh')}
       </h1>
-      <img className="block md:hidden object-contain w-[12rem] mt-[-30px] " src={handshake} />
+      <img className="block transition-all md:hidden object-contain w-[12rem] mt-[-30px] " src={handshake} />
       <div className="custom-glass hidden md:flex w-[80%] pr-5 justify-between py-2 pt-10 ">
         <div className=""></div>
         <div className="w-10"></div>
@@ -62,7 +62,7 @@ function SelectHand() {
             ))}
         </div>
       </div>
-      <div className="w-2/3 cxl:w-1/3 mt-36 cxl:mt-40 top-[50%] absolute grow opacity-50 flex md:hidden flex-col font-light text-xs text-white text-center">
+      <div className="w-2/3 transition-all cxl:w-1/3 mt-36 cxl:mt-40 top-[50%] absolute grow opacity-50 flex md:hidden flex-col font-light text-xs text-white text-center">
         <p> {t('cthywtuf')}{' '}{t('fysur')}{' '}{t('dh')}</p>
       </div>
       <div className="flex gap-10 absolute md:relative top-[90%] cxl:top-[92%] md:top-[0]">

@@ -63,10 +63,10 @@ function SelectProfile() {
   const [selectedAvatarIndex, setSelectedAvatarIndex] = useState<number>();
   // localStorage.setItem('displayName', username);
   return (
-    <div className="overflow-auto flex md:flex-row flex-col">
+    <div className="overflow-auto transition-all flex md:flex-row flex-col">
       <div className=" overflow-auto h-screen flex flex-col items-end justify-around  flex-[1] md:px-20 px-4 ml-0 md:ml-4">
         <h2 className="md:text-xl text-lg self-center mt-20 p-2 md:mt-5 text-white">{t('spa')}</h2>
-        <div className="overflow-auto scrollbar relative custom-glass md:w-11/12 md:max-w-max md:h-auto max-w-[300px] mr-auto ml-auto h-[200px] flex flex-wrap gap-10 p-5 justify-center mx-2">
+        <div className="overflow-auto transition-all scrollbar relative custom-glass md:w-11/12 md:max-w-max md:h-auto max-w-[300px] mr-auto ml-auto h-[200px] flex flex-wrap gap-10 p-5 justify-center mx-2">
           {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16].map(
             (i, index) => (
               <button
@@ -96,11 +96,11 @@ function SelectProfile() {
                       ? '0px 0px 26px 4px #FFAF52'
                       : '0px 0px 12px 4px #00A28D'
                 }}
-                className="rounded-full px aspect-square md:w-20 w-12 flex items-center justify-center"
+                className="rounded-full transition-all px aspect-square md:w-20 w-12 flex items-center justify-center"
               >
                 {' '}
                 <img
-                  className="w-2/3 aspect-1/1 object contain"
+                  className="w-2/3 aspect-1/1 transition-all object contain"
                   src={avatarUrls[i - 1]}
                   alt=""
                 />

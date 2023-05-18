@@ -50,7 +50,7 @@ function StartingRight({ header1, header2, btns, firstPage }) {
       });
   }
   return (
-    <div className="md:flex-1 md:top-0 top-[-15px] relative m-[-30px] overflow-hidden flex md:h-screen justify-center items-center">
+    <div className="md:flex-1 transition-all md:top-0 top-[-15px] relative m-[-30px] overflow-hidden flex md:h-screen justify-center items-center">
       <div className="flex gap-2 md:gap-5 w-9/12  flex-col justify-center">
         <div className='hidden md:block'>
           <Logo />
