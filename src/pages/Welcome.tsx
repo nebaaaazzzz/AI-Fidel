@@ -23,7 +23,6 @@ const Welcome = () => {
   useEffect(() => {
     if (level == '1') {
       setIsLevelOne(true);
-      console.log(isLevelOne);
     }
   }, [isLevelOne]);
   return (
@@ -76,7 +75,7 @@ const Welcome = () => {
           {Array(1)
             .fill(0)
             .map((_, i) => (
-              <div></div>
+              <div key={i}></div>
             ))}
           {socialMediaIcons.map((Icon, i) => {
             return <Icon key={i} size={25} color="white" />;
@@ -84,7 +83,7 @@ const Welcome = () => {
           {Array(1)
             .fill(0)
             .map((_, i) => (
-              <div></div>
+              <div key={i}></div>
             ))}
         </div>
       </div>

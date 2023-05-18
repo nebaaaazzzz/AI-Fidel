@@ -43,7 +43,7 @@ function SelectHand() {
           {Array(1)
             .fill(0)
             .map((_, i) => (
-              <div></div>
+              <div key={i}></div>
             ))}
           {socialMediaIcons.map((Icon, i) => {
             return <Icon key={i} size={25} color="white" />;
@@ -51,7 +51,7 @@ function SelectHand() {
           {Array(1)
             .fill(0)
             .map((_, i) => (
-              <div></div>
+              <div key={i}></div>
             ))}
         </div>
       </div>

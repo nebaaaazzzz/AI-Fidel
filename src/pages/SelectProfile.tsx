@@ -39,18 +39,20 @@ const avatarUrls = [
 ];
 function SelectProfile() {
   const user = useContext(AuthContext);
-  const [username, setUsername] = useState<string>();
+  const [username, setUsername] = useState<string>('');
   const [selectedAvatar, setSelectedAvatar] = useState<string>();
   const { t } = useTranslation();
   const navigate = useNavigate();
   useEffect(() => {
     (async () => {
-      if (user && user.user) {
+      if (user?.user) {
         setUsername(
           user.displayName ? user.displayName : autoGenerateUsername()
         );
       } else {
         setUsername(autoGenerateUsername());
+        localStorage.setItem('displayName', autoGenerateUsername());
+        localStorage.setItem('photo', avatarUrls[0]);
       }
     })();
   }, [user]);
@@ -58,7 +60,7 @@ function SelectProfile() {
   const [userNameUpdated, setUsernameUpdated] = useState(false);
   const { search } = useLocation();
   const [selectedAvatarIndex, setSelectedAvatarIndex] = useState<number>();
-  console.log(user);
+  // localStorage.setItem('displayName', username);
   return (
     <div className="flex">
       <div className=" h-screen flex flex-col items-end justify-around  flex-[1] px-20">

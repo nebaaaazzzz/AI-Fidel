@@ -49,6 +49,7 @@ function LeftSideBar() {
         return (
           <div
             className="relative"
+            key={index}
             style={{
               boxShadow:
                 index == 0 ? '' : ` 0px 5px 20px 5px rgba(0, 136, 103,0.9)`
@@ -57,7 +58,7 @@ function LeftSideBar() {
             <Link to={to}>
               <img
                 src={image}
-                className="object-cover h-6 mx-auto"
+                className="object-contain h-6 mx-auto  rounded-xl"
                 key={index}
               />
             </Link>
