@@ -11,13 +11,16 @@ function getRandomWordFromLevelWords(levelWords: string[]): string[] {
   let randomWordIndexArr: number[] = [];
   let randomWordArr: string[] = [];
   while(randomWordIndexArr.length < 10) {
-    !randomWordIndexArr.includes(Math.floor(Math.random() * levelWordsLength)) && 
-    randomWordIndexArr.push(Math.floor(Math.random() * levelWordsLength));
+    const randomIndex = Math.floor(Math.random() * levelWordsLength);
+    if (!randomWordIndexArr.includes(randomIndex)) {
+      randomWordIndexArr.push(randomIndex);
+    }
   }
   // console.log(randomWordIndexArr)
   for (let i of randomWordIndexArr) {
     randomWordArr.push(levelWords[i]);
   }
+  // console.log(randomWordArr)
   return randomWordArr;
 }
 export function getLevelWords(
