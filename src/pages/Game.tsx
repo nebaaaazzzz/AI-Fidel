@@ -336,7 +336,7 @@ function Game() {
         </div>
       </div>
       {isGameStarted && (
-        <div className=" absolute top-[43%] cxs:top-[42%] mt-0 md:mt-4 md:relative md:top-0 w-[80%] cxm:w-[50%] md:w-[90%] flex items-center gap-2 ml-auto mr-auto justify-between md:gap-10 ig:bg-blue-400">
+        <div className=" absolute top-[41%] cxs:top-[245px] mt-0 md:mt-4 md:relative md:top-0 w-[80%] cxm:w-[50%] md:w-[90%] flex items-center gap-2 ml-auto mr-auto justify-between md:gap-10 ig:bg-blue-400">
           <p className='text-xs md:text-[15px] w-[90px] md:w-auto'>
             {moment(
               currentTime - startTime >= 0 ? currentTime - startTime : 0
