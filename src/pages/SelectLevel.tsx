@@ -89,8 +89,8 @@ function SelectLevel() {
           </div>
           <div className='pl-4 text-sm'>
             <p className='block md:hidden'>Hello</p>
-            <h2 className='text-left md:text-center text-white text-md md:text-2xl font-[500] pt-0 md:pt-2'>Ablaze Labs</h2>
-            <p className='opacity-50 text-sm text-center hidden md:block'>ablazelabs@gmail.com</p>
+            <h2 className='text-left md:text-center text-white text-md md:text-2xl font-[500] pt-0 md:pt-2'>{user?.user ? user.displayName : localStorage.getItem("displayName")}</h2>
+            {/* <p className='opacity-50 text-sm text-center hidden md:block'>ablazelabs@gmail.com</p> */}
           </div>
         </div>
         <div className="hidden md:flex mr-5 self-stretch flex-col justify-between">
