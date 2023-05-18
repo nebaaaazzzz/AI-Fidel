@@ -89,10 +89,10 @@ html {
 }
 
 .scrollbar {
-  scrollbar-color: rgb(12, 97, 76) rgb(49, 49, 49);
+  /* scrollbar-color: rgb(12, 97, 76) rgb(49, 49, 49);
   scrollbar-width: thin;
-  scroll-padding: 8rem;
-  /* scrollbar-width: none; */
+  scroll-padding: 8rem; */
+  scrollbar-width: none;
 }
 
 /* Hide the scrollbar track */
