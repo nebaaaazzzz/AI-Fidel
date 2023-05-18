@@ -93,9 +93,10 @@ function StartingRight({ header1, header2, btns, firstPage }) {
               className="p-2 px-4 md:px-8 items-center flex md:py-[10px] font-semibold text-center border-[1px] w-full capitalize rounded-md text-sm md:text-lg border-[#fff] justify-between"
               onClick={() => navigate(-1)}
             >
-              <BsArrowLeftShort className="absolute left-5" />
+              <BsArrowLeftShort />
               {/* <img src={leftArrow} alt="" className="h-4 w-4" /> */}
               <span>{t('bc')}</span>
+              <div></div>
             </button>
           ) : null}
         </div>

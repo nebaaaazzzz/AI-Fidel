@@ -300,8 +300,8 @@ function Game() {
   //   handleSkip();
   // }
   return (
-    <div className="flex flex-col  items-center">
-      <div className="flex gap-10  w-10/12 relative">
+    <div className="flex flex-col items-center">
+      <div className="flex flex-col md:flex-row gap-8 md:gap-10 h-[470px] md:h-auto w-[90%] cxm:w-full md:w-10/12 relative">
         {showModal && <Modal wordIndex={wordIndex} nextWord={selectedWord} />}
         <PlaceYourHand
           isMediaPipeModelLoading={isMediaPipeModelLoading}
@@ -315,7 +315,7 @@ function Game() {
           selectedLetter={selectedLetter}
           selectedWord={selectedWord}
         />
-        <div className="flex flex-[1]  items-center justify-center w-1/2 aspect-square rounded-lg p-2">
+        <div className="flex flex-[1] ig:bg-red-50 max-h-[300px] items-center rounded-3xl justify-center h-[40%] md:h-auto w-[300px] ml-auto mr-auto overflow-hidden md:w-1/2 aspect-square md:rounded-lg cxm:p-0">
           {isMediaPipeModelLoading && (
             <img
               src={girl}
@@ -337,8 +337,8 @@ function Game() {
       </div>
       {isGameStarted && (
         <>
-          <div className={`flex items-center gap-10`}>
-            <p>
+          <div className={`absolute top-[43%] cxs:top-[42%] mt-0 md:mt-4 md:relative md:top-0 w-[80%] cxm:w-[50%] md:w-[90%] flex items-center gap-2 ml-auto mr-auto justify-between md:gap-10 ig:bg-blue-400`}>
+            <p  className='text-xs md:text-[15px] w-[90px] md:w-auto'>
               {moment(
                 currentTime - startTime >= 0 ? currentTime - startTime : 0
               ).format('mm : ss')}
@@ -355,7 +355,7 @@ function Game() {
       {!isMediaPipeModelLoading ? (
         <button
           onClick={handleSkip}
-          className="btn mt-10 btn-primary rounded-md w-[64%]"
+          className="md:mt-10 mt-0 w-[300px] btn-primary h-[30px] md:h-[40px] pb-[10px] pt-[5px] md:p-0 md:relative absolute bottom-[11%] mr-auto ml-auto md:bottom-0 md:right-0 rounded-md"
         >
           {t('skip')}{' '}
         </button>
