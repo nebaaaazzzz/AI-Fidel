@@ -88,6 +88,12 @@ html {
   border: solid rgba(250, 255, 0, 1) 3px;
 }
 
+.scrollbar {
+  /* scrollbar-color: rgb(12, 97, 76) rgb(49, 49, 49); */
+  /* scrollbar-width: thin; */
+  scrollbar-width: none;
+}
+
 /* Hide the scrollbar track */
 ::-webkit-scrollbar-track,
 scrollbar-track {
