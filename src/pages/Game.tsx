@@ -337,11 +337,7 @@ function Game() {
       </div>
       {isGameStarted && (
         <>
-          <div
-            className={`flex items-center gap-10 ${
-              showModal ? ' mt-8' : null
-            } $`}
-          >
+          <div className={`flex items-center gap-10`}>
             <p>
               {moment(
                 currentTime - startTime >= 0 ? currentTime - startTime : 0
