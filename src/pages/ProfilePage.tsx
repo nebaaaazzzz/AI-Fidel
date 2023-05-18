@@ -96,8 +96,9 @@ const ProfilePage = () => {
   const navigate = useNavigate();
   return (
     <div className="">
-      <div className="flex items-center justify-between space px-8 pt-6 rounded-md  mb-8">
-        <div className="flex flex-col gap-20">
+      <div className="flex items-center justify-between space px-8 pt-[50px] md:pt-6 rounded-md  mb-8">
+        <div className='block md:hidden'></div>
+        <div className="flex flex-col gap-20 absolute top-5 md:top-0 md:relative">
           <div className="flex cursor-pointer" onClick={() => navigate(-1)}>
             <MdArrowBack className=" mt-1" size="18px" />
             <h1 className=" ml-1">{t('bc')}</h1>
@@ -114,7 +115,8 @@ const ProfilePage = () => {
           </button>
           <div className="mt-[4rem] ml-3"></div>
         </div>
-        <div className="flex flex-col gap-8">
+        <div className='block md:hidden'></div>
+        <div className="hidden md:flex flex-col gap-8">
           <div>
             <RxInstagramLogo size="18px" />
           </div>
@@ -126,24 +128,41 @@ const ProfilePage = () => {
           </div>
         </div>
       </div>
-      <div className="flex   gap-1  rounded-md  bg-[#2E2E2E]  mb-9  py-2  px-2  ml-6 mr-4 w-[95%]">
+      <div className="flex gap-1 justify-between overflow-x-scroll rounded-md  bg-[#2E2E2E]  mb-9  py-2  px-2 mx-auto md:ml-6 md:mr-4 w-[90%] md:w-[95%]">
         <div>
           <MdKeyboardArrowLeft size="24px" className=" mt-4 mr-2" />
         </div>
-        <div className="flex gap-6">
-          {profileImages.map((profileImage, index) => {
-            return (
-              <button
-                key={index}
-                className="bg-[#2E2E2E] shadow-[0px_2px_16px_rgba(0,162,141,0.9)] py-2 px-2 rounded-full   h-14 w-14 flex items-center justify-center"
-                onClick={() => {
-                  handleChangeProfile(profileImage);
-                }}
-              >
-                <img src={profileImage.profile} className="h-11 " />
-              </button>
-            );
-          })}
+        <div className="flex gap-6 flex-row">
+          <button className="bg-[#2E2E2E] shadow-[0px_2px_16px_rgba(0,162,141,0.9)] py-2 px-2 rounded-full h-14 w-14 flex items-center justify-center">
+            <img src={profile1} className="h-11" />
+          </button>
+          <button className="bg-[#2E2E2E] shadow-[0px_2px_16px_rgba(0,162,141,0.9)] py-2 px-2 rounded-full   h-14 w-14 flex items-center justify-center">
+            <img src={profile3} className="h-11 " />
+          </button>
+          <button className="bg-[#2E2E2E] shadow-[0px_2px_16px_rgba(0,162,141,0.9)] py-2 px-2 rounded-full   h-14 w-14 flex items-center justify-center">
+            <img src={profile2} className="h-11 " />
+          </button>
+          <button className="bg-[#2E2E2E] shadow-[0px_2px_16px_rgba(0,162,141,0.9)] py-2 px-2 rounded-full   h-14 w-14 flex items-center justify-center">
+            <img src={profile1} className="h-11 " />
+          </button>
+          <button className="bg-[#2E2E2E] shadow-[0px_2px_16px_rgba(0,162,141,0.8)] py-2 px-2 rounded-full   h-14 w-14 flex items-center justify-center">
+            <img src={profile1} className=" w-11" />
+          </button>
+          <button className="bg-[#2E2E2E] shadow-[0px_2px_16px_rgba(0,162,141,0.8)] py-2 px-2 rounded-full   h-14 w-14 flex items-center justify-center">
+            <img src={profile2} className=" w-11" />
+          </button>
+          <button className="bg-[#2E2E2E] shadow-[0px_2px_16px_rgba(0,162,141,0.8)] py-2 px-2 rounded-full   h-14 w-14 flex items-center justify-center">
+            <img src={profile3} className=" w-11" />
+          </button>
+          <button className="bg-[#2E2E2E] shadow-[0px_2px_16px_rgba(0,162,141,0.8)] py-2 px-2 rounded-full  h-14 w-14 flex items-center justify-center">
+            <img src={profile2} className=" w-11" />
+          </button>
+          <button className="bg-[#2E2E2E] shadow-[0px_2px_16px_rgba(0,162,141,0.8)] py-2 px-2 rounded-full   h-14 w-14 flex items-center justify-center">
+            <img src={profile1} className=" w-11" />
+          </button>
+          <button className="bg-[#2E2E2E] shadow-[0px_2px_16px_rgba(0,162,141,0.8)] py-2 px-2 rounded-full   h-14 w-14 flex items-center justify-center">
+            <img src={profile3} className=" w-11" />
+          </button>
         </div>
 
         <div>

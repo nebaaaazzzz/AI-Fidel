@@ -19,7 +19,7 @@ function Percentage({
     lookForLetter?.little?.percentageCorrect;
   let avg = sum / 5;
 
-  return <p className="text-white text-xl">{(avg * 100).toFixed(2)}%</p>;
+  return <p className="text-white text-sm md:text-md md:text-[15px] w-[50px] md:w-auto">{(avg * 100).toFixed(2)}%</p>;
 }
 
 export default Percentage;

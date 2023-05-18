@@ -8,6 +8,7 @@ import { addDocToCollection } from '@/utils/db';
 import { useTranslation } from 'react-i18next';
 import { BsArrowLeftShort } from 'react-icons/bs';
 
+
 function StartingRight({ header1, header2, btns, firstPage }) {
   const navigate = useNavigate();
   const { search } = useLocation();
@@ -49,23 +50,29 @@ function StartingRight({ header1, header2, btns, firstPage }) {
       });
   }
   return (
-    <div className="flex-1 relative flex h-screen  justify-center items-center">
-      <div className="flex  gap-5 w-9/12  flex-col justify-center">
-        <Logo />
-        <div>
-          <h1 className="text-white text-4xl font-bold text-center">
+    <div className="md:flex-1 md:top-0 top-[-15px] relative m-[-30px] overflow-hidden flex md:h-screen justify-center items-center">
+      <div className="flex gap-2 md:gap-5 w-9/12  flex-col justify-center">
+        <div className='hidden md:block'>
+          <Logo />
+        </div>
+        <div className='mt-12 md:mt-4'>
+          <h1 className="text-white text-2xl cxs:text-3xl md:text-4xl font-bold text-center">
             {header1}
           </h1>
-          <h1 className="text-white text-4xl font-bold text-center">
+          <h1 className="text-white text-2xl cxs:text-3xl md:text-4xl font-bold text-center">
             {header2}
           </h1>
         </div>
-        <div className="flex flex-col items-center justify-center b">
-          <h1 className="font-[100] text-center text-sm ">{t('lslwml')}</h1>
-          <span className="font-[100] text-center text-sm ">{t('urcml')}</span>
-          <p className="font-[100] text-center">{t('hps')} </p>
+        <div className="flex flex-col items-center justify-center b text-sm md:text-md">
+          <p className="font-[100] block text-center text-xs md:text-sm ">{t('lslwml')}{' '}<br className='hidden cvs:block md:hidden'/>{t('urcml')}{' '}<br className='hidden cvs:block md:hidden'/>{t('hps')} </p>
+          {/* <p className="font-[100] text-center text-sm block md:hidden ">The platforms that you are going to use for adobe premier pro. </p> */}
         </div>
-        <div className="flex w-11/12 mt-5 items-center self-center  flex-col gap-4">
+        <div className="flex w-11/12 mt-2 md:mt-2 items-center self-center flex-col md:gap-4 gap-2">
+        {/* className={'btn w-full py-0 h-[10px] text-md md:text-lg capitalize bg-yellow-200 rounded-2xl md:rounded-md`'}> */}
+        {/* <div
+          className={'bg-yellow-200'}>
+            Test
+        </div> */}
           {btns.map(({ text, link, to }, i) => {
             return (
               <Link
@@ -73,9 +80,9 @@ function StartingRight({ header1, header2, btns, firstPage }) {
                 key={i}
                 to="/"
                 {...(link ? { to: link } : { to: '.' + search })}
-                className={`btn w-full text-lg capitalize ${
+                className={`w-full py-[10px] md:py-[10px] font-semibold text-center text-sm md:text-lg capitalize ${
                   i == 0 ? 'btn-accent' : 'btn-primary'
-                }  rounded-md`}
+                } rounded-xl md:rounded-md`}
               >
                 {text}
               </Link>
@@ -83,7 +90,7 @@ function StartingRight({ header1, header2, btns, firstPage }) {
           })}
           {firstPage ? (
             <button
-              className="relative btn w-full capitalize rounded-md text-lg border-[#fff] justify-center"
+              className="p-2 px-4 md:px-8 items-center flex md:py-[10px] font-semibold text-center border-[1px] w-full capitalize rounded-md text-sm md:text-lg border-[#fff] justify-between"
               onClick={() => navigate(-1)}
             >
               <BsArrowLeftShort className="absolute left-5" />
@@ -93,7 +100,7 @@ function StartingRight({ header1, header2, btns, firstPage }) {
           ) : null}
         </div>
       </div>
-      <p className="font-extralight text-[12px] text-[#a4a4a4] absolute bottom-6">
+      <p className="font-extralight text-[12px] text-[#a4a4a4] fixed bottom-3">
         {t('pbal')}
       </p>
     </div>

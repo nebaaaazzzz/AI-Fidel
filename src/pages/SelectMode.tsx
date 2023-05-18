@@ -4,11 +4,12 @@ import StartingRight from '@/components/StartingRight';
 import { useContext, useEffect } from 'react';
 import { AuthContext } from '@/context/AuthContext';
 import { useTranslation } from 'react-i18next';
+import { getSessionInfo } from '@/utils/localsession';
 function SelectMode() {
   const user = useContext(AuthContext);
   const { t } = useTranslation();
   return (
-    <div className="flex h-screen">
+    <div className="flex h-screen flex-col md:flex-row p-8 sm:pt-12 ">
       <StartingLeft path={boy1} />
       <StartingRight
         header1={t('wd')}

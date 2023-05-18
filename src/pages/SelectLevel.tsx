@@ -9,8 +9,8 @@ import { GrFacebookOption } from 'react-icons/gr';
 import { ImTwitter } from 'react-icons/im';
 import { MdLock } from 'react-icons/md';
 import { Link, useLocation, useSearchParams } from 'react-router-dom';
-import { langAtom } from '../store/store';
-import { handAtom } from '../store/store';
+import { langAtom } from '../store/store'
+import { handAtom } from '../store/store'
 import { useAtom } from 'jotai';
 import { BsArrowLeftShort } from 'react-icons/bs';
 import { useNavigate } from 'react-router-dom';
@@ -22,11 +22,11 @@ function SelectLevel() {
   const { t } = useTranslation();
   const [searchParams] = useSearchParams();
   const [levelOffset, setLevelOffset] = useState<number>(0);
-  const [hand, setHand] = useAtom(handAtom);
-  const [lang, setLang] = useAtom(langAtom);
+  const [hand, setHand] = useAtom(handAtom)
+  const [lang, setLang] = useAtom(langAtom)
   const navigate = useNavigate();
-  setLang(searchParams.get('lang'));
-  setHand(searchParams.get('hand'));
+  setLang(searchParams.get('lang'))
+  setHand(searchParams.get('hand'))
   useEffect(() => {
     (async () => {
       if (user?.user) {
@@ -44,11 +44,11 @@ function SelectLevel() {
     })();
   }, [user]);
   return (
-    <div className="flex  flex-col gap-6">
-      <div className="flex justify-between px-3 pl-10 py-2">
-        <div className="flex  prose flex-col items-start ">
+    <div className="flex flex-col gap-6 items-center mt-4 md:mt-0 md:items-stretch">
+      <div className="flex bg-whit w-full justify-center md:justify-between items-center md:items-stretch px-0 pl-10 py-2 md:py-4">
+        <div className="absolute md:flex md:relative md:top-0 md:left-0 top-[25px] left-[40px] prose flex-col items-start md:mr-0">
           <button
-            className="flex capitalize  justify-between -ml-6"
+            className="flex capitalize justify-between -ml-6"
             onClick={() => navigate(-1)}
           >
             <BsArrowLeftShort size={26} />
@@ -63,9 +63,9 @@ function SelectLevel() {
             )}
           </div>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center flex-row md:flex-col gap-2 md:mr-auto md:ml-auto mt-12 md:mt-0 md:p-0">
           <div
-            className={`rounded-full flex items-center justify-center w-32 h-32 aspect-square ${
+            className={`rounded-full flex items-center justify-center w-20 h-20 md:w-32 md:h-32 aspect-square ${
               user ? '' : 'p-4'
             }`}
             style={{
@@ -87,14 +87,19 @@ function SelectLevel() {
               />
             )}
           </div>
+          <div className='pl-4 text-sm'>
+            <p className='block md:hidden'>Hello</p>
+            <h2 className='text-left md:text-center text-white text-md md:text-2xl font-[500] pt-0 md:pt-2'>Ablaze Labs</h2>
+            <p className='opacity-50 text-sm text-center hidden md:block'>ablazelabs@gmail.com</p>
+          </div>
         </div>
-        <div className="flex mr-5 self-stretch flex-col justify-between">
-          {socialMediaIcons.map((Icon, i) => {
-            return <Icon key={i} size={20} color="white" />;
-          })}
+        <div className="hidden md:flex mr-5 self-stretch flex-col justify-between">
+            {socialMediaIcons.map((Icon, i) => {
+              return <Icon key={i} size={20} color="white" />;
+            })}
         </div>
       </div>
-      <div className="flex flex-col gap-5 ">
+      <div className="flex flex-col mt-12 md:mt-0 gap-5 w-10/12 md:w-full mr-auto ml-auto">
         {buildLevelButtons(searchParams, search, levelOffset, t)}
       </div>
     </div>
@@ -152,7 +157,7 @@ function buildLevelButtons(
             <Link
               to={`/welcome${search}&level=${i}`}
               key={i}
-              className="btn btn-accent rounded-md flex justify-center px-5"
+              className="btn btn-accent rounded-md flex justify-start md:justify-center px-5 mr-4 md:mr-0"
             >
               <p className=" capitalize">
                 {t('l')} {i}

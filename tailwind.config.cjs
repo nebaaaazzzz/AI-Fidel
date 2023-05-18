@@ -2,7 +2,16 @@
 module.exports = {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
-    extend: {}
+    extend: {
+      screens: {
+        'cxs': '344px',
+        'cxm': '399px',
+        'cvs': '540px',
+        'cxl': '640px',
+        'csl': '920px',
+        'cml': '1030px',
+      },
+    }
   },
   plugins: [require('@tailwindcss/typography'), require('daisyui')],
   daisyui: {

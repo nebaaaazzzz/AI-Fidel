@@ -26,21 +26,29 @@ const Welcome = () => {
     }
   }, [isLevelOne]);
   return (
-    <div className="flex gap-5 mt-20 relative  h-[calc(100vh-64px)] flex-col w-full  items-center">
+    <div className="flex gap-5 mt-20 relative h-[calc(100vh-64px)] flex-col w-full items-center">
       <div
-        className="flex absolute left-0 -top-16 cursor-pointer"
+        className="hidden md:flex absolute left-0 -top-16 cursor-pointer"
         onClick={() => navigate(-1)}
       >
         <BsArrowLeftShort size={28} />
         <span className=" mt-0.5">{t('bc')}</span>
       </div>
-      <img
-        src={circleDashed}
-        className="absolute -top-56 -right-32 object-contain aspect-square w-6/12"
-      />
-      <div className="absolute w-32 aspect-square top-32 left-5 rounded-full  bg-primary"></div>
+      <div className=''>
+        <img
+          src={circleDashed}
+          className="absolute md:top-[-10rem] md:right-[-7rem] csl:top-[-9rem] csl:right-[-6rem] cml:top-[-13rem] cml:right-[-7rem] object-contain aspect-square md:w-6/12 w-[400px] right-[-170px] top-[6rem]"
+        />
+      </div>
+      <div className='absolute md:hidden border-8 z-10 border-white w-[220px] h-[220px] rounded-full top-[-120px] right-[-50px]'></div>
+      <div className="absolute md:w-32 w-[300px] aspect-square md:top-32 top-[-100px] md:left-0 csl:left-2 cml:left-5 cml:top-[100px] left-[-90px] rounded-full  bg-primary"></div>
+      <div className="grow text-4xl cxm:text-5xl cvs:text-[55px] cvs:top-[20%] cxl:top-[17%] cxl:text-6xl md:top-[25%] md:text-5xl absolute md:hidden text-white text-center flex flex-col top-[25%]">
+        <h1 className="m-1 font-semibold text-white">{t('welcome')} </h1>
+        <h1 className="m-1 font-semibold text-white">{t('to your')} </h1>
+        <h1 className="m-1 font-semibold text-white">{t('lesson')}</h1>
+      </div>
       <div
-        className="flex w-5/6 pr-5 justify-between py-2"
+        className="hidden md:flex w-5/6 pr-5 justify-between py-2"
         style={{
           background:
             'linear-gradient(150.11deg, rgba(217, 217, 217, 0.87) -8.45%, rgba(255, 255, 255, 0.2175) -8.45%, rgba(255, 255, 255, 0.0783) 113.16%)',
@@ -63,7 +71,7 @@ const Welcome = () => {
               className="object-contain aspect-square w-full rounded-full"
             />
           </div>
-          <div className="grow text-2xl  text-white text-center flex flex-col my-10">
+          <div className="grow text-2xl text-white text-center flex flex-col my-10 md:my-0">
             <h1 className="m-1 font-semibold text-white">{t('welcome')} </h1>
             <h1 className="m-1 font-semibold text-white">
               {isLevelOne ? t('tyrf') : t('tyr')}
@@ -87,8 +95,8 @@ const Welcome = () => {
             ))}
         </div>
       </div>
-      <Link to={`/game${search}`} className="flex gap-3 items-center ">
-        <h1 className="text-white ml-10 text-xl">{t('gs')}</h1>
+      <Link to={`/game${search}`} className="flex absolute md:relative cxl:bottom-[25%] bottom-[20%] md:bottom-[0%] gap-3 items-center ">
+        <h1 className="text-white ml-10 text-sm md:text-xl">{t('gs')}</h1>
         <img src={LeftArrowIcon} className="w-2/12" />
       </Link>
     </div>

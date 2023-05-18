@@ -12,7 +12,7 @@ function Login() {
   const user = useContext(AuthContext);
   const { t } = useTranslation();
   return (
-    <div className="flex h-screen">
+    <div className="flex h-screen flex-col md:flex-row overflow-hidden p-8 sm:pt-12">
       <StartingLeft path={boy2} />
       <StartingRight
         {...(mode == 'game'

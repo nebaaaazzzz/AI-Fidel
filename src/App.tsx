@@ -40,7 +40,7 @@ function App() {
                 <Route path="select-mode" element={<SelectMode />} />
                 <Route path="login" element={<Login />} />
                 <Route path="select-profile" element={<SelectProfile />} />
-                <Route path="login" element={<Login />} />
+                {/* <Route path="login" element={<Login />} />  */}
                 <Route path="select-game" element={<SelectGame />} />
                 <Route path="complete" element={<Complete />} />
                 <Route path="final-score-board" element={<FinalScoreBoard />} />
@@ -58,7 +58,7 @@ function App() {
                   <Route path="edit-profile" element={<EditProfile />} />
                   <Route path="profile" element={<ProfilePage />} />
                   <Route path="result" element={<Result />} />
-                  <Route path="change-language" element={<ChangeLanguage />} />
+                  <Route path='change-language' element={<ChangeLanguage />} />
                 </Route>
                 <Route path="*" element={<p>path not found</p>} />
               </Route>

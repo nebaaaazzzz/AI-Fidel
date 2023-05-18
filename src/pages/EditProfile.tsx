@@ -16,8 +16,9 @@ import { useState } from 'react';
 import { AuthContext } from '@/context/AuthContext';
 import { useContext } from 'react';
 
+
 const EditProfile = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation()
   const navigate = useNavigate();
   const auth = getAuth();
   const user = useContext(AuthContext);
@@ -29,8 +30,8 @@ const EditProfile = () => {
     signOut(auth)
       .then(() => {
         console.log('Sign-out successful.');
-        localStorage.removeItem('language');
-        i18n.changeLanguage('en');
+        localStorage.removeItem("language")
+        i18n.changeLanguage('en')
         navigate('/');
       })
       .catch((error) => {
@@ -47,15 +48,12 @@ const EditProfile = () => {
           </div>
         </div>
       ) : (
-        <div className="">
-          <div className="profile-glass flex items-center justify-between space px-8 pt-6 rounded-md  mb-8">
-            <div></div>
+        <div className="m-8 md:m-0">
+          <div className="profile-glass flex items-center justify-center md:justify-between space px-8 pt-6 rounded-md  mb-8">
+            <div className='hidden md:block'></div>
             <div className="">
-              <button className="bg-[#2E2E2E] shadow-[0px_2px_20px_rgba(255,175,82,1)] py-2 px-2 ml-7 rounded-full h-36 w-36 flex items-center justify-center">
-                <img
-                  src={user?.user ? user.photo : localStorage.getItem('photo')}
-                  className="object-contain w-3/4 rounded-full"
-                />
+              <button className="bg-[#2E2E2E] shadow-[0px_2px_20px_rgba(255,175,82,1)] py-2 px-2 ml-auto mr-auto md:ml-7 rounded-full h-36 w-36 flex items-center justify-center">
+                <img src={profile} className=" w-11/12" />
               </button>
               <div className="mt-6 text-center mb-1">
                 <h1 className="text-center text-[#FFF] font-bold text-lg px-6 ml-5">
@@ -65,7 +63,8 @@ const EditProfile = () => {
                 </h1>
               </div>
             </div>
-            <div className="flex flex-col gap-12">
+            <div className='flex md:hidden'></div>
+            <div className="hidden md:flex flex-col gap-12">
               <div>
                 <RxInstagramLogo />
               </div>
@@ -93,17 +92,19 @@ const EditProfile = () => {
                 </div>
               </Link>
               <Link to="/change-language">
-                <div className=" bg-[#2E2E2E] rounded-md flex py-2 px-5 justify-between cursor-pointer">
-                  <div className=" mt-[4px] ml-3">
-                    <MdLanguage size="18px" />
-                  </div>
-                  <div className=" px-4" style={{ marginLeft: '-12px' }}>
-                    <h1 className="text-[#FFF]">{t('ln')}</h1>
-                  </div>
-                  <div className=" mt-[4px] ">
-                    <MdKeyboardArrowRight size="20px" />
-                  </div>
+              <div
+                className=" bg-[#2E2E2E] rounded-md flex py-2 px-5 justify-between cursor-pointer"
+              >
+                <div className=" mt-[4px] ml-3">
+                  <MdLanguage size="18px" />
                 </div>
+                <div className=" px-4" style={{ marginLeft: '-12px' }}>
+                  <h1 className="text-[#FFF]">{t('ln')}</h1>
+                </div>
+                <div className=" mt-[4px] ">
+                  <MdKeyboardArrowRight size="20px" />
+                </div>
+              </div>
               </Link>
               <div className=" bg-[#2E2E2E] rounded-md flex py-2 px-5 justify-between cursor-pointer">
                 <div className=" mt-[4px] ml-3">

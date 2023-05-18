@@ -3,7 +3,7 @@ import profile from '@assets/icons/profile.png';
 import { useTranslation } from 'react-i18next';
 
 export const SpecificLevel = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation()
   return (
     <div className="flex justify-center relative">
       <button className="bg-[#2E2E2E] shadow-[0px_2px_16px_rgba(255,175,82,0.8)] py-1 px-2 rounded-full h-24 w-24 flex items-center justify-center absolute  top-0">
