@@ -96,8 +96,8 @@ function LevelCompleted() {
     <div className="flex justify-center relative">
       <div className="w-1/2 flex  flex-col items-center gap-5">
         <div className="absolute right-0 flex flex-col gap-14">
-          {socialMediaIcons.map((Icon) => {
-            return <Icon size={20} />;
+          {socialMediaIcons.map((Icon, index) => {
+            return <Icon key={index} size={20} />;
           })}
         </div>
         <button className="btn btn-primary capitalize mb-5  rounded-md w-full text-xl text-white">
