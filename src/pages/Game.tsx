@@ -300,7 +300,7 @@ function Game() {
   // }
   return (
     <div className="flex flex-col items-center">
-      <div className="flex flex-col justify-between items-center md:flex-row overflow-hidden bg-blue-500 h-[80vh] gap-4 md:h-auto w-[90%] cxm:w-full md:w-10/12 relative">
+      <div className="flex flex-col justify-between items-center md:flex-row overflow-hidden ig:bg-blue-500 h-[80vh] gap-4 md:h-auto w-[90%] cxm:w-full md:w-10/12 relative">
         {showModal && <Modal wordIndex={wordIndex} nextWord={selectedWord} />}
         <PlaceYourHand
           isMediaPipeModelLoading={isMediaPipeModelLoading}
@@ -314,7 +314,7 @@ function Game() {
           selectedLetter={selectedLetter}
           selectedWord={selectedWord}
         />
-        <div className="flex bg-red-500 h-[45%] md:h-[250px] cml:h-[300px] w-[240px] md:w-[45%] items-center rounded-3xl justify-center overflow-hidden md:rounded-lg">
+        <div className="flex ig:bg-red-500 h-[45%] md:h-[250px] cml:h-[300px] w-[240px] md:w-[45%] items-center rounded-3xl justify-center overflow-hidden md:rounded-lg">
           {isMediaPipeModelLoading && (
             <img
               src={girl}
