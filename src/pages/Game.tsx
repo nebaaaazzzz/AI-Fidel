@@ -23,6 +23,7 @@ import Modal from '@/components/Modal/Modal';
 import moment from 'moment';
 import Percentage from '@/components/Percentage';
 import { useTranslation } from 'react-i18next';
+
 const handAnalyzer = new HandAnalyzer();
 let skipPrediction = false;
 let score = 0;
@@ -105,6 +106,7 @@ function Game() {
     if (wordIndex == singleLevelWord.length - 1) {
       navigate(`/level-completed${search}&points=${score}`);
       score = 0;
+      reloadMediaPipeFiles();
     }
     setTimeout(() => {
       skipPrediction = false;
@@ -224,6 +226,9 @@ function Game() {
       setLookForLetter(null);
     }
     canvasCtx?.restore();
+  };
+  const reloadMediaPipeFiles = () => {
+    window.location.reload();
   };
   const hands = useMemo(() => {
     let hands = new window.Hands({
