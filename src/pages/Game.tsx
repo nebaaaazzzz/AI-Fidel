@@ -51,7 +51,6 @@ function useGetGameConfig(
     levelWords.unshift(searchWord);
     levelWords.pop();
   }
-  levelWords;
   return { mode, hand, level, lang, levelWords };
 }
 function Game() {
@@ -65,6 +64,7 @@ function Game() {
     level,
     levelWords
   } = useGetGameConfig(searchParams, navigate);
+  const [singleLevelWord, setSingleLevelWord] = useState(levelWords)
   const [lookForLetter, setLookForLetter] =
     useState<AlphabetDefinationI | null>(null);
   const [isGameStarted, setIsGameStarted] = useState(false);
@@ -102,7 +102,7 @@ function Game() {
   const handleSkip = () => {
     //level compelted go to level completed page
 
-    if (wordIndex == levelWords.length - 1) {
+    if (wordIndex == singleLevelWord.length - 1) {
       navigate(`/level-completed${search}&points=${score}`);
       score = 0;
     }
@@ -110,10 +110,10 @@ function Game() {
       skipPrediction = false;
     }, 100);
     if (currentWordLength == selectedWord?.length && selectedWord) {
-      setSelectWord(levelWords[wordIndex + 1]);
+      setSelectWord(singleLevelWord[wordIndex + 1]);
       setCurrentWordLength(1);
       setWordIndex((prevWordIndex) => prevWordIndex + 1);
-      setSelectedLetter(levelWords[wordIndex + 1][0]);
+      setSelectedLetter(singleLevelWord[wordIndex + 1][0]);
     } else if (currentWordLength != selectedWord?.length && selectedWord) {
       setCurrentWordLength(currentWordLength + 1);
       setSelectedLetter(selectedWord[currentWordLength]);
@@ -240,7 +240,7 @@ function Game() {
     return hands;
   }, []);
   useEffect(() => {
-    if (wordIndex !== 0 && wordIndex !== levelWords.length - 1) {
+    if (wordIndex !== 0 && wordIndex !== singleLevelWord.length - 1) {
       setShowModal(true);
       setTimeout(() => {
         setShowModal(false);
@@ -277,9 +277,9 @@ function Game() {
       }
 
       if (isGameStarted) {
-        setSelectWord(levelWords[0]);
+        setSelectWord(singleLevelWord[0]);
         setShowModal(true);
-        setSelectedLetter(levelWords[0][0]);
+        setSelectedLetter(singleLevelWord[0][0]);
         setTimeout(() => {
           setShowModal(false);
         }, 1000);
@@ -335,15 +335,13 @@ function Game() {
         </div>
       </div>
       {isGameStarted && (
-        <div className=" absolute top-[42%] cxs:top-[43%] mt-0 md:mt-4 md:relative md:top-0 w-[80%] cxm:w-[50%] md:w-[80%] flex items-center gap-2 ml-auto mr-auto justify-between md:gap-10 ig:bg-blue-400">
-          <p className='text-xs md:text-[15px] text-center w-[70px]'>
+        <div className=" absolute top-[42%] cxs:top-[43%] mt-0 md:mt-4 md:relative md:top-0 w-[80%] cxm:w-[50%] md:w-[90%] flex items-center gap-2 ml-auto mr-auto justify-between md:gap-10 ig:bg-blue-400">
+          <p className='text-xs md:text-[15px] w-[90px] md:w-auto'>
             {moment(
               currentTime - startTime >= 0 ? currentTime - startTime : 0
             ).format('mm : ss')}
           </p>
-            <div className=' w-[70%] rounded-lg py-0 my-0'>
-              <TimerProgress percentage={percentage} />
-            </div>
+          <TimerProgress percentage={percentage} />
           <Percentage
             lookForLetter={lookForLetter}
             skipPrediction={skipPrediction}
