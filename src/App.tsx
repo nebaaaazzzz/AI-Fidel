@@ -26,6 +26,7 @@ import LevelScoreBoard from './pages/LevelScoreBoard';
 import { ChangeLanguage } from './pages/ChangeLanguage';
 
 import { Provider } from 'jotai';
+import FinalScoreBoards from './pages/FinalScoreBoards';
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
                 <Route path="select-game" element={<SelectGame />} />
                 <Route path="complete" element={<Complete />} />
                 <Route path="final-score-board" element={<FinalScoreBoard />} />
+                <Route path="final-score-boards" element={<FinalScoreBoards />} />
                 <Route path="level-score-board" element={<LevelScoreBoard />} />
                 <Route element={<RootLayout />}>
                   <Route path="select-hand" element={<SelectHand />} />
