@@ -7,6 +7,7 @@ import { initReactI18next } from 'react-i18next';
 import am from './translation/am.json';
 import en from './translation/en.json';
 import  swDev  from './swDev';
+import { Provider } from 'jotai';
 
 function Root() {
   const defaultLanguage = localStorage.getItem('language') || 'en';
@@ -35,7 +36,9 @@ function Root() {
 }
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <Root />
+    <Provider>
+      <Root />
+    </Provider>
   </React.StrictMode>
 );
 swDev();
