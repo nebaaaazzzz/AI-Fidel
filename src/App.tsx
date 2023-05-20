@@ -24,16 +24,20 @@ import ProfilePage from './pages/ProfilePage';
 import Result from './pages/Result';
 import LevelScoreBoard from './pages/LevelScoreBoard';
 import { ChangeLanguage } from './pages/ChangeLanguage';
-
-import { Provider } from 'jotai';
 import KeepUpScoreBoard from './pages/KeepUpScoreBoard';
-import ParentScoreBoard from './pages/ParentScoreBoard';
+import { useAtom } from 'jotai';
+import { loadingAtom } from './store/store';
+import loadingGif from '@assets/images/loading.gif';
+
 
 function App() {
+  const [loading] = useAtom(loadingAtom);
+  if (loading) return <div className=' fixed top-0 right-0 left-0 bottom-0'>
+    <img src={loadingGif} alt="" />
+  </div>
   return (
     <div data-theme="forest">
       <ToastContainer />
-      <Provider>
         <AuthContextProvider>
           <BrowserRouter>
             <Routes>
@@ -68,7 +72,6 @@ function App() {
             </Routes>
           </BrowserRouter>
         </AuthContextProvider>
-      </Provider>
     </div>
   );
 }
