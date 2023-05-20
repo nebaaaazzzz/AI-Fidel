@@ -11,7 +11,7 @@ const FinalScoreBoard = () => {
           <div className="text-xs mt-[15px] md:mt-0 md:text-lg font-semibold text-[#FFF] flex justify-center">
             {t('fal')}
           </div>
-          <div className=" text-4xl my-[2px] md:text-5xl font-extrabold  flex justify-center">98%</div>
+          <div className=" text-4xl my-[2px] md:text-5xl font-extrabold  flex justify-center">{localStorage.getItem('avg')}%</div>
           <div className="text-xs md:text-lg font-semibold text-[#FFF] flex justify-center">
             {t('iys')}
           </div>
