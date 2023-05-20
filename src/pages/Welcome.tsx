@@ -44,7 +44,9 @@ const Welcome = () => {
       <div className="absolute md:w-32 w-[300px] aspect-square md:top-32 top-[-100px] md:left-0 csl:left-2 cml:left-5 cml:top-[100px] left-[-90px] rounded-full  bg-primary"></div>
       <div className="grow text-5xl transition-all cxm:text-5xl cvs:text-[55px] cvs:top-[20%] cxl:top-[17%] cxl:text-6xl md:top-[25%] md:text-5xl absolute md:hidden text-white text-center flex flex-col top-[25%]">
         <h1 className="m-1 font-semibold text-white">{t('welcome')} </h1>
-        <h1 className="m-1 font-semibold text-white">{t('to your')} </h1>
+        <h1 className="m-1 font-semibold text-white">
+          {isLevelOne ? t('tyrf') : t('tyr')}
+        </h1>
         <h1 className="m-1 font-semibold text-white">{t('lesson')}</h1>
       </div>
       <div

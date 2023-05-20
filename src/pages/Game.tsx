@@ -306,7 +306,7 @@ function Game() {
   // }
   return (
     <div className="flex flex-col items-center">
-      <div className="flex flex-col md:flex-row gap-8 md:gap-10 h-[470px] md:h-auto w-[90%] cxm:w-full md:w-10/12 relative">
+      <div className="flex flex-col justify-between items-center md:flex-row overflow-hidden ig:bg-blue-500 h-[80vh] gap-4 md:h-auto w-[90%] cxm:w-full md:w-10/12 relative">
         {showModal && <Modal wordIndex={wordIndex} nextWord={selectedWord} />}
         <PlaceYourHand
           isMediaPipeModelLoading={isMediaPipeModelLoading}
@@ -320,7 +320,7 @@ function Game() {
           selectedLetter={selectedLetter}
           selectedWord={selectedWord}
         />
-        <div className="flex flex-[1] ig:bg-red-50 max-h-[280px] items-center rounded-3xl justify-center h-[40%] md:h-auto w-[300px] ml-auto mr-auto overflow-hidden md:w-1/2 aspect-square md:rounded-lg cxm:p-0">
+        <div className="flex ig:bg-red-500 h-[45%] md:h-[250px] cml:h-[300px] w-[240px] md:w-[45%] items-center rounded-3xl justify-center overflow-hidden md:rounded-lg">
           {isMediaPipeModelLoading && (
             <img
               src={girl}
@@ -341,8 +341,8 @@ function Game() {
         </div>
       </div>
       {isGameStarted && (
-        <div className=" absolute top-[42%] cxs:top-[43%] mt-0 md:mt-4 md:relative md:top-0 w-[80%] cxm:w-[50%] md:w-[90%] flex items-center gap-2 ml-auto mr-auto justify-between md:gap-10 ig:bg-blue-400">
-          <p className='text-xs md:text-[15px] w-[90px] md:w-auto'>
+        <div className=" absolute top-[38%] mt-0 md:mt-4 md:relative md:top-0 w-[80%] cxm:w-[50%] md:w-[70%] flex items-center gap-2 ml-auto mr-auto justify-between md:gap-10 ig:bg-blue-400">
+          <p className='text-xs md:text-[15px] text-center w-[70px]'>
             {moment(
               currentTime - startTime >= 0 ? currentTime - startTime : 0
             ).format('mm : ss')}
