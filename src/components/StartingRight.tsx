@@ -7,9 +7,12 @@ import { toastError, toastSuccess } from '@/utils/toast';
 import { addDocToCollection } from '@/utils/db';
 import { useTranslation } from 'react-i18next';
 import { BsArrowLeftShort } from 'react-icons/bs';
+import { useAtom } from 'jotai';
+import { loadingAtom } from '../store/store';
 
 
 function StartingRight({ header1, header2, btns, firstPage }) {
+  const [loading, setLoading] = useAtom(loadingAtom);
   const navigate = useNavigate();
   const { search } = useLocation();
   const { t } = useTranslation();
@@ -25,9 +28,11 @@ function StartingRight({ header1, header2, btns, firstPage }) {
           phoneNumber: result.user.phoneNumber,
           id: result.user.uid
         };
+        setLoading(true);
         await addDocToCollection('users', user);
         toastSuccess(t('success'));
         navigate(to);
+        setLoading(false);
 
         // This gives you a Google Access Token. You can use it to access the Google API.
         // const credential = GoogleAuthProvider.credentialFromResult(result);
