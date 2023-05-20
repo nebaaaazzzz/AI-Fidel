@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 const FinalScoreBoards = () => {
   const { t } = useTranslation();
   return (
-        <LevelComplete all>
+        <LevelComplete compStatus='some'>
           <div className='flex pt-0 pb-6 flex-col gap-2 md:gap-6 justify-around '>
               <div className='flex justify-between gap-8'>
                 <div className='rounded-full hidden md:block bg-[#F8B936] h-[45px] w-[45px]' />

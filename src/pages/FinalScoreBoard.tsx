@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 const FinalScoreBoard = () => {
   const { t } = useTranslation();
   return (
-        <LevelComplete>
+        <LevelComplete compStatus='all'>
           <img src={stars} className="mx-auto mt-[-15px] md:mt-0  md:w-2/5 w-[150px] mb-2" />
           <div className="text-xs mt-[15px] md:mt-0 md:text-lg font-semibold text-[#FFF] flex justify-center">
             {t('fal')}
