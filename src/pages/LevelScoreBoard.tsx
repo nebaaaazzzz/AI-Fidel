@@ -21,9 +21,12 @@ const LevelScoreBoard = () => {
       score: 100
     }
   ]);
+
+  let completedAll = results.reduce((s, e) => s && e)
+
   return (
     <div className="">
-      <LevelComplete>
+      <LevelComplete completedAll={completedAll}>
         {results.map((result) => {
           return (
             <LevelScore
