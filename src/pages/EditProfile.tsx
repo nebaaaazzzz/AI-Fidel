@@ -53,7 +53,7 @@ const EditProfile = () => {
             <div className='block w-[24px] md:w-0'></div>
             <div className="">
               <button className="bg-[#2E2E2E] shadow-[0px_2px_20px_rgba(255,175,82,1)] py-2 px-2 ml-auto mr-auto md:ml-7 rounded-full h-36 w-36 flex items-center justify-center">
-                <img src={profile} className=" w-11/12" />
+                <img src={user?.user ? user.photo : localStorage.getItem('photo')} className=" w-11/12" />
               </button>
               <div className="mt-6 text-center mb-1">
                 <h1 className="text-center text-[#FFF] font-bold text-lg px-6 ml-5">
