@@ -1,4 +1,4 @@
-import LevelComplete from './ParentScoreBoard';
+import ParentScoreBoard from './ParentScoreBoard';
 import { LevelScore } from '@/components/LevelScore';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { useState } from 'react';
@@ -52,7 +52,7 @@ const LevelScoreBoard = () => {
   return (
     <div className="">
         <button  onClick={() => navigate(-1)} >Back</button>
-      <LevelComplete>
+      <ParentScoreBoard>
         {results.map((result, index) => {
           return (
             <LevelScore 
@@ -62,7 +62,7 @@ const LevelScoreBoard = () => {
             />
           );
         })}
-      </LevelComplete>
+      </ParentScoreBoard>
     </div>
   );
 };
