@@ -26,6 +26,8 @@ import LevelScoreBoard from './pages/LevelScoreBoard';
 import { ChangeLanguage } from './pages/ChangeLanguage';
 
 import { Provider } from 'jotai';
+import KeepUpScoreBoard from './pages/KeepUpScoreBoard';
+import ParentScoreBoard from './pages/ParentScoreBoard';
 
 function App() {
   return (
@@ -45,6 +47,7 @@ function App() {
                 <Route path="complete" element={<Complete />} />
                 <Route path="final-score-board" element={<FinalScoreBoard />} />
                 <Route path="level-score-board" element={<LevelScoreBoard />} />
+                <Route path="keep-up-score-board" element={<KeepUpScoreBoard />} />
                 <Route element={<RootLayout />}>
                   <Route path="select-hand" element={<SelectHand />} />
                   <Route path="select-level" element={<SelectLevel />} />
