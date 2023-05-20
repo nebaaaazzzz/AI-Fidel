@@ -10,7 +10,6 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 const ParentScoreBoard = ({ children, completedAll }) => {
-  console.log(completedAll)
   const { t } = useTranslation();
   return (
     <div className=" bg-[#0D0D0D]">
@@ -50,7 +49,7 @@ const ParentScoreBoard = ({ children, completedAll }) => {
             </button>
           </Link>
         </div>
-        <div className="flex flex-col w-full md:w-[68%]">
+        <div className="flex flex-col w-full csl:w-[68%] ml-0 md:ml-24 ">
           <div className=" flex flex-col w-[90%] mx-auto h-full">
             <button className="bg-[#F8B936] block uppercase w-[93%] md:w-full ml-auto mr-auto rounded-md text-[#FFF] text-xl md:text-2xl font-bold border-[4px] border-[#FAFF00] py-1 shadow-[0px_2px_10px_rgba(254,198,0,.8)]">
               {t('sb')}
