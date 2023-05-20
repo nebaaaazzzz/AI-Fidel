@@ -7,7 +7,7 @@ const FinalScoreBoards = () => {
   const { t } = useTranslation();
   return (
         <LevelComplete all>
-          <div className='flex pt-2 pb-6 flex-col gap-2 md:gap-6 justify-around '>
+          <div className='flex pt-0 pb-6 flex-col gap-2 md:gap-6 justify-around '>
               <div className='flex justify-between gap-8'>
                 <div className='rounded-full hidden md:block bg-[#F8B936] h-[45px] w-[45px]' />
                 <div className='w-full md:w-[90%] bg-[#008867] border-4 flex justify-between items-center px-0 pl-2 md:px-8 4fex-row border-[#05C294] h-[50px] rounded-lg'>

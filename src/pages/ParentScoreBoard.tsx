@@ -15,7 +15,7 @@ const ParentScoreBoard = ({ children, all }) => {
       <Header />
       <div className="flex gap-82 mt-8 md:mt-16 transition-all csl:mt-[-20px] justify-center csl:justify-start w-[300px] md:w-auto ml-auto mr-auto csl:w-auto flex-col md:flex-row h-[75vh] csl:ml-10  md:mr-20">
         <div className="w-[34%] block md:hidden csl:block">
-          <img src={all ? completeall : complete} className="hidden md:block max-h-[98%]  mx-auto" />
+          <img src={all ? completeall : complete} className="hidden md:block max-h-[95%]  mx-auto" />
           <div className="flex md:hidden items-center flex-row md:flex-col gap-2 p-4 py-8 mr-auto md:ml-auto mt-8 md:mt-0 md:p-0">
           <div
             className={`rounded-full flex items-center justify-center w-[80px] h-[80px] aspect-square ${
