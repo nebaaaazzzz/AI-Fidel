@@ -17,8 +17,8 @@ const ParentScoreBoard = ({ children, completedAll }) => {
       <Header />
       <div className="flex gap-82 mt-8 md:mt-16 transition-all csl:mt-[-20px] justify-center csl:justify-start w-[300px] md:w-auto ml-auto mr-auto csl:w-auto flex-col md:flex-row h-[75vh] csl:ml-10  md:mr-20">
         <div className="w-[34%] block md:hidden csl:block">
-          <div  className="hidden md:block h-full w-auto mx-auto" >
-            <img src={completedAll ? allcomplete : keepup} className='max-h-[97%]' />
+          <div  className="hidden md:block h-[425px] w-auto mx-auto" >
+            <img src={completedAll ? allcomplete : keepup} className='h-full' />
           </div>
           <div className="flex md:hidden items-center flex-row md:flex-col gap-2 p-4 py-8 mr-auto md:ml-auto mt-8 md:mt-0 md:p-0">
           <div
