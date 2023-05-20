@@ -24,7 +24,7 @@ function LeftSideBar() {
       to: `/select-level?mode=game&lang=${lang}&hand=${hand}`
     },
     { image: editIcon, to: '/trial' },
-    { image: trophyIcon, to: '/final-score-board' },
+    { image: trophyIcon, to: '/keep-up-score-board' },
     {
       image: user?.user ? user.photo : localStorage.getItem('photo'),
       to: '/edit-profile'
