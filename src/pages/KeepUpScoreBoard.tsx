@@ -54,7 +54,7 @@ const LevelScoreBoard = () => {
   ]);
   return (
     <div className="">
-        <button  onClick={() => navigate(-1)} >Back</button>
+        {/* <button  onClick={() => navigate(-1)} >Back</button> */}
       <ParentScoreBoard completedAll={completedAll}>
         {results.map((result, index) => {
           return (
