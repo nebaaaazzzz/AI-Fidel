@@ -59,6 +59,7 @@ function Game() {
   const navigate = useNavigate();
   const { search } = useLocation();
   const searchParams = useSearchParams()[0];
+  const userAgent = navigator.userAgent
   const {
     lang,
     hand: handDirection,
@@ -106,7 +107,7 @@ function Game() {
     if (wordIndex == singleLevelWord.length - 1) {
       navigate(`/level-completed${search}&points=${score}`);
       score = 0;
-      reloadMediaPipeFiles();
+      if (userAgent.includes('Chrome') || userAgent.includes('Brave'))  reloadMediaPipeFiles();
     }
     setTimeout(() => {
       skipPrediction = false;
