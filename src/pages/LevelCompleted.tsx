@@ -1,35 +1,41 @@
-import stars from '@assets/images/stars.png';
-import { useContext, useEffect, useState, useTransition } from 'react';
-import { Link, useNavigate, useSearchParams } from 'react-router-dom';
+import stars from "@assets/images/stars.png";
+import { useContext, useEffect, useState, useTransition } from "react";
+import {
+  Link,
+  useLocation,
+  useNavigate,
+  useSearchParams,
+} from "react-router-dom";
 import {
   getLevelScore,
   clearAllScore,
   storeSessionInfo,
-  storeLevelScore
-} from '../utils/localsession';
-import { AiOutlineInstagram } from 'react-icons/ai';
-import { GrFacebookOption } from 'react-icons/gr';
-import { ImTwitter } from 'react-icons/im';
-import { doc, setDoc } from 'firebase/firestore';
-import { db } from '@/config/firebase';
-import { AuthContext } from '../context/AuthContext';
-import { useTranslation } from 'react-i18next';
+  storeLevelScore,
+} from "../utils/localsession";
+import { AiOutlineInstagram } from "react-icons/ai";
+import { GrFacebookOption } from "react-icons/gr";
+import { ImTwitter } from "react-icons/im";
+import { doc, setDoc } from "firebase/firestore";
+import { db } from "@/config/firebase";
+import { AuthContext } from "../context/AuthContext";
+import { useTranslation } from "react-i18next";
 const useGetSearchParams = (searchParams: URLSearchParams) => {
-  const mode = searchParams.get('mode');
-  const hand = searchParams.get('hand');
-  const level = searchParams.get('level');
-  const lang = searchParams.get('lang');
-  const points = searchParams.get('points');
+  const mode = searchParams.get("mode");
+  const hand = searchParams.get("hand");
+  const level = searchParams.get("level");
+  const lang = searchParams.get("lang");
+  const points = searchParams.get("points");
   // searchParams.delete('points');
 
   return { mode, hand, level, lang, points };
 };
 async function updateUserFirebaseLevel(userId, level) {
-  const docRef = doc(db, 'users', userId);
+  const docRef = doc(db, "users", userId);
   await setDoc(docRef, { level: level }, { merge: true });
 }
 const socialMediaIcons = [AiOutlineInstagram, ImTwitter, GrFacebookOption];
 function LevelCompleted() {
+  const { search } = useLocation();
   const navigate = useNavigate();
   const { t } = useTranslation();
   const user = useContext(AuthContext);
@@ -39,13 +45,26 @@ function LevelCompleted() {
     hand,
     level,
     lang,
-    points: score
+    points: score,
   } = useGetSearchParams(searchParams);
-  // searchParams.delete('level');
   const [points, setPoints] = useState<number | string>(0);
   const [levelesScore, setLevelsScore] = useState<Record<string, number>>();
   const factor =
-    lang == 'en' ? (mode == 'learn' ? Number(level) * 10 : 40) : 40;
+    lang == "en" ? (mode == "learn" ? Number(level) * 10 : 40) : 40;
+    if (level == '1') localStorage.setItem('levelOneScore', ((Number(score) * 100) / factor).toFixed(2))
+    if (level == '2') localStorage.setItem('levelTwoScore', ((Number(score) * 100) / factor).toFixed(2))
+    if (level == '3') localStorage.setItem('levelThreeScore', ((Number(score) * 100) / factor).toFixed(2))
+    if (level == '4') localStorage.setItem('levelFourScore', ((Number(score) * 100) / factor).toFixed(2))
+  // searchParams.delete('level');
+  if (level == "4") {
+    const avg =
+      (Number(localStorage.getItem("levelOneScore")) +
+        Number(localStorage.getItem("levelTwoScore")) +
+        Number(localStorage.getItem("levelThreeScore")) +
+        Number(localStorage.getItem("levelFourScore"))) /
+      4;
+    localStorage.setItem("avg", String(avg));
+  }
   useEffect(() => {
     (async () => {
       if (Number(level) == 4) {
@@ -53,9 +72,9 @@ function LevelCompleted() {
         let levelScores = {};
         for (let i = 1; i < 4; i++) {
           let levelScore;
-          if (mode == 'game') {
+          if (mode == "game") {
             // add prefix to the level
-            levelScore = await getLevelScore('game-' + String(i));
+            levelScore = await getLevelScore("game-" + String(i));
           } else {
             levelScore = await getLevelScore(String(i));
           }
@@ -83,11 +102,11 @@ function LevelCompleted() {
         let va = ((Number(score) * 10) / 3).toFixed(1);
         await storeLevelScore(level, va, mode);
         setPoints(va);
-        if (user?.user && mode == 'game') {
+        if (user?.user && mode == "game") {
           await updateUserFirebaseLevel(user.id, level);
         }
       }
-      if (user?.user && mode == 'game') {
+      if (user?.user && mode == "game") {
         await updateUserFirebaseLevel(user.id, level);
       }
     })();
@@ -100,27 +119,39 @@ function LevelCompleted() {
             return <Icon key={index} size={20} />;
           })}
         </div>
-        <button className="btn btn-primary capitalize mb-5  rounded-md w-full text-xl text-white">
-          {mode == 'game' ? `Level ${level}` : 'Completed'}
-        </button>
-        {mode == 'learn' && (
+        <div>
+          {level == "4" ? (
+            <Link to={`/final-score-board?${localStorage.getItem("avg")}`}>
+              <button className="btn btn-primary capitalize mb-5  rounded-md w-full text-xl text-white">
+                {mode == "game" ? `Level ${level}` : "Completed"}
+              </button>
+            </Link>
+          ) : (
+            <Link to={`/keep-up-score-board${search}`}>
+              <button className="btn btn-primary capitalize mb-5  rounded-md w-full text-xl text-white">
+                {mode == "game" ? `Level ${level}` : "Completed"}
+              </button>
+            </Link>
+          )}
+        </div>
+        {mode == "learn" && (
           <p className="text-white font-bold text-center rounded-md w-full ">
-            {t('level')} {level}
+            {t("level")} {level}
           </p>
         )}
         {/* {mode == 'game' ? (
           
         ) : (
         )} */}
-        {mode === 'game' && (
+        {mode === "game" && (
           <ul className="steps text-2xl self-stretch">
             {Array(Number(level))
-              .fill('0')
+              .fill("0")
               .map((_, i) => {
                 return <li data-content="★" className="step  step-accent"></li>;
               })}
             {Array(4 - Number(level))
-              .fill('0')
+              .fill("0")
               .map((_, i) => {
                 return (
                   <li data-content="★" className="step  step-neutral"></li>
@@ -131,34 +162,37 @@ function LevelCompleted() {
         <img src={stars} className="object-contain w-52" />
 
         <p className="font-bold">
-          {mode == 'game' ? 'you scored' : 'you have learned'}
+          {mode == "game" ? "you scored" : "you have learned"}
         </p>
         <h1 className="text-white font-extrabold text-6xl">
-          {((Number(score) * 100) / factor).toFixed(2)}%
+          {parseFloat(((Number(score) * 100) / factor).toFixed(2)) > 100
+            ? 100
+            : parseFloat(((Number(score) * 100) / factor).toFixed(2))}
+          %
         </h1>
-        {mode != 'game' && <p className="font-bold">{t('otl')}</p>}
+        {mode != "game" && <p className="font-bold">{t("otl")}</p>}
         <Link
           to={`/game?${searchParams.toString()}&level=${Number(level)}`}
           className="btn mt-5 font-bold capitalize bg-[#2E2E2E] hover:bg-[#3f3f3f] rounded-md w-full"
         >
-          {mode == 'game' ? (
-            <p className="text-white font-bold text-xl"> {t('pa')}</p>
+          {mode == "game" ? (
+            <p className="text-white font-bold text-xl"> {t("pa")}</p>
           ) : (
-            <p className="text-white font-bold text-xl"> {t('la')}</p>
+            <p className="text-white font-bold text-xl"> {t("la")}</p>
           )}
         </Link>
         {Number(level) !== 4 ? (
           <button
             onClick={() => {
-              searchParams.delete('level');
-              searchParams.delete('points');
+              searchParams.delete("level");
+              searchParams.delete("points");
               navigate(
                 `/game?${searchParams.toString()}&level=${Number(level) + 1}`
               );
             }}
             className="btn font-bold capitalize text-xl text-black btn-accent rounded-md w-full"
           >
-            {t('nxt')}{' '}
+            {t("nxt")}{" "}
           </button>
         ) : null}
       </div>
