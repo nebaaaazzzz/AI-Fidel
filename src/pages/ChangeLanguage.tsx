@@ -7,7 +7,7 @@ import UKIcon from '@assets/icons/uk-icon.png';
 import { useTranslation } from 'react-i18next';
 import { useAtom } from 'jotai';
 import { langAtom } from '../store/store'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { TiTick } from 'react-icons/ti';
 import { AuthContext } from '@/context/AuthContext';
 import { useContext } from 'react';
@@ -18,6 +18,15 @@ export const ChangeLanguage = () => {
   const [amharic, setAmharic] = useState(false);
   const [english, setEnglish] = useState(true);
   const user = useContext(AuthContext);
+  useEffect(() => {
+    if (localStorage.getItem('language') == 'am') {
+      setAmharic(true)
+      setEnglish(false)
+    } else { 
+      setAmharic(false)
+      setEnglish(true)
+    }
+  }, [])
   const changeLangtoAmh = () => {
     i18n.changeLanguage('am');
     setLang('am')
