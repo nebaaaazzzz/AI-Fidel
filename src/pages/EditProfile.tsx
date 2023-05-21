@@ -26,11 +26,9 @@ const EditProfile = () => {
   const { i18n } = useTranslation();
 
   const handleSignOut = () => {
-    console.log('Sign out');
     signOut(auth)
       .then(() => {
-        console.log('Sign-out successful.');
-        localStorage.removeItem("language")
+        localStorage.clear();
         i18n.changeLanguage('en')
         navigate('/');
       })
