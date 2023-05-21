@@ -12,14 +12,15 @@ const useGetSearchParams = (searchParams: URLSearchParams) => {
     // searchParams.delete('points');
   
     return { mode, hand, level, lang, points };
+    `levelFourScore_${localStorage.getItem('displayName')}`
   };
 
 
 const LevelScoreBoard = () => {
-    let levelOne = localStorage.getItem('levelOneScore') ? localStorage.getItem('levelOneScore') : "0"
-    let levelTwo = localStorage.getItem('levelTwoScore') ? localStorage.getItem('levelTwoScore') : "0"
-    let levelThree = localStorage.getItem('levelThreeScore') ? localStorage.getItem('levelThreeScore') : "0"
-    let levelFour = localStorage.getItem('levelFourScore') ? localStorage.getItem('levelFourScore') : "0"
+    let levelOne = localStorage.getItem(`levelOneScore_${localStorage.getItem('displayName')}`) ? localStorage.getItem(`levelOneScore_${localStorage.getItem('displayName')}`) : "0"
+    let levelTwo = localStorage.getItem(`levelTwoScore_${localStorage.getItem('displayName')}`) ? localStorage.getItem(`levelTwoScore_${localStorage.getItem('displayName')}`) : "0"
+    let levelThree = localStorage.getItem(`levelThreeScore_${localStorage.getItem('displayName')}`) ? localStorage.getItem(`levelThreeScore_${localStorage.getItem('displayName')}`) : "0"
+    let levelFour = localStorage.getItem(`levelFourScore_${localStorage.getItem('displayName')}`) ? localStorage.getItem(`levelFourScore_${localStorage.getItem('displayName')}`) : "0"
 
     let completedAll = parseInt(levelOne) > 0 && parseInt(levelTwo) > 0 && parseInt(levelThree) > 0 && parseInt(levelFour) > 0
 
