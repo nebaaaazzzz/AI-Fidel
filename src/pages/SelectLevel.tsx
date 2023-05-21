@@ -32,7 +32,7 @@ function SelectLevel() {
       if (user?.user) {
         const docRef = doc(db, 'users', user.id);
         const docSnap = await getDoc(docRef);
-        const level = docSnap.get('level' + '-' + searchParams.get('lang'));
+        const level = docSnap.get('level');
         if (level) {
           setLevelOffset(level);
         } else {
@@ -40,6 +40,12 @@ function SelectLevel() {
         }
       } else {
         //TODO for guest user check THERE local storage
+        const level = localStorage.getItem('level');
+        if (level) {
+          setLevelOffset(Number(level));
+        } else {
+          setLevelOffset(0);
+        }
       }
     })();
   }, [user]);
@@ -112,7 +118,6 @@ function buildLevelButtons(
   levelOffset: number,
   t
 ) {
-  console.log(levelOffset + 1);
   const levels = [1, 2, 3, 4];
   const mode = searchParams.get('mode');
   if (mode == 'game') {
