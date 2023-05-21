@@ -53,11 +53,11 @@ function SelectProfile() {
       } else {
         setUsername(autoGenerateUsername());
         localStorage.setItem('displayName', autoGenerateUsername());
-        localStorage.setItem('photo', avatarUrls[0]);
+        localStorage.setItem('photo', avatarUrls[6]);
       }
     })();
   }, [user]);
-  const [avatar, setAvatar] = useState(user?.photoURL || avatarUrls[0]);
+  const [avatar, setAvatar] = useState(user?.photoURL || avatarUrls[6]);
   const [userNameUpdated, setUsernameUpdated] = useState(false);
   const { search } = useLocation();
   const [selectedAvatarIndex, setSelectedAvatarIndex] = useState<number>();
