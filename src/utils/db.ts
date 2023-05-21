@@ -4,7 +4,6 @@ import { toastError } from './toast';
 
 export async function addDocToCollection(collectionName: string, data: any) {
   try {
-    console.log(data.id);
     const docRef = await setDoc(doc(db, 'users', data.id), data);
     return docRef;
   } catch (e) {

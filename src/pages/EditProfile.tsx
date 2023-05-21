@@ -36,7 +36,6 @@ const EditProfile = () => {
         console.log(error);
       });
   };
-  console.log(localStorage.getItem('displayName'));
   return (
     <div className="relative">
       {loading ? (
