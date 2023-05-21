@@ -9,7 +9,12 @@ import keepup from '@/assets/icons/keepup.png';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
-const ParentScoreBoard = ({ children, completedAll }) => {
+const ParentScoreBoard = ({ children }) => {
+  let levelOne = localStorage.getItem('levelOneScore')
+    let levelTwo = localStorage.getItem('levelTwoScore') 
+    let levelThree = localStorage.getItem('levelThreeScore') 
+    let levelFour = localStorage.getItem('levelFourScore')
+    let completedAll = parseInt(levelOne) > 0 && parseInt(levelTwo) > 0 && parseInt(levelThree) > 0 && parseInt(levelFour) > 0
   const { t } = useTranslation();
   return (
     <div className=" bg-[#0D0D0D]">

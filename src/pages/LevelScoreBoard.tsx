@@ -26,7 +26,7 @@ const LevelScoreBoard = () => {
 
   return (
     <div className="">
-      <LevelComplete completedAll={completedAll}>
+      <LevelComplete>
         {results.map((result) => {
           return (
             <LevelScore

@@ -144,17 +144,17 @@ function LevelCompleted() {
         </div>
         <div>
           {level == "4" ? (
+             <button className="py-2 btn-primary capitalize mb-2 md:mb-5 rounded-lg md:rounded-md w-[100%] text-lg font-[500] md:font-normal md:text-xl text-white">
             <Link to={`/final-score-board?${localStorage.getItem("avg")}`}>
-              <button className="py-2 btn-primary capitalize mb-2 md:mb-5 rounded-lg md:rounded-md w-full text-lg font-[500] md:font-normal md:text-xl text-white">
                 {mode == "game" ? `Level ${level}` : "Completed"}
-              </button>
             </Link>
+            </button>
           ) : (
+            <button className="py-2 btn-primary capitalize mb-2 md:mb-5 rounded-lg md:rounded-md w-[100%] text-lg font-[500] md:font-normal md:text-xl text-white">
             <Link to={`/keep-up-score-board${search}`}>
-              <button className="py-2 btn-primary capitalize mb-2 md:mb-5 rounded-lg md:rounded-md w-full text-lg font-[500] md:font-normal md:text-xl text-whitee">
                 {mode == "game" ? `Level ${level}` : "Completed"}
-              </button>
             </Link>
+            </button>
           )}
         </div>
         {mode == "learn" && (
