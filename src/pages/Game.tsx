@@ -319,8 +319,9 @@ function Game() {
           isMediaPipeModelLoading={isMediaPipeModelLoading}
           selectedLetter={selectedLetter}
           selectedWord={selectedWord}
+          handDirection={handDirection}
         />
-        <div className="flex ig:bg-red-500 h-[45%] md:h-[250px] cml:h-[300px] w-[240px] md:w-[45%] items-center rounded-3xl justify-center overflow-hidden md:rounded-lg">
+        <div className={`flex ig:bg-red-500 h-[45%] md:h-[250px] cml:h-[300px] w-[240px] md:w-[45%] items-center rounded-3xl justify-center overflow-hidden md:rounded-lg   ${handDirection == "left" ? 'order-1' :''}`}>
           {isMediaPipeModelLoading && (
             <img
               src={girl}
