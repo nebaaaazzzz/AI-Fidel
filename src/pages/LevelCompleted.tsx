@@ -19,6 +19,7 @@ import { doc, setDoc } from "firebase/firestore";
 import { db } from "@/config/firebase";
 import { AuthContext } from "../context/AuthContext";
 import { useTranslation } from "react-i18next";
+import { use } from "i18next";
 const useGetSearchParams = (searchParams: URLSearchParams) => {
   const mode = searchParams.get("mode");
   const hand = searchParams.get("hand");
@@ -36,6 +37,7 @@ async function updateUserFirebaseLevel(userId, level) {
 const socialMediaIcons = [AiOutlineInstagram, ImTwitter, GrFacebookOption];
 function LevelCompleted() {
   const { search } = useLocation();
+  const [count, setCount] = useState(0);
   const navigate = useNavigate();
   const { t } = useTranslation();
   const user = useContext(AuthContext);
@@ -51,20 +53,23 @@ function LevelCompleted() {
   const [levelesScore, setLevelsScore] = useState<Record<string, number>>();
   const factor =
     lang == "en" ? (mode == "learn" ? Number(level) * 10 : 40) : 40;
-    if (level == '1') localStorage.setItem('levelOneScore', ((Number(score) * 100) / factor).toFixed(2))
-    if (level == '2') localStorage.setItem('levelTwoScore', ((Number(score) * 100) / factor).toFixed(2))
-    if (level == '3') localStorage.setItem('levelThreeScore', ((Number(score) * 100) / factor).toFixed(2))
-    if (level == '4') localStorage.setItem('levelFourScore', ((Number(score) * 100) / factor).toFixed(2))
+    if (level == '1') localStorage.setItem(`levelOneScore_${localStorage.getItem('displayName')}`, ((Number(score) * 100) / factor).toFixed(2))
+    if (level == '2') localStorage.setItem(`levelTwoScore_${localStorage.getItem('displayName')}`, ((Number(score) * 100) / factor).toFixed(2))
+    if (level == '3') localStorage.setItem(`levelThreeScore_${localStorage.getItem('displayName')}`, ((Number(score) * 100) / factor).toFixed(2))
+    if (level == '4') localStorage.setItem(`levelFourScore_${localStorage.getItem('displayName')}`, ((Number(score) * 100) / factor).toFixed(2))
   // searchParams.delete('level');
   if (level == "4") {
     const avg =
-      (Number(localStorage.getItem("levelOneScore")) +
-        Number(localStorage.getItem("levelTwoScore")) +
-        Number(localStorage.getItem("levelThreeScore")) +
-        Number(localStorage.getItem("levelFourScore"))) /
+      (Number(localStorage.getItem(`levelOneScore_${localStorage.getItem('displayName')}`)) +
+        Number(localStorage.getItem(`levelTwoScore_${localStorage.getItem('displayName')}`)) +
+        Number(localStorage.getItem(`levelThreeScore_${localStorage.getItem('displayName')}`)) +
+        Number(localStorage.getItem(`levelFourScore_${localStorage.getItem('displayName')}`))) / 
       4;
     localStorage.setItem("avg", String(avg));
   }
+  useEffect(() => {
+    localStorage.setItem("level", level);
+  },[])
   useEffect(() => {
     (async () => {
       if (Number(level) == 4) {
@@ -102,7 +107,9 @@ function LevelCompleted() {
         let va = ((Number(score) * 10) / 3).toFixed(1);
         await storeLevelScore(level, va, mode);
         setPoints(va);
+        console.log(user?.user)
         if (user?.user && mode == "game") {
+          console.log("This is working")
           await updateUserFirebaseLevel(user.id, level);
         }
       }
@@ -110,7 +117,7 @@ function LevelCompleted() {
         await updateUserFirebaseLevel(user.id, level);
       }
     })();
-  }, []);
+  }, [user]);
   return (
     <div className="flex h-screen md:h-auto justify-center relative md:mt-0">
       <div className="flex md:hidden absolute items-center flex-row md:flex-col gap-2 p-2 py-0 mr-auto md:ml-auto mt-8">
