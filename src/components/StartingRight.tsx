@@ -9,10 +9,14 @@ import { useTranslation } from 'react-i18next';
 import { BsArrowLeftShort } from 'react-icons/bs';
 import { useAtom } from 'jotai';
 import { loadingAtom } from '../store/store';
+import { db } from '@/config/firebase';
+import { doc, getDoc } from 'firebase/firestore';
+import { useState } from 'react';
 
 
 function StartingRight({ header1, header2, btns, firstPage }) {
   const [loading, setLoading] = useAtom(loadingAtom);
+  const [errorCount, setErrorCount] = useState(0)
   const navigate = useNavigate();
   const { search } = useLocation();
   const { t } = useTranslation();
@@ -20,20 +24,27 @@ function StartingRight({ header1, header2, btns, firstPage }) {
     const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider)
       .then(async (result) => {
-        //TODO if user already exist in db DONT ADD TO COLLECTION
-        const user = {
-          displayName: result.user.displayName,
-          email: result.user.email,
-          photo: result.user.photoURL,
-          phoneNumber: result.user.phoneNumber,
-          id: result.user.uid
-        };
         setLoading(true);
-        await addDocToCollection('users', user);
-        toastSuccess(t('success'));
-        navigate(to);
+        const docRef = doc(db, 'users', result.user.uid);
+        const docSnap = await getDoc(docRef);
         setLoading(false);
 
+        if (docSnap.exists()) {
+          navigate(to);
+        } else {
+          const user = {
+            displayName: result.user.displayName,
+            email: result.user.email,
+            photo: result.user.photoURL,
+            phoneNumber: result.user.phoneNumber,
+            id: result.user.uid
+          };
+          setLoading(true);
+          await addDocToCollection('users', user);
+          toastSuccess(t('success'));
+          navigate(to);
+          setLoading(false);
+        }
         // This gives you a Google Access Token. You can use it to access the Google API.
         // const credential = GoogleAuthProvider.credentialFromResult(result);
         // const token = credential.accessToken;
@@ -46,7 +57,12 @@ function StartingRight({ header1, header2, btns, firstPage }) {
         // Handle Errors here.
         const errorCode = error.code;
         const errorMessage = error.message;
-        toastError(errorMessage);
+        setErrorCount(errorCount + 1)
+        if (errorCount > 3) { 
+          toastError("There might be an issue with your internet connection please try guest mode");
+        } else {
+          toastError("Something went wrong please try agian");
+        }
         // The email of the user's account used.
         const email = error.customData.email;
         // The AuthCredential type that was used.
