@@ -37,20 +37,21 @@ const Welcome = () => {
       <div className=''>
         <img
           src={circleDashed}
-          className="absolute md:top-[-10rem] md:right-[-7rem] csl:top-[-9rem] csl:right-[-6rem] cml:top-[-13rem] cml:right-[-7rem] object-contain aspect-square md:w-6/12 w-[400px] right-[-150px] top-[6rem]"
+          className="absolute md:top-[-10rem] md:right-[-7rem] csl:top-[-9rem] csl:right-[-6rem] cml:top-[-13rem] cml:right-[-7rem] object-contain aspect-square md:w-6/12 w-[400px] right-[-55vw] top-[6rem]"
         />
       </div>
       <div className='absolute md:hidden border-8 z-10 border-white w-[220px] h-[220px] rounded-full top-[-120px] right-[-50px]'></div>
-      <div className="absolute md:w-32 w-[300px] aspect-square md:top-32 top-[-100px] md:left-0 csl:left-2 cml:left-5 cml:top-[100px] left-[-90px] rounded-full  bg-primary"></div>
+      <div className="absolute md:w-32 w-[340px] aspect-square md:top-32 top-[-100px] md:left-0 csl:left-2 cml:left-5 cml:top-[100px] left-[-90px] rounded-full  bg-primary"></div>
       <div className="grow text-5xl transition-all cxm:text-5xl cvs:text-[55px] cvs:top-[20%] cxl:top-[17%] cxl:text-6xl md:top-[25%] md:text-5xl absolute md:hidden text-white text-center flex flex-col top-[25%]">
         <h1 className="m-1 font-semibold text-white">{t('welcome')} </h1>
         <h1 className="m-1 font-semibold text-white">
-          {isLevelOne ? t('tyrf') : t('tyr')}
+          {t('tyr')} {' '} <p className='block md:hidden pt-6'> {isLevelOne ? "first" : " "} </p>
+          {/* {isLevelOne ? t('tyrf') : t('tyr')} */}
         </h1>
         <h1 className="m-1 font-semibold text-white">{t('lesson')}</h1>
       </div>
       <div
-        className="hidden md:flex w-5/6 pr-5 justify-between py-2"
+        className="hidden md:flex h-[50vh] w-5/6 pr-5 justify-between py-2"
         style={{
           background:
             'linear-gradient(150.11deg, rgba(217, 217, 217, 0.87) -8.45%, rgba(255, 255, 255, 0.2175) -8.45%, rgba(255, 255, 255, 0.0783) 113.16%)',
@@ -73,7 +74,7 @@ const Welcome = () => {
               className="object-contain aspect-square w-full rounded-full"
             />
           </div>
-          <div className="grow text-2xl text-white text-center flex flex-col my-10 md:my-0">
+          <div className="grow text-2xl text-white text-center flex flex-col justify-evenly my-10 md:my-0">
             <h1 className="m-1 font-semibold text-white">{t('welcome')} </h1>
             <h1 className="m-1 font-semibold text-white">
               {isLevelOne ? t('tyrf') : t('tyr')}

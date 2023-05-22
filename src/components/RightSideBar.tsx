@@ -16,10 +16,10 @@ function RightSideBar() {
   ];
   const modes = [t('education'), t('game')];
   return (
-    <div className="hidden transition-all cxl:hidden csl:flex shrink-0 flex-col items-center gap-1">
+    <div className="hidden transition-all cxl:hidden csl:flex shrink-0 flex-col max-h-[80vh] items-center gap-1">
       <Icon />
       <div
-        className="flex flex-col transition-all md:w-42 mt-3 lg:w-56 items-center px-5 rounded-lg py-2"
+        className="flex flex-col overflow-y-scroll transition-all h-full md:w-42 mt-3 lg:w-56 items-center px-5 rounded-lg py-2"
         style={{
           backgroundImage:
             'linear-gradient(104.13deg, rgba(0, 0, 0, 0.4) 17.81%, rgba(0, 0, 0, 0.45) 90.16%)',

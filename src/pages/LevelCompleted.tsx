@@ -20,6 +20,8 @@ import { db } from "@/config/firebase";
 import { AuthContext } from "../context/AuthContext";
 import { useTranslation } from "react-i18next";
 import { use } from "i18next";
+import coin from '@assets/icons/coin.svg';
+import grayCoin from '@assets/icons/grayCoin.svg';
 const useGetSearchParams = (searchParams: URLSearchParams) => {
   const mode = searchParams.get("mode");
   const hand = searchParams.get("hand");
@@ -120,52 +122,19 @@ function LevelCompleted() {
   }, [user]);
   return (
     <div className="flex h-screen md:h-auto justify-center relative md:mt-0">
-      <div className="flex md:hidden absolute items-center flex-row md:flex-col gap-2 p-2 py-0 mr-auto md:ml-auto mt-8">
-          <div
-            className={`rounded-full flex items-center justify-center w-[80px] h-[80px] aspect-square ${
-              ''
-            }`}
-            style={{
-              background: '#2E2E2E',
-              boxShadow: '0px 0px 20px 4px #FFAF52'
-            }}
-          >
-            {(
-              <img
-                src={'user.photo'}
-                alt="user profile picture"
-                className="object-contain w-1/3 rounded-full"
-              />
-            )}
-          </div>
-          <div className='pl-4'>
-            <p className='opacity-50 text-sm text-left'>Hello</p>
-            <h2 className='text-left text-white text-md md:text-2xl font-[500] w-[200px]'>Ablaze Labs</h2>
-          </div>
-        </div>
-      <div className="md:w-1/2 pt-[150px] md:pt-0 w-[300px] flex  flex-col items-center gap-2 md:gap-5 mt-[100px">
+      <div className="md:w-2/3 h-[80vh] md:h-auto mt-[9vh] md:mt-0 md:pt-0 w-11/12 flex flex-col justify-center gap-4 items-center">
         <div className="absolute right-0 hidden md:flex flex-col gap-14">
           {socialMediaIcons.map((Icon) => {
             return <Icon size={20} />;
           })}
         </div>
-        <div>
-          {level == "4" ? (
-             <button className="py-2 btn-primary capitalize mb-2 md:mb-5 rounded-lg md:rounded-md w-[100%] text-lg font-[500] md:font-normal md:text-xl text-white">
-            <Link to={`/final-score-board?${localStorage.getItem("avg")}`}>
-                {mode == "game" ? `Level ${level}` : "Completed"}
-            </Link>
-            </button>
-          ) : (
-            <button className="py-2 btn-primary capitalize mb-2 md:mb-5 rounded-lg md:rounded-md w-[100%] text-lg font-[500] md:font-normal md:text-xl text-white">
-            <Link to={`/keep-up-score-board${search}`}>
-                {mode == "game" ? `Level ${level}` : "Completed"}
-            </Link>
-            </button>
-          )}
-        </div>
+        <Link 
+          to={level == "4" ? `/final-score-board?${localStorage.getItem("avg")}` : `/keep-up-score-board${search}`} 
+          className="py-2 btn-primary capitalize mb-2 md:mb-5 rounded-lg md:rounded-md w-full text-lg font-[500] md:font-normal md:text-xl text-white text-center">
+            {mode == "game" ? `Level ${level}` : "Completed"}
+        </Link>
         {mode == "learn" && (
-          <p className="text-white font-bold text-center rounded-md w-full ">
+          <p className="text-white mt-0 md:mt-[-20px] font-bold text-center rounded-md w-full ">
             {t("level")} {level}
           </p>
         )}
@@ -173,7 +142,13 @@ function LevelCompleted() {
           
         ) : (
         )} */}
-        {mode === "game" && (
+
+
+
+        {/* Change made here */}
+
+
+         {/* {mode === "game" && (
           <ul className="steps text-2xl self-stretch">
             {Array(Number(level))
               .fill("0")
@@ -188,7 +163,29 @@ function LevelCompleted() {
                 );
               })}
           </ul>
+        )} */}
+
+        
+        {mode === "game" && (
+          <ul className="steps text-2xl h-[2.5rem] self-stretch">
+            {Array(Number(level))
+              .fill("0")
+              .map((_, i) => {
+                return <li data-content="" className="step step-accent"><img src={coin} alt="" className="w-[35px] h-[35px] relative -top-[2.24rem] z-10"/></li>;
+              })}
+            {Array(4 - Number(level))
+              .fill("0")
+              .map((_, i) => {
+                return (
+                  <li data-content="" className="step step-neutral"><img src={grayCoin} alt="" className="w-[35px] h-[35px] relative -top-[2.24rem] z-10"/></li>
+                );
+              })}
+          </ul>
         )}
+
+
+
+
         <img src={stars} className="object-contain w-36  md:w-52" />
 
         <p className="font-bold">

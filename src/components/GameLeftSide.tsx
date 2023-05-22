@@ -21,7 +21,7 @@ function GameLeftSide({
   if (isGameStarted) {
     return (
       <div className={`border-2 ig:bg-green-500 h-[45%] md:h-[250px] cml:h-[300px] w-[240px] md:w-[45%] transition-all rounded-3xl relative gap-5 overflow-hidden flex flex-col border-primary  items-center justify-center md:rounded-lg  ${handDirection == "left" ? 'order-4' :''}`}>
-        <p className="self-end top-2 absolute font-extrabold text-xl">
+        <p className="self-end top-2 absolute font-extrabold text-md md:text-lg mr-4">
           {score}
           {'  '} {t('pt')}
         </p>

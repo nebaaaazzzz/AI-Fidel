@@ -16,7 +16,7 @@ function SelectGame() {
     })();
   }, []);
   return (
-    <div className="flex h-screen flex-col overflow-hidden md:flex-row p-8 sm:pt-12">
+    <div className="flex gap-10 md:gap-0 h-screen flex-col overflow-hidden md:flex-row p-8 sm:pt-12 change-bg">
       <StartingLeft path={boy3} />
       <StartingRight
         header1={t('welcome')}

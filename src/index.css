@@ -2,6 +2,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 body {
   width: 100vw;
   height: 100vh;
@@ -123,4 +124,10 @@ scrollbar-thumb {
 ::-webkit-scrollbar-thumb:hover,
 scrollbar-thumb:hover {
   background-color: rgb(18, 132, 104);
+}
+
+.change-bg {
+  /* background-color: firebrick; */
+  background-image: url('./assets/images/fidelbg.png');
+  background-size: contain;
 }

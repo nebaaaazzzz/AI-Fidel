@@ -9,12 +9,16 @@ import { langAtom } from '../store/store'
 import { useAtom } from 'jotai';
 import { AuthContext } from '@/context/AuthContext';
 import { useContext } from 'react';
-
+import { useLocation } from 'react-router-dom';
 
 function LeftSideBar() {
   const [lang] = useAtom(langAtom);
   const [hand] = useAtom(handAtom);
   const user = useContext(AuthContext);
+  const location = useLocation()
+
+  const url = ['']
+
 
   const images = [
     { image: appIcon, to: '/' },
@@ -30,6 +34,9 @@ function LeftSideBar() {
       to: '/edit-profile'
     }
   ];
+
+  // console.log(RegExp(location.search.replace('&', '').replace('=', ' ')).test('learn'), location.pathname, location.search)
+  console.log(Boolean(location.search.match(/learn/)))
   return (
     <div
       style={{
@@ -39,7 +46,7 @@ function LeftSideBar() {
         background:
           'linear-gradient(104.13deg, rgba(78, 78, 78, 0.4) 17.81%, rgba(52, 52, 52, 0.45) 90.16%)'
       }}
-      className="fixed z-10 transition-all flex flex-row top-[90vh] md:top-[90vh] mx-auto left-0 right-0 w-[calc(100vw-2rem)]  shrink-0 px-3  justify-between py-4 csl:w-14 csl:static csl:flex-col csl:h-[500px]"
+      className="fixed z-10 transition-all flex flex-row top-[90vh] md:top-[90vh] mx-auto left-0 right-0 w-[80vw] shrink-0 px-3  justify-between py-4 csl:w-14 csl:static csl:flex-col csl:h-[80vh]"
     >
       {images.map(({ image, to }, index) => {
         return (
@@ -48,7 +55,8 @@ function LeftSideBar() {
             key={index}
             style={{
               boxShadow:
-                index == 0 ? '' : ` 0px 5px 20px 5px rgba(0, 136, 103,0.9)`
+                index == 0 ? '' : (index == 1 && Boolean(location.search.match(/learn/)) || index == 2 && Boolean(location.search.match(/game/)) || index == 5 && Boolean(location.pathname.match(/edit-profile/))) ? ` 0px 0px 20px 5px #F8B936` : ` 0px 5px 20px 5px rgba(0, 136, 103,0.9)`
+                // index == 0 ? '' : ` 0px 5px 20px 5px rgba(0, 136, 103,0.9)`
             }}
           >
             <Link to={to}>
@@ -58,14 +66,21 @@ function LeftSideBar() {
                 key={index}
               />
             </Link>
-            {index != 0 && (
+            {index != 0 ? (index == 1 && Boolean(location.search.match(/learn/)) || index == 2 && Boolean(location.search.match(/game/)) || index == 5 && Boolean(location.pathname.match(/edit-profile/))) ? (
               <p
                 style={{
                   backdropFilter: 'blur(100px)'
                 }}
-                className="absolute top-0 -z-10 bg-[rgb(20,83,67)]  w-full h-6 backdrop-blur-3xl"
+                className={`absolute top-0 -z-10 bg-[#9f7721]  w-full h-6 backdrop-blur-3xl`}
+                // className="absolute top-0 -z-10 bg-[rgb(20,83,67)]  w-full h-6 backdrop-blur-3xl"
               ></p>
-            )}
+            ) : <p
+            style={{
+              backdropFilter: 'blur(100px)'
+            }}
+            className={`absolute top-0 -z-10 bg-[rgb(20,83,67)]  w-full h-6 backdrop-blur-3xl`}
+            // className="absolute top-0 -z-10 bg-[rgb(20,83,67)]  w-full h-6 backdrop-blur-3xl"
+          ></p> : null}
           </div>
         );
       })}
