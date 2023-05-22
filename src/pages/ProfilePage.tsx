@@ -29,8 +29,8 @@ const ProfilePage = () => {
   const user = useContext(AuthContext);
 
   const [currentProfile, setCurrentProfile] = useState(profile1);
-  const [currentProfileLink, setCurrentProfileLink] = useState('');
   const [s, setS] = useState(true);
+  const [currentProfileLink, setCurrentProfileLink] = useState(user?.user && s ? user.photo : localStorage.getItem('photo'));
 
   const handleChangeProfile = async (profileImage) => {
     setS(false);
@@ -110,7 +110,7 @@ const ProfilePage = () => {
         <div className="flex">
           <button className="bg-[#2E2E2E] shadow-[0px_2px_20px_rgba(255,175,82,1)] py-2 px-2 rounded-full h-36 w-36 flex items-center justify-center">
             <img
-              src={user?.user && s ? user.photo : localStorage.getItem('photo')}
+              src={currentProfileLink}
               className=" w-11/12"
             />
           </button>
@@ -130,19 +130,12 @@ const ProfilePage = () => {
         </div>
       </div>
       <div className="flex gap-1 justify-between items-center rounded-md  ig:bg-[#2E2E2E] bg-transparent  mb-9  py-2  px-2 mx-auto md:ml-6 md:mr-4 w-[90%] md:w-[95%]">
-        <div>
-          <MdKeyboardArrowLeft size="24px" className="mr-2" />
-        </div>
         <div className="flex gap-6 w-auto  overflow-x-scroll overflow-y-visible flex-row">
             {
               profileImages.map((img, i) => {
-                return <div className='block w-[50px] h-[50px] min-w-[45px] min-h-[45px] overflow-hidden bg-[#2E2E2E] shadow-[0px_0px_12px_rgba(0,162,141,0.8)] rounded-full m-2'><img src={img.imgLink} key={i} className="w-full h-full" /></div>
+                return <button onClick={() => handleChangeProfile(img)} className='block w-[50px] h-[50px] min-w-[45px] min-h-[45px] overflow-hidden bg-[#2E2E2E] shadow-[0px_0px_12px_rgba(0,162,141,0.8)] rounded-full m-2'><img src={img.imgLink} key={i} className="w-full h-full" /></button>
               })
             }
-        </div>
-
-        <div>
-          <MdKeyboardArrowRight size="24px" className="ml-2" />
         </div>
       </div>
       <div>
