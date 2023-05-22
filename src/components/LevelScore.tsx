@@ -7,7 +7,7 @@ export const LevelScore = ({ level, score }) => {
     <>
     {
       score != '0' ? (  <div className="flex gap-2 md:gap-4 mb-[30px]">
-      <img src={coin} className=" max-w-[40px]" />
+      <img src={coin} className=" max-w-[40px] hidden md:block" />
       <div className="flex justify-between w-full bg-[#008867]  py-1 pl-0 md:pl-6 border-[4px] border-[#05C294] shadow-[1px_1px_15px_rgba(0,136,103,0.5)]  rounded-xl ">
         <div>
           <span className='font-bold mx-2 mt-[2px]'>{t('l')}</span>
@@ -19,7 +19,7 @@ export const LevelScore = ({ level, score }) => {
       </div>
     </div>) : (
       <div className="flex gap-2 md:gap-4 mb-[30px]">
-      <img src={grayCoin} className=" max-w-[40px]" />
+      <img src={grayCoin} className=" max-w-[40px] hidden md:block" />
       <div className="flex justify-between w-full bg-[#5B5B5B]  py-1 pl-0 md:pl-6 border-[4px] border-[#A7A7A7] rounded-xl ">
         <div>
           <span className='font-bold mx-2 mt-[2px]'>{t('l')}</span>
