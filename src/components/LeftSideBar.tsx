@@ -9,12 +9,16 @@ import { langAtom } from '../store/store'
 import { useAtom } from 'jotai';
 import { AuthContext } from '@/context/AuthContext';
 import { useContext } from 'react';
-
+import { useLocation } from 'react-router-dom';
 
 function LeftSideBar() {
   const [lang] = useAtom(langAtom);
   const [hand] = useAtom(handAtom);
   const user = useContext(AuthContext);
+  const location = useLocation()
+
+  const url = ['']
+
 
   const images = [
     { image: appIcon, to: '/' },
@@ -39,7 +43,7 @@ function LeftSideBar() {
         background:
           'linear-gradient(104.13deg, rgba(78, 78, 78, 0.4) 17.81%, rgba(52, 52, 52, 0.45) 90.16%)'
       }}
-      className="fixed z-10 transition-all flex flex-row top-[90vh] md:top-[90vh] mx-auto left-0 right-0 w-[calc(100vw-2rem)]  shrink-0 px-3  justify-between py-4 csl:w-14 csl:static csl:flex-col csl:h-[500px]"
+      className="fixed z-10 transition-all flex flex-row top-[90vh] md:top-[90vh] mx-auto left-0 right-0 w-[80vw] shrink-0 px-3  justify-between py-4 csl:w-14 csl:static csl:flex-col csl:h-[80vh]"
     >
       {images.map(({ image, to }, index) => {
         return (

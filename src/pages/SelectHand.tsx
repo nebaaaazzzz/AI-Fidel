@@ -24,25 +24,54 @@ function SelectHand() {
         <span>{t('bc')}</span>
         <div></div>
       </button>
-      <div className='absolute transition-all md:hidden border-8 border-white cxs:w-[240px] w-[200px] cxs:h-[240px] h-[200px] rounded-full cxs:top-[-60px] top-[-70px] right-[-50px]'></div>
+      <div className='absolute transition-all md:hidden border-8 border-white cxs:w-[240px] w-[200px] cxs:h-[240px] h-[200px] rounded-full cxs:top-[-60px] top-[-70px] right-[-70px]'></div>
       <img
         src={circleDashed}
         className="absolute transition-all block md:hidden object-contain aspect-square cxs:w-[350px] w-[300px] cxs:left-[-120px] left-[-120px] cxs:top-[-50px] top-[-60px]"
       />
       <div className="absolute hidden md:block w-[14%] aspect-square top-40 left-7 rounded-full  bg-primary"></div>
-      <h1 className="flex transition-all justify-center cxs:mt-[190px] cxl:mt-[180px] mt-[150px] cxl:text-5xl md:hidden pan font-semibold text-4xl text-center w-3/4 text-white">
-            {t('aylrh')}
-      </h1>
-      <img className="block transition-all md:hidden object-contain w-[12rem] mt-[-30px] " src={handshake} />
-      <div className="custom-glass hidden md:flex w-[80%] pr-5 justify-between py-2 pt-10 ">
+
+
+
+
+
+
+
+      {/* Mobile Part */}
+      <div className='bg-gray- h-screen flex flex-col gap-8 z-10 mt-[13vh] md:hidden justify-center items-center'>
+        <h1 className="flex transition-all justify-center cxl:text-5xl font-semibold text-4xl text-center w-3/4 text-white">
+              {t('aylrh')}
+        </h1>
+        <img className="transition-all w-2/3 max-w-[200px]" src={handshake} />
+        <div className="w-2/3 transition-all flex-col font-light text-xs text-white text-center">
+          <p> {t('cthywtuf')}{' '}{t('fysur')}{' '}{t('dh')}</p>
+        </div>
+      </div>
+
+
+
+{/* <h1 className="flex transition-all justify-center cxs:mt-[190px] cxl:mt-[180px] mt-[150px] cxl:text-5xl md:hidden pan font-semibold text-4xl text-center w-3/4 text-white">
+              {t('aylrh')}
+        </h1>
+        <img className="block transition-all md:hidden object-contain w-[12rem] mt-[5%] " src={handshake} />
+        <div className="w-2/3 transition-all cxl:w-1/3 mt-36 cxl:mt-40 top-[50%] absolute grow opacity-50 flex md:hidden flex-col font-light text-xs text-white text-center">
+          <p> {t('cthywtuf')}{' '}{t('fysur')}{' '}{t('dh')}</p>
+        </div> */}
+
+
+
+
+
+
+      <div className="custom-glass hidden md:flex w-[80%] pr-5 justify-between py-[5vh] md:mt-[5vh] csl:mt-0 pt-10 ">
         <div className=""></div>
         <div className="w-10"></div>
-        <div className="flex  gap-5 flex-col items-center">
+        <div className="flex gap-5 flex-col items-center h-[50vh]">
           <h1 className="pan font-semibold csl:text-4xl text-4xl text-center [word-spacing:5px] w-3/4 text-white">
             {t('aylrh')}
           </h1>
           <img className="object-contain w-5/12 " src={handshake} />
-          <div className="w-2/3 grow flex flex-col font-light gap-3 text-sm text-white text-center leading-loose">
+          <div className="w-2/3 grow flex flex-col justify-center items-center font-light gap-3 text-sm text-white text-center leading-loose">
             <p> {t('cthywtuf')}{' '}{t('fysur')}{' '}{t('dh')}</p>
           </div>
         </div>
@@ -61,9 +90,6 @@ function SelectHand() {
               <div key={i}></div>
             ))}
         </div>
-      </div>
-      <div className="w-2/3 transition-all cxl:w-1/3 mt-36 cxl:mt-40 top-[50%] absolute grow opacity-50 flex md:hidden flex-col font-light text-xs text-white text-center">
-        <p> {t('cthywtuf')}{' '}{t('fysur')}{' '}{t('dh')}</p>
       </div>
       <div className="flex gap-10 absolute md:relative top-[90%] cxl:top-[92%] md:top-[0]">
         {[t('left'), t('right')].map((hand, i) => {

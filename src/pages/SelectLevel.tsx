@@ -50,8 +50,8 @@ function SelectLevel() {
     })();
   }, [user]);
   return (
-    <div className="flex flex-col md:mt-[-10px] gap-6 items-center mt-4 csl:mt-0 md:items-stretch">
-      <div className="flex bg-whit w-full justify-center md:justify-between items-center md:items-stretch px-0 pl-10 py-2 md:py-4">
+    <div className="flex h-[80vh] flex-col justify-around md:mt-[-10px] gap-6 items-center mt-4 csl:mt-0 md:items-stretch">
+      <div className="flex overflow-visible w-full justify-center md:justify-between items-center md:items-stretch px-0 pl-10 py-2 md:py-4">
         <div className="absolute md:flex md:relative md:top-0 md:left-0 top-[25px] left-[40px] prose flex-col items-start md:mr-0">
           <button
             className="flex capitalize justify-between -ml-6"
@@ -99,7 +99,7 @@ function SelectLevel() {
             {/* <p className='opacity-50 text-sm text-center hidden md:block'>ablazelabs@gmail.com</p> */}
           </div>
         </div>
-        <div className="hidden md:flex mr-5 self-stretch flex-col justify-between">
+        <div className="hidden md:flex mr-5 w-14 self-stretch flex-col justify-between">
             {socialMediaIcons.map((Icon, i) => {
               return <Icon key={i} size={20} color="white" />;
             })}

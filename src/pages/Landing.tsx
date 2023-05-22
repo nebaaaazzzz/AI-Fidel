@@ -18,7 +18,7 @@ function Landing() {
   }, [user]);
   return (
     <div>
-      <div className="relative h-screen flex items-center justify-center overflow-hidden">
+      <div className="relative h-screen flex items-center justify-center overflow-hidden change-bg">
         <img src={eclips} className="w-[200px] md:w-2/12 absolute right-[-100px] md:right-0 bottom-[80px] md:bottom-[15%] opacity-25 md:opacity-100" />
 
         <div className="circleTop bg-[#008867] w-[10rem] h-[20rem] md:w-[12rem] md:h-[22rem] rounded-tr-full rounded-br-full absolute inset-x-0 inset-y-5 justify-self-start opacity-25 md:opacity-100 left-[-40px] md:left-0"></div>

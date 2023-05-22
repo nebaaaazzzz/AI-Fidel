@@ -6,7 +6,7 @@ import { MdArrowBack } from 'react-icons/md';
 import { MdKeyboardArrowLeft } from 'react-icons/md';
 import { MdKeyboardArrowRight } from 'react-icons/md';
 import { MdModeEdit } from 'react-icons/md';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { getFirestore, doc, setDoc, getDoc } from 'firebase/firestore';
 import profile1 from '@assets/EditProfile/profile1.png';
 import profile2 from '@assets/EditProfile/profile2.png';
@@ -95,7 +95,7 @@ const ProfilePage = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   return (
-    <div className="">
+    <div className="h-[80vh] flex flex-col justify-around">
       <div className="flex items-center justify-between space px-8 pt-[50px] md:pt-6 rounded-md  mb-8">
         <div className='block md:hidden'></div>
         <div className='block md:hidden'></div>
@@ -129,45 +129,20 @@ const ProfilePage = () => {
           </div>
         </div>
       </div>
-      <div className="flex gap-1 justify-between rounded-md  bg-[#2E2E2E]  mb-9  py-2  px-2 mx-auto md:ml-6 md:mr-4 w-[90%] md:w-[95%]">
+      <div className="flex gap-1 justify-between items-center rounded-md  ig:bg-[#2E2E2E] bg-transparent  mb-9  py-2  px-2 mx-auto md:ml-6 md:mr-4 w-[90%] md:w-[95%]">
         <div>
-          <MdKeyboardArrowLeft size="24px" className=" mt-4 mr-2" />
+          <MdKeyboardArrowLeft size="24px" className="mr-2" />
         </div>
         <div className="flex gap-6 w-auto  overflow-x-scroll overflow-y-visible flex-row">
-          <button className="bg-[#2E2E2E] shadow-[0px_2px_16px_rgba(0,162,141,0.8)] py-2 px-2 rounded-full   h-14 w-14 flex items-center justify-center">
-            <img src={profile2} className=" w-11" />
-          </button>
-          <button className="bg-[#2E2E2E] shadow-[0px_2px_16px_rgba(0,162,141,0.8)] py-2 px-2 rounded-full   h-14 w-14 flex items-center justify-center">
-            <img src={profile3} className=" w-11" />
-          </button>
-          <button className="bg-[#2E2E2E] shadow-[0px_2px_16px_rgba(0,162,141,0.8)] py-2 px-2 rounded-full  h-14 w-14 flex items-center justify-center">
-            <img src={profile2} className=" w-11" />
-          </button>
-          <button className="bg-[#2E2E2E] shadow-[0px_2px_16px_rgba(0,162,141,0.8)] py-2 px-2 rounded-full   h-14 w-14 flex items-center justify-center">
-            <img src={profile1} className=" w-11" />
-          </button>
-          <button className="bg-[#2E2E2E] shadow-[0px_2px_16px_rgba(0,162,141,0.8)] py-2 px-2 rounded-full   h-14 w-14 flex items-center justify-center">
-            <img src={profile3} className=" w-11" />
-          </button>
-          <button className="bg-[#2E2E2E] shadow-[0px_2px_16px_rgba(0,162,141,0.8)] py-2 px-2 rounded-full   h-14 w-14 flex items-center justify-center">
-            <img src={profile2} className=" w-11" />
-          </button>
-          <button className="bg-[#2E2E2E] shadow-[0px_2px_16px_rgba(0,162,141,0.8)] py-2 px-2 rounded-full   h-14 w-14 flex items-center justify-center">
-            <img src={profile3} className=" w-11" />
-          </button>
-          <button className="bg-[#2E2E2E] shadow-[0px_2px_16px_rgba(0,162,141,0.8)] py-2 px-2 rounded-full  h-14 w-14 flex items-center justify-center">
-            <img src={profile2} className=" w-11" />
-          </button>
-          <button className="bg-[#2E2E2E] shadow-[0px_2px_16px_rgba(0,162,141,0.8)] py-2 px-2 rounded-full   h-14 w-14 flex items-center justify-center">
-            <img src={profile1} className=" w-11" />
-          </button>
-          <button className="bg-[#2E2E2E] shadow-[0px_2px_16px_rgba(0,162,141,0.8)] py-2 px-2 rounded-full   h-14 w-14 flex items-center justify-center">
-            <img src={profile3} className=" w-11" />
-          </button>
+            {
+              profileImages.map((img, i) => {
+                return <div className='block w-[50px] h-[50px] min-w-[45px] min-h-[45px] overflow-hidden bg-[#2E2E2E] shadow-[0px_0px_12px_rgba(0,162,141,0.8)] rounded-full m-2'><img src={img.imgLink} key={i} className="w-full h-full" /></div>
+              })
+            }
         </div>
 
         <div>
-          <MdKeyboardArrowRight size="24px" className=" mt-4 ml-2" />
+          <MdKeyboardArrowRight size="24px" className="ml-2" />
         </div>
       </div>
       <div>

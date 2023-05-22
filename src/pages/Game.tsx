@@ -305,7 +305,7 @@ function Game() {
   //   handleSkip();
   // }
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex justify-center flex-col items-center h-[75vh] md:h-[70vh] mt-[4vh]">
       <div className="flex flex-col justify-between items-center md:flex-row overflow-hidden ig:bg-blue-500 h-[80vh] gap-4 md:h-auto w-[90%] cxm:w-full md:w-10/12 relative">
         {showModal && <Modal wordIndex={wordIndex} nextWord={selectedWord} />}
         <PlaceYourHand
@@ -342,8 +342,8 @@ function Game() {
         </div>
       </div>
       {isGameStarted && (
-        <div className=" absolute top-[38%] mt-0 md:mt-4 md:relative md:top-0 w-[80%] cxm:w-[50%] md:w-[70%] flex items-center gap-2 ml-auto mr-auto justify-between md:gap-10 ig:bg-blue-400">
-          <p className='text-xs md:text-[15px] text-center w-[70px]'>
+        <div className=" absolute top-[40%] mt-0 md:mt-4 md:relative md:top-0 w-[80%] cxm:w-[50%] md:w-[70%] flex items-center gap-2 ml-auto mr-auto justify-between md:gap-10 ig:bg-blue-400">
+          <p className='text-xs md:text-sm csl:text-md text-center w-[110px]'>
             {moment(
               currentTime - startTime >= 0 ? currentTime - startTime : 0
             ).format('mm : ss')}

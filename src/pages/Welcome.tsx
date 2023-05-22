@@ -50,7 +50,7 @@ const Welcome = () => {
         <h1 className="m-1 font-semibold text-white">{t('lesson')}</h1>
       </div>
       <div
-        className="hidden md:flex w-5/6 pr-5 justify-between py-2"
+        className="hidden md:flex h-[50vh] w-5/6 pr-5 justify-between py-2"
         style={{
           background:
             'linear-gradient(150.11deg, rgba(217, 217, 217, 0.87) -8.45%, rgba(255, 255, 255, 0.2175) -8.45%, rgba(255, 255, 255, 0.0783) 113.16%)',
@@ -73,7 +73,7 @@ const Welcome = () => {
               className="object-contain aspect-square w-full rounded-full"
             />
           </div>
-          <div className="grow text-2xl text-white text-center flex flex-col my-10 md:my-0">
+          <div className="grow text-2xl text-white text-center flex flex-col justify-evenly my-10 md:my-0">
             <h1 className="m-1 font-semibold text-white">{t('welcome')} </h1>
             <h1 className="m-1 font-semibold text-white">
               {isLevelOne ? t('tyrf') : t('tyr')}

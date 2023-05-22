@@ -45,7 +45,7 @@ const EditProfile = () => {
           </div>
         </div>
       ) : (
-        <div className="m-8 md:m-0">
+        <div className="m-8 md:m-0 h-[80vh] flex flex-col justify-evenly">
           <div className="profile-glass flex items-center justify-between space px-8 pt-6 rounded-md  mb-8">
             <div className='block w-[24px] md:w-0'></div>
             <div className="">

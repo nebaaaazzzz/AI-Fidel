@@ -9,7 +9,7 @@ function SelectMode() {
   const user = useContext(AuthContext);
   const { t } = useTranslation();
   return (
-    <div className="flex h-screen ig:bg-green-500 transition-all flex-col md:flex-row p-8 sm:pt-12 ">
+    <div className="flex h-screen ig:bg-green-500 transition-all flex-col md:flex-row p-8 sm:pt-12 change-bg">
       <StartingLeft path={boy1} />
       <StartingRight
         header1={t('wd')}
