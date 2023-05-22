@@ -46,9 +46,13 @@ const ProfilePage = () => {
   useEffect(() => {}, [user]);
 
   const save = async () => {
-    console.log(currentProfileLink);
-    const docRef = await doc(db, "users", user.id);
-    setDoc(docRef, { photo: currentProfileLink }, { merge: true });
+    
+    if (user?.user) { 
+      const docRef = await doc(db, "users", user.id);
+      setDoc(docRef, { photo: currentProfileLink }, { merge: true });
+    } else {
+      localStorage.setItem("photo", currentProfileLink);
+    }
   };
   const profileImages = [
     {
