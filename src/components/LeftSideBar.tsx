@@ -34,6 +34,9 @@ function LeftSideBar() {
       to: '/edit-profile'
     }
   ];
+
+  // console.log(RegExp(location.search.replace('&', '').replace('=', ' ')).test('learn'), location.pathname, location.search)
+  console.log(Boolean(location.search.match(/learn/)))
   return (
     <div
       style={{
@@ -52,7 +55,8 @@ function LeftSideBar() {
             key={index}
             style={{
               boxShadow:
-                index == 0 ? '' : ` 0px 5px 20px 5px rgba(0, 136, 103,0.9)`
+                index == 0 ? '' : (index == 1 && Boolean(location.search.match(/learn/)) || index == 2 && Boolean(location.search.match(/game/)) || index == 5 && Boolean(location.pathname.match(/edit-profile/))) ? ` 0px 0px 20px 5px #F8B936` : ` 0px 5px 20px 5px rgba(0, 136, 103,0.9)`
+                // index == 0 ? '' : ` 0px 5px 20px 5px rgba(0, 136, 103,0.9)`
             }}
           >
             <Link to={to}>
@@ -62,14 +66,21 @@ function LeftSideBar() {
                 key={index}
               />
             </Link>
-            {index != 0 && (
+            {index != 0 ? (index == 1 && Boolean(location.search.match(/learn/)) || index == 2 && Boolean(location.search.match(/game/)) || index == 5 && Boolean(location.pathname.match(/edit-profile/))) ? (
               <p
                 style={{
                   backdropFilter: 'blur(100px)'
                 }}
-                className="absolute top-0 -z-10 bg-[rgb(20,83,67)]  w-full h-6 backdrop-blur-3xl"
+                className={`absolute top-0 -z-10 bg-[#9f7721]  w-full h-6 backdrop-blur-3xl`}
+                // className="absolute top-0 -z-10 bg-[rgb(20,83,67)]  w-full h-6 backdrop-blur-3xl"
               ></p>
-            )}
+            ) : <p
+            style={{
+              backdropFilter: 'blur(100px)'
+            }}
+            className={`absolute top-0 -z-10 bg-[rgb(20,83,67)]  w-full h-6 backdrop-blur-3xl`}
+            // className="absolute top-0 -z-10 bg-[rgb(20,83,67)]  w-full h-6 backdrop-blur-3xl"
+          ></p> : null}
           </div>
         );
       })}
