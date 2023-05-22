@@ -1,24 +1,28 @@
-import profile from '@assets/icons/profile.png';
-import { RxInstagramLogo } from 'react-icons/rx';
-import { RiFacebookFill } from 'react-icons/ri';
-import { SiTwitter } from 'react-icons/si';
-import { MdModeEdit } from 'react-icons/md';
-import { MdKeyboardArrowRight } from 'react-icons/md';
-import { MdLanguage } from 'react-icons/md';
-import { FiLogOut } from 'react-icons/fi';
-import { IoMdNotificationsOutline } from 'react-icons/io';
-import loadingGif from '@assets/images/loading.gif';
-import { Link } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-import { getAuth, signOut } from 'firebase/auth';
-import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
-import { AuthContext } from '@/context/AuthContext';
-import { useContext } from 'react';
-
+import profile from "@assets/icons/profile.png";
+import { RxInstagramLogo } from "react-icons/rx";
+import { RiFacebookFill } from "react-icons/ri";
+import { SiTwitter } from "react-icons/si";
+import { MdModeEdit } from "react-icons/md";
+import { MdKeyboardArrowRight } from "react-icons/md";
+import { MdLanguage } from "react-icons/md";
+import { FiLogOut } from "react-icons/fi";
+import { IoMdNotificationsOutline } from "react-icons/io";
+import loadingGif from "@assets/images/loading.gif";
+import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { getAuth, signOut } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { AuthContext } from "@/context/AuthContext";
+import { useContext } from "react";
+import {
+  FacebookShareButton,
+  TwitterShareButton,
+  InstapaperShareButton,
+} from "react-share";
 
 const EditProfile = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const auth = getAuth();
   const user = useContext(AuthContext);
@@ -29,8 +33,8 @@ const EditProfile = () => {
     signOut(auth)
       .then(() => {
         localStorage.clear();
-        i18n.changeLanguage('en')
-        navigate('/');
+        i18n.changeLanguage("en");
+        navigate("/");
       })
       .catch((error) => {
         console.log(error);
@@ -47,28 +51,48 @@ const EditProfile = () => {
       ) : (
         <div className="m-8 md:m-0">
           <div className="profile-glass flex items-center justify-between space px-8 pt-6 rounded-md  mb-8">
-            <div className='block w-[24px] md:w-0'></div>
+            <div className="block w-[24px] md:w-0"></div>
             <div className="">
               <button className="bg-[#2E2E2E] shadow-[0px_2px_20px_rgba(255,175,82,1)] py-2 px-2 ml-auto mr-auto md:ml-7 rounded-full h-36 w-36 flex items-center justify-center">
-                <img src={user?.user ? user.photo : localStorage.getItem('photo')} className=" w-11/12" />
+                <img
+                  src={user?.user ? user.photo : localStorage.getItem("photo")}
+                  className=" w-11/12"
+                />
               </button>
               <div className="mt-6 text-center mb-1">
                 <h1 className="text-center text-[#FFF] font-bold text-lg px-6 ml-5">
                   {user?.user
                     ? user.displayName
-                    : localStorage.getItem('displayName')}
+                    : localStorage.getItem("displayName")}
                 </h1>
               </div>
             </div>
             <div className="flex md:ml-0 ml-8 flex-col gap-12">
-              <div>
-                <RxInstagramLogo />
+              <div className=" cursor-pointer">
+                <InstapaperShareButton
+                  url={"https://www.fidel.com"}
+                  title={`Fidel`}
+                  description={`You have scored 80 in first level`}
+                >
+                  <RxInstagramLogo />
+                </InstapaperShareButton>
               </div>
-              <div>
-                <SiTwitter />
+              <div className=" cursor-pointer">
+                <TwitterShareButton
+                  url={"https://www.fidel.com"}
+                  title={`Fidel`}
+                  via={`You have scored 80 in first level`}
+                >
+                  <SiTwitter />
+                </TwitterShareButton>
               </div>
-              <div className=" mb-4">
-                <RiFacebookFill />
+              <div className=" mb-4 cursor-pointer">
+                <FacebookShareButton
+                  url={"https://www/.fidel.com"}
+                  quote={`You have scored 80 in first level`}
+                >
+                  <RiFacebookFill />
+                </FacebookShareButton>
               </div>
             </div>
           </div>
@@ -80,7 +104,7 @@ const EditProfile = () => {
                     <MdModeEdit size="18px" />
                   </div>
                   <div>
-                    <h1 className="text-[#FFF]">{t('ed')}</h1>
+                    <h1 className="text-[#FFF]">{t("ed")}</h1>
                   </div>
                   <div className=" mt-[4px] ml-3">
                     <MdKeyboardArrowRight size="20px" />
@@ -88,26 +112,24 @@ const EditProfile = () => {
                 </div>
               </Link>
               <Link to="/change-language">
-              <div
-                className=" bg-[#2E2E2E] rounded-md flex py-2 px-5 justify-between cursor-pointer"
-              >
-                <div className=" mt-[4px] ml-3">
-                  <MdLanguage size="18px" />
+                <div className=" bg-[#2E2E2E] rounded-md flex py-2 px-5 justify-between cursor-pointer">
+                  <div className=" mt-[4px] ml-3">
+                    <MdLanguage size="18px" />
+                  </div>
+                  <div className=" px-4" style={{ marginLeft: "-12px" }}>
+                    <h1 className="text-[#FFF]">{t("ln")}</h1>
+                  </div>
+                  <div className=" mt-[4px] ">
+                    <MdKeyboardArrowRight size="20px" />
+                  </div>
                 </div>
-                <div className=" px-4" style={{ marginLeft: '-12px' }}>
-                  <h1 className="text-[#FFF]">{t('ln')}</h1>
-                </div>
-                <div className=" mt-[4px] ">
-                  <MdKeyboardArrowRight size="20px" />
-                </div>
-              </div>
               </Link>
               <div className=" bg-[#2E2E2E] rounded-md flex py-2 px-5 justify-between cursor-pointer">
                 <div className=" mt-[4px] ml-3">
                   <IoMdNotificationsOutline size="20px" />
                 </div>
-                <div className=" px-4" style={{ marginLeft: '-6px' }}>
-                  <h1 className="text-[#FFF]">{t('nf')}</h1>
+                <div className=" px-4" style={{ marginLeft: "-6px" }}>
+                  <h1 className="text-[#FFF]">{t("nf")}</h1>
                 </div>
                 <div className=" mt-[4px]">
                   <MdKeyboardArrowRight size="20px" />
@@ -121,8 +143,8 @@ const EditProfile = () => {
               <div className="mt-1 ml-6">
                 <FiLogOut />
               </div>
-              <div className="  pl-6" style={{ marginLeft: '-68px' }}>
-                <h1 className="text-[#FFF]">{t('lg')}</h1>
+              <div className="  pl-6" style={{ marginLeft: "-68px" }}>
+                <h1 className="text-[#FFF]">{t("lg")}</h1>
               </div>
               <div></div>
             </div>
