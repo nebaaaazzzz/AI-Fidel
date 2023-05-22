@@ -10,11 +10,11 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 const ParentScoreBoard = ({ children }) => {
-  let levelOne = localStorage.getItem('levelOneScore')
-    let levelTwo = localStorage.getItem('levelTwoScore') 
-    let levelThree = localStorage.getItem('levelThreeScore') 
-    let levelFour = localStorage.getItem('levelFourScore')
-    let completedAll = parseInt(levelOne) > 0 && parseInt(levelTwo) > 0 && parseInt(levelThree) > 0 && parseInt(levelFour) > 0
+  let levelOne = localStorage.getItem(`levelOneScore_${localStorage.getItem('displayName')}`)
+  let levelTwo = localStorage.getItem(`levelTwoScore_${localStorage.getItem('displayName')}`) 
+  let levelThree = localStorage.getItem(`levelThreeScore_${localStorage.getItem('displayName')}`)
+  let levelFour = localStorage.getItem(`levelFourScore_${localStorage.getItem('displayName')}`)
+  let completedAll = parseInt(levelOne) > 0 && parseInt(levelTwo) > 0 && parseInt(levelThree) > 0 && parseInt(levelFour) > 0
   const { t } = useTranslation();
   return (
     <div className="change-bg flex flex-col justify-around h-[100vh]">

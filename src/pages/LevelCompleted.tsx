@@ -199,7 +199,7 @@ function LevelCompleted() {
         </h1>
         {mode != "game" && <p className="font-bold">{t("otl")}</p>}
         <Link
-          to={`/game?${searchParams.toString()}&level=${Number(level)}`}
+          to={`/game?mode=${mode}&hand=${hand}&lang=${lang}&level=${level}`}
           className="btn mt-5 font-bold capitalize bg-[#2E2E2E] hover:bg-[#3f3f3f] rounded-md w-full"
         >
           {mode == "game" ? (
