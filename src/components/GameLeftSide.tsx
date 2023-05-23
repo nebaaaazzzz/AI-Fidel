@@ -41,7 +41,7 @@ function GameLeftSide({
     );
   }
   return (
-    <div className="border-2 ig:bg-green-500 h-[45%] md:h-[250px] cml:h-[300px] w-[240px] md:w-[45%] transition-all rounded-3xl relative gap-5 overflow-hidden flex flex-col border-primary  items-center justify-center md:rounded-lg">
+    <div className={`border-2 ig:bg-green-500 h-[45%] md:h-[250px] cml:h-[300px] w-[240px] md:w-[45%] transition-all rounded-3xl relative gap-5 overflow-hidden flex flex-col border-primary  items-center justify-center md:rounded-lg  ${handDirection == "left" ? 'order-4' :''} `}>
       <img src={hand} className="object-contain w-[50%] aspect-square" />
     </div>
   );
