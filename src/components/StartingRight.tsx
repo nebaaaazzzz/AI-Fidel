@@ -20,6 +20,10 @@ function StartingRight({ header1, header2, btns, firstPage }) {
   const navigate = useNavigate();
   const { search } = useLocation();
   const { t } = useTranslation();
+  function clearStorage() {
+    localStorage.removeItem('level');
+    localStorage.removeItem(`levelOneScore_${localStorage.getItem('displayName')}`);
+  }
   function loginWithGoogle(to: string) {
     const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider)
@@ -98,6 +102,7 @@ function StartingRight({ header1, header2, btns, firstPage }) {
             return (
               <Link
                 {...(to ? { onClick: () => loginWithGoogle(to) } : {})}
+                {...(text === "New Game" ? { onClick: () => clearStorage() } : {})}
                 key={i}
                 to="/"
                 {...(link ? { to: link } : { to: '.' + search })}
