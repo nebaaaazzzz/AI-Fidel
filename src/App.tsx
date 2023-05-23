@@ -28,6 +28,7 @@ import KeepUpScoreBoard from './pages/KeepUpScoreBoard';
 import { useAtom } from 'jotai';
 import { loadingAtom } from './store/store';
 import loadingGif from '@assets/images/loading.gif';
+import HandContextProvider from './context/HandContext';
 
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
   return (
     <div data-theme="forest">
       <ToastContainer />
+      <HandContextProvider>
         <AuthContextProvider>
           <BrowserRouter>
             <Routes>
@@ -72,6 +74,7 @@ function App() {
             </Routes>
           </BrowserRouter>
         </AuthContextProvider>
+        </HandContextProvider>
     </div>
   );
 }
