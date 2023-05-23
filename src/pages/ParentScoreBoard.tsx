@@ -93,6 +93,8 @@ const ParentScoreBoard = ({ children }) => {
                 </div>
               </button>
 
+              <div className='w-2/6 block sm:hidden'></div>
+
               <button className="flex justify-between flex-[30%] sm:flex-[70%] items-center button-glass text-xl md:text-2xl font-bold md:font-extrabold py-2 sm:py-1 w-full cvs:w-auto csl:w-[93%] mr-auto ml-auto md:w-full px-4 md:px-8">
                 <span className='sm:flex hidden'>{t('swf')}</span>
                 <div className="flex gap-6 justify-center w-full sm:w-auto">
