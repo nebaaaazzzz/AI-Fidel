@@ -198,7 +198,7 @@ const ProfilePage = () => {
           </div>
         </div>
       </div>
-      <div className="flex justify-center gap-1 drop-shadow-2xl border-[1px] bg-gray-600 bg-opacity-75 items-center rounded-full  ig:bg-[#2E2E2E] mb-9 md:mb-4 h-8 px-0 mx-auto md:ml-6 md:mr-4 w-[90%] md:w-[95%]">
+      <div className="flex justify-center gap-1 drop-shadow-2xl bg-opacity-75 items-center rounded-full  ig:bg-[#2E2E2E] mb-9 md:mb-4 h-8 px-0 mx-auto md:ml-6 md:mr-4 w-[90%] md:w-[95%]">
         <div className="flex gap-6 w-full overflow-x-scroll overflow-y-visible rounded-3xl scrollbar flex-row">
             {
               profileImages.map((img, i) => {
