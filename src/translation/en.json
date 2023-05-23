@@ -64,7 +64,7 @@
   "pa": "Play Again",
   "skip": "Skip",
   "sb": "Score Board",
-  "swf": "Share with friends",
+  "swf": "Share",
   "fal": "From All Levels",
   "h": "Home",
   "ls": "Level Scores",
@@ -78,5 +78,9 @@
   "ln": "Language",
   "nf": "Notification",
   "lg": "Log out",
-  "next": "Next"
+  "next": "Next",
+  "ys": "you scored",
+  "yhl": "you have learned",
+  "c": "Completed",
+  "f": "first"
 }

@@ -28,7 +28,7 @@ const Welcome = () => {
   return (
     <div className="flex gap-5 mt-20 relative h-[calc(100vh-64px)] flex-col w-full items-center">
       <div
-        className="hidden md:flex absolute left-0 -top-16 cursor-pointer"
+        className="flex absolute md:left-0 md:-top-16 left-7 top-0 z-10 cursor-pointer"
         onClick={() => navigate(-1)}
       >
         <BsArrowLeftShort size={28} />
@@ -44,10 +44,9 @@ const Welcome = () => {
       <div className="absolute md:w-32 w-[340px] aspect-square md:top-32 top-[-100px] md:left-0 csl:left-2 cml:left-5 cml:top-[100px] left-[-90px] rounded-full  bg-primary"></div>
       <div className="grow text-5xl transition-all cxm:text-5xl cvs:text-[55px] cvs:top-[20%] cxl:top-[17%] cxl:text-6xl md:top-[25%] md:text-5xl absolute md:hidden text-white text-center flex flex-col top-[25%]">
         <h1 className="m-1 font-semibold text-white">{t('welcome')} </h1>
-        <h1 className="m-1 font-semibold text-white">
-          {t('tyr')} {' '} <p className='block md:hidden pt-6'> {isLevelOne ? "first" : " "} </p>
+        <h1 className="m-1 font-semibold text-white block md:hidden">{t('tyr')} {' '} {isLevelOne ? t("f") : " "}</h1>
+        {/* <h1 className="m-1 font-semibold text-white hidden md:block">{t('tyr')}</h1> */}
           {/* {isLevelOne ? t('tyrf') : t('tyr')} */}
-        </h1>
         <h1 className="m-1 font-semibold text-white">{t('lesson')}</h1>
       </div>
       <div

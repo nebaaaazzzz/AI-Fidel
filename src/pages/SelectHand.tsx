@@ -44,7 +44,7 @@ function SelectHand() {
         </h1>
         <img className="transition-all w-2/3 max-w-[200px]" src={handshake} />
         <div className="w-2/3 transition-all flex-col font-light text-xs text-white text-center">
-          <p> {t('cthywtuf')}{' '}{t('fysur')}{' '}{t('dh')}</p>
+          <p> {t('cthywtuf')}{' '}<br/>{t('fysur')}{' '} <br className='hidden cxm:block md:hidden' /> {t('dh')}</p>
         </div>
       </div>
 
@@ -91,7 +91,7 @@ function SelectHand() {
             ))}
         </div>
       </div>
-      <div className="flex gap-10 absolute md:relative top-[90%] cxl:top-[92%] md:top-[0]">
+      <div className="flex gap-10 absolute md:relative top-[90%] md:top-[0] z-10">
         {[t('left'), t('right')].map((hand, i) => {
           return (
             <Link

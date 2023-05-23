@@ -53,11 +53,11 @@ function SelectProfile() {
       } else {
         setUsername(autoGenerateUsername());
         localStorage.setItem('displayName', autoGenerateUsername());
-        localStorage.setItem('photo', avatarUrls[6]);
+        localStorage.setItem('photo', avatarUrls[0]);
       }
     })();
   }, [user]);
-  const [avatar, setAvatar] = useState(user?.photoURL || avatarUrls[6]);
+  const [avatar, setAvatar] = useState(user?.photoURL || avatarUrls[0]);
   const [userNameUpdated, setUsernameUpdated] = useState(false);
   const { search } = useLocation();
   const [selectedAvatarIndex, setSelectedAvatarIndex] = useState<number>();
@@ -120,24 +120,27 @@ function SelectProfile() {
       </div>
       <div className="flex-[1]  flex ml-auto mr-auto justify-start md:justify-center items-center md:mr-[30px] flex-col md:h-screen">
         <div className="flex flex-col items-center gap-10 w-2/3 -mt-14">
-          <div className="flex items-center gap-5 w-[350px] md:w-full fixed md:relative top-0 m-8">
+          <div className="flex items-center gap-5 justify-between w-[360px] md:w-full fixed md:relative top-0 m-8">
             <div
               style={{
                 background: '#008867',
                 boxShadow: '0px 2px 16px rgba(0, 0, 0, 0.08)'
               }}
-              className="rounded-md p-2 ml-8 md:ml-0"
+              className="rounded-md flex justify-center p-[2px] md:p-2 ml-[1.5rem] md:ml-0 w-[48px] h-[48px] overflow-hidden"
             >
-              <RxAvatar size={32} />
+              <img className="object-contain h-full bg-transparent rounded-full md:hidden block"
+                src={selectedAvatar ? selectedAvatar : avatar}
+              />
+              <span className='hidden md:block'><RxAvatar size={32} /></span>
             </div>
             <div
               style={{
                 background: '#2E2E2E',
                 boxShadow: '0px 2px 26px rgba(0, 0, 0, 0.08)'
               }}
-              className="p-2 rounded-md flex-1"
+              className="p-2 rounded-md flex-1 mr-[0.35rem]"
             >
-              <div className="md:border-dashed bg-transparent rounded-md md:border-2 py-1 px-0 cml:px-10">
+              <div className="border-dashed bg-transparent rounded-md border-2 py-1 px-0 cml:px-10">
                 <input
                   className="text-center text-[14px] cml:text-[15px] bg-transparent w-full focus:border-0 focus:outline-dashed"
                   value={username}
@@ -186,7 +189,7 @@ function SelectProfile() {
               />
             )}
           </div>
-          <div className="flex flex-col w-[300px] md:w-full gap-3 mt-[-15px] md:mt-0">
+          <div className="flex flex-col text-center w-[300px] md:w-full gap-3 mt-[-15px] md:mt-0">
           <h2 className="md:hidden block text-lg self-center mt-20 w-[200px] text-white">{t('syl')}</h2>
             {[
               { text: 'Amharic', icon: EthiopiaIcon, langCode: 'am' },

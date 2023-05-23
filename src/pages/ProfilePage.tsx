@@ -17,6 +17,13 @@ import profile6 from '@assets/EditProfile/profile6.png';
 import profile7 from '@assets/EditProfile/profile7.png';
 import profile8 from '@assets/EditProfile/profile8.png';
 import profile9 from '@assets/EditProfile/profile9.png';
+import profile10 from '@assets/EditProfile/profile10.png';
+import profile11 from '@assets/EditProfile/profile11.png';
+import profile12 from '@assets/EditProfile/profile12.png';
+import profile13 from '@assets/EditProfile/profile13.png';
+import profile14 from '@assets/EditProfile/profile14.png';
+import profile15 from '@assets/EditProfile/profile15.png';
+import profile16 from '@assets/EditProfile/profile16.png';
 import { db } from '@/config/firebase';
 
 import { useNavigate } from 'react-router-dom';
@@ -90,8 +97,44 @@ const ProfilePage = () => {
       profile: profile9,
       imgLink:
         'https://res.cloudinary.com/dkwc18qwr/image/upload/v1683966848/profile9_d2mxbd.png'
+    },
+    {
+      profile: profile10,
+      imgLink:
+        'https://res.cloudinary.com/dkwc18qwr/image/upload/v1683970015/person10_ujer0g.png',
+    },
+    {
+      profile: profile11,
+      imgLink:
+      'https://res.cloudinary.com/dkwc18qwr/image/upload/v1683970015/person11_uziupx.png',
+    },
+    {
+      profile: profile12,
+      imgLink:
+      'https://res.cloudinary.com/dkwc18qwr/image/upload/v1683970015/person12_u0ulud.png',
+    },
+    {
+      profile: profile13,
+      imgLink:
+      'https://res.cloudinary.com/dkwc18qwr/image/upload/v1683970016/person13_lve8zw.png',
+    },
+    {
+      profile: profile14,
+      imgLink:
+      'https://res.cloudinary.com/dkwc18qwr/image/upload/v1683970016/person14_nsrder.png',
+    },
+    {
+      profile: profile15,
+      imgLink:
+      'https://res.cloudinary.com/dkwc18qwr/image/upload/v1683970016/person15_xlkjv2.png',
+    },
+    {
+      profile: profile16,
+      imgLink:
+      'https://res.cloudinary.com/dkwc18qwr/image/upload/v1683970015/person16_bqz8un.png',
     }
   ];
+  
   const { t } = useTranslation();
   const navigate = useNavigate();
   return (
@@ -129,8 +172,8 @@ const ProfilePage = () => {
           </div>
         </div>
       </div>
-      <div className="flex gap-1 justify-between items-center rounded-md  ig:bg-[#2E2E2E] bg-transparent  mb-9  py-2  px-2 mx-auto md:ml-6 md:mr-4 w-[90%] md:w-[95%]">
-        <div className="flex gap-6 w-auto  overflow-x-scroll overflow-y-visible flex-row">
+      <div className="flex justify-center gap-1 drop-shadow-2xl border-[1px] bg-gray-600 bg-opacity-75 items-center rounded-full  ig:bg-[#2E2E2E] mb-9 md:mb-4 h-8 px-0 mx-auto md:ml-6 md:mr-4 w-[90%] md:w-[95%]">
+        <div className="flex gap-6 w-full overflow-x-scroll overflow-y-visible rounded-3xl scrollbar flex-row">
             {
               profileImages.map((img, i) => {
                 return <button onClick={() => handleChangeProfile(img)} className='block w-[50px] h-[50px] min-w-[45px] min-h-[45px] overflow-hidden bg-[#2E2E2E] shadow-[0px_0px_12px_rgba(0,162,141,0.8)] rounded-full m-2'><img src={img.imgLink} key={i} className="w-full h-full" /></button>
@@ -161,12 +204,12 @@ const ProfilePage = () => {
           </div>
         </div>
         <div
-          className="flex justify-between mt-5 bg-[#008867] py-2 px-3 rounded-md  cursor-pointer"
+          className="flex justify-between btn btn-primary mt-5 py-2 px-3 rounded-md  cursor-pointer"
           onClick={save}
         >
           <div className=" mt-[4px]"></div>
           <div className="px-7" style={{ marginLeft: '-17px' }}>
-            <h1 className="text-[#FFF]  text-base font-semibold">{t('sv')}</h1>
+            <h1 className="text-[#FFF] text-base font-semibold">{t('sv')}</h1>
           </div>
           <div></div>
         </div>

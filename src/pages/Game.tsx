@@ -321,7 +321,7 @@ function Game() {
           selectedWord={selectedWord}
           handDirection={handDirection}
         />
-        <div className={`flex ig:bg-red-500 h-[45%] md:h-[250px] cml:h-[300px] w-[240px] md:w-[45%] items-center rounded-3xl justify-center overflow-hidden md:rounded-lg   ${handDirection == "left" ? 'order-1' :''}`}>
+        <div className={`flex ig:bg-red-500 h-[45%] md:h-[250px] cml:h-[300px] w-[240px] cxs:w-[300px] md:min-w-[240px] cml:min-w-[280px] md:w-[45%] items-center rounded-3xl justify-center overflow-hidden md:rounded-lg   ${handDirection == "left" ? 'order-1' :''}`}>
           {isMediaPipeModelLoading && (
             <img
               src={girl}
@@ -364,8 +364,8 @@ function Game() {
           {t('skip')}{' '}
         </button>
       ) : (
-        <div className="fixed top-0 bottom-0 right-0 left-0 z-50  opacity-90">
-          <img src={loading} alt="" />
+        <div className="fixed flex justify-center items-center h-[100vh] w-[100vw] top-0 bottom-0 left-0 right-0 z-50 object-cover overflow-hidden opacity-90">
+          <img src={loading} alt="loading" className='w-full h-full min-w-[1000px]' />
         </div>
       )}
     </div>
