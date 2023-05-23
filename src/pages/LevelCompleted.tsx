@@ -70,20 +70,21 @@ function LevelCompleted() {
     localStorage.setItem("avg", String(avg));
   }
   useEffect(() => {
-    localStorage.setItem("level", level);
+    if (mode === "game")  localStorage.setItem("level", level);
   },[])
   useEffect(() => {
     (async () => {
       if (Number(level) == 4) {
-        await storeSessionInfo(lang, hand, level);
+        // await storeSessionInfo(lang, hand, level);
+        localStorage.setItem("level", level);
         let levelScores = {};
         for (let i = 1; i < 4; i++) {
           let levelScore;
           if (mode == "game") {
             // add prefix to the level
-            levelScore = await getLevelScore("game-" + String(i));
+            // levelScore = await getLevelScore("game-" + String(i));
           } else {
-            levelScore = await getLevelScore(String(i));
+            // levelScore = await getLevelScore(String(i));
           }
           if (levelScore != undefined) {
             levelScores[i] = levelScore;
@@ -105,10 +106,10 @@ function LevelCompleted() {
         setPoints(levelScores[4]);
         await clearAllScore();
       } else {
-        await storeSessionInfo(lang, hand, Number(level) + 1);
+        // await storeSessionInfo(lang, hand, Number(level) + 1);
         let va = ((Number(score) * 10) / 3).toFixed(1);
-        await storeLevelScore(level, va, mode);
-        setPoints(va);
+        // await storeLevelScore(level, va, mode);
+        // setPoints(va);
         console.log(user?.user)
         if (user?.user && mode == "game") {
           console.log("This is working")
