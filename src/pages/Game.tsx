@@ -23,7 +23,6 @@ import Modal from '@/components/Modal/Modal';
 import moment from 'moment';
 import Percentage from '@/components/Percentage';
 import { useTranslation } from 'react-i18next';
-import { Hands } from "@mediapipe/hands";
 import { useContext } from 'react';
 import { HandContext } from '@/context/HandContext';
 
@@ -302,10 +301,12 @@ function Game() {
     <div className="flex justify-center flex-col items-center h-[75vh] md:h-[70vh] mt-[4vh]">
       <div className="flex flex-col justify-between items-center md:flex-row overflow-hidden ig:bg-blue-500 h-[80vh] gap-4 md:h-auto w-[90%] cxm:w-full md:w-10/12 relative">
         {showModal && <Modal wordIndex={wordIndex} nextWord={selectedWord} />}
-        <PlaceYourHand
-          isMediaPipeModelLoading={isMediaPipeModelLoading}
-          isGameStarted={isGameStarted}
-        />
+        {
+          level == "1" ? (  <PlaceYourHand
+            isMediaPipeModelLoading={isMediaPipeModelLoading}
+            isGameStarted={isGameStarted}
+          />)  : (null)
+        }
         <GameLeftSide
           score={score}
           isGameStarted={isGameStarted}
