@@ -28,6 +28,7 @@ const EditProfile = () => {
   const user = useContext(AuthContext);
   const [loading, setLoading] = useState(false);
   const { i18n } = useTranslation();
+  const guestMode = localStorage.getItem("guestMode");
 
   const handleSignOut = () => {
     signOut(auth)
@@ -72,7 +73,7 @@ const EditProfile = () => {
                 <InstapaperShareButton
                   url={"https://www.fidel.com"}
                   title={`Fidel`}
-                  description={`You have scored 80 in first level`}
+                  description={`click the link to play fidel`}
                 >
                   <RxInstagramLogo />
                 </InstapaperShareButton>
@@ -81,7 +82,7 @@ const EditProfile = () => {
                 <TwitterShareButton
                   url={"https://www.fidel.com"}
                   title={`Fidel`}
-                  via={`You have scored 80 in first level`}
+                  via={`click the link to play fidel`}
                 >
                   <SiTwitter />
                 </TwitterShareButton>
@@ -89,7 +90,7 @@ const EditProfile = () => {
               <div className=" mb-4 cursor-pointer">
                 <FacebookShareButton
                   url={"https://www/.fidel.com"}
-                  quote={`You have scored 80 in first level`}
+                  quote={`click the link to play fidel`}
                 >
                   <RiFacebookFill />
                 </FacebookShareButton>
@@ -98,7 +99,7 @@ const EditProfile = () => {
           </div>
           <div className="">
             <div className="flex flex-col gap-5">
-              <Link to="/profile">
+              <Link to="/profile"  className={`${!guestMode ? 'hidden' : '' }`} >
                 <div className=" bg-[#2E2E2E] rounded-md flex  py-2 px-5 justify-between cursor-pointer">
                   <div className=" mt-[4px] ml-3">
                     <MdModeEdit size="18px" />
@@ -111,7 +112,7 @@ const EditProfile = () => {
                   </div>
                 </div>
               </Link>
-              <Link to="/change-language">
+              <Link to="/change-language" >
                 <div className=" bg-[#2E2E2E] rounded-md flex py-2 px-5 justify-between cursor-pointer">
                   <div className=" mt-[4px] ml-3">
                     <MdLanguage size="18px" />
@@ -124,7 +125,7 @@ const EditProfile = () => {
                   </div>
                 </div>
               </Link>
-              <div className=" bg-[#2E2E2E] rounded-md flex py-2 px-5 justify-between cursor-pointer">
+              <div className={`bg-[#2E2E2E] rounded-md flex py-2 px-5 justify-between cursor-pointer  ${!guestMode ? 'hidden' : ''}`}>
                 <div className=" mt-[4px] ml-3">
                   <IoMdNotificationsOutline size="20px" />
                 </div>
@@ -137,7 +138,7 @@ const EditProfile = () => {
               </div>
             </div>
             <div
-              className="flex justify-between mt-6 bg-[#008867] py-2 px-3 rounded-md cursor-pointer btn w-full"
+              className={`flex justify-between mt-6 bg-[#008867] py-2 px-3 rounded-md cursor-pointer btn w-full ${!guestMode ? 'hidden' : ''}`}
               onClick={handleSignOut}
             >
               <div className="mt-1 ml-6">
