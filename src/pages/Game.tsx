@@ -23,6 +23,9 @@ import Modal from '@/components/Modal/Modal';
 import moment from 'moment';
 import Percentage from '@/components/Percentage';
 import { useTranslation } from 'react-i18next';
+import { Hands } from "@mediapipe/hands";
+import { useContext } from 'react';
+import { HandContext } from '@/context/HandContext';
 
 const handAnalyzer = new HandAnalyzer();
 let skipPrediction = false;
@@ -59,7 +62,8 @@ function Game() {
   const navigate = useNavigate();
   const { search } = useLocation();
   const searchParams = useSearchParams()[0];
-  const userAgent = navigator.userAgent
+  // const userAgent = navigator.userAgent
+  const { hand: loadHands } = useContext(HandContext)
   const {
     lang,
     hand: handDirection,
@@ -107,7 +111,7 @@ function Game() {
     if (wordIndex == singleLevelWord.length - 1) {
       navigate(`/level-completed${search}&points=${score}`);
       score = 0;
-      if (userAgent.includes('Chrome') || userAgent.includes('Brave'))  reloadMediaPipeFiles();
+      // if (userAgent.includes('Chrome') || userAgent.includes('Brave'))  reloadMediaPipeFiles();
     }
     setTimeout(() => {
       skipPrediction = false;
@@ -232,18 +236,7 @@ function Game() {
     window.location.reload();
   };
   const hands = useMemo(() => {
-    let hands = new window.Hands({
-      locateFile: (file) => {
-        return `/src/mediapipe/hands/${file}`;
-      }
-    });
-    hands.setOptions({
-      maxNumHands: 1,
-      modelComplexity: 1,
-      minDetectionConfidence: 0.5,
-      minTrackingConfidence: 0.5
-    });
-    return hands;
+    return loadHands;
   }, []);
   useEffect(() => {
     if (wordIndex !== 0 && wordIndex !== singleLevelWord.length - 1) {
@@ -304,6 +297,7 @@ function Game() {
   // if (percentage >= 100) {
   //   handleSkip();
   // }
+  // console.log(window.Hands)
   return (
     <div className="flex justify-center flex-col items-center h-[75vh] md:h-[70vh] mt-[4vh]">
       <div className="flex flex-col justify-between items-center md:flex-row overflow-hidden ig:bg-blue-500 h-[80vh] gap-4 md:h-auto w-[90%] cxm:w-full md:w-10/12 relative">
