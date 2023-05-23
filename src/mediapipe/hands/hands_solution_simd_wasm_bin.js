@@ -8,9 +8,7 @@ var createMediapipeSolutionsWasm = (() => {
     createMediapipeSolutionsWasm = createMediapipeSolutionsWasm || {};
 
     var Module =
-      typeof createMediapipeSolutionsWasm != 'undefined'
-        ? createMediapipeSolutionsWasm
-        : {};
+      typeof createMediapipeSolutionsWasm != 'undefined' ? createMediapipeSolutionsWasm : {};
     var readyPromiseResolve, readyPromiseReject;
     Module['ready'] = new Promise(function (resolve, reject) {
       readyPromiseResolve = resolve;
@@ -21,7 +19,7 @@ var createMediapipeSolutionsWasm = (() => {
       '_fflush',
       '___getTypeName',
       '__embind_initialize_bindings',
-      'onRuntimeInitialized'
+      'onRuntimeInitialized',
     ].forEach((prop) => {
       if (!Object.getOwnPropertyDescriptor(Module['ready'], prop)) {
         Object.defineProperty(Module['ready'], prop, {
@@ -36,7 +34,7 @@ var createMediapipeSolutionsWasm = (() => {
               'You are setting ' +
                 prop +
                 ' on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js'
-            )
+            ),
         });
       }
     });
@@ -76,11 +74,7 @@ var createMediapipeSolutionsWasm = (() => {
       err('exiting due to exception: ' + toLog);
     }
     if (ENVIRONMENT_IS_NODE) {
-      if (
-        typeof process == 'undefined' ||
-        !process.release ||
-        process.release.name !== 'node'
-      )
+      if (typeof process == 'undefined' || !process.release || process.release.name !== 'node')
         throw new Error(
           'not compiled for this environment (did you build to HTML and try to run it not on the web, or set ENVIRONMENT to something - like node - and run it someplace else - like on the web?)'
         );
@@ -92,9 +86,7 @@ var createMediapipeSolutionsWasm = (() => {
         scriptDirectory = __dirname + '/';
       }
       read_ = (filename, binary) => {
-        filename = isFileURI(filename)
-          ? new URL(filename)
-          : nodePath.normalize(filename);
+        filename = isFileURI(filename) ? new URL(filename) : nodePath.normalize(filename);
         return fs.readFileSync(filename, binary ? undefined : 'utf8');
       };
       readBinary = (filename) => {
@@ -106,9 +98,7 @@ var createMediapipeSolutionsWasm = (() => {
         return ret;
       };
       readAsync = (filename, onload, onerror) => {
-        filename = isFileURI(filename)
-          ? new URL(filename)
-          : nodePath.normalize(filename);
+        filename = isFileURI(filename) ? new URL(filename) : nodePath.normalize(filename);
         fs.readFile(filename, function (err, data) {
           if (err) onerror(err);
           else onload(data.buffer);
@@ -177,8 +167,7 @@ var createMediapipeSolutionsWasm = (() => {
       if (typeof print != 'undefined') {
         if (typeof console == 'undefined') console = {};
         console.log = print;
-        console.warn = console.error =
-          typeof printErr != 'undefined' ? printErr : print;
+        console.warn = console.error = typeof printErr != 'undefined' ? printErr : print;
       }
     } else if (ENVIRONMENT_IS_WEB || ENVIRONMENT_IS_WORKER) {
       if (ENVIRONMENT_IS_WORKER) {
@@ -304,7 +293,7 @@ var createMediapipeSolutionsWasm = (() => {
                 newName +
                 ' (the initial value can be provided on Module, but after startup the value is only looked for on a local variable of that name)'
             );
-          }
+          },
         });
       }
     }
@@ -332,10 +321,7 @@ var createMediapipeSolutionsWasm = (() => {
       );
     }
     function missingLibrarySymbol(sym) {
-      if (
-        typeof globalThis !== 'undefined' &&
-        !Object.getOwnPropertyDescriptor(globalThis, sym)
-      ) {
+      if (typeof globalThis !== 'undefined' && !Object.getOwnPropertyDescriptor(globalThis, sym)) {
         Object.defineProperty(globalThis, sym, {
           configurable: true,
           get: function () {
@@ -347,17 +333,14 @@ var createMediapipeSolutionsWasm = (() => {
             if (!librarySymbol.startsWith('_')) {
               librarySymbol = '$' + sym;
             }
-            msg +=
-              ' (e.g. -sDEFAULT_LIBRARY_FUNCS_TO_INCLUDE=' +
-              librarySymbol +
-              ')';
+            msg += ' (e.g. -sDEFAULT_LIBRARY_FUNCS_TO_INCLUDE=' + librarySymbol + ')';
             if (isExportedByForceFilesystem(sym)) {
               msg +=
                 '. Alternatively, forcing filesystem support (-sFORCE_FILESYSTEM) can export this for you';
             }
             warnOnce(msg);
             return undefined;
-          }
+          },
         });
       }
     }
@@ -367,15 +350,13 @@ var createMediapipeSolutionsWasm = (() => {
           configurable: true,
           get: function () {
             var msg =
-              "'" +
-              sym +
-              "' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)";
+              "'" + sym + "' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)";
             if (isExportedByForceFilesystem(sym)) {
               msg +=
                 '. Alternatively, forcing filesystem support (-sFORCE_FILESYSTEM) can export this for you';
             }
             abort(msg);
-          }
+          },
         });
       }
     }
@@ -395,8 +376,7 @@ var createMediapipeSolutionsWasm = (() => {
         abort('Assertion failed' + (text ? ': ' + text : ''));
       }
     }
-    var UTF8Decoder =
-      typeof TextDecoder != 'undefined' ? new TextDecoder('utf8') : undefined;
+    var UTF8Decoder = typeof TextDecoder != 'undefined' ? new TextDecoder('utf8') : undefined;
     function UTF8ArrayToString(heapOrArray, idx, maxBytesToRead) {
       var endIdx = idx + maxBytesToRead;
       var endPtr = idx;
@@ -426,11 +406,7 @@ var createMediapipeSolutionsWasm = (() => {
                 ptrToString(u0) +
                 ' encountered when deserializing a UTF-8 string in wasm memory to a JS string!'
             );
-          u0 =
-            ((u0 & 7) << 18) |
-            (u1 << 12) |
-            (u2 << 6) |
-            (heapOrArray[idx++] & 63);
+          u0 = ((u0 & 7) << 18) | (u1 << 12) | (u2 << 6) | (heapOrArray[idx++] & 63);
         }
         if (u0 < 65536) {
           str += String.fromCharCode(u0);
@@ -507,15 +483,7 @@ var createMediapipeSolutionsWasm = (() => {
       }
       return len;
     }
-    var buffer,
-      HEAP8,
-      HEAPU8,
-      HEAP16,
-      HEAPU16,
-      HEAP32,
-      HEAPU32,
-      HEAPF32,
-      HEAPF64;
+    var buffer, HEAP8, HEAPU8, HEAP16, HEAPU16, HEAP32, HEAPU32, HEAPF32, HEAPF64;
     function updateGlobalBufferAndViews(buf) {
       buffer = buf;
       Module['HEAP8'] = HEAP8 = new Int8Array(buf);
@@ -588,9 +556,7 @@ var createMediapipeSolutionsWasm = (() => {
         );
       }
       if (HEAPU32[0] !== 1668509029) {
-        abort(
-          'Runtime error: The application has corrupted its heap memory area (address zero)!'
-        );
+        abort('Runtime error: The application has corrupted its heap memory area (address zero)!');
       }
     }
     (function () {
@@ -610,8 +576,7 @@ var createMediapipeSolutionsWasm = (() => {
     }
     function preRun() {
       if (Module['preRun']) {
-        if (typeof Module['preRun'] == 'function')
-          Module['preRun'] = [Module['preRun']];
+        if (typeof Module['preRun'] == 'function') Module['preRun'] = [Module['preRun']];
         while (Module['preRun'].length) {
           addOnPreRun(Module['preRun'].shift());
         }
@@ -630,8 +595,7 @@ var createMediapipeSolutionsWasm = (() => {
     function postRun() {
       checkStackCookie();
       if (Module['postRun']) {
-        if (typeof Module['postRun'] == 'function')
-          Module['postRun'] = [Module['postRun']];
+        if (typeof Module['postRun'] == 'function') Module['postRun'] = [Module['postRun']];
         while (Module['postRun'].length) {
           addOnPostRun(Module['postRun'].shift());
         }
@@ -682,10 +646,7 @@ var createMediapipeSolutionsWasm = (() => {
       if (id) {
         assert(!runDependencyTracking[id]);
         runDependencyTracking[id] = 1;
-        if (
-          runDependencyWatcher === null &&
-          typeof setInterval != 'undefined'
-        ) {
+        if (runDependencyWatcher === null && typeof setInterval != 'undefined') {
           runDependencyWatcher = setInterval(function () {
             if (ABORT) {
               clearInterval(runDependencyWatcher);
@@ -760,15 +721,10 @@ var createMediapipeSolutionsWasm = (() => {
         }
         assert(
           runtimeInitialized,
-          'native function `' +
-            displayName +
-            '` called before runtime initialization'
+          'native function `' + displayName + '` called before runtime initialization'
         );
         if (!asm[name]) {
-          assert(
-            asm[name],
-            'exported native function `' + displayName + '` not found'
-          );
+          assert(asm[name], 'exported native function `' + displayName + '` not found');
         }
         return asm[name].apply(null, arguments);
       };
@@ -797,9 +753,7 @@ var createMediapipeSolutionsWasm = (() => {
           return fetch(wasmBinaryFile, { credentials: 'same-origin' })
             .then(function (response) {
               if (!response['ok']) {
-                throw (
-                  "failed to load wasm binary file at '" + wasmBinaryFile + "'"
-                );
+                throw "failed to load wasm binary file at '" + wasmBinaryFile + "'";
               }
               return response['arrayBuffer']();
             })
@@ -876,16 +830,14 @@ var createMediapipeSolutionsWasm = (() => {
           !ENVIRONMENT_IS_NODE &&
           typeof fetch == 'function'
         ) {
-          return fetch(wasmBinaryFile, { credentials: 'same-origin' }).then(
-            function (response) {
-              var result = WebAssembly.instantiateStreaming(response, info);
-              return result.then(receiveInstantiationResult, function (reason) {
-                err('wasm streaming compile failed: ' + reason);
-                err('falling back to ArrayBuffer instantiation');
-                return instantiateArrayBuffer(receiveInstantiationResult);
-              });
-            }
-          );
+          return fetch(wasmBinaryFile, { credentials: 'same-origin' }).then(function (response) {
+            var result = WebAssembly.instantiateStreaming(response, info);
+            return result.then(receiveInstantiationResult, function (reason) {
+              err('wasm streaming compile failed: ' + reason);
+              err('falling back to ArrayBuffer instantiation');
+              return instantiateArrayBuffer(receiveInstantiationResult);
+            });
+          });
         } else {
           return instantiateArrayBuffer(receiveInstantiationResult);
         }
@@ -916,11 +868,10 @@ var createMediapipeSolutionsWasm = (() => {
         const texture = JsValStore.get($2);
         const width = $3;
         const height = $4;
-        device.queue.copyExternalImageToTexture(
-          { source: drawable },
-          { texture: texture },
-          [width, height]
-        );
+        device.queue.copyExternalImageToTexture({ source: drawable }, { texture: texture }, [
+          width,
+          height,
+        ]);
       },
       600934: ($0, $1, $2, $3) => {
         const sourceExtTex = Emval.toValue($0);
@@ -931,8 +882,8 @@ var createMediapipeSolutionsWasm = (() => {
           layout: bgLayout,
           entries: [
             { binding: 0, resource: sampler },
-            { binding: 1, resource: sourceExtTex }
-          ]
+            { binding: 1, resource: sourceExtTex },
+          ],
         });
         return JsValStore.add(bindGroup);
       },
@@ -940,11 +891,7 @@ var createMediapipeSolutionsWasm = (() => {
         const inputArray = Emval.toValue($0);
         const output = Emval.toValue($1);
         const ctx = output.getContext('2d');
-        const image_data = new ImageData(
-          inputArray,
-          output.width,
-          output.height
-        );
+        const image_data = new ImageData(inputArray, output.width, output.height);
         ctx.putImageData(image_data, 0, 0);
       },
       601506: ($0, $1) => {
@@ -998,7 +945,7 @@ var createMediapipeSolutionsWasm = (() => {
       },
       602682: () => {
         return typeof wasmOffsetConverter !== 'undefined';
-      }
+      },
     };
     function mediapipe_import_external_texture(device_handle, source_handle) {
       const device = WebGPU.mgrDevice.get(device_handle);
@@ -1029,15 +976,11 @@ var createMediapipeSolutionsWasm = (() => {
         Browser.mainLoop.running = true;
       }
       if (mode == 0) {
-        Browser.mainLoop.scheduler =
-          function Browser_mainLoop_scheduler_setTimeout() {
-            var timeUntilNextTick =
-              Math.max(
-                0,
-                Browser.mainLoop.tickStartTime + value - _emscripten_get_now()
-              ) | 0;
-            setTimeout(Browser.mainLoop.runner, timeUntilNextTick);
-          };
+        Browser.mainLoop.scheduler = function Browser_mainLoop_scheduler_setTimeout() {
+          var timeUntilNextTick =
+            Math.max(0, Browser.mainLoop.tickStartTime + value - _emscripten_get_now()) | 0;
+          setTimeout(Browser.mainLoop.runner, timeUntilNextTick);
+        };
         Browser.mainLoop.method = 'timeout';
       } else if (mode == 1) {
         Browser.mainLoop.scheduler = function Browser_mainLoop_scheduler_rAF() {
@@ -1057,25 +1000,19 @@ var createMediapipeSolutionsWasm = (() => {
               setImmediates.shift()();
             }
           };
-          addEventListener(
-            'message',
-            Browser_setImmediate_messageHandler,
-            true
-          );
+          addEventListener('message', Browser_setImmediate_messageHandler, true);
           setImmediate = function Browser_emulated_setImmediate(func) {
             setImmediates.push(func);
             if (ENVIRONMENT_IS_WORKER) {
-              if (Module['setImmediates'] === undefined)
-                Module['setImmediates'] = [];
+              if (Module['setImmediates'] === undefined) Module['setImmediates'] = [];
               Module['setImmediates'].push(func);
               postMessage({ target: emscriptenMainLoopMessageId });
             } else postMessage(emscriptenMainLoopMessageId, '*');
           };
         }
-        Browser.mainLoop.scheduler =
-          function Browser_mainLoop_scheduler_setImmediate() {
-            setImmediate(Browser.mainLoop.runner);
-          };
+        Browser.mainLoop.scheduler = function Browser_mainLoop_scheduler_setImmediate() {
+          setImmediate(Browser.mainLoop.runner);
+        };
         Browser.mainLoop.method = 'immediate';
       }
       return 0;
@@ -1108,8 +1045,7 @@ var createMediapipeSolutionsWasm = (() => {
     var PATH = {
       isAbs: (path) => path.charAt(0) === '/',
       splitPath: (filename) => {
-        var splitPathRe =
-          /^(\/?|)([\s\S]*?)((?:\.{1,2}|[^\/]+?|)(\.[^.\/]*|))(?:[\/]*)$/;
+        var splitPathRe = /^(\/?|)([\s\S]*?)((?:\.{1,2}|[^\/]+?|)(\.[^.\/]*|))(?:[\/]*)$/;
         return splitPathRe.exec(filename).slice(1);
       },
       normalizeArray: (parts, allowAboveRoot) => {
@@ -1174,13 +1110,10 @@ var createMediapipeSolutionsWasm = (() => {
       },
       join2: (l, r) => {
         return PATH.normalize(l + '/' + r);
-      }
+      },
     };
     function getRandomDevice() {
-      if (
-        typeof crypto == 'object' &&
-        typeof crypto['getRandomValues'] == 'function'
-      ) {
+      if (typeof crypto == 'object' && typeof crypto['getRandomValues'] == 'function') {
         var randomBuffer = new Uint8Array(1);
         return () => {
           crypto.getRandomValues(randomBuffer);
@@ -1248,17 +1181,12 @@ var createMediapipeSolutionsWasm = (() => {
         }
         outputParts = outputParts.concat(toParts.slice(samePartsLength));
         return outputParts.join('/');
-      }
+      },
     };
     function intArrayFromString(stringy, dontAddNull, length) {
       var len = length > 0 ? length : lengthBytesUTF8(stringy) + 1;
       var u8array = new Array(len);
-      var numBytesWritten = stringToUTF8Array(
-        stringy,
-        u8array,
-        0,
-        u8array.length
-      );
+      var numBytesWritten = stringToUTF8Array(stringy, u8array, 0, u8array.length);
       if (dontAddNull) u8array.length = numBytesWritten;
       return u8array;
     }
@@ -1324,7 +1252,7 @@ var createMediapipeSolutionsWasm = (() => {
             stream.node.timestamp = Date.now();
           }
           return i;
-        }
+        },
       },
       default_tty_ops: {
         get_char: function (tty) {
@@ -1345,10 +1273,7 @@ var createMediapipeSolutionsWasm = (() => {
               } else {
                 result = null;
               }
-            } else if (
-              typeof window != 'undefined' &&
-              typeof window.prompt == 'function'
-            ) {
+            } else if (typeof window != 'undefined' && typeof window.prompt == 'function') {
               result = window.prompt('Input: ');
               if (result !== null) {
                 result += '\n';
@@ -1379,7 +1304,7 @@ var createMediapipeSolutionsWasm = (() => {
             out(UTF8ArrayToString(tty.output, 0));
             tty.output = [];
           }
-        }
+        },
       },
       default_tty1_ops: {
         put_char: function (tty, val) {
@@ -1395,8 +1320,8 @@ var createMediapipeSolutionsWasm = (() => {
             err(UTF8ArrayToString(tty.output, 0));
             tty.output = [];
           }
-        }
-      }
+        },
+      },
     };
     function zeroMemory(address, size) {
       HEAPU8.fill(0, address, address + size);
@@ -1433,14 +1358,14 @@ var createMediapipeSolutionsWasm = (() => {
                 unlink: MEMFS.node_ops.unlink,
                 rmdir: MEMFS.node_ops.rmdir,
                 readdir: MEMFS.node_ops.readdir,
-                symlink: MEMFS.node_ops.symlink
+                symlink: MEMFS.node_ops.symlink,
               },
-              stream: { llseek: MEMFS.stream_ops.llseek }
+              stream: { llseek: MEMFS.stream_ops.llseek },
             },
             file: {
               node: {
                 getattr: MEMFS.node_ops.getattr,
-                setattr: MEMFS.node_ops.setattr
+                setattr: MEMFS.node_ops.setattr,
               },
               stream: {
                 llseek: MEMFS.stream_ops.llseek,
@@ -1448,24 +1373,24 @@ var createMediapipeSolutionsWasm = (() => {
                 write: MEMFS.stream_ops.write,
                 allocate: MEMFS.stream_ops.allocate,
                 mmap: MEMFS.stream_ops.mmap,
-                msync: MEMFS.stream_ops.msync
-              }
+                msync: MEMFS.stream_ops.msync,
+              },
             },
             link: {
               node: {
                 getattr: MEMFS.node_ops.getattr,
                 setattr: MEMFS.node_ops.setattr,
-                readlink: MEMFS.node_ops.readlink
+                readlink: MEMFS.node_ops.readlink,
               },
-              stream: {}
+              stream: {},
             },
             chrdev: {
               node: {
                 getattr: MEMFS.node_ops.getattr,
-                setattr: MEMFS.node_ops.setattr
+                setattr: MEMFS.node_ops.setattr,
               },
-              stream: FS.chrdev_stream_ops
-            }
+              stream: FS.chrdev_stream_ops,
+            },
           };
         }
         var node = FS.createNode(parent, name, mode, dev);
@@ -1494,8 +1419,7 @@ var createMediapipeSolutionsWasm = (() => {
       },
       getFileDataAsTypedArray: function (node) {
         if (!node.contents) return new Uint8Array(0);
-        if (node.contents.subarray)
-          return node.contents.subarray(0, node.usedBytes);
+        if (node.contents.subarray) return node.contents.subarray(0, node.usedBytes);
         return new Uint8Array(node.contents);
       },
       expandFileStorage: function (node, newCapacity) {
@@ -1504,15 +1428,12 @@ var createMediapipeSolutionsWasm = (() => {
         var CAPACITY_DOUBLING_MAX = 1024 * 1024;
         newCapacity = Math.max(
           newCapacity,
-          (prevCapacity *
-            (prevCapacity < CAPACITY_DOUBLING_MAX ? 2 : 1.125)) >>>
-            0
+          (prevCapacity * (prevCapacity < CAPACITY_DOUBLING_MAX ? 2 : 1.125)) >>> 0
         );
         if (prevCapacity != 0) newCapacity = Math.max(newCapacity, 256);
         var oldContents = node.contents;
         node.contents = new Uint8Array(newCapacity);
-        if (node.usedBytes > 0)
-          node.contents.set(oldContents.subarray(0, node.usedBytes), 0);
+        if (node.usedBytes > 0) node.contents.set(oldContents.subarray(0, node.usedBytes), 0);
       },
       resizeFileStorage: function (node, newSize) {
         if (node.usedBytes == newSize) return;
@@ -1523,9 +1444,7 @@ var createMediapipeSolutionsWasm = (() => {
           var oldContents = node.contents;
           node.contents = new Uint8Array(newSize);
           if (oldContents) {
-            node.contents.set(
-              oldContents.subarray(0, Math.min(newSize, node.usedBytes))
-            );
+            node.contents.set(oldContents.subarray(0, Math.min(newSize, node.usedBytes)));
           }
           node.usedBytes = newSize;
         }
@@ -1624,7 +1543,7 @@ var createMediapipeSolutionsWasm = (() => {
             throw new FS.ErrnoError(28);
           }
           return node.link;
-        }
+        },
       },
       stream_ops: {
         read: function (stream, buffer, offset, length, position) {
@@ -1635,8 +1554,7 @@ var createMediapipeSolutionsWasm = (() => {
           if (size > 8 && contents.subarray) {
             buffer.set(contents.subarray(position, position + size), offset);
           } else {
-            for (var i = 0; i < size; i++)
-              buffer[offset + i] = contents[position + i];
+            for (var i = 0; i < size; i++) buffer[offset + i] = contents[position + i];
           }
           return size;
         },
@@ -1650,10 +1568,7 @@ var createMediapipeSolutionsWasm = (() => {
           node.timestamp = Date.now();
           if (buffer.subarray && (!node.contents || node.contents.subarray)) {
             if (canOwn) {
-              assert(
-                position === 0,
-                'canOwn must imply no weird position inside the file'
-              );
+              assert(position === 0, 'canOwn must imply no weird position inside the file');
               node.contents = buffer.subarray(offset, offset + length);
               node.usedBytes = length;
               return length;
@@ -1662,19 +1577,13 @@ var createMediapipeSolutionsWasm = (() => {
               node.usedBytes = length;
               return length;
             } else if (position + length <= node.usedBytes) {
-              node.contents.set(
-                buffer.subarray(offset, offset + length),
-                position
-              );
+              node.contents.set(buffer.subarray(offset, offset + length), position);
               return length;
             }
           }
           MEMFS.expandFileStorage(node, position + length);
           if (node.contents.subarray && buffer.subarray) {
-            node.contents.set(
-              buffer.subarray(offset, offset + length),
-              position
-            );
+            node.contents.set(buffer.subarray(offset, offset + length), position);
           } else {
             for (var i = 0; i < length; i++) {
               node.contents[position + i] = buffer[offset + i];
@@ -1699,10 +1608,7 @@ var createMediapipeSolutionsWasm = (() => {
         },
         allocate: function (stream, offset, length) {
           MEMFS.expandFileStorage(stream.node, offset + length);
-          stream.node.usedBytes = Math.max(
-            stream.node.usedBytes,
-            offset + length
-          );
+          stream.node.usedBytes = Math.max(stream.node.usedBytes, offset + length);
         },
         mmap: function (stream, length, position, prot, flags) {
           if (!FS.isFile(stream.node.mode)) {
@@ -1719,11 +1625,7 @@ var createMediapipeSolutionsWasm = (() => {
               if (contents.subarray) {
                 contents = contents.subarray(position, position + length);
               } else {
-                contents = Array.prototype.slice.call(
-                  contents,
-                  position,
-                  position + length
-                );
+                contents = Array.prototype.slice.call(contents, position, position + length);
               }
             }
             allocated = true;
@@ -1738,18 +1640,15 @@ var createMediapipeSolutionsWasm = (() => {
         msync: function (stream, buffer, offset, length, mmapFlags) {
           MEMFS.stream_ops.write(stream, buffer, 0, length, offset, false);
           return 0;
-        }
-      }
+        },
+      },
     };
     function asyncLoad(url, onload, onerror, noRunDep) {
       var dep = !noRunDep ? getUniqueRunDependency('al ' + url) : '';
       readAsync(
         url,
         (arrayBuffer) => {
-          assert(
-            arrayBuffer,
-            'Loading data file "' + url + '" failed (no arrayBuffer).'
-          );
+          assert(arrayBuffer, 'Loading data file "' + url + '" failed (no arrayBuffer).');
           onload(new Uint8Array(arrayBuffer));
           if (dep) removeRunDependency(dep);
         },
@@ -1882,13 +1781,11 @@ var createMediapipeSolutionsWasm = (() => {
       141: 'Too many references',
       142: 'Host is down',
       148: 'No medium (in tape drive)',
-      156: 'Level 2 not synchronized'
+      156: 'Level 2 not synchronized',
     };
     var ERRNO_CODES = {};
     function demangle(func) {
-      warnOnce(
-        'warning: build with -sDEMANGLE_SUPPORT to link in libcxxabi demangling'
-      );
+      warnOnce('warning: build with -sDEMANGLE_SUPPORT to link in libcxxabi demangling');
       return func;
     }
     function demangleAll(text) {
@@ -1941,7 +1838,7 @@ var createMediapipeSolutionsWasm = (() => {
               var link = FS.readlink(current_path);
               current_path = PATH_FS.resolve(PATH.dirname(current_path), link);
               var lookup = FS.lookupPath(current_path, {
-                recurse_count: opts.recurse_count + 1
+                recurse_count: opts.recurse_count + 1,
               });
               current = lookup.node;
               if (count++ > 40) {
@@ -1958,9 +1855,7 @@ var createMediapipeSolutionsWasm = (() => {
           if (FS.isRoot(node)) {
             var mount = node.mount.mountpoint;
             if (!path) return mount;
-            return mount[mount.length - 1] !== '/'
-              ? mount + '/' + path
-              : mount + path;
+            return mount[mount.length - 1] !== '/' ? mount + '/' + path : mount + path;
           }
           path = path ? node.name + '/' + path : node.name;
           node = node.parent;
@@ -2145,22 +2040,22 @@ var createMediapipeSolutionsWasm = (() => {
               },
               set: function (val) {
                 this.node = val;
-              }
+              },
             },
             isRead: {
               get: function () {
                 return (this.flags & 2097155) !== 1;
-              }
+              },
             },
             isWrite: {
               get: function () {
                 return (this.flags & 2097155) !== 0;
-              }
+              },
             },
             isAppend: {
               get: function () {
                 return this.flags & 1024;
-              }
+              },
             },
             flags: {
               get: function () {
@@ -2168,7 +2063,7 @@ var createMediapipeSolutionsWasm = (() => {
               },
               set: function (val) {
                 this.shared.flags = val;
-              }
+              },
             },
             position: {
               get: function () {
@@ -2176,8 +2071,8 @@ var createMediapipeSolutionsWasm = (() => {
               },
               set: function (val) {
                 this.shared.position = val;
-              }
-            }
+              },
+            },
           });
         }
         stream = Object.assign(new FS.FSStream(), stream);
@@ -2199,7 +2094,7 @@ var createMediapipeSolutionsWasm = (() => {
         },
         llseek: () => {
           throw new FS.ErrnoError(70);
-        }
+        },
       },
       major: (dev) => dev >> 8,
       minor: (dev) => dev & 255,
@@ -2281,7 +2176,7 @@ var createMediapipeSolutionsWasm = (() => {
           type: type,
           opts: opts,
           mountpoint: mountpoint,
-          mounts: []
+          mounts: [],
         };
         var mountRoot = type.mount(mount);
         mountRoot.mount = mount;
@@ -2434,10 +2329,7 @@ var createMediapipeSolutionsWasm = (() => {
         if (!old_dir.node_ops.rename) {
           throw new FS.ErrnoError(63);
         }
-        if (
-          FS.isMountpoint(old_node) ||
-          (new_node && FS.isMountpoint(new_node))
-        ) {
+        if (FS.isMountpoint(old_node) || (new_node && FS.isMountpoint(new_node))) {
           throw new FS.ErrnoError(10);
         }
         if (new_dir !== old_dir) {
@@ -2511,10 +2403,7 @@ var createMediapipeSolutionsWasm = (() => {
         if (!link.node_ops.readlink) {
           throw new FS.ErrnoError(28);
         }
-        return PATH_FS.resolve(
-          FS.getPath(link.parent),
-          link.node_ops.readlink(link)
-        );
+        return PATH_FS.resolve(FS.getPath(link.parent), link.node_ops.readlink(link));
       },
       stat: (path, dontFollow) => {
         var lookup = FS.lookupPath(path, { follow: !dontFollow });
@@ -2543,7 +2432,7 @@ var createMediapipeSolutionsWasm = (() => {
         }
         node.node_ops.setattr(node, {
           mode: (mode & 4095) | (node.mode & ~4095),
-          timestamp: Date.now()
+          timestamp: Date.now(),
         });
       },
       lchmod: (path, mode) => {
@@ -2679,7 +2568,7 @@ var createMediapipeSolutionsWasm = (() => {
           position: 0,
           stream_ops: node.stream_ops,
           ungotten: [],
-          error: false
+          error: false,
         });
         if (stream.stream_ops.open) {
           stream.stream_ops.open(stream);
@@ -2747,13 +2636,7 @@ var createMediapipeSolutionsWasm = (() => {
         } else if (!stream.seekable) {
           throw new FS.ErrnoError(70);
         }
-        var bytesRead = stream.stream_ops.read(
-          stream,
-          buffer,
-          offset,
-          length,
-          position
-        );
+        var bytesRead = stream.stream_ops.read(stream, buffer, offset, length, position);
         if (!seeking) stream.position += bytesRead;
         return bytesRead;
       },
@@ -2812,11 +2695,7 @@ var createMediapipeSolutionsWasm = (() => {
         stream.stream_ops.allocate(stream, offset, length);
       },
       mmap: (stream, length, position, prot, flags) => {
-        if (
-          (prot & 2) !== 0 &&
-          (flags & 2) === 0 &&
-          (stream.flags & 2097155) !== 2
-        ) {
+        if ((prot & 2) !== 0 && (flags & 2) === 0 && (stream.flags & 2097155) !== 2) {
           throw new FS.ErrnoError(2);
         }
         if ((stream.flags & 2097155) === 1) {
@@ -2831,13 +2710,7 @@ var createMediapipeSolutionsWasm = (() => {
         if (!stream.stream_ops.msync) {
           return 0;
         }
-        return stream.stream_ops.msync(
-          stream,
-          buffer,
-          offset,
-          length,
-          mmapFlags
-        );
+        return stream.stream_ops.msync(stream, buffer, offset, length, mmapFlags);
       },
       munmap: (stream) => 0,
       ioctl: (stream, cmd, arg) => {
@@ -2904,7 +2777,7 @@ var createMediapipeSolutionsWasm = (() => {
         FS.mkdir('/dev');
         FS.registerDevice(FS.makedev(1, 3), {
           read: () => 0,
-          write: (stream, buffer, offset, length, pos) => length
+          write: (stream, buffer, offset, length, pos) => length,
         });
         FS.mkdev('/dev/null', FS.makedev(1, 3));
         TTY.register(FS.makedev(5, 0), TTY.default_tty_ops);
@@ -2933,14 +2806,14 @@ var createMediapipeSolutionsWasm = (() => {
                   var ret = {
                     parent: null,
                     mount: { mountpoint: 'fake' },
-                    node_ops: { readlink: () => stream.path }
+                    node_ops: { readlink: () => stream.path },
                   };
                   ret.parent = ret;
                   return ret;
-                }
+                },
               };
               return node;
-            }
+            },
           },
           {},
           '/proc/self/fd'
@@ -2966,14 +2839,8 @@ var createMediapipeSolutionsWasm = (() => {
         var stdout = FS.open('/dev/stdout', 1);
         var stderr = FS.open('/dev/stderr', 1);
         assert(stdin.fd === 0, 'invalid handle for stdin (' + stdin.fd + ')');
-        assert(
-          stdout.fd === 1,
-          'invalid handle for stdout (' + stdout.fd + ')'
-        );
-        assert(
-          stderr.fd === 2,
-          'invalid handle for stderr (' + stderr.fd + ')'
-        );
+        assert(stdout.fd === 1, 'invalid handle for stdout (' + stdout.fd + ')');
+        assert(stderr.fd === 2, 'invalid handle for stderr (' + stderr.fd + ')');
       },
       ensureErrnoError: () => {
         if (FS.ErrnoError) return;
@@ -2993,7 +2860,7 @@ var createMediapipeSolutionsWasm = (() => {
           if (this.stack) {
             Object.defineProperty(this, 'stack', {
               value: new Error().stack,
-              writable: true
+              writable: true,
             });
             this.stack = demangleAll(this.stack);
           }
@@ -3064,7 +2931,7 @@ var createMediapipeSolutionsWasm = (() => {
           object: null,
           parentExists: false,
           parentPath: null,
-          parentObject: null
+          parentObject: null,
         };
         try {
           var lookup = FS.lookupPath(path, { parent: true });
@@ -3098,10 +2965,7 @@ var createMediapipeSolutionsWasm = (() => {
         return current;
       },
       createFile: (parent, name, properties, canRead, canWrite) => {
-        var path = PATH.join2(
-          typeof parent == 'string' ? parent : FS.getPath(parent),
-          name
-        );
+        var path = PATH.join2(typeof parent == 'string' ? parent : FS.getPath(parent), name);
         var mode = FS.getMode(canRead, canWrite);
         return FS.create(path, mode);
       },
@@ -3116,8 +2980,7 @@ var createMediapipeSolutionsWasm = (() => {
         if (data) {
           if (typeof data == 'string') {
             var arr = new Array(data.length);
-            for (var i = 0, len = data.length; i < len; ++i)
-              arr[i] = data.charCodeAt(i);
+            for (var i = 0, len = data.length; i < len; ++i) arr[i] = data.charCodeAt(i);
             data = arr;
           }
           FS.chmod(node, mode | 146);
@@ -3129,10 +2992,7 @@ var createMediapipeSolutionsWasm = (() => {
         return node;
       },
       createDevice: (parent, name, input, output) => {
-        var path = PATH.join2(
-          typeof parent == 'string' ? parent : FS.getPath(parent),
-          name
-        );
+        var path = PATH.join2(typeof parent == 'string' ? parent : FS.getPath(parent), name);
         var mode = FS.getMode(!!input, !!output);
         if (!FS.createDevice.major) FS.createDevice.major = 64;
         var dev = FS.makedev(FS.createDevice.major++, 0);
@@ -3178,13 +3038,12 @@ var createMediapipeSolutionsWasm = (() => {
               stream.node.timestamp = Date.now();
             }
             return i;
-          }
+          },
         });
         return FS.mkdev(path, mode, dev);
       },
       forceLoadFile: (obj) => {
-        if (obj.isDevice || obj.isFolder || obj.link || obj.contents)
-          return true;
+        if (obj.isDevice || obj.isFolder || obj.link || obj.contents) return true;
         if (typeof XMLHttpRequest != 'undefined') {
           throw new Error(
             'Lazy loading should have been performed (contents set) in createLazyFile, but it was not. Lazy loading only works in web workers. Use --embed-file or --preload-file in emcc on the main thread.'
@@ -3213,88 +3072,63 @@ var createMediapipeSolutionsWasm = (() => {
           var chunkNum = (idx / this.chunkSize) | 0;
           return this.getter(chunkNum)[chunkOffset];
         };
-        LazyUint8Array.prototype.setDataGetter =
-          function LazyUint8Array_setDataGetter(getter) {
-            this.getter = getter;
-          };
-        LazyUint8Array.prototype.cacheLength =
-          function LazyUint8Array_cacheLength() {
+        LazyUint8Array.prototype.setDataGetter = function LazyUint8Array_setDataGetter(getter) {
+          this.getter = getter;
+        };
+        LazyUint8Array.prototype.cacheLength = function LazyUint8Array_cacheLength() {
+          var xhr = new XMLHttpRequest();
+          xhr.open('HEAD', url, false);
+          xhr.send(null);
+          if (!((xhr.status >= 200 && xhr.status < 300) || xhr.status === 304))
+            throw new Error("Couldn't load " + url + '. Status: ' + xhr.status);
+          var datalength = Number(xhr.getResponseHeader('Content-length'));
+          var header;
+          var hasByteServing =
+            (header = xhr.getResponseHeader('Accept-Ranges')) && header === 'bytes';
+          var usesGzip = (header = xhr.getResponseHeader('Content-Encoding')) && header === 'gzip';
+          var chunkSize = 1024 * 1024;
+          if (!hasByteServing) chunkSize = datalength;
+          var doXHR = (from, to) => {
+            if (from > to)
+              throw new Error('invalid range (' + from + ', ' + to + ') or no bytes requested!');
+            if (to > datalength - 1)
+              throw new Error('only ' + datalength + ' bytes available! programmer error!');
             var xhr = new XMLHttpRequest();
-            xhr.open('HEAD', url, false);
-            xhr.send(null);
-            if (
-              !((xhr.status >= 200 && xhr.status < 300) || xhr.status === 304)
-            )
-              throw new Error(
-                "Couldn't load " + url + '. Status: ' + xhr.status
-              );
-            var datalength = Number(xhr.getResponseHeader('Content-length'));
-            var header;
-            var hasByteServing =
-              (header = xhr.getResponseHeader('Accept-Ranges')) &&
-              header === 'bytes';
-            var usesGzip =
-              (header = xhr.getResponseHeader('Content-Encoding')) &&
-              header === 'gzip';
-            var chunkSize = 1024 * 1024;
-            if (!hasByteServing) chunkSize = datalength;
-            var doXHR = (from, to) => {
-              if (from > to)
-                throw new Error(
-                  'invalid range (' +
-                    from +
-                    ', ' +
-                    to +
-                    ') or no bytes requested!'
-                );
-              if (to > datalength - 1)
-                throw new Error(
-                  'only ' + datalength + ' bytes available! programmer error!'
-                );
-              var xhr = new XMLHttpRequest();
-              xhr.open('GET', url, false);
-              if (datalength !== chunkSize)
-                xhr.setRequestHeader('Range', 'bytes=' + from + '-' + to);
-              xhr.responseType = 'arraybuffer';
-              if (xhr.overrideMimeType) {
-                xhr.overrideMimeType('text/plain; charset=x-user-defined');
-              }
-              xhr.send(null);
-              if (
-                !((xhr.status >= 200 && xhr.status < 300) || xhr.status === 304)
-              )
-                throw new Error(
-                  "Couldn't load " + url + '. Status: ' + xhr.status
-                );
-              if (xhr.response !== undefined) {
-                return new Uint8Array(xhr.response || []);
-              }
-              return intArrayFromString(xhr.responseText || '', true);
-            };
-            var lazyArray = this;
-            lazyArray.setDataGetter((chunkNum) => {
-              var start = chunkNum * chunkSize;
-              var end = (chunkNum + 1) * chunkSize - 1;
-              end = Math.min(end, datalength - 1);
-              if (typeof lazyArray.chunks[chunkNum] == 'undefined') {
-                lazyArray.chunks[chunkNum] = doXHR(start, end);
-              }
-              if (typeof lazyArray.chunks[chunkNum] == 'undefined')
-                throw new Error('doXHR failed!');
-              return lazyArray.chunks[chunkNum];
-            });
-            if (usesGzip || !datalength) {
-              chunkSize = datalength = 1;
-              datalength = this.getter(0).length;
-              chunkSize = datalength;
-              out(
-                'LazyFiles on gzip forces download of the whole file when length is accessed'
-              );
+            xhr.open('GET', url, false);
+            if (datalength !== chunkSize) xhr.setRequestHeader('Range', 'bytes=' + from + '-' + to);
+            xhr.responseType = 'arraybuffer';
+            if (xhr.overrideMimeType) {
+              xhr.overrideMimeType('text/plain; charset=x-user-defined');
             }
-            this._length = datalength;
-            this._chunkSize = chunkSize;
-            this.lengthKnown = true;
+            xhr.send(null);
+            if (!((xhr.status >= 200 && xhr.status < 300) || xhr.status === 304))
+              throw new Error("Couldn't load " + url + '. Status: ' + xhr.status);
+            if (xhr.response !== undefined) {
+              return new Uint8Array(xhr.response || []);
+            }
+            return intArrayFromString(xhr.responseText || '', true);
           };
+          var lazyArray = this;
+          lazyArray.setDataGetter((chunkNum) => {
+            var start = chunkNum * chunkSize;
+            var end = (chunkNum + 1) * chunkSize - 1;
+            end = Math.min(end, datalength - 1);
+            if (typeof lazyArray.chunks[chunkNum] == 'undefined') {
+              lazyArray.chunks[chunkNum] = doXHR(start, end);
+            }
+            if (typeof lazyArray.chunks[chunkNum] == 'undefined') throw new Error('doXHR failed!');
+            return lazyArray.chunks[chunkNum];
+          });
+          if (usesGzip || !datalength) {
+            chunkSize = datalength = 1;
+            datalength = this.getter(0).length;
+            chunkSize = datalength;
+            out('LazyFiles on gzip forces download of the whole file when length is accessed');
+          }
+          this._length = datalength;
+          this._chunkSize = chunkSize;
+          this.lengthKnown = true;
+        };
         if (typeof XMLHttpRequest != 'undefined') {
           if (!ENVIRONMENT_IS_WORKER)
             throw 'Cannot do synchronous binary XHRs outside webworkers in modern browsers. Use --embed-file or --preload-file in emcc';
@@ -3306,7 +3140,7 @@ var createMediapipeSolutionsWasm = (() => {
                   this.cacheLength();
                 }
                 return this._length;
-              }
+              },
             },
             chunkSize: {
               get: function () {
@@ -3314,8 +3148,8 @@ var createMediapipeSolutionsWasm = (() => {
                   this.cacheLength();
                 }
                 return this._chunkSize;
-              }
-            }
+              },
+            },
           });
           var properties = { isDevice: false, contents: lazyArray };
         } else {
@@ -3332,8 +3166,8 @@ var createMediapipeSolutionsWasm = (() => {
           usedBytes: {
             get: function () {
               return this.contents.length;
-            }
-          }
+            },
+          },
         });
         var stream_ops = {};
         var keys = Object.keys(node.stream_ops);
@@ -3388,22 +3222,13 @@ var createMediapipeSolutionsWasm = (() => {
         canOwn,
         preFinish
       ) => {
-        var fullname = name
-          ? PATH_FS.resolve(PATH.join2(parent, name))
-          : parent;
+        var fullname = name ? PATH_FS.resolve(PATH.join2(parent, name)) : parent;
         var dep = getUniqueRunDependency('cp ' + fullname);
         function processData(byteArray) {
           function finish(byteArray) {
             if (preFinish) preFinish();
             if (!dontCreateFile) {
-              FS.createDataFile(
-                parent,
-                name,
-                byteArray,
-                canRead,
-                canWrite,
-                canOwn
-              );
+              FS.createDataFile(parent, name, byteArray, canRead, canWrite, canOwn);
             }
             if (onload) onload();
             removeRunDependency(dep);
@@ -3427,10 +3252,7 @@ var createMediapipeSolutionsWasm = (() => {
       },
       indexedDB: () => {
         return (
-          window.indexedDB ||
-          window.mozIndexedDB ||
-          window.webkitIndexedDB ||
-          window.msIndexedDB
+          window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB
         );
       },
       DB_NAME: () => {
@@ -3464,10 +3286,7 @@ var createMediapipeSolutionsWasm = (() => {
             else onerror();
           }
           paths.forEach((path) => {
-            var putRequest = files.put(
-              FS.analyzePath(path).object.contents,
-              path
-            );
+            var putRequest = files.put(FS.analyzePath(path).object.contents, path);
             putRequest.onsuccess = () => {
               ok++;
               if (ok + fail == total) finish();
@@ -3546,15 +3365,11 @@ var createMediapipeSolutionsWasm = (() => {
         abort('FS.joinPath has been removed; use PATH.join instead');
       },
       mmapAlloc: () => {
-        abort(
-          'FS.mmapAlloc has been replaced by the top level function mmapAlloc'
-        );
+        abort('FS.mmapAlloc has been replaced by the top level function mmapAlloc');
       },
       standardizePath: () => {
-        abort(
-          'FS.standardizePath has been removed; use PATH.normalize instead'
-        );
-      }
+        abort('FS.standardizePath has been removed; use PATH.normalize instead');
+      },
     };
     var SYSCALLS = {
       DEFAULT_POLLMASK: 5,
@@ -3581,11 +3396,7 @@ var createMediapipeSolutionsWasm = (() => {
         try {
           var stat = func(path);
         } catch (e) {
-          if (
-            e &&
-            e.node &&
-            PATH.normalize(path) !== PATH.normalize(FS.getPath(e.node))
-          ) {
+          if (e && e.node && PATH.normalize(path) !== PATH.normalize(FS.getPath(e.node))) {
             return -54;
           }
           throw e;
@@ -3602,13 +3413,9 @@ var createMediapipeSolutionsWasm = (() => {
           ((tempDouble = stat.size),
           +Math.abs(tempDouble) >= 1
             ? tempDouble > 0
-              ? (Math.min(+Math.floor(tempDouble / 4294967296), 4294967295) |
-                  0) >>>
-                0
-              : ~~+Math.ceil(
-                  (tempDouble - +(~~tempDouble >>> 0)) / 4294967296
-                ) >>> 0
-            : 0)
+              ? (Math.min(+Math.floor(tempDouble / 4294967296), 4294967295) | 0) >>> 0
+              : ~~+Math.ceil((tempDouble - +(~~tempDouble >>> 0)) / 4294967296) >>> 0
+            : 0),
         ]),
           (HEAP32[(buf + 40) >> 2] = tempI64[0]),
           (HEAP32[(buf + 44) >> 2] = tempI64[1]);
@@ -3619,13 +3426,9 @@ var createMediapipeSolutionsWasm = (() => {
           ((tempDouble = Math.floor(stat.atime.getTime() / 1e3)),
           +Math.abs(tempDouble) >= 1
             ? tempDouble > 0
-              ? (Math.min(+Math.floor(tempDouble / 4294967296), 4294967295) |
-                  0) >>>
-                0
-              : ~~+Math.ceil(
-                  (tempDouble - +(~~tempDouble >>> 0)) / 4294967296
-                ) >>> 0
-            : 0)
+              ? (Math.min(+Math.floor(tempDouble / 4294967296), 4294967295) | 0) >>> 0
+              : ~~+Math.ceil((tempDouble - +(~~tempDouble >>> 0)) / 4294967296) >>> 0
+            : 0),
         ]),
           (HEAP32[(buf + 56) >> 2] = tempI64[0]),
           (HEAP32[(buf + 60) >> 2] = tempI64[1]);
@@ -3635,13 +3438,9 @@ var createMediapipeSolutionsWasm = (() => {
           ((tempDouble = Math.floor(stat.mtime.getTime() / 1e3)),
           +Math.abs(tempDouble) >= 1
             ? tempDouble > 0
-              ? (Math.min(+Math.floor(tempDouble / 4294967296), 4294967295) |
-                  0) >>>
-                0
-              : ~~+Math.ceil(
-                  (tempDouble - +(~~tempDouble >>> 0)) / 4294967296
-                ) >>> 0
-            : 0)
+              ? (Math.min(+Math.floor(tempDouble / 4294967296), 4294967295) | 0) >>> 0
+              : ~~+Math.ceil((tempDouble - +(~~tempDouble >>> 0)) / 4294967296) >>> 0
+            : 0),
         ]),
           (HEAP32[(buf + 72) >> 2] = tempI64[0]),
           (HEAP32[(buf + 76) >> 2] = tempI64[1]);
@@ -3651,13 +3450,9 @@ var createMediapipeSolutionsWasm = (() => {
           ((tempDouble = Math.floor(stat.ctime.getTime() / 1e3)),
           +Math.abs(tempDouble) >= 1
             ? tempDouble > 0
-              ? (Math.min(+Math.floor(tempDouble / 4294967296), 4294967295) |
-                  0) >>>
-                0
-              : ~~+Math.ceil(
-                  (tempDouble - +(~~tempDouble >>> 0)) / 4294967296
-                ) >>> 0
-            : 0)
+              ? (Math.min(+Math.floor(tempDouble / 4294967296), 4294967295) | 0) >>> 0
+              : ~~+Math.ceil((tempDouble - +(~~tempDouble >>> 0)) / 4294967296) >>> 0
+            : 0),
         ]),
           (HEAP32[(buf + 88) >> 2] = tempI64[0]),
           (HEAP32[(buf + 92) >> 2] = tempI64[1]);
@@ -3667,13 +3462,9 @@ var createMediapipeSolutionsWasm = (() => {
           ((tempDouble = stat.ino),
           +Math.abs(tempDouble) >= 1
             ? tempDouble > 0
-              ? (Math.min(+Math.floor(tempDouble / 4294967296), 4294967295) |
-                  0) >>>
-                0
-              : ~~+Math.ceil(
-                  (tempDouble - +(~~tempDouble >>> 0)) / 4294967296
-                ) >>> 0
-            : 0)
+              ? (Math.min(+Math.floor(tempDouble / 4294967296), 4294967295) | 0) >>> 0
+              : ~~+Math.ceil((tempDouble - +(~~tempDouble >>> 0)) / 4294967296) >>> 0
+            : 0),
         ]),
           (HEAP32[(buf + 104) >> 2] = tempI64[0]),
           (HEAP32[(buf + 108) >> 2] = tempI64[1]);
@@ -3704,7 +3495,7 @@ var createMediapipeSolutionsWasm = (() => {
         var stream = FS.getStream(fd);
         if (!stream) throw new FS.ErrnoError(8);
         return stream;
-      }
+      },
     };
     function _proc_exit(code) {
       EXITSTATUS = code;
@@ -3745,13 +3536,7 @@ var createMediapipeSolutionsWasm = (() => {
       quit_(1, e);
     }
     function maybeExit() {}
-    function setMainLoop(
-      browserIterationFunc,
-      fps,
-      simulateInfiniteLoop,
-      arg,
-      noSetTiming
-    ) {
+    function setMainLoop(browserIterationFunc, fps, simulateInfiniteLoop, arg, noSetTiming) {
       assert(
         !Browser.mainLoop.func,
         'emscripten_set_main_loop: there can only be one main loop function at once: call emscripten_cancel_main_loop to cancel the previous one before setting a new one with different parameters.'
@@ -3775,8 +3560,7 @@ var createMediapipeSolutionsWasm = (() => {
           blocker.func(blocker.arg);
           if (Browser.mainLoop.remainingBlockers) {
             var remaining = Browser.mainLoop.remainingBlockers;
-            var next =
-              remaining % 1 == 0 ? remaining - 1 : Math.floor(remaining);
+            var next = remaining % 1 == 0 ? remaining - 1 : Math.floor(remaining);
             if (blocker.counted) {
               Browser.mainLoop.remainingBlockers = next;
             } else {
@@ -3784,26 +3568,18 @@ var createMediapipeSolutionsWasm = (() => {
               Browser.mainLoop.remainingBlockers = (8 * remaining + next) / 9;
             }
           }
-          out(
-            'main loop blocker "' +
-              blocker.name +
-              '" took ' +
-              (Date.now() - start) +
-              ' ms'
-          );
+          out('main loop blocker "' + blocker.name + '" took ' + (Date.now() - start) + ' ms');
           Browser.mainLoop.updateStatus();
           if (!checkIsRunning()) return;
           setTimeout(Browser.mainLoop.runner, 0);
           return;
         }
         if (!checkIsRunning()) return;
-        Browser.mainLoop.currentFrameNumber =
-          (Browser.mainLoop.currentFrameNumber + 1) | 0;
+        Browser.mainLoop.currentFrameNumber = (Browser.mainLoop.currentFrameNumber + 1) | 0;
         if (
           Browser.mainLoop.timingMode == 1 &&
           Browser.mainLoop.timingValue > 1 &&
-          Browser.mainLoop.currentFrameNumber % Browser.mainLoop.timingValue !=
-            0
+          Browser.mainLoop.currentFrameNumber % Browser.mainLoop.timingValue != 0
         ) {
           Browser.mainLoop.scheduler();
           return;
@@ -3844,9 +3620,7 @@ var createMediapipeSolutionsWasm = (() => {
     }
     function callUserCallback(func) {
       if (ABORT) {
-        err(
-          'user callback triggered after runtime exited or application aborted.  Ignoring.'
-        );
+        err('user callback triggered after runtime exited or application aborted.  Ignoring.');
         return;
       }
       try {
@@ -3901,9 +3675,7 @@ var createMediapipeSolutionsWasm = (() => {
             var expected = Browser.mainLoop.expectedBlockers;
             if (remaining) {
               if (remaining < expected) {
-                Module['setStatus'](
-                  message + ' (' + (expected - remaining) + '/' + expected + ')'
-                );
+                Module['setStatus'](message + ' (' + (expected - remaining) + '/' + expected + ')');
               } else {
                 Module['setStatus'](message);
               }
@@ -3922,7 +3694,7 @@ var createMediapipeSolutionsWasm = (() => {
           }
           callUserCallback(func);
           if (Module['postMainLoop']) Module['postMainLoop']();
-        }
+        },
       },
       isFullscreen: false,
       pointerLock: false,
@@ -3937,9 +3709,7 @@ var createMediapipeSolutionsWasm = (() => {
           Browser.hasBlobConstructor = true;
         } catch (e) {
           Browser.hasBlobConstructor = false;
-          err(
-            'warning: no blob constructor, cannot create blobs with mimetypes'
-          );
+          err('warning: no blob constructor, cannot create blobs with mimetypes');
         }
         Browser.BlobBuilder =
           typeof MozBlobBuilder != 'undefined'
@@ -3950,15 +3720,8 @@ var createMediapipeSolutionsWasm = (() => {
             ? err('warning: no BlobBuilder')
             : null;
         Browser.URLObject =
-          typeof window != 'undefined'
-            ? window.URL
-              ? window.URL
-              : window.webkitURL
-            : undefined;
-        if (
-          !Module.noImageDecoding &&
-          typeof Browser.URLObject == 'undefined'
-        ) {
+          typeof window != 'undefined' ? (window.URL ? window.URL : window.webkitURL) : undefined;
+        if (!Module.noImageDecoding && typeof Browser.URLObject == 'undefined') {
           err(
             'warning: Browser does not support creating object URLs. Built-in browser image decoding will not be available.'
           );
@@ -3968,26 +3731,19 @@ var createMediapipeSolutionsWasm = (() => {
         imagePlugin['canHandle'] = function imagePlugin_canHandle(name) {
           return !Module.noImageDecoding && /\.(jpg|jpeg|png|bmp)$/i.test(name);
         };
-        imagePlugin['handle'] = function imagePlugin_handle(
-          byteArray,
-          name,
-          onload,
-          onerror
-        ) {
+        imagePlugin['handle'] = function imagePlugin_handle(byteArray, name, onload, onerror) {
           var b = null;
           if (Browser.hasBlobConstructor) {
             try {
               b = new Blob([byteArray], { type: Browser.getMimetype(name) });
               if (b.size !== byteArray.length) {
                 b = new Blob([new Uint8Array(byteArray).buffer], {
-                  type: Browser.getMimetype(name)
+                  type: Browser.getMimetype(name),
                 });
               }
             } catch (e) {
               warnOnce(
-                'Blob constructor present but fails: ' +
-                  e +
-                  '; falling back to blob builder'
+                'Blob constructor present but fails: ' + e + '; falling back to blob builder'
               );
             }
           }
@@ -3997,10 +3753,7 @@ var createMediapipeSolutionsWasm = (() => {
             b = bb.getBlob();
           }
           var url = Browser.URLObject.createObjectURL(b);
-          assert(
-            typeof url == 'string',
-            'createObjectURL must return a url as a string'
-          );
+          assert(typeof url == 'string', 'createObjectURL must return a url as a string');
           var img = new Image();
           img.onload = () => {
             assert(img.complete, 'Image ' + name + ' could not be decoded');
@@ -4022,17 +3775,9 @@ var createMediapipeSolutionsWasm = (() => {
         Module['preloadPlugins'].push(imagePlugin);
         var audioPlugin = {};
         audioPlugin['canHandle'] = function audioPlugin_canHandle(name) {
-          return (
-            !Module.noAudioDecoding &&
-            name.substr(-4) in { '.ogg': 1, '.wav': 1, '.mp3': 1 }
-          );
+          return !Module.noAudioDecoding && name.substr(-4) in { '.ogg': 1, '.wav': 1, '.mp3': 1 };
         };
-        audioPlugin['handle'] = function audioPlugin_handle(
-          byteArray,
-          name,
-          onload,
-          onerror
-        ) {
+        audioPlugin['handle'] = function audioPlugin_handle(byteArray, name, onload, onerror) {
           var done = false;
           function finish(audio) {
             if (done) return;
@@ -4049,22 +3794,15 @@ var createMediapipeSolutionsWasm = (() => {
           if (Browser.hasBlobConstructor) {
             try {
               var b = new Blob([byteArray], {
-                type: Browser.getMimetype(name)
+                type: Browser.getMimetype(name),
               });
             } catch (e) {
               return fail();
             }
             var url = Browser.URLObject.createObjectURL(b);
-            assert(
-              typeof url == 'string',
-              'createObjectURL must return a url as a string'
-            );
+            assert(typeof url == 'string', 'createObjectURL must return a url as a string');
             var audio = new Audio();
-            audio.addEventListener(
-              'canplaythrough',
-              () => finish(audio),
-              false
-            );
+            audio.addEventListener('canplaythrough', () => finish(audio), false);
             audio.onerror = function audio_onerror(event) {
               if (done) return;
               err(
@@ -4073,8 +3811,7 @@ var createMediapipeSolutionsWasm = (() => {
                   ', trying slower base64 approach'
               );
               function encode64(data) {
-                var BASE =
-                  'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
+                var BASE = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
                 var PAD = '=';
                 var ret = '';
                 var leftchar = 0;
@@ -4097,11 +3834,7 @@ var createMediapipeSolutionsWasm = (() => {
                 }
                 return ret;
               }
-              audio.src =
-                'data:audio/x-' +
-                name.substr(-3) +
-                ';base64,' +
-                encode64(byteArray);
+              audio.src = 'data:audio/x-' + name.substr(-3) + ';base64,' + encode64(byteArray);
               finish(audio);
             };
             audio.src = url;
@@ -4135,34 +3868,15 @@ var createMediapipeSolutionsWasm = (() => {
             document['msExitPointerLock'] ||
             (() => {});
           canvas.exitPointerLock = canvas.exitPointerLock.bind(document);
-          document.addEventListener(
-            'pointerlockchange',
-            pointerLockChange,
-            false
-          );
-          document.addEventListener(
-            'mozpointerlockchange',
-            pointerLockChange,
-            false
-          );
-          document.addEventListener(
-            'webkitpointerlockchange',
-            pointerLockChange,
-            false
-          );
-          document.addEventListener(
-            'mspointerlockchange',
-            pointerLockChange,
-            false
-          );
+          document.addEventListener('pointerlockchange', pointerLockChange, false);
+          document.addEventListener('mozpointerlockchange', pointerLockChange, false);
+          document.addEventListener('webkitpointerlockchange', pointerLockChange, false);
+          document.addEventListener('mspointerlockchange', pointerLockChange, false);
           if (Module['elementPointerLock']) {
             canvas.addEventListener(
               'click',
               (ev) => {
-                if (
-                  !Browser.pointerLock &&
-                  Module['canvas'].requestPointerLock
-                ) {
+                if (!Browser.pointerLock && Module['canvas'].requestPointerLock) {
                   Module['canvas'].requestPointerLock();
                   ev.preventDefault();
                 }
@@ -4184,21 +3898,15 @@ var createMediapipeSolutionsWasm = (() => {
         });
         return handled;
       },
-      createContext: function (
-        canvas,
-        useWebGL,
-        setInModule,
-        webGLContextAttributes
-      ) {
-        if (useWebGL && Module.ctx && canvas == Module.canvas)
-          return Module.ctx;
+      createContext: function (canvas, useWebGL, setInModule, webGLContextAttributes) {
+        if (useWebGL && Module.ctx && canvas == Module.canvas) return Module.ctx;
         var ctx;
         var contextHandle;
         if (useWebGL) {
           var contextAttributes = {
             antialias: false,
             alpha: false,
-            majorVersion: typeof WebGL2RenderingContext != 'undefined' ? 2 : 1
+            majorVersion: typeof WebGL2RenderingContext != 'undefined' ? 2 : 1,
           };
           if (webGLContextAttributes) {
             for (var attribute in webGLContextAttributes) {
@@ -4238,10 +3946,8 @@ var createMediapipeSolutionsWasm = (() => {
       requestFullscreen: function (lockPointer, resizeCanvas) {
         Browser.lockPointer = lockPointer;
         Browser.resizeCanvas = resizeCanvas;
-        if (typeof Browser.lockPointer == 'undefined')
-          Browser.lockPointer = true;
-        if (typeof Browser.resizeCanvas == 'undefined')
-          Browser.resizeCanvas = false;
+        if (typeof Browser.lockPointer == 'undefined') Browser.lockPointer = true;
+        if (typeof Browser.resizeCanvas == 'undefined') Browser.resizeCanvas = false;
         var canvas = Module['canvas'];
         function fullscreenChange() {
           Browser.isFullscreen = false;
@@ -4270,33 +3976,15 @@ var createMediapipeSolutionsWasm = (() => {
               Browser.updateCanvasDimensions(canvas);
             }
           }
-          if (Module['onFullScreen'])
-            Module['onFullScreen'](Browser.isFullscreen);
-          if (Module['onFullscreen'])
-            Module['onFullscreen'](Browser.isFullscreen);
+          if (Module['onFullScreen']) Module['onFullScreen'](Browser.isFullscreen);
+          if (Module['onFullscreen']) Module['onFullscreen'](Browser.isFullscreen);
         }
         if (!Browser.fullscreenHandlersInstalled) {
           Browser.fullscreenHandlersInstalled = true;
-          document.addEventListener(
-            'fullscreenchange',
-            fullscreenChange,
-            false
-          );
-          document.addEventListener(
-            'mozfullscreenchange',
-            fullscreenChange,
-            false
-          );
-          document.addEventListener(
-            'webkitfullscreenchange',
-            fullscreenChange,
-            false
-          );
-          document.addEventListener(
-            'MSFullscreenChange',
-            fullscreenChange,
-            false
-          );
+          document.addEventListener('fullscreenchange', fullscreenChange, false);
+          document.addEventListener('mozfullscreenchange', fullscreenChange, false);
+          document.addEventListener('webkitfullscreenchange', fullscreenChange, false);
+          document.addEventListener('MSFullscreenChange', fullscreenChange, false);
         }
         var canvasContainer = document.createElement('div');
         canvas.parentNode.insertBefore(canvasContainer, canvas);
@@ -4306,16 +3994,10 @@ var createMediapipeSolutionsWasm = (() => {
           canvasContainer['mozRequestFullScreen'] ||
           canvasContainer['msRequestFullscreen'] ||
           (canvasContainer['webkitRequestFullscreen']
-            ? () =>
-                canvasContainer['webkitRequestFullscreen'](
-                  Element['ALLOW_KEYBOARD_INPUT']
-                )
+            ? () => canvasContainer['webkitRequestFullscreen'](Element['ALLOW_KEYBOARD_INPUT'])
             : null) ||
           (canvasContainer['webkitRequestFullScreen']
-            ? () =>
-                canvasContainer['webkitRequestFullScreen'](
-                  Element['ALLOW_KEYBOARD_INPUT']
-                )
+            ? () => canvasContainer['webkitRequestFullScreen'](Element['ALLOW_KEYBOARD_INPUT'])
             : null);
         canvasContainer.requestFullscreen();
       },
@@ -4375,31 +4057,20 @@ var createMediapipeSolutionsWasm = (() => {
           bmp: 'image/bmp',
           ogg: 'audio/ogg',
           wav: 'audio/wav',
-          mp3: 'audio/mpeg'
+          mp3: 'audio/mpeg',
         }[name.substr(name.lastIndexOf('.') + 1)];
       },
       getUserMedia: function (func) {
         if (!window.getUserMedia) {
-          window.getUserMedia =
-            navigator['getUserMedia'] || navigator['mozGetUserMedia'];
+          window.getUserMedia = navigator['getUserMedia'] || navigator['mozGetUserMedia'];
         }
         window.getUserMedia(func);
       },
       getMovementX: function (event) {
-        return (
-          event['movementX'] ||
-          event['mozMovementX'] ||
-          event['webkitMovementX'] ||
-          0
-        );
+        return event['movementX'] || event['mozMovementX'] || event['webkitMovementX'] || 0;
       },
       getMovementY: function (event) {
-        return (
-          event['movementY'] ||
-          event['mozMovementY'] ||
-          event['webkitMovementY'] ||
-          0
-        );
+        return event['movementY'] || event['mozMovementY'] || event['webkitMovementY'] || 0;
       },
       getMouseWheelDelta: function (event) {
         var delta = 0;
@@ -4456,14 +4127,8 @@ var createMediapipeSolutionsWasm = (() => {
           var rect = Module['canvas'].getBoundingClientRect();
           var cw = Module['canvas'].width;
           var ch = Module['canvas'].height;
-          var scrollX =
-            typeof window.scrollX != 'undefined'
-              ? window.scrollX
-              : window.pageXOffset;
-          var scrollY =
-            typeof window.scrollY != 'undefined'
-              ? window.scrollY
-              : window.pageYOffset;
+          var scrollX = typeof window.scrollX != 'undefined' ? window.scrollX : window.pageXOffset;
+          var scrollY = typeof window.scrollY != 'undefined' ? window.scrollY : window.pageYOffset;
           assert(
             typeof scrollX != 'undefined' && typeof scrollY != 'undefined',
             'Unable to retrieve scroll position, mouse positions likely broken.'
@@ -4485,10 +4150,7 @@ var createMediapipeSolutionsWasm = (() => {
             if (event.type === 'touchstart') {
               Browser.lastTouches[touch.identifier] = coords;
               Browser.touches[touch.identifier] = coords;
-            } else if (
-              event.type === 'touchend' ||
-              event.type === 'touchmove'
-            ) {
+            } else if (event.type === 'touchend' || event.type === 'touchmove') {
               var last = Browser.touches[touch.identifier];
               if (!last) last = coords;
               Browser.lastTouches[touch.identifier] = last;
@@ -4587,7 +4249,7 @@ var createMediapipeSolutionsWasm = (() => {
             }
           }
         }
-      }
+      },
     };
     function callRuntimeCallbacks(callbacks) {
       while (callbacks.length > 0) {
@@ -4605,7 +4267,7 @@ var createMediapipeSolutionsWasm = (() => {
           [
             filename ? UTF8ToString(filename) : 'unknown filename',
             line,
-            func ? UTF8ToString(func) : 'unknown function'
+            func ? UTF8ToString(func) : 'unknown function',
           ]
       );
     }
@@ -4887,7 +4549,7 @@ var createMediapipeSolutionsWasm = (() => {
       { value: undefined },
       { value: null },
       { value: true },
-      { value: false }
+      { value: false },
     ];
     var emval_free_list = [];
     function extendError(baseErrorType, errorName) {
@@ -4896,8 +4558,7 @@ var createMediapipeSolutionsWasm = (() => {
         this.message = message;
         var stack = new Error(message).stack;
         if (stack !== undefined) {
-          this.stack =
-            this.toString() + '\n' + stack.replace(/^Error(:[^\n]*)?\n/, '');
+          this.stack = this.toString() + '\n' + stack.replace(/^Error(:[^\n]*)?\n/, '');
         }
       });
       errorClass.prototype = Object.create(baseErrorType.prototype);
@@ -4954,14 +4615,12 @@ var createMediapipeSolutionsWasm = (() => {
           case false:
             return 4;
           default: {
-            var handle = emval_free_list.length
-              ? emval_free_list.pop()
-              : emval_handle_array.length;
+            var handle = emval_free_list.length ? emval_free_list.pop() : emval_handle_array.length;
             emval_handle_array[handle] = { refcount: 1, value: value };
             return handle;
           }
         }
-      }
+      },
     };
     var PureVirtualError = undefined;
     function embind_init_charCodes() {
@@ -5042,9 +4701,7 @@ var createMediapipeSolutionsWasm = (() => {
     function requireRegisteredType(rawType, humanName) {
       var impl = registeredTypes[rawType];
       if (undefined === impl) {
-        throwBindingError(
-          humanName + ' has unknown type ' + getTypeName(rawType)
-        );
+        throwBindingError(humanName + ' has unknown type ' + getTypeName(rawType));
       }
       return impl;
     }
@@ -5104,9 +4761,7 @@ var createMediapipeSolutionsWasm = (() => {
         throwInternalError('Both smartPtrType and smartPtr must be specified');
       }
       record.count = { value: 1 };
-      return attachFinalizer(
-        Object.create(prototype, { $$: { value: record } })
-      );
+      return attachFinalizer(Object.create(prototype, { $$: { value: record } }));
     }
     function RegisteredPointer_fromWireType(ptr) {
       var rawPointer = this.getPointee(ptr);
@@ -5114,10 +4769,7 @@ var createMediapipeSolutionsWasm = (() => {
         this.destructor(ptr);
         return null;
       }
-      var registeredInstance = getInheritedInstance(
-        this.registeredClass,
-        rawPointer
-      );
+      var registeredInstance = getInheritedInstance(this.registeredClass, rawPointer);
       if (undefined !== registeredInstance) {
         if (0 === registeredInstance.$$.count.value) {
           registeredInstance.$$.ptr = rawPointer;
@@ -5135,12 +4787,12 @@ var createMediapipeSolutionsWasm = (() => {
             ptrType: this.pointeeType,
             ptr: rawPointer,
             smartPtrType: this,
-            smartPtr: ptr
+            smartPtr: ptr,
           });
         } else {
           return makeClassHandle(this.registeredClass.instancePrototype, {
             ptrType: this,
-            ptr: ptr
+            ptr: ptr,
           });
         }
       }
@@ -5155,11 +4807,7 @@ var createMediapipeSolutionsWasm = (() => {
       } else {
         toType = registeredPointerRecord.pointerType;
       }
-      var dp = downcastPointer(
-        rawPointer,
-        this.registeredClass,
-        toType.registeredClass
-      );
+      var dp = downcastPointer(rawPointer, this.registeredClass, toType.registeredClass);
       if (dp === null) {
         return makeDefaultHandle.call(this);
       }
@@ -5168,12 +4816,12 @@ var createMediapipeSolutionsWasm = (() => {
           ptrType: toType,
           ptr: dp,
           smartPtrType: this,
-          smartPtr: ptr
+          smartPtr: ptr,
         });
       } else {
         return makeClassHandle(toType.registeredClass.instancePrototype, {
           ptrType: toType,
-          ptr: dp
+          ptr: dp,
         });
       }
     }
@@ -5203,10 +4851,7 @@ var createMediapipeSolutionsWasm = (() => {
               'Originally allocated'
           );
           if ('captureStackTrace' in Error) {
-            Error.captureStackTrace(
-              info.leakWarning,
-              RegisteredPointer_fromWireType
-            );
+            Error.captureStackTrace(info.leakWarning, RegisteredPointer_fromWireType);
           }
           finalizationRegistry.register(handle, info, handle);
         }
@@ -5215,11 +4860,7 @@ var createMediapipeSolutionsWasm = (() => {
       detachFinalizer = (handle) => finalizationRegistry.unregister(handle);
       return attachFinalizer(handle);
     }
-    function __embind_create_inheriting_constructor(
-      constructorName,
-      wrapperType,
-      properties
-    ) {
+    function __embind_create_inheriting_constructor(constructorName, wrapperType, properties) {
       constructorName = readLatin1String(constructorName);
       wrapperType = requireRegisteredType(wrapperType, 'wrapper');
       properties = Emval.toValue(properties);
@@ -5234,9 +4875,7 @@ var createMediapipeSolutionsWasm = (() => {
           function (name) {
             if (this[name] === baseClassPrototype[name]) {
               throw new PureVirtualError(
-                'Pure virtual function ' +
-                  name +
-                  ' must be implemented in JavaScript'
+                'Pure virtual function ' + name + ' must be implemented in JavaScript'
               );
             }
           }.bind(this)
@@ -5286,11 +4925,7 @@ var createMediapipeSolutionsWasm = (() => {
     }
     var awaitingDependencies = {};
     var typeDependencies = {};
-    function whenDependentTypesAreResolved(
-      myTypes,
-      dependentTypes,
-      getTypeConverters
-    ) {
+    function whenDependentTypesAreResolved(myTypes, dependentTypes, getTypeConverters) {
       myTypes.forEach(function (type) {
         typeDependencies[type] = dependentTypes;
       });
@@ -5348,19 +4983,13 @@ var createMediapipeSolutionsWasm = (() => {
           var setterContext = field.setterContext;
           fields[fieldName] = {
             read: (ptr) => {
-              return getterReturnType['fromWireType'](
-                getter(getterContext, ptr)
-              );
+              return getterReturnType['fromWireType'](getter(getterContext, ptr));
             },
             write: (ptr, o) => {
               var destructors = [];
-              setter(
-                setterContext,
-                ptr,
-                setterArgumentType['toWireType'](destructors, o)
-              );
+              setter(setterContext, ptr, setterArgumentType['toWireType'](destructors, o));
               runDestructors(destructors);
-            }
+            },
           };
         });
         return [
@@ -5391,18 +5020,12 @@ var createMediapipeSolutionsWasm = (() => {
             },
             argPackAdvance: 8,
             readValueFromPointer: simpleReadValueFromPointer,
-            destructorFunction: rawDestructor
-          }
+            destructorFunction: rawDestructor,
+          },
         ];
       });
     }
-    function __embind_register_bigint(
-      primitiveType,
-      name,
-      size,
-      minRange,
-      maxRange
-    ) {}
+    function __embind_register_bigint(primitiveType, name, size, minRange, maxRange) {}
     function getShiftFromSize(size) {
       switch (size) {
         case 1:
@@ -5419,15 +5042,11 @@ var createMediapipeSolutionsWasm = (() => {
     }
     function registerType(rawType, registeredInstance, options = {}) {
       if (!('argPackAdvance' in registeredInstance)) {
-        throw new TypeError(
-          'registerType registeredInstance requires argPackAdvance'
-        );
+        throw new TypeError('registerType registeredInstance requires argPackAdvance');
       }
       var name = registeredInstance.name;
       if (!rawType) {
-        throwBindingError(
-          'type "' + name + '" must have a positive integer typeid pointer'
-        );
+        throwBindingError('type "' + name + '" must have a positive integer typeid pointer');
       }
       if (registeredTypes.hasOwnProperty(rawType)) {
         if (options.ignoreDuplicateRegistrations) {
@@ -5444,13 +5063,7 @@ var createMediapipeSolutionsWasm = (() => {
         callbacks.forEach((cb) => cb());
       }
     }
-    function __embind_register_bool(
-      rawType,
-      name,
-      size,
-      trueValue,
-      falseValue
-    ) {
+    function __embind_register_bool(rawType, name, size, trueValue, falseValue) {
       var shift = getShiftFromSize(size);
       name = readLatin1String(name);
       registerType(rawType, {
@@ -5475,7 +5088,7 @@ var createMediapipeSolutionsWasm = (() => {
           }
           return this['fromWireType'](heap[pointer >> shift]);
         },
-        destructorFunction: null
+        destructorFunction: null,
       });
     }
     function ClassHandle_isAliasOf(other) {
@@ -5507,7 +5120,7 @@ var createMediapipeSolutionsWasm = (() => {
         ptr: o.ptr,
         ptrType: o.ptrType,
         smartPtr: o.smartPtr,
-        smartPtrType: o.smartPtrType
+        smartPtrType: o.smartPtrType,
       };
     }
     function throwInstanceAlreadyDeleted(obj) {
@@ -5526,7 +5139,7 @@ var createMediapipeSolutionsWasm = (() => {
       } else {
         var clone = attachFinalizer(
           Object.create(Object.getPrototypeOf(this), {
-            $$: { value: shallowCopyInternalPointer(this.$$) }
+            $$: { value: shallowCopyInternalPointer(this.$$) },
           })
         );
         clone.$$.count.value += 1;
@@ -5577,9 +5190,7 @@ var createMediapipeSolutionsWasm = (() => {
       if (undefined === proto[methodName].overloadTable) {
         var prevFunc = proto[methodName];
         proto[methodName] = function () {
-          if (
-            !proto[methodName].overloadTable.hasOwnProperty(arguments.length)
-          ) {
+          if (!proto[methodName].overloadTable.hasOwnProperty(arguments.length)) {
             throwBindingError(
               "Function '" +
                 humanName +
@@ -5590,10 +5201,7 @@ var createMediapipeSolutionsWasm = (() => {
                 ')!'
             );
           }
-          return proto[methodName].overloadTable[arguments.length].apply(
-            this,
-            arguments
-          );
+          return proto[methodName].overloadTable[arguments.length].apply(this, arguments);
         };
         proto[methodName].overloadTable = [];
         proto[methodName].overloadTable[prevFunc.argCount] = prevFunc;
@@ -5667,14 +5275,10 @@ var createMediapipeSolutionsWasm = (() => {
         return 0;
       }
       if (!handle.$$) {
-        throwBindingError(
-          'Cannot pass "' + embindRepr(handle) + '" as a ' + this.name
-        );
+        throwBindingError('Cannot pass "' + embindRepr(handle) + '" as a ' + this.name);
       }
       if (!handle.$$.ptr) {
-        throwBindingError(
-          'Cannot pass deleted object as a pointer of type ' + this.name
-        );
+        throwBindingError('Cannot pass deleted object as a pointer of type ' + this.name);
       }
       var handleClass = handle.$$.ptrType.registeredClass;
       var ptr = upcastPointer(handle.$$.ptr, handleClass, this.registeredClass);
@@ -5697,21 +5301,15 @@ var createMediapipeSolutionsWasm = (() => {
         }
       }
       if (!handle.$$) {
-        throwBindingError(
-          'Cannot pass "' + embindRepr(handle) + '" as a ' + this.name
-        );
+        throwBindingError('Cannot pass "' + embindRepr(handle) + '" as a ' + this.name);
       }
       if (!handle.$$.ptr) {
-        throwBindingError(
-          'Cannot pass deleted object as a pointer of type ' + this.name
-        );
+        throwBindingError('Cannot pass deleted object as a pointer of type ' + this.name);
       }
       if (!this.isConst && handle.$$.ptrType.isConst) {
         throwBindingError(
           'Cannot convert argument of type ' +
-            (handle.$$.smartPtrType
-              ? handle.$$.smartPtrType.name
-              : handle.$$.ptrType.name) +
+            (handle.$$.smartPtrType ? handle.$$.smartPtrType.name : handle.$$.ptrType.name) +
             ' to parameter type ' +
             this.name
         );
@@ -5729,9 +5327,7 @@ var createMediapipeSolutionsWasm = (() => {
             } else {
               throwBindingError(
                 'Cannot convert argument of type ' +
-                  (handle.$$.smartPtrType
-                    ? handle.$$.smartPtrType.name
-                    : handle.$$.ptrType.name) +
+                  (handle.$$.smartPtrType ? handle.$$.smartPtrType.name : handle.$$.ptrType.name) +
                   ' to parameter type ' +
                   this.name
               );
@@ -5770,14 +5366,10 @@ var createMediapipeSolutionsWasm = (() => {
         return 0;
       }
       if (!handle.$$) {
-        throwBindingError(
-          'Cannot pass "' + embindRepr(handle) + '" as a ' + this.name
-        );
+        throwBindingError('Cannot pass "' + embindRepr(handle) + '" as a ' + this.name);
       }
       if (!handle.$$.ptr) {
-        throwBindingError(
-          'Cannot pass deleted object as a pointer of type ' + this.name
-        );
+        throwBindingError('Cannot pass deleted object as a pointer of type ' + this.name);
       }
       if (handle.$$.ptrType.isConst) {
         throwBindingError(
@@ -5811,12 +5403,9 @@ var createMediapipeSolutionsWasm = (() => {
       RegisteredPointer.prototype.getPointee = RegisteredPointer_getPointee;
       RegisteredPointer.prototype.destructor = RegisteredPointer_destructor;
       RegisteredPointer.prototype['argPackAdvance'] = 8;
-      RegisteredPointer.prototype['readValueFromPointer'] =
-        simpleReadValueFromPointer;
-      RegisteredPointer.prototype['deleteObject'] =
-        RegisteredPointer_deleteObject;
-      RegisteredPointer.prototype['fromWireType'] =
-        RegisteredPointer_fromWireType;
+      RegisteredPointer.prototype['readValueFromPointer'] = simpleReadValueFromPointer;
+      RegisteredPointer.prototype['deleteObject'] = RegisteredPointer_deleteObject;
+      RegisteredPointer.prototype['fromWireType'] = RegisteredPointer_fromWireType;
     }
     function RegisteredPointer(
       name,
@@ -5858,10 +5447,7 @@ var createMediapipeSolutionsWasm = (() => {
       if (!Module.hasOwnProperty(name)) {
         throwInternalError('Replacing nonexistant public symbol');
       }
-      if (
-        undefined !== Module[name].overloadTable &&
-        undefined !== numArguments
-      ) {
+      if (undefined !== Module[name].overloadTable && undefined !== numArguments) {
         Module[name].overloadTable[numArguments] = value;
       } else {
         Module[name] = value;
@@ -5871,9 +5457,7 @@ var createMediapipeSolutionsWasm = (() => {
     function dynCallLegacy(sig, ptr, args) {
       assert(
         'dynCall_' + sig in Module,
-        "bad function pointer type - dynCall function not found for sig '" +
-          sig +
-          "'"
+        "bad function pointer type - dynCall function not found for sig '" + sig + "'"
       );
       if (args && args.length) {
         assert(args.length === sig.substring(1).replace(/j/g, '--').length);
@@ -5881,16 +5465,13 @@ var createMediapipeSolutionsWasm = (() => {
         assert(sig.length == 1);
       }
       var f = Module['dynCall_' + sig];
-      return args && args.length
-        ? f.apply(null, [ptr].concat(args))
-        : f.call(null, ptr);
+      return args && args.length ? f.apply(null, [ptr].concat(args)) : f.call(null, ptr);
     }
     var wasmTableMirror = [];
     function getWasmTableEntry(funcPtr) {
       var func = wasmTableMirror[funcPtr];
       if (!func) {
-        if (funcPtr >= wasmTableMirror.length)
-          wasmTableMirror.length = funcPtr + 1;
+        if (funcPtr >= wasmTableMirror.length) wasmTableMirror.length = funcPtr + 1;
         wasmTableMirror[funcPtr] = func = wasmTable.get(funcPtr);
       }
       assert(
@@ -5930,10 +5511,7 @@ var createMediapipeSolutionsWasm = (() => {
       var fp = makeDynCaller();
       if (typeof fp != 'function') {
         throwBindingError(
-          'unknown function pointer with signature ' +
-            signature +
-            ': ' +
-            rawFunction
+          'unknown function pointer with signature ' + signature + ': ' + rawFunction
         );
       }
       return fp;
@@ -5957,9 +5535,7 @@ var createMediapipeSolutionsWasm = (() => {
         seen[type] = true;
       }
       types.forEach(visit);
-      throw new UnboundTypeError(
-        message + ': ' + unboundTypes.map(getTypeName).join([', '])
-      );
+      throw new UnboundTypeError(message + ': ' + unboundTypes.map(getTypeName).join([', ']));
     }
     function __embind_register_class(
       rawType,
@@ -5977,26 +5553,19 @@ var createMediapipeSolutionsWasm = (() => {
       rawDestructor
     ) {
       name = readLatin1String(name);
-      getActualType = embind__requireFunction(
-        getActualTypeSignature,
-        getActualType
-      );
+      getActualType = embind__requireFunction(getActualTypeSignature, getActualType);
       if (upcast) {
         upcast = embind__requireFunction(upcastSignature, upcast);
       }
       if (downcast) {
         downcast = embind__requireFunction(downcastSignature, downcast);
       }
-      rawDestructor = embind__requireFunction(
-        destructorSignature,
-        rawDestructor
-      );
+      rawDestructor = embind__requireFunction(destructorSignature, rawDestructor);
       var legalFunctionName = makeLegalFunctionName(name);
       exposePublicSymbol(legalFunctionName, function () {
-        throwUnboundTypeError(
-          'Cannot construct ' + name + ' due to unbound types',
-          [baseClassRawType]
-        );
+        throwUnboundTypeError('Cannot construct ' + name + ' due to unbound types', [
+          baseClassRawType,
+        ]);
       });
       whenDependentTypesAreResolved(
         [rawType, rawPointerType, rawConstPointerType],
@@ -6033,7 +5602,7 @@ var createMediapipeSolutionsWasm = (() => {
             return body.apply(this, arguments);
           });
           var instancePrototype = Object.create(basePrototype, {
-            constructor: { value: constructor }
+            constructor: { value: constructor },
           });
           constructor.prototype = instancePrototype;
           var registeredClass = new RegisteredClass(
@@ -6046,13 +5615,7 @@ var createMediapipeSolutionsWasm = (() => {
             upcast,
             downcast
           );
-          var referenceConverter = new RegisteredPointer(
-            name,
-            registeredClass,
-            true,
-            false,
-            false
-          );
+          var referenceConverter = new RegisteredPointer(name, registeredClass, true, false, false);
           var pointerConverter = new RegisteredPointer(
             name + '*',
             registeredClass,
@@ -6069,20 +5632,14 @@ var createMediapipeSolutionsWasm = (() => {
           );
           registeredPointers[rawType] = {
             pointerType: pointerConverter,
-            constPointerType: constPointerConverter
+            constPointerType: constPointerConverter,
           };
           replacePublicSymbol(legalFunctionName, constructor);
           return [referenceConverter, pointerConverter, constPointerConverter];
         }
       );
     }
-    function craftInvokerFunction(
-      humanName,
-      argTypes,
-      classType,
-      cppInvokerFunc,
-      cppTargetFunc
-    ) {
+    function craftInvokerFunction(humanName, argTypes, classType, cppInvokerFunc, cppTargetFunc) {
       var argCount = argTypes.length;
       if (argCount < 2) {
         throwBindingError(
@@ -6092,10 +5649,7 @@ var createMediapipeSolutionsWasm = (() => {
       var isClassMethodFunc = argTypes[1] !== null && classType !== null;
       var needsDestructorStack = false;
       for (var i = 1; i < argTypes.length; ++i) {
-        if (
-          argTypes[i] !== null &&
-          argTypes[i].destructorFunction === undefined
-        ) {
+        if (argTypes[i] !== null && argTypes[i].destructorFunction === undefined) {
           needsDestructorStack = true;
           break;
         }
@@ -6126,10 +5680,7 @@ var createMediapipeSolutionsWasm = (() => {
           invokerFuncArgs[1] = thisWired;
         }
         for (var i = 0; i < expectedArgCount; ++i) {
-          argsWired[i] = argTypes[i + 2]['toWireType'](
-            destructors,
-            arguments[i]
-          );
+          argsWired[i] = argTypes[i + 2]['toWireType'](destructors, arguments[i]);
           invokerFuncArgs.push(argsWired[i]);
         }
         var rv = cppInvokerFunc.apply(null, invokerFuncArgs);
@@ -6174,10 +5725,7 @@ var createMediapipeSolutionsWasm = (() => {
         classType = classType[0];
         var humanName = classType.name + '.' + methodName;
         function unboundTypesHandler() {
-          throwUnboundTypeError(
-            'Cannot call ' + humanName + ' due to unbound types',
-            rawArgTypes
-          );
+          throwUnboundTypeError('Cannot call ' + humanName + ' due to unbound types', rawArgTypes);
         }
         if (methodName.startsWith('@@')) {
           methodName = Symbol[methodName.substring(2)];
@@ -6192,13 +5740,7 @@ var createMediapipeSolutionsWasm = (() => {
         }
         whenDependentTypesAreResolved([], rawArgTypes, function (argTypes) {
           var invokerArgsArray = [argTypes[0], null].concat(argTypes.slice(1));
-          var func = craftInvokerFunction(
-            humanName,
-            invokerArgsArray,
-            null,
-            rawInvoker,
-            fn
-          );
+          var func = craftInvokerFunction(humanName, invokerArgsArray, null, rawInvoker, fn);
           if (undefined === proto[methodName].overloadTable) {
             func.argCount = argCount - 1;
             proto[methodName] = func;
@@ -6227,9 +5769,7 @@ var createMediapipeSolutionsWasm = (() => {
         if (undefined === classType.registeredClass.constructor_body) {
           classType.registeredClass.constructor_body = [];
         }
-        if (
-          undefined !== classType.registeredClass.constructor_body[argCount - 1]
-        ) {
+        if (undefined !== classType.registeredClass.constructor_body[argCount - 1]) {
           throw new BindingError(
             'Cannot register multiple constructors with identical number of parameters (' +
               (argCount - 1) +
@@ -6246,14 +5786,13 @@ var createMediapipeSolutionsWasm = (() => {
         };
         whenDependentTypesAreResolved([], rawArgTypes, function (argTypes) {
           argTypes.splice(1, 0, null);
-          classType.registeredClass.constructor_body[argCount - 1] =
-            craftInvokerFunction(
-              humanName,
-              argTypes,
-              null,
-              invoker,
-              rawConstructor
-            );
+          classType.registeredClass.constructor_body[argCount - 1] = craftInvokerFunction(
+            humanName,
+            argTypes,
+            null,
+            invoker,
+            rawConstructor
+          );
           return [];
         });
         return [];
@@ -6282,10 +5821,7 @@ var createMediapipeSolutionsWasm = (() => {
           classType.registeredClass.pureVirtualFunctions.push(methodName);
         }
         function unboundTypesHandler() {
-          throwUnboundTypeError(
-            'Cannot call ' + humanName + ' due to unbound types',
-            rawArgTypes
-          );
+          throwUnboundTypeError('Cannot call ' + humanName + ' due to unbound types', rawArgTypes);
         }
         var proto = classType.registeredClass.instancePrototype;
         var method = proto[methodName];
@@ -6327,16 +5863,12 @@ var createMediapipeSolutionsWasm = (() => {
       }
       if (!(this_ instanceof classType.registeredClass.constructor)) {
         throwBindingError(
-          humanName +
-            ' incompatible with "this" of type ' +
-            this_.constructor.name
+          humanName + ' incompatible with "this" of type ' + this_.constructor.name
         );
       }
       if (!this_.$$.ptr) {
         throwBindingError(
-          'cannot call emscripten binding method ' +
-            humanName +
-            ' on deleted object'
+          'cannot call emscripten binding method ' + humanName + ' on deleted object'
         );
       }
       return upcastPointer(
@@ -6364,31 +5896,27 @@ var createMediapipeSolutionsWasm = (() => {
         var humanName = classType.name + '.' + fieldName;
         var desc = {
           get: function () {
-            throwUnboundTypeError(
-              'Cannot access ' + humanName + ' due to unbound types',
-              [getterReturnType, setterArgumentType]
-            );
+            throwUnboundTypeError('Cannot access ' + humanName + ' due to unbound types', [
+              getterReturnType,
+              setterArgumentType,
+            ]);
           },
           enumerable: true,
-          configurable: true
+          configurable: true,
         };
         if (setter) {
           desc.set = () => {
-            throwUnboundTypeError(
-              'Cannot access ' + humanName + ' due to unbound types',
-              [getterReturnType, setterArgumentType]
-            );
+            throwUnboundTypeError('Cannot access ' + humanName + ' due to unbound types', [
+              getterReturnType,
+              setterArgumentType,
+            ]);
           };
         } else {
           desc.set = (v) => {
             throwBindingError(humanName + ' is a read-only property');
           };
         }
-        Object.defineProperty(
-          classType.registeredClass.instancePrototype,
-          fieldName,
-          desc
-        );
+        Object.defineProperty(classType.registeredClass.instancePrototype, fieldName, desc);
         whenDependentTypesAreResolved(
           [],
           setter ? [getterReturnType, setterArgumentType] : [getterReturnType],
@@ -6397,11 +5925,9 @@ var createMediapipeSolutionsWasm = (() => {
             var desc = {
               get: function () {
                 var ptr = validateThis(this, classType, humanName + ' getter');
-                return getterReturnType['fromWireType'](
-                  getter(getterContext, ptr)
-                );
+                return getterReturnType['fromWireType'](getter(getterContext, ptr));
               },
-              enumerable: true
+              enumerable: true,
             };
             if (setter) {
               setter = embind__requireFunction(setterSignature, setter);
@@ -6409,19 +5935,11 @@ var createMediapipeSolutionsWasm = (() => {
               desc.set = function (v) {
                 var ptr = validateThis(this, classType, humanName + ' setter');
                 var destructors = [];
-                setter(
-                  setterContext,
-                  ptr,
-                  setterArgumentType['toWireType'](destructors, v)
-                );
+                setter(setterContext, ptr, setterArgumentType['toWireType'](destructors, v));
                 runDestructors(destructors);
               };
             }
-            Object.defineProperty(
-              classType.registeredClass.instancePrototype,
-              fieldName,
-              desc
-            );
+            Object.defineProperty(classType.registeredClass.instancePrototype, fieldName, desc);
             return [];
           }
         );
@@ -6448,7 +5966,7 @@ var createMediapipeSolutionsWasm = (() => {
         },
         argPackAdvance: 8,
         readValueFromPointer: simpleReadValueFromPointer,
-        destructorFunction: null
+        destructorFunction: null,
       });
     }
     function embindRepr(v) {
@@ -6486,15 +6004,13 @@ var createMediapipeSolutionsWasm = (() => {
         },
         toWireType: function (destructors, value) {
           if (typeof value != 'number' && typeof value != 'boolean') {
-            throw new TypeError(
-              'Cannot convert "' + embindRepr(value) + '" to ' + this.name
-            );
+            throw new TypeError('Cannot convert "' + embindRepr(value) + '" to ' + this.name);
           }
           return value;
         },
         argPackAdvance: 8,
         readValueFromPointer: floatReadValueFromPointer(name, shift),
-        destructorFunction: null
+        destructorFunction: null,
       });
     }
     function __embind_register_function(
@@ -6511,10 +6027,7 @@ var createMediapipeSolutionsWasm = (() => {
       exposePublicSymbol(
         name,
         function () {
-          throwUnboundTypeError(
-            'Cannot call ' + name + ' due to unbound types',
-            argTypes
-          );
+          throwUnboundTypeError('Cannot call ' + name + ' due to unbound types', argTypes);
         },
         argCount - 1
       );
@@ -6558,13 +6071,7 @@ var createMediapipeSolutionsWasm = (() => {
           throw new TypeError('Unknown integer type: ' + name);
       }
     }
-    function __embind_register_integer(
-      primitiveType,
-      name,
-      size,
-      minRange,
-      maxRange
-    ) {
+    function __embind_register_integer(primitiveType, name, size, minRange, maxRange) {
       name = readLatin1String(name);
       if (maxRange === -1) {
         maxRange = 4294967295;
@@ -6578,9 +6085,7 @@ var createMediapipeSolutionsWasm = (() => {
       var isUnsignedType = name.includes('unsigned');
       var checkAssertions = (value, toTypeName) => {
         if (typeof value != 'number' && typeof value != 'boolean') {
-          throw new TypeError(
-            'Cannot convert "' + embindRepr(value) + '" to ' + toTypeName
-          );
+          throw new TypeError('Cannot convert "' + embindRepr(value) + '" to ' + toTypeName);
         }
         if (value < minRange || value > maxRange) {
           throw new TypeError(
@@ -6613,12 +6118,8 @@ var createMediapipeSolutionsWasm = (() => {
         fromWireType: fromWireType,
         toWireType: toWireType,
         argPackAdvance: 8,
-        readValueFromPointer: integerReadValueFromPointer(
-          name,
-          shift,
-          minRange !== 0
-        ),
-        destructorFunction: null
+        readValueFromPointer: integerReadValueFromPointer(name, shift, minRange !== 0),
+        destructorFunction: null,
       });
     }
     function __embind_register_memory_view(rawType, dataTypeIndex, name) {
@@ -6630,7 +6131,7 @@ var createMediapipeSolutionsWasm = (() => {
         Int32Array,
         Uint32Array,
         Float32Array,
-        Float64Array
+        Float64Array,
       ];
       var TA = typeMapping[dataTypeIndex];
       function decodeMemoryView(handle) {
@@ -6647,7 +6148,7 @@ var createMediapipeSolutionsWasm = (() => {
           name: name,
           fromWireType: decodeMemoryView,
           argPackAdvance: 8,
-          readValueFromPointer: decodeMemoryView
+          readValueFromPointer: decodeMemoryView,
         },
         { ignoreDuplicateRegistrations: true }
       );
@@ -6719,9 +6220,7 @@ var createMediapipeSolutionsWasm = (() => {
                 var charCode = value.charCodeAt(i);
                 if (charCode > 255) {
                   _free(ptr);
-                  throwBindingError(
-                    'String has UTF-16 code units that do not fit in 8 bits'
-                  );
+                  throwBindingError('String has UTF-16 code units that do not fit in 8 bits');
                 }
                 HEAPU8[ptr + i] = charCode;
               }
@@ -6740,18 +6239,12 @@ var createMediapipeSolutionsWasm = (() => {
         readValueFromPointer: simpleReadValueFromPointer,
         destructorFunction: function (ptr) {
           _free(ptr);
-        }
+        },
       });
     }
-    var UTF16Decoder =
-      typeof TextDecoder != 'undefined'
-        ? new TextDecoder('utf-16le')
-        : undefined;
+    var UTF16Decoder = typeof TextDecoder != 'undefined' ? new TextDecoder('utf-16le') : undefined;
     function UTF16ToString(ptr, maxBytesToRead) {
-      assert(
-        ptr % 2 == 0,
-        'Pointer passed to UTF16ToString must be aligned to two bytes!'
-      );
+      assert(ptr % 2 == 0, 'Pointer passed to UTF16ToString must be aligned to two bytes!');
       var endPtr = ptr;
       var idx = endPtr >> 1;
       var maxIdx = idx + maxBytesToRead / 2;
@@ -6768,10 +6261,7 @@ var createMediapipeSolutionsWasm = (() => {
       return str;
     }
     function stringToUTF16(str, outPtr, maxBytesToWrite) {
-      assert(
-        outPtr % 2 == 0,
-        'Pointer passed to stringToUTF16 must be aligned to two bytes!'
-      );
+      assert(outPtr % 2 == 0, 'Pointer passed to stringToUTF16 must be aligned to two bytes!');
       assert(
         typeof maxBytesToWrite == 'number',
         'stringToUTF16(str, outPtr, maxBytesToWrite) is missing the third parameter that specifies the length of the output buffer!'
@@ -6782,8 +6272,7 @@ var createMediapipeSolutionsWasm = (() => {
       if (maxBytesToWrite < 2) return 0;
       maxBytesToWrite -= 2;
       var startPtr = outPtr;
-      var numCharsToWrite =
-        maxBytesToWrite < str.length * 2 ? maxBytesToWrite / 2 : str.length;
+      var numCharsToWrite = maxBytesToWrite < str.length * 2 ? maxBytesToWrite / 2 : str.length;
       for (var i = 0; i < numCharsToWrite; ++i) {
         var codeUnit = str.charCodeAt(i);
         HEAP16[outPtr >> 1] = codeUnit;
@@ -6796,10 +6285,7 @@ var createMediapipeSolutionsWasm = (() => {
       return str.length * 2;
     }
     function UTF32ToString(ptr, maxBytesToRead) {
-      assert(
-        ptr % 4 == 0,
-        'Pointer passed to UTF32ToString must be aligned to four bytes!'
-      );
+      assert(ptr % 4 == 0, 'Pointer passed to UTF32ToString must be aligned to four bytes!');
       var i = 0;
       var str = '';
       while (!(i >= maxBytesToRead / 4)) {
@@ -6816,10 +6302,7 @@ var createMediapipeSolutionsWasm = (() => {
       return str;
     }
     function stringToUTF32(str, outPtr, maxBytesToWrite) {
-      assert(
-        outPtr % 4 == 0,
-        'Pointer passed to stringToUTF32 must be aligned to four bytes!'
-      );
+      assert(outPtr % 4 == 0, 'Pointer passed to stringToUTF32 must be aligned to four bytes!');
       assert(
         typeof maxBytesToWrite == 'number',
         'stringToUTF32(str, outPtr, maxBytesToWrite) is missing the third parameter that specifies the length of the output buffer!'
@@ -6834,8 +6317,7 @@ var createMediapipeSolutionsWasm = (() => {
         var codeUnit = str.charCodeAt(i);
         if (codeUnit >= 55296 && codeUnit <= 57343) {
           var trailSurrogate = str.charCodeAt(++i);
-          codeUnit =
-            (65536 + ((codeUnit & 1023) << 10)) | (trailSurrogate & 1023);
+          codeUnit = (65536 + ((codeUnit & 1023) << 10)) | (trailSurrogate & 1023);
         }
         HEAP32[outPtr >> 2] = codeUnit;
         outPtr += 4;
@@ -6895,9 +6377,7 @@ var createMediapipeSolutionsWasm = (() => {
         },
         toWireType: function (destructors, value) {
           if (!(typeof value == 'string')) {
-            throwBindingError(
-              'Cannot pass non-string to C++ string type ' + name
-            );
+            throwBindingError('Cannot pass non-string to C++ string type ' + name);
           }
           var length = lengthBytesUTF(value);
           var ptr = _malloc(4 + length + charSize);
@@ -6912,7 +6392,7 @@ var createMediapipeSolutionsWasm = (() => {
         readValueFromPointer: simpleReadValueFromPointer,
         destructorFunction: function (ptr) {
           _free(ptr);
-        }
+        },
       });
     }
     function __embind_register_value_object(
@@ -6925,15 +6405,9 @@ var createMediapipeSolutionsWasm = (() => {
     ) {
       structRegistrations[rawType] = {
         name: readLatin1String(name),
-        rawConstructor: embind__requireFunction(
-          constructorSignature,
-          rawConstructor
-        ),
-        rawDestructor: embind__requireFunction(
-          destructorSignature,
-          rawDestructor
-        ),
-        fields: []
+        rawConstructor: embind__requireFunction(constructorSignature, rawConstructor),
+        rawDestructor: embind__requireFunction(destructorSignature, rawDestructor),
+        fields: [],
       };
     }
     function __embind_register_value_object_field(
@@ -6955,7 +6429,7 @@ var createMediapipeSolutionsWasm = (() => {
         getterContext: getterContext,
         setterArgumentType: setterArgumentType,
         setter: embind__requireFunction(setterSignature, setter),
-        setterContext: setterContext
+        setterContext: setterContext,
       });
     }
     function __embind_register_void(rawType, name) {
@@ -6969,7 +6443,7 @@ var createMediapipeSolutionsWasm = (() => {
         },
         toWireType: function (destructors, o) {
           return undefined;
-        }
+        },
       });
     }
     var nowIsMonotonic = true;
@@ -7005,9 +6479,7 @@ var createMediapipeSolutionsWasm = (() => {
       }
       function testGlobal(obj) {
         obj['$$$embind_global$$$'] = obj;
-        var success =
-          typeof $$$embind_global$$$ == 'object' &&
-          obj['$$$embind_global$$$'] == obj;
+        var success = typeof $$$embind_global$$$ == 'object' && obj['$$$embind_global$$$'] == obj;
         if (!success) {
           delete obj['$$$embind_global$$$'];
         }
@@ -7042,10 +6514,7 @@ var createMediapipeSolutionsWasm = (() => {
     function emval_lookupTypes(argCount, argTypes) {
       var a = new Array(argCount);
       for (var i = 0; i < argCount; ++i) {
-        a[i] = requireRegisteredType(
-          HEAPU32[(argTypes + i * POINTER_SIZE) >> 2],
-          'parameter ' + i
-        );
+        a[i] = requireRegisteredType(HEAPU32[(argTypes + i * POINTER_SIZE) >> 2], 'parameter ' + i);
       }
       return a;
     }
@@ -7145,12 +6614,8 @@ var createMediapipeSolutionsWasm = (() => {
     function __isLeapYear(year) {
       return year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0);
     }
-    var __MONTH_DAYS_LEAP_CUMULATIVE = [
-      0, 31, 60, 91, 121, 152, 182, 213, 244, 274, 305, 335
-    ];
-    var __MONTH_DAYS_REGULAR_CUMULATIVE = [
-      0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334
-    ];
+    var __MONTH_DAYS_LEAP_CUMULATIVE = [0, 31, 60, 91, 121, 152, 182, 213, 244, 274, 305, 335];
+    var __MONTH_DAYS_REGULAR_CUMULATIVE = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334];
     function __yday_from_date(date) {
       var isLeapYear = __isLeapYear(date.getFullYear());
       var monthDaysCumulative = isLeapYear
@@ -7302,8 +6767,7 @@ var createMediapipeSolutionsWasm = (() => {
     }
     function runEmAsmFunction(code, sigPtr, argbuf) {
       var args = readEmAsmArgs(sigPtr, argbuf);
-      if (!ASM_CONSTS.hasOwnProperty(code))
-        abort('No EM_ASM constant found at address ' + code);
+      if (!ASM_CONSTS.hasOwnProperty(code)) abort('No EM_ASM constant found at address ' + code);
       return ASM_CONSTS[code].apply(null, args);
     }
     function _emscripten_asm_const_int(code, sigPtr, argbuf) {
@@ -7322,9 +6786,7 @@ var createMediapipeSolutionsWasm = (() => {
       HEAPU8.copyWithin(dest, src, src + num);
     }
     function _emscripten_pc_get_function(pc) {
-      abort(
-        'Cannot use emscripten_pc_get_function without -sUSE_OFFSET_CONVERTER'
-      );
+      abort('Cannot use emscripten_pc_get_function without -sUSE_OFFSET_CONVERTER');
     }
     function emscripten_realloc_buffer(size) {
       try {
@@ -7357,14 +6819,10 @@ var createMediapipeSolutionsWasm = (() => {
         );
         return false;
       }
-      let alignUp = (x, multiple) =>
-        x + ((multiple - (x % multiple)) % multiple);
+      let alignUp = (x, multiple) => x + ((multiple - (x % multiple)) % multiple);
       for (var cutDown = 1; cutDown <= 4; cutDown *= 2) {
         var overGrownHeapSize = oldSize * (1 + 0.2 / cutDown);
-        overGrownHeapSize = Math.min(
-          overGrownHeapSize,
-          requestedSize + 100663296
-        );
+        overGrownHeapSize = Math.min(overGrownHeapSize, requestedSize + 100663296);
         var newSize = Math.min(
           maxHeapSize,
           alignUp(Math.max(requestedSize, overGrownHeapSize), 65536)
@@ -7451,20 +6909,8 @@ var createMediapipeSolutionsWasm = (() => {
         ctx['drawArraysInstanced'] = function (mode, first, count, primcount) {
           ext['drawArraysInstancedANGLE'](mode, first, count, primcount);
         };
-        ctx['drawElementsInstanced'] = function (
-          mode,
-          count,
-          type,
-          indices,
-          primcount
-        ) {
-          ext['drawElementsInstancedANGLE'](
-            mode,
-            count,
-            type,
-            indices,
-            primcount
-          );
+        ctx['drawElementsInstanced'] = function (mode, count, type, indices, primcount) {
+          ext['drawElementsInstancedANGLE'](mode, count, type, indices, primcount);
         };
         return 1;
       }
@@ -7496,16 +6942,10 @@ var createMediapipeSolutionsWasm = (() => {
         return 1;
       }
     }
-    function __webgl_enable_WEBGL_draw_instanced_base_vertex_base_instance(
-      ctx
-    ) {
-      return !!(ctx.dibvbi = ctx.getExtension(
-        'WEBGL_draw_instanced_base_vertex_base_instance'
-      ));
+    function __webgl_enable_WEBGL_draw_instanced_base_vertex_base_instance(ctx) {
+      return !!(ctx.dibvbi = ctx.getExtension('WEBGL_draw_instanced_base_vertex_base_instance'));
     }
-    function __webgl_enable_WEBGL_multi_draw_instanced_base_vertex_base_instance(
-      ctx
-    ) {
+    function __webgl_enable_WEBGL_multi_draw_instanced_base_vertex_base_instance(ctx) {
       return !!(ctx.mdibvbi = ctx.getExtension(
         'WEBGL_multi_draw_instanced_base_vertex_base_instance'
       ));
@@ -7555,18 +6995,16 @@ var createMediapipeSolutionsWasm = (() => {
         var largestIndex = GL.log2ceilLookup(GL.MAX_TEMP_BUFFER_SIZE);
         context.tempVertexBufferCounters1 = [];
         context.tempVertexBufferCounters2 = [];
-        context.tempVertexBufferCounters1.length =
-          context.tempVertexBufferCounters2.length = largestIndex + 1;
+        context.tempVertexBufferCounters1.length = context.tempVertexBufferCounters2.length =
+          largestIndex + 1;
         context.tempVertexBuffers1 = [];
         context.tempVertexBuffers2 = [];
-        context.tempVertexBuffers1.length = context.tempVertexBuffers2.length =
-          largestIndex + 1;
+        context.tempVertexBuffers1.length = context.tempVertexBuffers2.length = largestIndex + 1;
         context.tempIndexBuffers = [];
         context.tempIndexBuffers.length = largestIndex + 1;
         for (var i = 0; i <= largestIndex; ++i) {
           context.tempIndexBuffers[i] = null;
-          context.tempVertexBufferCounters1[i] =
-            context.tempVertexBufferCounters2[i] = 0;
+          context.tempVertexBufferCounters1[i] = context.tempVertexBufferCounters2[i] = 0;
           var ringbufferLength = GL.numTempVertexBuffersPerSize;
           context.tempVertexBuffers1[i] = [];
           context.tempVertexBuffers2[i] = [];
@@ -7606,8 +7044,7 @@ var createMediapipeSolutionsWasm = (() => {
       getTempVertexBuffer: function getTempVertexBuffer(sizeBytes) {
         var idx = GL.log2ceilLookup(sizeBytes);
         var ringbuffer = GL.currentContext.tempVertexBuffers1[idx];
-        var nextFreeBufferIndex =
-          GL.currentContext.tempVertexBufferCounters1[idx];
+        var nextFreeBufferIndex = GL.currentContext.tempVertexBufferCounters1[idx];
         GL.currentContext.tempVertexBufferCounters1[idx] =
           (GL.currentContext.tempVertexBufferCounters1[idx] + 1) &
           (GL.numTempVertexBuffersPerSize - 1);
@@ -7640,12 +7077,10 @@ var createMediapipeSolutionsWasm = (() => {
           return;
         }
         var vb = GL.currentContext.tempVertexBuffers1;
-        GL.currentContext.tempVertexBuffers1 =
-          GL.currentContext.tempVertexBuffers2;
+        GL.currentContext.tempVertexBuffers1 = GL.currentContext.tempVertexBuffers2;
         GL.currentContext.tempVertexBuffers2 = vb;
         vb = GL.currentContext.tempVertexBufferCounters1;
-        GL.currentContext.tempVertexBufferCounters1 =
-          GL.currentContext.tempVertexBufferCounters2;
+        GL.currentContext.tempVertexBufferCounters1 = GL.currentContext.tempVertexBufferCounters2;
         GL.currentContext.tempVertexBufferCounters2 = vb;
         var largestIndex = GL.log2ceilLookup(GL.MAX_TEMP_BUFFER_SIZE);
         for (var i = 0; i <= largestIndex; ++i) {
@@ -7656,10 +7091,7 @@ var createMediapipeSolutionsWasm = (() => {
         var source = '';
         for (var i = 0; i < count; ++i) {
           var len = length ? HEAP32[(length + i * 4) >> 2] : -1;
-          source += UTF8ToString(
-            HEAP32[(string + i * 4) >> 2],
-            len < 0 ? undefined : len
-          );
+          source += UTF8ToString(HEAP32[(string + i * 4) >> 2], len < 0 ? undefined : len);
         }
         return source;
       },
@@ -7671,39 +7103,33 @@ var createMediapipeSolutionsWasm = (() => {
         return size * typeSize * count;
       },
       usedTempBuffers: [],
-      preDrawHandleClientVertexAttribBindings:
-        function preDrawHandleClientVertexAttribBindings(count) {
-          GL.resetBufferBinding = false;
-          for (var i = 0; i < GL.currentContext.maxVertexAttribs; ++i) {
-            var cb = GL.currentContext.clientBuffers[i];
-            if (!cb.clientside || !cb.enabled) continue;
-            GL.resetBufferBinding = true;
-            var size = GL.calcBufLength(cb.size, cb.type, cb.stride, count);
-            var buf = GL.getTempVertexBuffer(size);
-            GLctx.bindBuffer(34962, buf);
-            GLctx.bufferSubData(
-              34962,
-              0,
-              HEAPU8.subarray(cb.ptr, cb.ptr + size)
-            );
-            cb.vertexAttribPointerAdaptor.call(
-              GLctx,
-              i,
-              cb.size,
-              cb.type,
-              cb.normalized,
-              cb.stride,
-              0
-            );
-          }
-        },
+      preDrawHandleClientVertexAttribBindings: function preDrawHandleClientVertexAttribBindings(
+        count
+      ) {
+        GL.resetBufferBinding = false;
+        for (var i = 0; i < GL.currentContext.maxVertexAttribs; ++i) {
+          var cb = GL.currentContext.clientBuffers[i];
+          if (!cb.clientside || !cb.enabled) continue;
+          GL.resetBufferBinding = true;
+          var size = GL.calcBufLength(cb.size, cb.type, cb.stride, count);
+          var buf = GL.getTempVertexBuffer(size);
+          GLctx.bindBuffer(34962, buf);
+          GLctx.bufferSubData(34962, 0, HEAPU8.subarray(cb.ptr, cb.ptr + size));
+          cb.vertexAttribPointerAdaptor.call(
+            GLctx,
+            i,
+            cb.size,
+            cb.type,
+            cb.normalized,
+            cb.stride,
+            0
+          );
+        }
+      },
       postDrawHandleClientVertexAttribBindings:
         function postDrawHandleClientVertexAttribBindings() {
           if (GL.resetBufferBinding) {
-            GLctx.bindBuffer(
-              34962,
-              GL.buffers[GLctx.currentArrayBufferBinding]
-            );
+            GLctx.bindBuffer(34962, GL.buffers[GLctx.currentArrayBufferBinding]);
           }
         },
       createContext: function (canvas, webGLContextAttributes) {
@@ -7713,9 +7139,7 @@ var createMediapipeSolutionsWasm = (() => {
           canvas.getContextSafariWebGL2Fixed = canvas.getContext;
           function fixedGetContext(ver, attrs) {
             var gl = canvas.getContextSafariWebGL2Fixed(ver, attrs);
-            return (ver == 'webgl') == gl instanceof WebGLRenderingContext
-              ? gl
-              : null;
+            return (ver == 'webgl') == gl instanceof WebGLRenderingContext ? gl : null;
           }
           canvas.getContext = fixedGetContext;
         }
@@ -7740,9 +7164,7 @@ var createMediapipeSolutionsWasm = (() => {
         if (gl.getContextAttributes().antialias) {
           context.defaultFboForbidBlitFramebuffer = true;
         } else {
-          var firefoxMatch = navigator.userAgent
-            .toLowerCase()
-            .match(/firefox\/(\d\d)/);
+          var firefoxMatch = navigator.userAgent.toLowerCase().match(/firefox\/(\d\d)/);
           if (firefoxMatch != null) {
             var firefoxVersion = firefoxMatch[1];
             context.defaultFboForbidBlitFramebuffer = firefoxVersion < 67;
@@ -7756,34 +7178,13 @@ var createMediapipeSolutionsWasm = (() => {
         gl.texParameteri(3553, 10240, 9728);
         gl.texParameteri(3553, 10242, 33071);
         gl.texParameteri(3553, 10243, 33071);
-        gl.texImage2D(
-          3553,
-          0,
-          6408,
-          gl.canvas.width,
-          gl.canvas.height,
-          0,
-          6408,
-          5121,
-          null
-        );
-        gl.framebufferTexture2D(
-          36160,
-          36064,
-          3553,
-          context.defaultColorTarget,
-          0
-        );
+        gl.texImage2D(3553, 0, 6408, gl.canvas.width, gl.canvas.height, 0, 6408, 5121, null);
+        gl.framebufferTexture2D(36160, 36064, 3553, context.defaultColorTarget, 0);
         gl.bindTexture(3553, null);
         var depthTarget = gl.createRenderbuffer();
         gl.bindRenderbuffer(36161, context.defaultDepthTarget);
         gl.renderbufferStorage(36161, 33189, gl.canvas.width, gl.canvas.height);
-        gl.framebufferRenderbuffer(
-          36160,
-          36096,
-          36161,
-          context.defaultDepthTarget
-        );
+        gl.framebufferRenderbuffer(36160, 36096, 36161, context.defaultDepthTarget);
         gl.bindRenderbuffer(36161, null);
         var vertices = [-1, -1, -1, 1, 1, -1, 1, 1];
         var vb = gl.createBuffer();
@@ -7843,12 +7244,7 @@ var createMediapipeSolutionsWasm = (() => {
         if (context.defaultDepthTarget) {
           var prevRenderBufferBinding = gl.getParameter(36007);
           gl.bindRenderbuffer(36161, context.defaultDepthTarget);
-          gl.renderbufferStorage(
-            36161,
-            33189,
-            gl.drawingBufferWidth,
-            gl.drawingBufferHeight
-          );
+          gl.renderbufferStorage(36161, 33189, gl.drawingBufferWidth, gl.drawingBufferHeight);
           gl.bindRenderbuffer(36161, prevRenderBufferBinding);
         }
       },
@@ -7906,7 +7302,7 @@ var createMediapipeSolutionsWasm = (() => {
               stride: gl.getVertexAttrib(context.blitPosLoc, 34340),
               type: gl.getVertexAttrib(context.blitPosLoc, 34341),
               normalized: gl.getVertexAttrib(context.blitPosLoc, 34922),
-              pointer: gl.getVertexAttribOffset(context.blitPosLoc, 34373)
+              pointer: gl.getVertexAttribOffset(context.blitPosLoc, 34373),
             };
             var maxVertexAttribs = gl.getParameter(34921);
             var prevVertexAttribEnables = [];
@@ -7960,13 +7356,12 @@ var createMediapipeSolutionsWasm = (() => {
           handle: handle,
           attributes: webGLContextAttributes,
           version: webGLContextAttributes.majorVersion,
-          GLctx: ctx
+          GLctx: ctx,
         };
         if (ctx.canvas) ctx.canvas.GLctxObject = context;
         GL.contexts[handle] = context;
         if (
-          typeof webGLContextAttributes.enableExtensionsByDefault ==
-            'undefined' ||
+          typeof webGLContextAttributes.enableExtensionsByDefault == 'undefined' ||
           webGLContextAttributes.enableExtensionsByDefault
         ) {
           GL.initExtensions(context);
@@ -7982,7 +7377,7 @@ var createMediapipeSolutionsWasm = (() => {
             normalized: 0,
             stride: 0,
             ptr: 0,
-            vertexAttribPointerAdaptor: null
+            vertexAttribPointerAdaptor: null,
           };
         }
         GL.generateTempBuffers(false, context);
@@ -7999,16 +7394,10 @@ var createMediapipeSolutionsWasm = (() => {
         return GL.contexts[contextHandle];
       },
       deleteContext: function (contextHandle) {
-        if (GL.currentContext === GL.contexts[contextHandle])
-          GL.currentContext = null;
+        if (GL.currentContext === GL.contexts[contextHandle]) GL.currentContext = null;
         if (typeof JSEvents == 'object')
-          JSEvents.removeAllHandlersOnTarget(
-            GL.contexts[contextHandle].GLctx.canvas
-          );
-        if (
-          GL.contexts[contextHandle] &&
-          GL.contexts[contextHandle].GLctx.canvas
-        )
+          JSEvents.removeAllHandlersOnTarget(GL.contexts[contextHandle].GLctx.canvas);
+        if (GL.contexts[contextHandle] && GL.contexts[contextHandle].GLctx.canvas)
           GL.contexts[contextHandle].GLctx.canvas.GLctxObject = undefined;
         GL.contexts[contextHandle] = null;
       },
@@ -8021,18 +7410,12 @@ var createMediapipeSolutionsWasm = (() => {
         __webgl_enable_OES_vertex_array_object(GLctx);
         __webgl_enable_WEBGL_draw_buffers(GLctx);
         __webgl_enable_WEBGL_draw_instanced_base_vertex_base_instance(GLctx);
-        __webgl_enable_WEBGL_multi_draw_instanced_base_vertex_base_instance(
-          GLctx
-        );
+        __webgl_enable_WEBGL_multi_draw_instanced_base_vertex_base_instance(GLctx);
         if (context.version >= 2) {
-          GLctx.disjointTimerQueryExt = GLctx.getExtension(
-            'EXT_disjoint_timer_query_webgl2'
-          );
+          GLctx.disjointTimerQueryExt = GLctx.getExtension('EXT_disjoint_timer_query_webgl2');
         }
         if (context.version < 2 || !GLctx.disjointTimerQueryExt) {
-          GLctx.disjointTimerQueryExt = GLctx.getExtension(
-            'EXT_disjoint_timer_query'
-          );
+          GLctx.disjointTimerQueryExt = GLctx.getExtension('EXT_disjoint_timer_query');
         }
         __webgl_enable_WEBGL_multi_draw(GLctx);
         var exts = GLctx.getSupportedExtensions() || [];
@@ -8041,7 +7424,7 @@ var createMediapipeSolutionsWasm = (() => {
             GLctx.getExtension(ext);
           }
         });
-      }
+      },
     };
     var JSEvents = {
       inEventHandler: 0,
@@ -8079,7 +7462,7 @@ var createMediapipeSolutionsWasm = (() => {
         JSEvents.deferredCalls.push({
           targetFunction: targetFunction,
           precedence: precedence,
-          argsList: argsList
+          argsList: argsList,
         });
         JSEvents.deferredCalls.sort(function (x, y) {
           return x.precedence < y.precedence;
@@ -8094,10 +7477,7 @@ var createMediapipeSolutionsWasm = (() => {
         }
       },
       canPerformEventHandlerRequests: function () {
-        return (
-          JSEvents.inEventHandler &&
-          JSEvents.currentEventHandler.allowsDeferredCalls
-        );
+        return JSEvents.inEventHandler && JSEvents.currentEventHandler.allowsDeferredCalls;
       },
       runDeferredCalls: function () {
         if (!JSEvents.canPerformEventHandlerRequests()) {
@@ -8115,8 +7495,7 @@ var createMediapipeSolutionsWasm = (() => {
         for (var i = 0; i < JSEvents.eventHandlers.length; ++i) {
           if (
             JSEvents.eventHandlers[i].target == target &&
-            (!eventTypeString ||
-              eventTypeString == JSEvents.eventHandlers[i].eventTypeString)
+            (!eventTypeString || eventTypeString == JSEvents.eventHandlers[i].eventTypeString)
           ) {
             JSEvents._removeHandler(i--);
           }
@@ -8124,11 +7503,7 @@ var createMediapipeSolutionsWasm = (() => {
       },
       _removeHandler: function (i) {
         var h = JSEvents.eventHandlers[i];
-        h.target.removeEventListener(
-          h.eventTypeString,
-          h.eventListenerFunc,
-          h.useCapture
-        );
+        h.target.removeEventListener(h.eventTypeString, h.eventListenerFunc, h.useCapture);
         JSEvents.eventHandlers.splice(i, 1);
       },
       registerOrRemoveHandler: function (eventHandler) {
@@ -8153,8 +7528,7 @@ var createMediapipeSolutionsWasm = (() => {
           for (var i = 0; i < JSEvents.eventHandlers.length; ++i) {
             if (
               JSEvents.eventHandlers[i].target == eventHandler.target &&
-              JSEvents.eventHandlers[i].eventTypeString ==
-                eventHandler.eventTypeString
+              JSEvents.eventHandlers[i].eventTypeString == eventHandler.eventTypeString
             ) {
               JSEvents._removeHandler(i--);
             }
@@ -8169,17 +7543,13 @@ var createMediapipeSolutionsWasm = (() => {
       },
       fullscreenEnabled: function () {
         return document.fullscreenEnabled || document.webkitFullscreenEnabled;
-      }
+      },
     };
-    var __emscripten_webgl_power_preferences = [
-      'default',
-      'low-power',
-      'high-performance'
-    ];
+    var __emscripten_webgl_power_preferences = ['default', 'low-power', 'high-performance'];
     var specialHTMLTargets = [
       0,
       typeof document != 'undefined' ? document : 0,
-      typeof window != 'undefined' ? window : 0
+      typeof window != 'undefined' ? window : 0,
     ];
     function findEventTarget(target) {
       warnOnce(
@@ -8187,15 +7557,12 @@ var createMediapipeSolutionsWasm = (() => {
       );
       try {
         if (!target) return window;
-        if (typeof target == 'number')
-          target = specialHTMLTargets[target] || UTF8ToString(target);
+        if (typeof target == 'number') target = specialHTMLTargets[target] || UTF8ToString(target);
         if (target === '#window') return window;
         else if (target === '#document') return document;
         else if (target === '#screen') return screen;
         else if (target === '#canvas') return Module['canvas'];
-        return typeof target == 'string'
-          ? document.getElementById(target)
-          : target;
+        return typeof target == 'string' ? document.getElementById(target) : target;
       } catch (e) {
         return null;
       }
@@ -8229,7 +7596,7 @@ var createMediapipeSolutionsWasm = (() => {
         enableExtensionsByDefault: HEAP32[a + (40 >> 2)],
         explicitSwapControl: HEAP32[a + (44 >> 2)],
         proxyContextToMainThread: HEAP32[a + (48 >> 2)],
-        renderViaOffscreenBackBuffer: HEAP32[a + (52 >> 2)]
+        renderViaOffscreenBackBuffer: HEAP32[a + (52 >> 2)],
       };
       var canvas = findCanvasEventTarget(target);
       if (!canvas) {
@@ -8239,8 +7606,7 @@ var createMediapipeSolutionsWasm = (() => {
       if (contextAttributes.explicitSwapControl) {
         var supportsOffscreenCanvas =
           canvas.transferControlToOffscreen ||
-          (typeof OffscreenCanvas != 'undefined' &&
-            canvas instanceof OffscreenCanvas);
+          (typeof OffscreenCanvas != 'undefined' && canvas instanceof OffscreenCanvas);
         if (!supportsOffscreenCanvas) {
           if (!contextAttributes.renderViaOffscreenBackBuffer) {
             contextAttributes.renderViaOffscreenBackBuffer = true;
@@ -8251,7 +7617,7 @@ var createMediapipeSolutionsWasm = (() => {
             GL.offscreenCanvases[canvas.id] = {
               canvas: canvas.transferControlToOffscreen(),
               canvasSharedPtr: _malloc(12),
-              id: canvas.id
+              id: canvas.id,
             };
             canvas.controlTransferredOffscreen = true;
           } else if (!GL.offscreenCanvases[canvas.id]) {
@@ -8282,8 +7648,7 @@ var createMediapipeSolutionsWasm = (() => {
       HEAP32[(a + 16) >> 2] = t.premultipliedAlpha;
       HEAP32[(a + 20) >> 2] = t.preserveDrawingBuffer;
       var power =
-        t['powerPreference'] &&
-        __emscripten_webgl_power_preferences.indexOf(t['powerPreference']);
+        t['powerPreference'] && __emscripten_webgl_power_preferences.indexOf(t['powerPreference']);
       HEAP32[(a + 24) >> 2] = power;
       HEAP32[(a + 28) >> 2] = t.failIfMajorPerformanceCaveat;
       HEAP32[(a + 32) >> 2] = c.version;
@@ -8294,8 +7659,7 @@ var createMediapipeSolutionsWasm = (() => {
     function _emscripten_webgl_do_get_current_context() {
       return GL.currentContext ? GL.currentContext.handle : 0;
     }
-    var _emscripten_webgl_get_current_context =
-      _emscripten_webgl_do_get_current_context;
+    var _emscripten_webgl_get_current_context = _emscripten_webgl_do_get_current_context;
     function _emscripten_webgl_init_context_attributes(attributes) {
       assert(attributes);
       var a = attributes >> 2;
@@ -8357,10 +7721,8 @@ var createMediapipeSolutionsWasm = (() => {
         WebGPU.mgrQueue = WebGPU.mgrQueue || new Manager();
         WebGPU.mgrCommandBuffer = WebGPU.mgrCommandBuffer || new Manager();
         WebGPU.mgrCommandEncoder = WebGPU.mgrCommandEncoder || new Manager();
-        WebGPU.mgrRenderPassEncoder =
-          WebGPU.mgrRenderPassEncoder || new Manager();
-        WebGPU.mgrComputePassEncoder =
-          WebGPU.mgrComputePassEncoder || new Manager();
+        WebGPU.mgrRenderPassEncoder = WebGPU.mgrRenderPassEncoder || new Manager();
+        WebGPU.mgrComputePassEncoder = WebGPU.mgrComputePassEncoder || new Manager();
         WebGPU.mgrBindGroup = WebGPU.mgrBindGroup || new Manager();
         WebGPU.mgrBuffer = WebGPU.mgrBuffer || new Manager();
         WebGPU.mgrSampler = WebGPU.mgrSampler || new Manager();
@@ -8372,8 +7734,7 @@ var createMediapipeSolutionsWasm = (() => {
         WebGPU.mgrRenderPipeline = WebGPU.mgrRenderPipeline || new Manager();
         WebGPU.mgrComputePipeline = WebGPU.mgrComputePipeline || new Manager();
         WebGPU.mgrShaderModule = WebGPU.mgrShaderModule || new Manager();
-        WebGPU.mgrRenderBundleEncoder =
-          WebGPU.mgrRenderBundleEncoder || new Manager();
+        WebGPU.mgrRenderBundleEncoder = WebGPU.mgrRenderBundleEncoder || new Manager();
         WebGPU.mgrRenderBundle = WebGPU.mgrRenderBundle || new Manager();
       },
       makeColor: function (ptr) {
@@ -8381,21 +7742,21 @@ var createMediapipeSolutionsWasm = (() => {
           r: HEAPF64[ptr >> 3],
           g: HEAPF64[(ptr + 8) >> 3],
           b: HEAPF64[(ptr + 16) >> 3],
-          a: HEAPF64[(ptr + 24) >> 3]
+          a: HEAPF64[(ptr + 24) >> 3],
         };
       },
       makeExtent3D: function (ptr) {
         return {
           width: HEAPU32[ptr >> 2],
           height: HEAPU32[(ptr + 4) >> 2],
-          depthOrArrayLayers: HEAPU32[(ptr + 8) >> 2]
+          depthOrArrayLayers: HEAPU32[(ptr + 8) >> 2],
         };
       },
       makeOrigin3D: function (ptr) {
         return {
           x: HEAPU32[ptr >> 2],
           y: HEAPU32[(ptr + 4) >> 2],
-          z: HEAPU32[(ptr + 8) >> 2]
+          z: HEAPU32[(ptr + 8) >> 2],
         };
       },
       makeImageCopyTexture: function (ptr) {
@@ -8405,7 +7766,7 @@ var createMediapipeSolutionsWasm = (() => {
           texture: WebGPU.mgrTexture.get(HEAPU32[(ptr + 4) >> 2]),
           mipLevel: HEAPU32[(ptr + 8) >> 2],
           origin: WebGPU.makeOrigin3D(ptr + 12),
-          aspect: WebGPU.TextureAspect[HEAPU32[(ptr + 24) >> 2]]
+          aspect: WebGPU.TextureAspect[HEAPU32[(ptr + 24) >> 2]],
         };
       },
       makeTextureDataLayout: function (ptr) {
@@ -8414,10 +7775,9 @@ var createMediapipeSolutionsWasm = (() => {
         var bytesPerRow = HEAPU32[(ptr + 16) >> 2];
         var rowsPerImage = HEAPU32[(ptr + 20) >> 2];
         return {
-          offset:
-            HEAPU32[(ptr + 4 + 8) >> 2] * 4294967296 + HEAPU32[(ptr + 8) >> 2],
+          offset: HEAPU32[(ptr + 4 + 8) >> 2] * 4294967296 + HEAPU32[(ptr + 8) >> 2],
           bytesPerRow: bytesPerRow === 4294967295 ? undefined : bytesPerRow,
-          rowsPerImage: rowsPerImage === 4294967295 ? undefined : rowsPerImage
+          rowsPerImage: rowsPerImage === 4294967295 ? undefined : rowsPerImage,
         };
       },
       makeImageCopyBuffer: function (ptr) {
@@ -8425,9 +7785,7 @@ var createMediapipeSolutionsWasm = (() => {
         assert(HEAPU32[ptr >> 2] === 0);
         var layoutPtr = ptr + 8;
         var bufferCopyView = WebGPU.makeTextureDataLayout(layoutPtr);
-        bufferCopyView['buffer'] = WebGPU.mgrBuffer.get(
-          HEAPU32[(ptr + 32) >> 2]
-        );
+        bufferCopyView['buffer'] = WebGPU.mgrBuffer.get(HEAPU32[(ptr + 32) >> 2]);
         return bufferCopyView;
       },
       makePipelineConstants: function (constantCount, constantsPtr) {
@@ -8450,7 +7808,7 @@ var createMediapipeSolutionsWasm = (() => {
           constants: WebGPU.makePipelineConstants(
             HEAPU32[(ptr + 12) >> 2],
             HEAPU32[(ptr + 16) >> 2]
-          )
+          ),
         };
       },
       DeviceLostReason: { undefined: 0, destroyed: 1 },
@@ -8469,7 +7827,7 @@ var createMediapipeSolutionsWasm = (() => {
         'one-minus-dst-alpha',
         'src-alpha-saturated',
         'constant',
-        'one-minus-constant'
+        'one-minus-constant',
       ],
       BlendOperation: ['add', 'subtract', 'reverse-subtract', 'min', 'max'],
       BufferBindingType: [, 'uniform', 'storage', 'read-only-storage'],
@@ -8482,14 +7840,9 @@ var createMediapipeSolutionsWasm = (() => {
         'greater-equal',
         'equal',
         'not-equal',
-        'always'
+        'always',
       ],
-      CompilationInfoRequestStatus: [
-        'success',
-        'error',
-        'device-lost',
-        'unknown'
-      ],
+      CompilationInfoRequestStatus: ['success', 'error', 'device-lost', 'unknown'],
       ComputePassTimestampLocation: ['beginning', 'end'],
       CullMode: ['none', 'front', 'back'],
       ErrorFilter: ['validation', 'out-of-memory'],
@@ -8502,7 +7855,7 @@ var createMediapipeSolutionsWasm = (() => {
         'texture-compression-bc',
         'texture-compression-etc2',
         'texture-compression-astc',
-        'indirect-first-instance'
+        'indirect-first-instance',
       ],
       FilterMode: ['nearest', 'linear'],
       FrontFace: ['ccw', 'cw'],
@@ -8513,7 +7866,7 @@ var createMediapipeSolutionsWasm = (() => {
         'clipper-invocations',
         'clipper-primitives-out',
         'fragment-shader-invocations',
-        'compute-shader-invocations'
+        'compute-shader-invocations',
       ],
       PowerPreference: [, 'low-power', 'high-performance'],
       PrimitiveTopology: [
@@ -8521,7 +7874,7 @@ var createMediapipeSolutionsWasm = (() => {
         'line-list',
         'line-strip',
         'triangle-list',
-        'triangle-strip'
+        'triangle-strip',
       ],
       QueryType: ['occlusion', 'pipeline-statistics', 'timestamp'],
       RenderPassTimestampLocation: ['beginning', 'end'],
@@ -8534,7 +7887,7 @@ var createMediapipeSolutionsWasm = (() => {
         'increment-clamp',
         'decrement-clamp',
         'increment-wrap',
-        'decrement-wrap'
+        'decrement-wrap',
       ],
       StorageTextureAccess: [, 'write-only'],
       StoreOp: [, 'store', 'discard'],
@@ -8636,25 +7989,10 @@ var createMediapipeSolutionsWasm = (() => {
         'astc-12x10-unorm',
         'astc-12x10-unorm-srgb',
         'astc-12x12-unorm',
-        'astc-12x12-unorm-srgb'
+        'astc-12x12-unorm-srgb',
       ],
-      TextureSampleType: [
-        ,
-        'float',
-        'unfilterable-float',
-        'depth',
-        'sint',
-        'uint'
-      ],
-      TextureViewDimension: [
-        ,
-        '1d',
-        '2d',
-        '2d-array',
-        'cube',
-        'cube-array',
-        '3d'
-      ],
+      TextureSampleType: [, 'float', 'unfilterable-float', 'depth', 'sint', 'uint'],
+      TextureViewDimension: [, '1d', '2d', '2d-array', 'cube', 'cube-array', '3d'],
       VertexFormat: [
         ,
         'uint8x2',
@@ -8686,7 +8024,7 @@ var createMediapipeSolutionsWasm = (() => {
         'sint32',
         'sint32x2',
         'sint32x3',
-        'sint32x4'
+        'sint32x4',
       ],
       VertexStepMode: ['vertex', 'instance'],
       FeatureNameString2Enum: {
@@ -8698,8 +8036,8 @@ var createMediapipeSolutionsWasm = (() => {
         'texture-compression-bc': '5',
         'texture-compression-etc2': '6',
         'texture-compression-astc': '7',
-        'indirect-first-instance': '8'
-      }
+        'indirect-first-instance': '8',
+      },
     };
     var JsValStore = {
       values: {},
@@ -8720,7 +8058,7 @@ var createMediapipeSolutionsWasm = (() => {
       get: function (id) {
         assert(id === 0 || id in JsValStore.values);
         return JsValStore.values[id];
-      }
+      },
     };
     function _emscripten_webgpu_export_bind_group_layout(handle) {
       return JsValStore.add(WebGPU.mgrBindGroupLayout.get(handle));
@@ -8739,12 +8077,9 @@ var createMediapipeSolutionsWasm = (() => {
       if (WebGPU.preinitializedDeviceId === undefined) {
         var device = Module['preinitializedWebGPUDevice'];
         var deviceWrapper = {
-          queueId: WebGPU.mgrQueue.create(device['queue'])
+          queueId: WebGPU.mgrQueue.create(device['queue']),
         };
-        WebGPU.preinitializedDeviceId = WebGPU.mgrDevice.create(
-          device,
-          deviceWrapper
-        );
+        WebGPU.preinitializedDeviceId = WebGPU.mgrDevice.create(device, deviceWrapper);
       }
       WebGPU.mgrDevice.reference(WebGPU.preinitializedDeviceId);
       return WebGPU.preinitializedDeviceId;
@@ -8766,9 +8101,7 @@ var createMediapipeSolutionsWasm = (() => {
       if (!getEnvStrings.strings) {
         var lang =
           (
-            (typeof navigator == 'object' &&
-              navigator.languages &&
-              navigator.languages[0]) ||
+            (typeof navigator == 'object' && navigator.languages && navigator.languages[0]) ||
             'C'
           ).replace('-', '_') + '.UTF-8';
         var env = {
@@ -8778,7 +8111,7 @@ var createMediapipeSolutionsWasm = (() => {
           PWD: '/',
           HOME: '/home/web_user',
           LANG: lang,
-          _: getExecutableName()
+          _: getExecutableName(),
         };
         for (var x in ENV) {
           if (ENV[x] === undefined) delete env[x];
@@ -8856,9 +8189,7 @@ var createMediapipeSolutionsWasm = (() => {
     function convertI32PairToI53Checked(lo, hi) {
       assert(lo == lo >>> 0 || lo == (lo | 0));
       assert(hi === (hi | 0));
-      return (hi + 2097152) >>> 0 < 4194305 - !!lo
-        ? (lo >>> 0) + hi * 4294967296
-        : NaN;
+      return (hi + 2097152) >>> 0 < 4194305 - !!lo ? (lo >>> 0) + hi * 4294967296 : NaN;
     }
     function _fd_seek(fd, offset_low, offset_high, whence, newOffset) {
       try {
@@ -8871,18 +8202,13 @@ var createMediapipeSolutionsWasm = (() => {
           ((tempDouble = stream.position),
           +Math.abs(tempDouble) >= 1
             ? tempDouble > 0
-              ? (Math.min(+Math.floor(tempDouble / 4294967296), 4294967295) |
-                  0) >>>
-                0
-              : ~~+Math.ceil(
-                  (tempDouble - +(~~tempDouble >>> 0)) / 4294967296
-                ) >>> 0
-            : 0)
+              ? (Math.min(+Math.floor(tempDouble / 4294967296), 4294967295) | 0) >>> 0
+              : ~~+Math.ceil((tempDouble - +(~~tempDouble >>> 0)) / 4294967296) >>> 0
+            : 0),
         ]),
           (HEAP32[newOffset >> 2] = tempI64[0]),
           (HEAP32[(newOffset + 4) >> 2] = tempI64[1]);
-        if (stream.getdents && offset === 0 && whence === 0)
-          stream.getdents = null;
+        if (stream.getdents && offset === 0 && whence === 0) stream.getdents = null;
         return 0;
       } catch (e) {
         if (typeof FS == 'undefined' || !(e instanceof FS.ErrnoError)) throw e;
@@ -8949,9 +8275,7 @@ var createMediapipeSolutionsWasm = (() => {
     function _glBindFramebuffer(target, framebuffer) {
       GLctx.bindFramebuffer(
         target,
-        framebuffer
-          ? GL.framebuffers[framebuffer]
-          : GL.currentContext.defaultFbo
+        framebuffer ? GL.framebuffers[framebuffer] : GL.currentContext.defaultFbo
       );
     }
     function _glBindTexture(target, texture) {
@@ -8970,11 +8294,7 @@ var createMediapipeSolutionsWasm = (() => {
           GLctx.bufferData(target, size, usage);
         }
       } else {
-        GLctx.bufferData(
-          target,
-          data ? HEAPU8.subarray(data, data + size) : size,
-          usage
-        );
+        GLctx.bufferData(target, data ? HEAPU8.subarray(data, data + size) : size, usage);
       }
     }
     function convertI32PairToI53(lo, hi) {
@@ -8982,11 +8302,7 @@ var createMediapipeSolutionsWasm = (() => {
       return (lo >>> 0) + hi * 4294967296;
     }
     function _glClientWaitSync(sync, flags, timeoutLo, timeoutHi) {
-      return GLctx.clientWaitSync(
-        GL.syncs[sync],
-        flags,
-        convertI32PairToI53(timeoutLo, timeoutHi)
-      );
+      return GLctx.clientWaitSync(GL.syncs[sync], flags, convertI32PairToI53(timeoutLo, timeoutHi));
     }
     function _glCompileShader(shader) {
       GLctx.compileShader(GL.shaders[shader]);
@@ -8995,10 +8311,7 @@ var createMediapipeSolutionsWasm = (() => {
       var id = GL.getNewId(GL.programs);
       var program = GLctx.createProgram();
       program.name = id;
-      program.maxUniformLength =
-        program.maxAttributeLength =
-        program.maxUniformBlockNameLength =
-          0;
+      program.maxUniformLength = program.maxAttributeLength = program.maxUniformBlockNameLength = 0;
       program.uniformIdCounter = 1;
       GL.programs[id] = program;
       return id;
@@ -9016,14 +8329,11 @@ var createMediapipeSolutionsWasm = (() => {
         GLctx.deleteBuffer(buffer);
         buffer.name = 0;
         GL.buffers[id] = null;
-        if (id == GLctx.currentArrayBufferBinding)
-          GLctx.currentArrayBufferBinding = 0;
+        if (id == GLctx.currentArrayBufferBinding) GLctx.currentArrayBufferBinding = 0;
         if (id == GLctx.currentElementArrayBufferBinding)
           GLctx.currentElementArrayBufferBinding = 0;
-        if (id == GLctx.currentPixelPackBufferBinding)
-          GLctx.currentPixelPackBufferBinding = 0;
-        if (id == GLctx.currentPixelUnpackBufferBinding)
-          GLctx.currentPixelUnpackBufferBinding = 0;
+        if (id == GLctx.currentPixelPackBufferBinding) GLctx.currentPixelPackBufferBinding = 0;
+        if (id == GLctx.currentPixelUnpackBufferBinding) GLctx.currentPixelUnpackBufferBinding = 0;
       }
     }
     function _glDeleteFramebuffers(n, framebuffers) {
@@ -9127,35 +8437,11 @@ var createMediapipeSolutionsWasm = (() => {
     function _glFlush() {
       GLctx['flush']();
     }
-    function _glFramebufferTexture2D(
-      target,
-      attachment,
-      textarget,
-      texture,
-      level
-    ) {
-      GLctx.framebufferTexture2D(
-        target,
-        attachment,
-        textarget,
-        GL.textures[texture],
-        level
-      );
+    function _glFramebufferTexture2D(target, attachment, textarget, texture, level) {
+      GLctx.framebufferTexture2D(target, attachment, textarget, GL.textures[texture], level);
     }
-    function _glFramebufferTextureLayer(
-      target,
-      attachment,
-      texture,
-      level,
-      layer
-    ) {
-      GLctx.framebufferTextureLayer(
-        target,
-        attachment,
-        GL.textures[texture],
-        level,
-        layer
-      );
+    function _glFramebufferTextureLayer(target, attachment, texture, level, layer) {
+      GLctx.framebufferTextureLayer(target, attachment, GL.textures[texture], level, layer);
     }
     function __glGenObject(n, buffers, createFunction, objectTable) {
       for (var i = 0; i < n; i++) {
@@ -9470,8 +8756,7 @@ var createMediapipeSolutionsWasm = (() => {
             break;
           case 7938:
             var glVersion = GLctx.getParameter(7938);
-            if (GL.currentContext.version >= 2)
-              glVersion = 'OpenGL ES 3.0 (' + glVersion + ')';
+            if (GL.currentContext.version >= 2) glVersion = 'OpenGL ES 3.0 (' + glVersion + ')';
             else {
               glVersion = 'OpenGL ES 2.0 (' + glVersion + ')';
             }
@@ -9483,8 +8768,7 @@ var createMediapipeSolutionsWasm = (() => {
             var ver_num = glslVersion.match(ver_re);
             if (ver_num !== null) {
               if (ver_num[1].length == 3) ver_num[1] = ver_num[1] + '0';
-              glslVersion =
-                'OpenGL ES GLSL ES ' + ver_num[1] + ' (' + glslVersion + ')';
+              glslVersion = 'OpenGL ES GLSL ES ' + ver_num[1] + ' (' + glslVersion + ')';
             }
             ret = stringToNewUTF8(glslVersion);
             break;
@@ -9496,10 +8780,7 @@ var createMediapipeSolutionsWasm = (() => {
       return ret;
     }
     function _glGetUniformBlockIndex(program, uniformBlockName) {
-      return GLctx['getUniformBlockIndex'](
-        GL.programs[program],
-        UTF8ToString(uniformBlockName)
-      );
+      return GLctx['getUniformBlockIndex'](GL.programs[program], UTF8ToString(uniformBlockName));
     }
     function jstoi_q(str) {
       return parseInt(str);
@@ -9548,8 +8829,7 @@ var createMediapipeSolutionsWasm = (() => {
           arrayIndex += sizeAndId[1];
           if (
             (uniformLocsById[arrayIndex] =
-              uniformLocsById[arrayIndex] ||
-              GLctx.getUniformLocation(program, name))
+              uniformLocsById[arrayIndex] || GLctx.getUniformLocation(program, name))
           ) {
             return arrayIndex;
           }
@@ -9571,12 +8851,7 @@ var createMediapipeSolutionsWasm = (() => {
       }
       GLctx.pixelStorei(pname, param);
     }
-    function computeUnpackAlignedImageSize(
-      width,
-      height,
-      sizePerPixel,
-      alignment
-    ) {
+    function computeUnpackAlignedImageSize(width, height, sizePerPixel, alignment) {
       function roundedToNextMultipleOf(x, y) {
         return (x + y - 1) & -y;
       }
@@ -9594,7 +8869,7 @@ var createMediapipeSolutionsWasm = (() => {
         26917: 2,
         26918: 2,
         29846: 3,
-        29847: 4
+        29847: 4,
       };
       return colorChannels[format - 6402] || 1;
     }
@@ -9605,37 +8880,19 @@ var createMediapipeSolutionsWasm = (() => {
       if (type == 2) return HEAP16;
       if (type == 4) return HEAP32;
       if (type == 6) return HEAPF32;
-      if (
-        type == 5 ||
-        type == 28922 ||
-        type == 28520 ||
-        type == 30779 ||
-        type == 30782
-      )
+      if (type == 5 || type == 28922 || type == 28520 || type == 30779 || type == 30782)
         return HEAPU32;
       return HEAPU16;
     }
     function heapAccessShiftForWebGLHeap(heap) {
       return 31 - Math.clz32(heap.BYTES_PER_ELEMENT);
     }
-    function emscriptenWebGLGetTexPixelData(
-      type,
-      format,
-      width,
-      height,
-      pixels,
-      internalFormat
-    ) {
+    function emscriptenWebGLGetTexPixelData(type, format, width, height, pixels, internalFormat) {
       var heap = heapObjectForWebGLType(type);
       var shift = heapAccessShiftForWebGLHeap(heap);
       var byteSize = 1 << shift;
       var sizePerPixel = __colorChannelsInGlTextureFormat(format) * byteSize;
-      var bytes = computeUnpackAlignedImageSize(
-        width,
-        height,
-        sizePerPixel,
-        GL.unpackAlignment
-      );
+      var bytes = computeUnpackAlignedImageSize(width, height, sizePerPixel, GL.unpackAlignment);
       return heap.subarray(pixels >> shift, (pixels + bytes) >> shift);
     }
     function _glReadPixels(x, y, width, height, format, type, pixels) {
@@ -9657,14 +8914,7 @@ var createMediapipeSolutionsWasm = (() => {
         }
         return;
       }
-      var pixelData = emscriptenWebGLGetTexPixelData(
-        type,
-        format,
-        width,
-        height,
-        pixels,
-        format
-      );
+      var pixelData = emscriptenWebGLGetTexPixelData(type, format, width, height, pixels, format);
       if (!pixelData) {
         GL.recordError(1280);
         return;
@@ -9738,14 +8988,7 @@ var createMediapipeSolutionsWasm = (() => {
         format,
         type,
         pixels
-          ? emscriptenWebGLGetTexPixelData(
-              type,
-              format,
-              width,
-              height,
-              pixels,
-              internalFormat
-            )
+          ? emscriptenWebGLGetTexPixelData(type, format, width, height, pixels, internalFormat)
           : null
       );
     }
@@ -9775,17 +9018,7 @@ var createMediapipeSolutionsWasm = (() => {
     ) {
       if (GL.currentContext.version >= 2) {
         if (GLctx.currentPixelUnpackBufferBinding) {
-          GLctx.texSubImage2D(
-            target,
-            level,
-            xoffset,
-            yoffset,
-            width,
-            height,
-            format,
-            type,
-            pixels
-          );
+          GLctx.texSubImage2D(target, level, xoffset, yoffset, width, height, format, type, pixels);
         } else if (pixels) {
           var heap = heapObjectForWebGLType(type);
           GLctx.texSubImage2D(
@@ -9801,41 +9034,14 @@ var createMediapipeSolutionsWasm = (() => {
             pixels >> heapAccessShiftForWebGLHeap(heap)
           );
         } else {
-          GLctx.texSubImage2D(
-            target,
-            level,
-            xoffset,
-            yoffset,
-            width,
-            height,
-            format,
-            type,
-            null
-          );
+          GLctx.texSubImage2D(target, level, xoffset, yoffset, width, height, format, type, null);
         }
         return;
       }
       var pixelData = null;
       if (pixels)
-        pixelData = emscriptenWebGLGetTexPixelData(
-          type,
-          format,
-          width,
-          height,
-          pixels,
-          0
-        );
-      GLctx.texSubImage2D(
-        target,
-        level,
-        xoffset,
-        yoffset,
-        width,
-        height,
-        format,
-        type,
-        pixelData
-      );
+        pixelData = emscriptenWebGLGetTexPixelData(type, format, width, height, pixels, 0);
+      GLctx.texSubImage2D(target, level, xoffset, yoffset, width, height, format, type, pixelData);
     }
     function _glTexSubImage3D(
       target,
@@ -9903,8 +9109,7 @@ var createMediapipeSolutionsWasm = (() => {
         if (typeof webglLoc == 'number') {
           p.uniformLocsById[location] = webglLoc = GLctx.getUniformLocation(
             p,
-            p.uniformArrayNamesById[location] +
-              (webglLoc > 0 ? '[' + webglLoc + ']' : '')
+            p.uniformArrayNamesById[location] + (webglLoc > 0 ? '[' + webglLoc + ']' : '')
           );
         }
         return webglLoc;
@@ -9922,12 +9127,7 @@ var createMediapipeSolutionsWasm = (() => {
     function _glUniform2fv(location, count, value) {
       if (GL.currentContext.version >= 2) {
         count &&
-          GLctx.uniform2fv(
-            webglGetUniformLocation(location),
-            HEAPF32,
-            value >> 2,
-            count * 2
-          );
+          GLctx.uniform2fv(webglGetUniformLocation(location), HEAPF32, value >> 2, count * 2);
         return;
       }
       if (count <= 144) {
@@ -9944,12 +9144,7 @@ var createMediapipeSolutionsWasm = (() => {
     function _glUniform4fv(location, count, value) {
       if (GL.currentContext.version >= 2) {
         count &&
-          GLctx.uniform4fv(
-            webglGetUniformLocation(location),
-            HEAPF32,
-            value >> 2,
-            count * 4
-          );
+          GLctx.uniform4fv(webglGetUniformLocation(location), HEAPF32, value >> 2, count * 4);
         return;
       }
       if (count <= 72) {
@@ -9971,13 +9166,7 @@ var createMediapipeSolutionsWasm = (() => {
     var __miniTempWebGLIntBuffers = [];
     function _glUniform4iv(location, count, value) {
       if (GL.currentContext.version >= 2) {
-        count &&
-          GLctx.uniform4iv(
-            webglGetUniformLocation(location),
-            HEAP32,
-            value >> 2,
-            count * 4
-          );
+        count && GLctx.uniform4iv(webglGetUniformLocation(location), HEAP32, value >> 2, count * 4);
         return;
       }
       if (count <= 72) {
@@ -9993,17 +9182,9 @@ var createMediapipeSolutionsWasm = (() => {
       }
       GLctx.uniform4iv(webglGetUniformLocation(location), view);
     }
-    function _glUniformBlockBinding(
-      program,
-      uniformBlockIndex,
-      uniformBlockBinding
-    ) {
+    function _glUniformBlockBinding(program, uniformBlockIndex, uniformBlockBinding) {
       program = GL.programs[program];
-      GLctx['uniformBlockBinding'](
-        program,
-        uniformBlockIndex,
-        uniformBlockBinding
-      );
+      GLctx['uniformBlockBinding'](program, uniformBlockIndex, uniformBlockBinding);
     }
     function _glUniformMatrix4fv(location, count, transpose, value) {
       if (GL.currentContext.version >= 2) {
@@ -10043,25 +9224,14 @@ var createMediapipeSolutionsWasm = (() => {
       } else {
         var view = HEAPF32.subarray(value >> 2, (value + count * 64) >> 2);
       }
-      GLctx.uniformMatrix4fv(
-        webglGetUniformLocation(location),
-        !!transpose,
-        view
-      );
+      GLctx.uniformMatrix4fv(webglGetUniformLocation(location), !!transpose, view);
     }
     function _glUseProgram(program) {
       program = GL.programs[program];
       GLctx.useProgram(program);
       GLctx.currentProgram = program;
     }
-    function _glVertexAttribPointer(
-      index,
-      size,
-      type,
-      normalized,
-      stride,
-      ptr
-    ) {
+    function _glVertexAttribPointer(index, size, type, normalized, stride, ptr) {
       var cb = GL.currentContext.clientBuffers[index];
       if (!GLctx.currentArrayBufferBinding) {
         cb.size = size;
@@ -10070,14 +9240,7 @@ var createMediapipeSolutionsWasm = (() => {
         cb.stride = stride;
         cb.ptr = ptr;
         cb.clientside = true;
-        cb.vertexAttribPointerAdaptor = function (
-          index,
-          size,
-          type,
-          normalized,
-          stride,
-          ptr
-        ) {
+        cb.vertexAttribPointerAdaptor = function (index, size, type, normalized, stride, ptr) {
           this.vertexAttribPointer(index, size, type, normalized, stride, ptr);
         };
         return;
@@ -10093,14 +9256,7 @@ var createMediapipeSolutionsWasm = (() => {
     }
     function _mediapipe_webgl_tex_image_drawable(drawableHandle) {
       const drawable = Emval.toValue(drawableHandle);
-      GLctx.texImage2D(
-        GLctx.TEXTURE_2D,
-        0,
-        GLctx.RGBA,
-        GLctx.RGBA,
-        GLctx.UNSIGNED_BYTE,
-        drawable
-      );
+      GLctx.texImage2D(GLctx.TEXTURE_2D, 0, GLctx.RGBA, GLctx.RGBA, GLctx.UNSIGNED_BYTE, drawable);
     }
     function __arraySum(array, index) {
       var sum = 0;
@@ -10114,9 +9270,7 @@ var createMediapipeSolutionsWasm = (() => {
       while (days > 0) {
         var leap = __isLeapYear(newDate.getFullYear());
         var currentMonth = newDate.getMonth();
-        var daysInCurrentMonth = (
-          leap ? __MONTH_DAYS_LEAP : __MONTH_DAYS_REGULAR
-        )[currentMonth];
+        var daysInCurrentMonth = (leap ? __MONTH_DAYS_LEAP : __MONTH_DAYS_REGULAR)[currentMonth];
         if (days > daysInCurrentMonth - newDate.getDate()) {
           days -= daysInCurrentMonth - newDate.getDate() + 1;
           newDate.setDate(1);
@@ -10153,7 +9307,7 @@ var createMediapipeSolutionsWasm = (() => {
         tm_yday: HEAP32[(tm + 28) >> 2],
         tm_isdst: HEAP32[(tm + 32) >> 2],
         tm_gmtoff: HEAP32[(tm + 36) >> 2],
-        tm_zone: tm_zone ? UTF8ToString(tm_zone) : ''
+        tm_zone: tm_zone ? UTF8ToString(tm_zone) : '',
       };
       var pattern = UTF8ToString(format);
       var EXPANSION_RULES_1 = {
@@ -10184,23 +9338,12 @@ var createMediapipeSolutionsWasm = (() => {
         '%OV': '%V',
         '%Ow': '%w',
         '%OW': '%W',
-        '%Oy': '%y'
+        '%Oy': '%y',
       };
       for (var rule in EXPANSION_RULES_1) {
-        pattern = pattern.replace(
-          new RegExp(rule, 'g'),
-          EXPANSION_RULES_1[rule]
-        );
+        pattern = pattern.replace(new RegExp(rule, 'g'), EXPANSION_RULES_1[rule]);
       }
-      var WEEKDAYS = [
-        'Sunday',
-        'Monday',
-        'Tuesday',
-        'Wednesday',
-        'Thursday',
-        'Friday',
-        'Saturday'
-      ];
+      var WEEKDAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
       var MONTHS = [
         'January',
         'February',
@@ -10213,7 +9356,7 @@ var createMediapipeSolutionsWasm = (() => {
         'September',
         'October',
         'November',
-        'December'
+        'December',
       ];
       function leadingSomething(value, digits, character) {
         var str = typeof value == 'number' ? value.toString() : value || '';
@@ -10256,10 +9399,7 @@ var createMediapipeSolutionsWasm = (() => {
         }
       }
       function getWeekBasedYear(date) {
-        var thisDate = __addDays(
-          new Date(date.tm_year + 1900, 0, 1),
-          date.tm_yday
-        );
+        var thisDate = __addDays(new Date(date.tm_year + 1900, 0, 1), date.tm_yday);
         var janFourthThisYear = new Date(thisDate.getFullYear(), 0, 4);
         var janFourthNextYear = new Date(thisDate.getFullYear() + 1, 0, 4);
         var firstWeekStartThisYear = getFirstWeekStartDate(janFourthThisYear);
@@ -10314,9 +9454,7 @@ var createMediapipeSolutionsWasm = (() => {
           return leadingNulls(
             date.tm_mday +
               __arraySum(
-                __isLeapYear(date.tm_year + 1900)
-                  ? __MONTH_DAYS_LEAP
-                  : __MONTH_DAYS_REGULAR,
+                __isLeapYear(date.tm_year + 1900) ? __MONTH_DAYS_LEAP : __MONTH_DAYS_REGULAR,
                 date.tm_mon - 1
               ),
             3
@@ -10351,25 +9489,19 @@ var createMediapipeSolutionsWasm = (() => {
           return leadingNulls(Math.floor(days / 7), 2);
         },
         '%V': function (date) {
-          var val = Math.floor(
-            (date.tm_yday + 7 - ((date.tm_wday + 6) % 7)) / 7
-          );
+          var val = Math.floor((date.tm_yday + 7 - ((date.tm_wday + 6) % 7)) / 7);
           if ((date.tm_wday + 371 - date.tm_yday - 2) % 7 <= 2) {
             val++;
           }
           if (!val) {
             val = 52;
             var dec31 = (date.tm_wday + 7 - date.tm_yday - 1) % 7;
-            if (
-              dec31 == 4 ||
-              (dec31 == 5 && __isLeapYear((date.tm_year % 400) - 1))
-            ) {
+            if (dec31 == 4 || (dec31 == 5 && __isLeapYear((date.tm_year % 400) - 1))) {
               val++;
             }
           } else if (val == 53) {
             var jan1 = (date.tm_wday + 371 - date.tm_yday) % 7;
-            if (jan1 != 4 && (jan1 != 3 || !__isLeapYear(date.tm_year)))
-              val = 1;
+            if (jan1 != 4 && (jan1 != 3 || !__isLeapYear(date.tm_year))) val = 1;
           }
           return leadingNulls(val, 2);
         },
@@ -10398,15 +9530,12 @@ var createMediapipeSolutionsWasm = (() => {
         },
         '%%': function () {
           return '%';
-        }
+        },
       };
       pattern = pattern.replace(/%%/g, '\0\0');
       for (var rule in EXPANSION_RULES_2) {
         if (pattern.includes(rule)) {
-          pattern = pattern.replace(
-            new RegExp(rule, 'g'),
-            EXPANSION_RULES_2[rule](date)
-          );
+          pattern = pattern.replace(new RegExp(rule, 'g'), EXPANSION_RULES_2[rule](date));
         }
       }
       pattern = pattern.replace(/\0\0/g, '%');
@@ -10429,8 +9558,7 @@ var createMediapipeSolutionsWasm = (() => {
     function _wgpuBufferGetMappedRange(bufferId, offset, size) {
       var bufferWrapper = WebGPU.mgrBuffer.objects[bufferId];
       assert(typeof bufferWrapper != 'undefined');
-      if (size === 0)
-        warnOnce('getMappedRange size=0 no longer means WGPU_WHOLE_MAP_SIZE');
+      if (size === 0) warnOnce('getMappedRange size=0 no longer means WGPU_WHOLE_MAP_SIZE');
       size = size >>> 0;
       if (size === 4294967295) size = undefined;
       if (bufferWrapper.mapMode !== 2) {
@@ -10441,17 +9569,13 @@ var createMediapipeSolutionsWasm = (() => {
       try {
         mapped = bufferWrapper.object['getMappedRange'](offset, size);
       } catch (ex) {
-        err(
-          'wgpuBufferGetMappedRange(' + offset + ', ' + size + ') failed: ' + ex
-        );
+        err('wgpuBufferGetMappedRange(' + offset + ', ' + size + ') failed: ' + ex);
         return 0;
       }
       var data = _malloc(mapped.byteLength);
       HEAPU8.fill(0, data, mapped.byteLength);
       bufferWrapper.onUnmap.push(function () {
-        new Uint8Array(mapped).set(
-          HEAPU8.subarray(data, data + mapped.byteLength)
-        );
+        new Uint8Array(mapped).set(HEAPU8.subarray(data, data + mapped.byteLength));
         _free(data);
       });
       return data;
@@ -10483,8 +9607,7 @@ var createMediapipeSolutionsWasm = (() => {
         return {
           querySet: WebGPU.mgrQuerySet.get(HEAPU32[twPtr >> 2]),
           queryIndex: HEAPU32[(twPtr + 4) >> 2],
-          location:
-            WebGPU.ComputePassTimestampLocation[HEAPU32[(twPtr + 8) >> 2]]
+          location: WebGPU.ComputePassTimestampLocation[HEAPU32[(twPtr + 8) >> 2]],
         };
       }
       function makeComputePassTimestampWrites(count, twPtr) {
@@ -10509,9 +9632,7 @@ var createMediapipeSolutionsWasm = (() => {
         }
       }
       var commandEncoder = WebGPU.mgrCommandEncoder.get(encoderId);
-      return WebGPU.mgrComputePassEncoder.create(
-        commandEncoder['beginComputePass'](desc)
-      );
+      return WebGPU.mgrComputePassEncoder.create(commandEncoder['beginComputePass'](desc));
     }
     function _wgpuCommandEncoderBeginRenderPass(encoderId, descriptor) {
       assert(descriptor);
@@ -10530,7 +9651,7 @@ var createMediapipeSolutionsWasm = (() => {
           resolveTarget: WebGPU.mgrTextureView.get(HEAPU32[(caPtr + 4) >> 2]),
           clearValue: clearValue,
           loadOp: WebGPU.LoadOp[loadOpInt],
-          storeOp: WebGPU.StoreOp[storeOpInt]
+          storeOp: WebGPU.StoreOp[storeOpInt],
         };
       }
       function makeColorAttachments(count, caPtr) {
@@ -10551,15 +9672,14 @@ var createMediapipeSolutionsWasm = (() => {
           stencilClearValue: HEAPU32[(dsaPtr + 28) >> 2],
           stencilLoadOp: WebGPU.LoadOp[HEAPU32[(dsaPtr + 20) >> 2]],
           stencilStoreOp: WebGPU.StoreOp[HEAPU32[(dsaPtr + 24) >> 2]],
-          stencilReadOnly: HEAP8[(dsaPtr + 32) >> 0] !== 0
+          stencilReadOnly: HEAP8[(dsaPtr + 32) >> 0] !== 0,
         };
       }
       function makeRenderPassTimestampWrite(twPtr) {
         return {
           querySet: WebGPU.mgrQuerySet.get(HEAPU32[twPtr >> 2]),
           queryIndex: HEAPU32[(twPtr + 4) >> 2],
-          location:
-            WebGPU.RenderPassTimestampLocation[HEAPU32[(twPtr + 8) >> 2]]
+          location: WebGPU.RenderPassTimestampLocation[HEAPU32[(twPtr + 8) >> 2]],
         };
       }
       function makeRenderPassTimestampWrites(count, twPtr) {
@@ -10581,8 +9701,7 @@ var createMediapipeSolutionsWasm = (() => {
           assert(renderPassDescriptorMaxDrawCount);
           assert(HEAPU32[renderPassDescriptorMaxDrawCount >> 2] === 0);
           maxDrawCount =
-            HEAPU32[(renderPassDescriptorMaxDrawCount + 4 + 8) >> 2] *
-              4294967296 +
+            HEAPU32[(renderPassDescriptorMaxDrawCount + 4 + 8) >> 2] * 4294967296 +
             HEAPU32[(renderPassDescriptorMaxDrawCount + 8) >> 2];
         }
         var desc = {
@@ -10591,13 +9710,9 @@ var createMediapipeSolutionsWasm = (() => {
             HEAPU32[(descriptor + 8) >> 2],
             HEAPU32[(descriptor + 12) >> 2]
           ),
-          depthStencilAttachment: makeDepthStencilAttachment(
-            HEAPU32[(descriptor + 16) >> 2]
-          ),
-          occlusionQuerySet: WebGPU.mgrQuerySet.get(
-            HEAPU32[(descriptor + 20) >> 2]
-          ),
-          maxDrawCount: maxDrawCount
+          depthStencilAttachment: makeDepthStencilAttachment(HEAPU32[(descriptor + 16) >> 2]),
+          occlusionQuerySet: WebGPU.mgrQuerySet.get(HEAPU32[(descriptor + 20) >> 2]),
+          maxDrawCount: maxDrawCount,
         };
         var labelPtr = HEAPU32[(descriptor + 4) >> 2];
         if (labelPtr) desc['label'] = UTF8ToString(labelPtr);
@@ -10612,16 +9727,9 @@ var createMediapipeSolutionsWasm = (() => {
       }
       var desc = makeRenderPassDescriptor(descriptor);
       var commandEncoder = WebGPU.mgrCommandEncoder.get(encoderId);
-      return WebGPU.mgrRenderPassEncoder.create(
-        commandEncoder['beginRenderPass'](desc)
-      );
+      return WebGPU.mgrRenderPassEncoder.create(commandEncoder['beginRenderPass'](desc));
     }
-    function _wgpuCommandEncoderCopyBufferToTexture(
-      encoderId,
-      srcPtr,
-      dstPtr,
-      copySizePtr
-    ) {
+    function _wgpuCommandEncoderCopyBufferToTexture(encoderId, srcPtr, dstPtr, copySizePtr) {
       var commandEncoder = WebGPU.mgrCommandEncoder.get(encoderId);
       var copySize = WebGPU.makeExtent3D(copySizePtr);
       commandEncoder['copyBufferToTexture'](
@@ -10630,12 +9738,7 @@ var createMediapipeSolutionsWasm = (() => {
         copySize
       );
     }
-    function _wgpuCommandEncoderCopyTextureToTexture(
-      encoderId,
-      srcPtr,
-      dstPtr,
-      copySizePtr
-    ) {
+    function _wgpuCommandEncoderCopyTextureToTexture(encoderId, srcPtr, dstPtr, copySizePtr) {
       var commandEncoder = WebGPU.mgrCommandEncoder.get(encoderId);
       var copySize = WebGPU.makeExtent3D(copySizePtr);
       commandEncoder['copyTextureToTexture'](
@@ -10692,9 +9795,7 @@ var createMediapipeSolutionsWasm = (() => {
     }
     function _wgpuComputePipelineGetBindGroupLayout(pipelineId, groupIndex) {
       var pipeline = WebGPU.mgrComputePipeline.get(pipelineId);
-      return WebGPU.mgrBindGroupLayout.create(
-        pipeline['getBindGroupLayout'](groupIndex)
-      );
+      return WebGPU.mgrBindGroupLayout.create(pipeline['getBindGroupLayout'](groupIndex));
     }
     function _wgpuComputePipelineRelease(id) {
       WebGPU.mgrComputePipeline.release(id);
@@ -10707,9 +9808,7 @@ var createMediapipeSolutionsWasm = (() => {
         var bufferId = HEAPU32[(entryPtr + 8) >> 2];
         var samplerId = HEAPU32[(entryPtr + 32) >> 2];
         var textureViewId = HEAPU32[(entryPtr + 36) >> 2];
-        assert(
-          (bufferId !== 0) + (samplerId !== 0) + (textureViewId !== 0) === 1
-        );
+        assert((bufferId !== 0) + (samplerId !== 0) + (textureViewId !== 0) === 1);
         var binding = HEAPU32[(entryPtr + 4) >> 2];
         if (bufferId) {
           var size_low = HEAPU32[(entryPtr + 24) >> 2];
@@ -10717,27 +9816,25 @@ var createMediapipeSolutionsWasm = (() => {
           var size =
             size_high === -1 && size_low === -1
               ? undefined
-              : (assert(size_high < 2097152),
-                size_high * 4294967296 + size_low);
+              : (assert(size_high < 2097152), size_high * 4294967296 + size_low);
           return {
             binding: binding,
             resource: {
               buffer: WebGPU.mgrBuffer.get(bufferId),
               offset:
-                HEAPU32[(entryPtr + 4 + 16) >> 2] * 4294967296 +
-                HEAPU32[(entryPtr + 16) >> 2],
-              size: size
-            }
+                HEAPU32[(entryPtr + 4 + 16) >> 2] * 4294967296 + HEAPU32[(entryPtr + 16) >> 2],
+              size: size,
+            },
           };
         } else if (samplerId) {
           return {
             binding: binding,
-            resource: WebGPU.mgrSampler.get(samplerId)
+            resource: WebGPU.mgrSampler.get(samplerId),
           };
         } else {
           return {
             binding: binding,
-            resource: WebGPU.mgrTextureView.get(textureViewId)
+            resource: WebGPU.mgrTextureView.get(textureViewId),
           };
         }
       }
@@ -10751,10 +9848,7 @@ var createMediapipeSolutionsWasm = (() => {
       var desc = {
         label: undefined,
         layout: WebGPU.mgrBindGroupLayout.get(HEAPU32[(descriptor + 8) >> 2]),
-        entries: makeEntries(
-          HEAPU32[(descriptor + 12) >> 2],
-          HEAPU32[(descriptor + 16) >> 2]
-        )
+        entries: makeEntries(HEAPU32[(descriptor + 12) >> 2], HEAPU32[(descriptor + 16) >> 2]),
       };
       var labelPtr = HEAPU32[(descriptor + 4) >> 2];
       if (labelPtr) desc['label'] = UTF8ToString(labelPtr);
@@ -10768,19 +9862,14 @@ var createMediapipeSolutionsWasm = (() => {
       var desc = {
         label: undefined,
         usage: HEAPU32[(descriptor + 8) >> 2],
-        size:
-          HEAPU32[(descriptor + 4 + 16) >> 2] * 4294967296 +
-          HEAPU32[(descriptor + 16) >> 2],
-        mappedAtCreation: mappedAtCreation
+        size: HEAPU32[(descriptor + 4 + 16) >> 2] * 4294967296 + HEAPU32[(descriptor + 16) >> 2],
+        mappedAtCreation: mappedAtCreation,
       };
       var labelPtr = HEAPU32[(descriptor + 4) >> 2];
       if (labelPtr) desc['label'] = UTF8ToString(labelPtr);
       var device = WebGPU.mgrDevice.get(deviceId);
       var bufferWrapper = {};
-      var id = WebGPU.mgrBuffer.create(
-        device['createBuffer'](desc),
-        bufferWrapper
-      );
+      var id = WebGPU.mgrBuffer.create(device['createBuffer'](desc), bufferWrapper);
       if (mappedAtCreation) {
         bufferWrapper.mapMode = 2;
         bufferWrapper.onUnmap = [];
@@ -10797,9 +9886,7 @@ var createMediapipeSolutionsWasm = (() => {
         if (labelPtr) desc['label'] = UTF8ToString(labelPtr);
       }
       var device = WebGPU.mgrDevice.get(deviceId);
-      return WebGPU.mgrCommandEncoder.create(
-        device['createCommandEncoder'](desc)
-      );
+      return WebGPU.mgrCommandEncoder.create(device['createCommandEncoder'](desc));
     }
     function _wgpuDeviceCreateComputePipeline(deviceId, descriptor) {
       assert(descriptor);
@@ -10807,14 +9894,12 @@ var createMediapipeSolutionsWasm = (() => {
       var desc = {
         label: undefined,
         layout: WebGPU.mgrPipelineLayout.get(HEAPU32[(descriptor + 8) >> 2]),
-        compute: WebGPU.makeProgrammableStageDescriptor(descriptor + 12)
+        compute: WebGPU.makeProgrammableStageDescriptor(descriptor + 12),
       };
       var labelPtr = HEAPU32[(descriptor + 4) >> 2];
       if (labelPtr) desc['label'] = UTF8ToString(labelPtr);
       var device = WebGPU.mgrDevice.get(deviceId);
-      return WebGPU.mgrComputePipeline.create(
-        device['createComputePipeline'](desc)
-      );
+      return WebGPU.mgrComputePipeline.create(device['createComputePipeline'](desc));
     }
     function _wgpuDeviceCreateRenderPipeline(deviceId, descriptor) {
       assert(descriptor);
@@ -10827,7 +9912,7 @@ var createMediapipeSolutionsWasm = (() => {
           topology: WebGPU.PrimitiveTopology[HEAPU32[(rsPtr + 4) >> 2]],
           stripIndexFormat: WebGPU.IndexFormat[HEAPU32[(rsPtr + 8) >> 2]],
           frontFace: WebGPU.FrontFace[HEAPU32[(rsPtr + 12) >> 2]],
-          cullMode: WebGPU.CullMode[HEAPU32[(rsPtr + 16) >> 2]]
+          cullMode: WebGPU.CullMode[HEAPU32[(rsPtr + 16) >> 2]],
         };
       }
       function makeBlendComponent(bdPtr) {
@@ -10835,7 +9920,7 @@ var createMediapipeSolutionsWasm = (() => {
         return {
           operation: WebGPU.BlendOperation[HEAPU32[bdPtr >> 2]],
           srcFactor: WebGPU.BlendFactor[HEAPU32[(bdPtr + 4) >> 2]],
-          dstFactor: WebGPU.BlendFactor[HEAPU32[(bdPtr + 8) >> 2]]
+          dstFactor: WebGPU.BlendFactor[HEAPU32[(bdPtr + 8) >> 2]],
         };
       }
       function makeBlendState(bsPtr) {
@@ -10844,7 +9929,7 @@ var createMediapipeSolutionsWasm = (() => {
         assert(HEAPU32[bsPtr >> 2] === 0);
         return {
           alpha: makeBlendComponent(bsPtr + 12),
-          color: makeBlendComponent(bsPtr + 0)
+          color: makeBlendComponent(bsPtr + 0),
         };
       }
       function makeColorState(csPtr) {
@@ -10856,7 +9941,7 @@ var createMediapipeSolutionsWasm = (() => {
           : {
               format: WebGPU.TextureFormat[formatInt],
               blend: makeBlendState(HEAPU32[(csPtr + 8) >> 2]),
-              writeMask: HEAPU32[(csPtr + 12) >> 2]
+              writeMask: HEAPU32[(csPtr + 12) >> 2],
             };
       }
       function makeColorStates(count, csArrayPtr) {
@@ -10872,7 +9957,7 @@ var createMediapipeSolutionsWasm = (() => {
           compare: WebGPU.CompareFunction[HEAPU32[ssfPtr >> 2]],
           failOp: WebGPU.StencilOperation[HEAPU32[(ssfPtr + 4) >> 2]],
           depthFailOp: WebGPU.StencilOperation[HEAPU32[(ssfPtr + 8) >> 2]],
-          passOp: WebGPU.StencilOperation[HEAPU32[(ssfPtr + 12) >> 2]]
+          passOp: WebGPU.StencilOperation[HEAPU32[(ssfPtr + 12) >> 2]],
         };
       }
       function makeDepthStencilState(dssPtr) {
@@ -10888,17 +9973,15 @@ var createMediapipeSolutionsWasm = (() => {
           stencilWriteMask: HEAPU32[(dssPtr + 52) >> 2],
           depthBias: HEAPU32[(dssPtr + 56) >> 2],
           depthBiasSlopeScale: HEAPF32[(dssPtr + 60) >> 2],
-          depthBiasClamp: HEAPF32[(dssPtr + 64) >> 2]
+          depthBiasClamp: HEAPF32[(dssPtr + 64) >> 2],
         };
       }
       function makeVertexAttribute(vaPtr) {
         assert(vaPtr);
         return {
           format: WebGPU.VertexFormat[HEAPU32[vaPtr >> 2]],
-          offset:
-            HEAPU32[(vaPtr + 4 + 8) >> 2] * 4294967296 +
-            HEAPU32[(vaPtr + 8) >> 2],
-          shaderLocation: HEAPU32[(vaPtr + 16) >> 2]
+          offset: HEAPU32[(vaPtr + 4 + 8) >> 2] * 4294967296 + HEAPU32[(vaPtr + 8) >> 2],
+          shaderLocation: HEAPU32[(vaPtr + 16) >> 2],
         };
       }
       function makeVertexAttributes(count, vaArrayPtr) {
@@ -10914,13 +9997,12 @@ var createMediapipeSolutionsWasm = (() => {
         return stepModeInt === 2
           ? null
           : {
-              arrayStride:
-                HEAPU32[(vbPtr + 4) >> 2] * 4294967296 + HEAPU32[vbPtr >> 2],
+              arrayStride: HEAPU32[(vbPtr + 4) >> 2] * 4294967296 + HEAPU32[vbPtr >> 2],
               stepMode: WebGPU.VertexStepMode[stepModeInt],
               attributes: makeVertexAttributes(
                 HEAPU32[(vbPtr + 12) >> 2],
                 HEAPU32[(vbPtr + 16) >> 2]
-              )
+              ),
             };
       }
       function makeVertexBuffers(count, vbArrayPtr) {
@@ -10942,10 +10024,7 @@ var createMediapipeSolutionsWasm = (() => {
             HEAPU32[(viPtr + 12) >> 2],
             HEAPU32[(viPtr + 16) >> 2]
           ),
-          buffers: makeVertexBuffers(
-            HEAPU32[(viPtr + 20) >> 2],
-            HEAPU32[(viPtr + 24) >> 2]
-          )
+          buffers: makeVertexBuffers(HEAPU32[(viPtr + 20) >> 2], HEAPU32[(viPtr + 24) >> 2]),
         };
       }
       function makeMultisampleState(msPtr) {
@@ -10955,7 +10034,7 @@ var createMediapipeSolutionsWasm = (() => {
         return {
           count: HEAPU32[(msPtr + 4) >> 2],
           mask: HEAPU32[(msPtr + 8) >> 2],
-          alphaToCoverageEnabled: HEAP8[(msPtr + 12) >> 0] !== 0
+          alphaToCoverageEnabled: HEAP8[(msPtr + 12) >> 0] !== 0,
         };
       }
       function makeFragmentState(fsPtr) {
@@ -10969,10 +10048,7 @@ var createMediapipeSolutionsWasm = (() => {
             HEAPU32[(fsPtr + 12) >> 2],
             HEAPU32[(fsPtr + 16) >> 2]
           ),
-          targets: makeColorStates(
-            HEAPU32[(fsPtr + 20) >> 2],
-            HEAPU32[(fsPtr + 24) >> 2]
-          )
+          targets: makeColorStates(HEAPU32[(fsPtr + 20) >> 2], HEAPU32[(fsPtr + 24) >> 2]),
         };
       }
       var desc = {
@@ -10982,14 +10058,12 @@ var createMediapipeSolutionsWasm = (() => {
         primitive: makePrimitiveState(descriptor + 40),
         depthStencil: makeDepthStencilState(HEAPU32[(descriptor + 60) >> 2]),
         multisample: makeMultisampleState(descriptor + 64),
-        fragment: makeFragmentState(HEAPU32[(descriptor + 80) >> 2])
+        fragment: makeFragmentState(HEAPU32[(descriptor + 80) >> 2]),
       };
       var labelPtr = HEAPU32[(descriptor + 4) >> 2];
       if (labelPtr) desc['label'] = UTF8ToString(labelPtr);
       var device = WebGPU.mgrDevice.get(deviceId);
-      return WebGPU.mgrRenderPipeline.create(
-        device['createRenderPipeline'](desc)
-      );
+      return WebGPU.mgrRenderPipeline.create(device['createRenderPipeline'](desc));
     }
     function _wgpuDeviceCreateSampler(deviceId, descriptor) {
       assert(descriptor);
@@ -11004,7 +10078,7 @@ var createMediapipeSolutionsWasm = (() => {
         mipmapFilter: WebGPU.FilterMode[HEAPU32[(descriptor + 28) >> 2]],
         lodMinClamp: HEAPF32[(descriptor + 32) >> 2],
         lodMaxClamp: HEAPF32[(descriptor + 36) >> 2],
-        compare: WebGPU.CompareFunction[HEAPU32[(descriptor + 40) >> 2]]
+        compare: WebGPU.CompareFunction[HEAPU32[(descriptor + 40) >> 2]],
       };
       var labelPtr = HEAPU32[(descriptor + 4) >> 2];
       if (labelPtr) desc['label'] = UTF8ToString(labelPtr);
@@ -11049,7 +10123,7 @@ var createMediapipeSolutionsWasm = (() => {
         sampleCount: HEAPU32[(descriptor + 36) >> 2],
         dimension: WebGPU.TextureDimension[HEAPU32[(descriptor + 12) >> 2]],
         format: WebGPU.TextureFormat[HEAPU32[(descriptor + 28) >> 2]],
-        usage: HEAPU32[(descriptor + 8) >> 2]
+        usage: HEAPU32[(descriptor + 8) >> 2],
       };
       var labelPtr = HEAPU32[(descriptor + 4) >> 2];
       if (labelPtr) desc['label'] = UTF8ToString(labelPtr);
@@ -11057,10 +10131,7 @@ var createMediapipeSolutionsWasm = (() => {
       if (viewFormatCount) {
         var viewFormatsPtr = HEAPU32[(descriptor + 44) >> 2];
         desc['viewFormats'] = Array.from(
-          HEAP32.subarray(
-            viewFormatsPtr >> 2,
-            (viewFormatsPtr >> 2) + viewFormatCount
-          ),
+          HEAP32.subarray(viewFormatsPtr >> 2, (viewFormatsPtr >> 2) + viewFormatCount),
           function (format) {
             return WebGPU.TextureFormat[format];
           }
@@ -11112,8 +10183,7 @@ var createMediapipeSolutionsWasm = (() => {
       var queue = WebGPU.mgrQueue.get(queueId);
       var buffer = WebGPU.mgrBuffer.get(bufferId);
       var bufferOffset =
-        (assert(bufferOffset_high < 2097152),
-        bufferOffset_high * 4294967296 + bufferOffset_low);
+        (assert(bufferOffset_high < 2097152), bufferOffset_high * 4294967296 + bufferOffset_low);
       var subarray = HEAPU8.subarray(data, data + size);
       queue['writeBuffer'](buffer, bufferOffset, subarray, 0, size);
     }
@@ -11160,9 +10230,7 @@ var createMediapipeSolutionsWasm = (() => {
     }
     function _wgpuRenderPipelineGetBindGroupLayout(pipelineId, groupIndex) {
       var pipeline = WebGPU.mgrRenderPipeline.get(pipelineId);
-      return WebGPU.mgrBindGroupLayout.create(
-        pipeline['getBindGroupLayout'](groupIndex)
-      );
+      return WebGPU.mgrBindGroupLayout.create(pipeline['getBindGroupLayout'](groupIndex));
     }
     function _wgpuRenderPipelineRelease(id) {
       WebGPU.mgrRenderPipeline.release(id);
@@ -11188,15 +10256,12 @@ var createMediapipeSolutionsWasm = (() => {
         var arrayLayerCount = HEAPU32[(descriptor + 28) >> 2];
         desc = {
           format: WebGPU.TextureFormat[HEAPU32[(descriptor + 8) >> 2]],
-          dimension:
-            WebGPU.TextureViewDimension[HEAPU32[(descriptor + 12) >> 2]],
+          dimension: WebGPU.TextureViewDimension[HEAPU32[(descriptor + 12) >> 2]],
           baseMipLevel: HEAPU32[(descriptor + 16) >> 2],
-          mipLevelCount:
-            mipLevelCount === 4294967295 ? undefined : mipLevelCount,
+          mipLevelCount: mipLevelCount === 4294967295 ? undefined : mipLevelCount,
           baseArrayLayer: HEAPU32[(descriptor + 24) >> 2],
-          arrayLayerCount:
-            arrayLayerCount === 4294967295 ? undefined : arrayLayerCount,
-          aspect: WebGPU.TextureAspect[HEAPU32[(descriptor + 32) >> 2]]
+          arrayLayerCount: arrayLayerCount === 4294967295 ? undefined : arrayLayerCount,
+          aspect: WebGPU.TextureAspect[HEAPU32[(descriptor + 32) >> 2]],
         };
         var labelPtr = HEAPU32[(descriptor + 4) >> 2];
         if (labelPtr) desc['label'] = UTF8ToString(labelPtr);
@@ -11219,25 +10284,16 @@ var createMediapipeSolutionsWasm = (() => {
     function _wgpuTextureViewRelease(id) {
       WebGPU.mgrTextureView.release(id);
     }
-    Module['requestFullscreen'] = function Module_requestFullscreen(
-      lockPointer,
-      resizeCanvas
-    ) {
+    Module['requestFullscreen'] = function Module_requestFullscreen(lockPointer, resizeCanvas) {
       Browser.requestFullscreen(lockPointer, resizeCanvas);
     };
     Module['requestFullScreen'] = function Module_requestFullScreen() {
       Browser.requestFullScreen();
     };
-    Module['requestAnimationFrame'] = function Module_requestAnimationFrame(
-      func
-    ) {
+    Module['requestAnimationFrame'] = function Module_requestAnimationFrame(func) {
       Browser.requestAnimationFrame(func);
     };
-    Module['setCanvasSize'] = function Module_setCanvasSize(
-      width,
-      height,
-      noUpdates
-    ) {
+    Module['setCanvasSize'] = function Module_setCanvasSize(width, height, noUpdates) {
       Browser.setCanvasSize(width, height, noUpdates);
     };
     Module['pauseMainLoop'] = function Module_pauseMainLoop() {
@@ -11255,12 +10311,7 @@ var createMediapipeSolutionsWasm = (() => {
       setInModule,
       webGLContextAttributes
     ) {
-      return Browser.createContext(
-        canvas,
-        useWebGL,
-        setInModule,
-        webGLContextAttributes
-      );
+      return Browser.createContext(canvas, useWebGL, setInModule, webGLContextAttributes);
     };
     var preloadedImages = {};
     var preloadedAudios = {};
@@ -11287,7 +10338,7 @@ var createMediapipeSolutionsWasm = (() => {
         },
         set: function (val) {
           val ? (this.mode |= readMode) : (this.mode &= ~readMode);
-        }
+        },
       },
       write: {
         get: function () {
@@ -11295,18 +10346,18 @@ var createMediapipeSolutionsWasm = (() => {
         },
         set: function (val) {
           val ? (this.mode |= writeMode) : (this.mode &= ~writeMode);
-        }
+        },
       },
       isFolder: {
         get: function () {
           return FS.isDir(this.mode);
-        }
+        },
       },
       isDevice: {
         get: function () {
           return FS.isChrdev(this.mode);
-        }
-      }
+        },
+      },
     });
     FS.FSNode = FSNode;
     FS.staticInit();
@@ -11437,49 +10488,33 @@ var createMediapipeSolutionsWasm = (() => {
       ECANCELED: 11,
       ENOTRECOVERABLE: 56,
       EOWNERDEAD: 62,
-      ESTRPIPE: 135
+      ESTRPIPE: 135,
     };
     BindingError = Module['BindingError'] = extendError(Error, 'BindingError');
     init_emval();
-    PureVirtualError = Module['PureVirtualError'] = extendError(
-      Error,
-      'PureVirtualError'
-    );
+    PureVirtualError = Module['PureVirtualError'] = extendError(Error, 'PureVirtualError');
     embind_init_charCodes();
     init_embind();
-    InternalError = Module['InternalError'] = extendError(
-      Error,
-      'InternalError'
-    );
+    InternalError = Module['InternalError'] = extendError(Error, 'InternalError');
     init_ClassHandle();
     init_RegisteredPointer();
-    UnboundTypeError = Module['UnboundTypeError'] = extendError(
-      Error,
-      'UnboundTypeError'
-    );
+    UnboundTypeError = Module['UnboundTypeError'] = extendError(Error, 'UnboundTypeError');
     var GLctx;
     WebGPU.initManagers();
     for (var i = 0; i < 32; ++i) tempFixedLengthArray.push(new Array(i));
     var miniTempWebGLFloatBuffersStorage = new Float32Array(288);
     for (var i = 0; i < 288; ++i) {
-      miniTempWebGLFloatBuffers[i] = miniTempWebGLFloatBuffersStorage.subarray(
-        0,
-        i + 1
-      );
+      miniTempWebGLFloatBuffers[i] = miniTempWebGLFloatBuffersStorage.subarray(0, i + 1);
     }
     var __miniTempWebGLIntBuffersStorage = new Int32Array(288);
     for (var i = 0; i < 288; ++i) {
-      __miniTempWebGLIntBuffers[i] = __miniTempWebGLIntBuffersStorage.subarray(
-        0,
-        i + 1
-      );
+      __miniTempWebGLIntBuffers[i] = __miniTempWebGLIntBuffersStorage.subarray(0, i + 1);
     }
     var decodeBase64 =
       typeof atob == 'function'
         ? atob
         : function (input) {
-            var keyStr =
-              'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
+            var keyStr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
             var output = '';
             var chr1, chr2, chr3;
             var enc1, enc2, enc3, enc4;
@@ -11506,11 +10541,7 @@ var createMediapipeSolutionsWasm = (() => {
     function intArrayFromBase64(s) {
       if (typeof ENVIRONMENT_IS_NODE == 'boolean' && ENVIRONMENT_IS_NODE) {
         var buf = Buffer.from(s, 'base64');
-        return new Uint8Array(
-          buf['buffer'],
-          buf['byteOffset'],
-          buf['byteLength']
-        );
+        return new Uint8Array(buf['buffer'], buf['byteOffset'], buf['byteLength']);
       }
       try {
         var decoded = decodeBase64(s);
@@ -11542,14 +10573,12 @@ var createMediapipeSolutionsWasm = (() => {
       _dlinit: __dlinit,
       _dlopen_js: __dlopen_js,
       _dlsym_js: __dlsym_js,
-      _embind_create_inheriting_constructor:
-        __embind_create_inheriting_constructor,
+      _embind_create_inheriting_constructor: __embind_create_inheriting_constructor,
       _embind_finalize_value_object: __embind_finalize_value_object,
       _embind_register_bigint: __embind_register_bigint,
       _embind_register_bool: __embind_register_bool,
       _embind_register_class: __embind_register_class,
-      _embind_register_class_class_function:
-        __embind_register_class_class_function,
+      _embind_register_class_class_function: __embind_register_class_class_function,
       _embind_register_class_constructor: __embind_register_class_constructor,
       _embind_register_class_function: __embind_register_class_function,
       _embind_register_class_property: __embind_register_class_property,
@@ -11595,16 +10624,11 @@ var createMediapipeSolutionsWasm = (() => {
       emscripten_stack_unwind_buffer: _emscripten_stack_unwind_buffer,
       emscripten_webgl_create_context: _emscripten_webgl_create_context,
       emscripten_webgl_destroy_context: _emscripten_webgl_destroy_context,
-      emscripten_webgl_get_context_attributes:
-        _emscripten_webgl_get_context_attributes,
-      emscripten_webgl_get_current_context:
-        _emscripten_webgl_get_current_context,
-      emscripten_webgl_init_context_attributes:
-        _emscripten_webgl_init_context_attributes,
-      emscripten_webgl_make_context_current:
-        _emscripten_webgl_make_context_current,
-      emscripten_webgpu_export_bind_group_layout:
-        _emscripten_webgpu_export_bind_group_layout,
+      emscripten_webgl_get_context_attributes: _emscripten_webgl_get_context_attributes,
+      emscripten_webgl_get_current_context: _emscripten_webgl_get_current_context,
+      emscripten_webgl_init_context_attributes: _emscripten_webgl_init_context_attributes,
+      emscripten_webgl_make_context_current: _emscripten_webgl_make_context_current,
+      emscripten_webgpu_export_bind_group_layout: _emscripten_webgpu_export_bind_group_layout,
       emscripten_webgpu_export_device: _emscripten_webgpu_export_device,
       emscripten_webgpu_export_sampler: _emscripten_webgpu_export_sampler,
       emscripten_webgpu_export_texture: _emscripten_webgpu_export_texture,
@@ -11700,20 +10724,16 @@ var createMediapipeSolutionsWasm = (() => {
       wgpuCommandBufferRelease: _wgpuCommandBufferRelease,
       wgpuCommandEncoderBeginComputePass: _wgpuCommandEncoderBeginComputePass,
       wgpuCommandEncoderBeginRenderPass: _wgpuCommandEncoderBeginRenderPass,
-      wgpuCommandEncoderCopyBufferToTexture:
-        _wgpuCommandEncoderCopyBufferToTexture,
-      wgpuCommandEncoderCopyTextureToTexture:
-        _wgpuCommandEncoderCopyTextureToTexture,
+      wgpuCommandEncoderCopyBufferToTexture: _wgpuCommandEncoderCopyBufferToTexture,
+      wgpuCommandEncoderCopyTextureToTexture: _wgpuCommandEncoderCopyTextureToTexture,
       wgpuCommandEncoderFinish: _wgpuCommandEncoderFinish,
       wgpuCommandEncoderRelease: _wgpuCommandEncoderRelease,
-      wgpuComputePassEncoderDispatchWorkgroups:
-        _wgpuComputePassEncoderDispatchWorkgroups,
+      wgpuComputePassEncoderDispatchWorkgroups: _wgpuComputePassEncoderDispatchWorkgroups,
       wgpuComputePassEncoderEnd: _wgpuComputePassEncoderEnd,
       wgpuComputePassEncoderRelease: _wgpuComputePassEncoderRelease,
       wgpuComputePassEncoderSetBindGroup: _wgpuComputePassEncoderSetBindGroup,
       wgpuComputePassEncoderSetPipeline: _wgpuComputePassEncoderSetPipeline,
-      wgpuComputePipelineGetBindGroupLayout:
-        _wgpuComputePipelineGetBindGroupLayout,
+      wgpuComputePipelineGetBindGroupLayout: _wgpuComputePipelineGetBindGroupLayout,
       wgpuComputePipelineRelease: _wgpuComputePipelineRelease,
       wgpuDeviceCreateBindGroup: _wgpuDeviceCreateBindGroup,
       wgpuDeviceCreateBuffer: _wgpuDeviceCreateBuffer,
@@ -11736,8 +10756,7 @@ var createMediapipeSolutionsWasm = (() => {
       wgpuRenderPassEncoderRelease: _wgpuRenderPassEncoderRelease,
       wgpuRenderPassEncoderSetBindGroup: _wgpuRenderPassEncoderSetBindGroup,
       wgpuRenderPassEncoderSetPipeline: _wgpuRenderPassEncoderSetPipeline,
-      wgpuRenderPipelineGetBindGroupLayout:
-        _wgpuRenderPipelineGetBindGroupLayout,
+      wgpuRenderPipelineGetBindGroupLayout: _wgpuRenderPipelineGetBindGroupLayout,
       wgpuRenderPipelineRelease: _wgpuRenderPipelineRelease,
       wgpuSamplerReference: _wgpuSamplerReference,
       wgpuSamplerRelease: _wgpuSamplerRelease,
@@ -11748,7 +10767,7 @@ var createMediapipeSolutionsWasm = (() => {
       wgpuTextureReference: _wgpuTextureReference,
       wgpuTextureRelease: _wgpuTextureRelease,
       wgpuTextureViewReference: _wgpuTextureViewReference,
-      wgpuTextureViewRelease: _wgpuTextureViewRelease
+      wgpuTextureViewRelease: _wgpuTextureViewRelease,
     };
     var asm = createWasm();
     var ___wasm_call_ctors = (Module['___wasm_call_ctors'] =
@@ -11756,94 +10775,58 @@ var createMediapipeSolutionsWasm = (() => {
     var _malloc = (Module['_malloc'] = createExportWrapper('malloc'));
     var _free = (Module['_free'] = createExportWrapper('free'));
     var _fflush = (Module['_fflush'] = createExportWrapper('fflush'));
-    var ___errno_location = (Module['___errno_location'] =
-      createExportWrapper('__errno_location'));
-    var ___getTypeName = (Module['___getTypeName'] =
-      createExportWrapper('__getTypeName'));
+    var ___errno_location = (Module['___errno_location'] = createExportWrapper('__errno_location'));
+    var ___getTypeName = (Module['___getTypeName'] = createExportWrapper('__getTypeName'));
     var __embind_initialize_bindings = (Module['__embind_initialize_bindings'] =
       createExportWrapper('_embind_initialize_bindings'));
-    var ___dl_seterr = (Module['___dl_seterr'] =
-      createExportWrapper('__dl_seterr'));
+    var ___dl_seterr = (Module['___dl_seterr'] = createExportWrapper('__dl_seterr'));
     var _emscripten_builtin_memalign = (Module['_emscripten_builtin_memalign'] =
       createExportWrapper('emscripten_builtin_memalign'));
-    var _emscripten_stack_init = (Module['_emscripten_stack_init'] =
-      function () {
-        return (_emscripten_stack_init = Module['_emscripten_stack_init'] =
-          Module['asm']['emscripten_stack_init']).apply(null, arguments);
-      });
-    var _emscripten_stack_get_free = (Module['_emscripten_stack_get_free'] =
-      function () {
-        return (_emscripten_stack_get_free = Module[
-          '_emscripten_stack_get_free'
-        ] =
-          Module['asm']['emscripten_stack_get_free']).apply(null, arguments);
-      });
-    var _emscripten_stack_get_base = (Module['_emscripten_stack_get_base'] =
-      function () {
-        return (_emscripten_stack_get_base = Module[
-          '_emscripten_stack_get_base'
-        ] =
-          Module['asm']['emscripten_stack_get_base']).apply(null, arguments);
-      });
-    var _emscripten_stack_get_end = (Module['_emscripten_stack_get_end'] =
-      function () {
-        return (_emscripten_stack_get_end = Module[
-          '_emscripten_stack_get_end'
-        ] =
-          Module['asm']['emscripten_stack_get_end']).apply(null, arguments);
-      });
+    var _emscripten_stack_init = (Module['_emscripten_stack_init'] = function () {
+      return (_emscripten_stack_init = Module['_emscripten_stack_init'] =
+        Module['asm']['emscripten_stack_init']).apply(null, arguments);
+    });
+    var _emscripten_stack_get_free = (Module['_emscripten_stack_get_free'] = function () {
+      return (_emscripten_stack_get_free = Module['_emscripten_stack_get_free'] =
+        Module['asm']['emscripten_stack_get_free']).apply(null, arguments);
+    });
+    var _emscripten_stack_get_base = (Module['_emscripten_stack_get_base'] = function () {
+      return (_emscripten_stack_get_base = Module['_emscripten_stack_get_base'] =
+        Module['asm']['emscripten_stack_get_base']).apply(null, arguments);
+    });
+    var _emscripten_stack_get_end = (Module['_emscripten_stack_get_end'] = function () {
+      return (_emscripten_stack_get_end = Module['_emscripten_stack_get_end'] =
+        Module['asm']['emscripten_stack_get_end']).apply(null, arguments);
+    });
     var stackSave = (Module['stackSave'] = createExportWrapper('stackSave'));
-    var stackRestore = (Module['stackRestore'] =
-      createExportWrapper('stackRestore'));
+    var stackRestore = (Module['stackRestore'] = createExportWrapper('stackRestore'));
     var stackAlloc = (Module['stackAlloc'] = createExportWrapper('stackAlloc'));
-    var _emscripten_stack_get_current = (Module[
-      '_emscripten_stack_get_current'
-    ] = function () {
-      return (_emscripten_stack_get_current = Module[
-        '_emscripten_stack_get_current'
-      ] =
+    var _emscripten_stack_get_current = (Module['_emscripten_stack_get_current'] = function () {
+      return (_emscripten_stack_get_current = Module['_emscripten_stack_get_current'] =
         Module['asm']['emscripten_stack_get_current']).apply(null, arguments);
     });
     var ___cxa_is_pointer_type = (Module['___cxa_is_pointer_type'] =
       createExportWrapper('__cxa_is_pointer_type'));
-    var dynCall_jii = (Module['dynCall_jii'] =
-      createExportWrapper('dynCall_jii'));
-    var dynCall_iiiijij = (Module['dynCall_iiiijij'] =
-      createExportWrapper('dynCall_iiiijij'));
-    var dynCall_viji = (Module['dynCall_viji'] =
-      createExportWrapper('dynCall_viji'));
+    var dynCall_jii = (Module['dynCall_jii'] = createExportWrapper('dynCall_jii'));
+    var dynCall_iiiijij = (Module['dynCall_iiiijij'] = createExportWrapper('dynCall_iiiijij'));
+    var dynCall_viji = (Module['dynCall_viji'] = createExportWrapper('dynCall_viji'));
     var dynCall_ji = (Module['dynCall_ji'] = createExportWrapper('dynCall_ji'));
-    var dynCall_jjj = (Module['dynCall_jjj'] =
-      createExportWrapper('dynCall_jjj'));
-    var dynCall_jiii = (Module['dynCall_jiii'] =
-      createExportWrapper('dynCall_jiii'));
-    var dynCall_iiiijj = (Module['dynCall_iiiijj'] =
-      createExportWrapper('dynCall_iiiijj'));
-    var dynCall_viijj = (Module['dynCall_viijj'] =
-      createExportWrapper('dynCall_viijj'));
-    var dynCall_viiijjj = (Module['dynCall_viiijjj'] =
-      createExportWrapper('dynCall_viiijjj'));
-    var dynCall_vij = (Module['dynCall_vij'] =
-      createExportWrapper('dynCall_vij'));
-    var dynCall_viijii = (Module['dynCall_viijii'] =
-      createExportWrapper('dynCall_viijii'));
-    var dynCall_vijjj = (Module['dynCall_vijjj'] =
-      createExportWrapper('dynCall_vijjj'));
+    var dynCall_jjj = (Module['dynCall_jjj'] = createExportWrapper('dynCall_jjj'));
+    var dynCall_jiii = (Module['dynCall_jiii'] = createExportWrapper('dynCall_jiii'));
+    var dynCall_iiiijj = (Module['dynCall_iiiijj'] = createExportWrapper('dynCall_iiiijj'));
+    var dynCall_viijj = (Module['dynCall_viijj'] = createExportWrapper('dynCall_viijj'));
+    var dynCall_viiijjj = (Module['dynCall_viiijjj'] = createExportWrapper('dynCall_viiijjj'));
+    var dynCall_vij = (Module['dynCall_vij'] = createExportWrapper('dynCall_vij'));
+    var dynCall_viijii = (Module['dynCall_viijii'] = createExportWrapper('dynCall_viijii'));
+    var dynCall_vijjj = (Module['dynCall_vijjj'] = createExportWrapper('dynCall_vijjj'));
     var dynCall_vj = (Module['dynCall_vj'] = createExportWrapper('dynCall_vj'));
-    var dynCall_viij = (Module['dynCall_viij'] =
-      createExportWrapper('dynCall_viij'));
-    var dynCall_viiiiij = (Module['dynCall_viiiiij'] =
-      createExportWrapper('dynCall_viiiiij'));
-    var dynCall_iijjiiii = (Module['dynCall_iijjiiii'] =
-      createExportWrapper('dynCall_iijjiiii'));
-    var dynCall_jiji = (Module['dynCall_jiji'] =
-      createExportWrapper('dynCall_jiji'));
-    var dynCall_iiiiij = (Module['dynCall_iiiiij'] =
-      createExportWrapper('dynCall_iiiiij'));
-    var dynCall_iiiiijj = (Module['dynCall_iiiiijj'] =
-      createExportWrapper('dynCall_iiiiijj'));
-    var dynCall_iiiiiijj = (Module['dynCall_iiiiiijj'] =
-      createExportWrapper('dynCall_iiiiiijj'));
+    var dynCall_viij = (Module['dynCall_viij'] = createExportWrapper('dynCall_viij'));
+    var dynCall_viiiiij = (Module['dynCall_viiiiij'] = createExportWrapper('dynCall_viiiiij'));
+    var dynCall_iijjiiii = (Module['dynCall_iijjiiii'] = createExportWrapper('dynCall_iijjiiii'));
+    var dynCall_jiji = (Module['dynCall_jiji'] = createExportWrapper('dynCall_jiji'));
+    var dynCall_iiiiij = (Module['dynCall_iiiiij'] = createExportWrapper('dynCall_iiiiij'));
+    var dynCall_iiiiijj = (Module['dynCall_iiiiijj'] = createExportWrapper('dynCall_iiiiijj'));
+    var dynCall_iiiiiijj = (Module['dynCall_iiiiiijj'] = createExportWrapper('dynCall_iiiiiijj'));
     var ___start_em_js = (Module['___start_em_js'] = 602739);
     var ___stop_em_js = (Module['___stop_em_js'] = 603259);
     Module['addRunDependency'] = addRunDependency;
@@ -12189,7 +11172,7 @@ var createMediapipeSolutionsWasm = (() => {
       'emval_allocateDestructors',
       'emval_methodCallers',
       'emval_addMethodCaller',
-      'emval_registeredMethods'
+      'emval_registeredMethods',
     ];
     unexportedRuntimeSymbols.forEach(unexportedRuntimeSymbol);
     var missingLibrarySymbols = [
@@ -12300,7 +11283,7 @@ var createMediapipeSolutionsWasm = (() => {
       'ALLOC_STACK',
       'allocate',
       'enumReadValueFromPointer',
-      'craftEmvalAllocator'
+      'craftEmvalAllocator',
     ];
     missingLibrarySymbols.forEach(missingLibrarySymbol);
     var calledRun;
@@ -12378,8 +11361,7 @@ var createMediapipeSolutionsWasm = (() => {
       }
     }
     if (Module['preInit']) {
-      if (typeof Module['preInit'] == 'function')
-        Module['preInit'] = [Module['preInit']];
+      if (typeof Module['preInit'] == 'function') Module['preInit'] = [Module['preInit']];
       while (Module['preInit'].length > 0) {
         Module['preInit'].pop()();
       }

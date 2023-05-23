@@ -25,7 +25,7 @@
       a,
       'object' == typeof window && window,
       'object' == typeof self && self,
-      'object' == typeof global && global
+      'object' == typeof global && global,
     ];
     for (var c = 0; c < a.length; ++c) {
       var b = a[c];
@@ -47,14 +47,11 @@
         a = a[a.length - 1];
         d = b[a];
         c = c(d);
-        c != d &&
-          null != c &&
-          l(b, a, { configurable: !0, writable: !0, value: c });
+        c != d && null != c && l(b, a, { configurable: !0, writable: !0, value: c });
       }
   }
   function q(a) {
-    var c =
-      'undefined' != typeof Symbol && Symbol.iterator && a[Symbol.iterator];
+    var c = 'undefined' != typeof Symbol && Symbol.iterator && a[Symbol.iterator];
     return c ? c.call(a) : { next: h(a) };
   }
   var r =
@@ -63,9 +60,7 @@
       : function (a, c) {
           for (var b = 1; b < arguments.length; b++) {
             var d = arguments[b];
-            if (d)
-              for (var e in d)
-                Object.prototype.hasOwnProperty.call(d, e) && (a[e] = d[e]);
+            if (d) for (var e in d) Object.prototype.hasOwnProperty.call(d, e) && (a[e] = d[e]);
           }
           return a;
         };
@@ -101,9 +96,7 @@
   function v(a, c) {
     a = a.split('.');
     var b = u;
-    a[0] in b ||
-      'undefined' == typeof b.execScript ||
-      b.execScript('var ' + a[0]);
+    a[0] in b || 'undefined' == typeof b.execScript || b.execScript('var ' + a[0]);
     for (var d; a.length && (d = a.shift()); )
       a.length || void 0 === c
         ? b[d] && b[d] !== Object.prototype[d]
@@ -133,20 +126,13 @@
       for (var f = c.next(); !f.done; f = c.next())
         if (
           ((f = f.value),
-          void 0 !== f &&
-            (void 0 === f.visibility || f.visibility > b.visibilityMin))
+          void 0 !== f && (void 0 === f.visibility || f.visibility > b.visibilityMin))
         ) {
           a.fillStyle = y(b.fillColor, { index: e, from: f });
           a.strokeStyle = y(b.color, { index: e, from: f });
           a.lineWidth = y(b.lineWidth, { index: e, from: f });
           var g = new Path2D();
-          g.arc(
-            f.x * d.width,
-            f.y * d.height,
-            y(b.radius, { index: e, from: f }),
-            0,
-            2 * Math.PI
-          );
+          g.arc(f.x * d.width, f.y * d.height, y(b.radius, { index: e, from: f }), 0, 2 * Math.PI);
           a.fill(g);
           a.stroke(g);
           ++e;

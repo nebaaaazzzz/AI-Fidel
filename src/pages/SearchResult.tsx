@@ -7,12 +7,7 @@ import girl from '@assets/images/girl.png';
 import { DotLoader } from 'react-spinners';
 import GameLeftSide from '@components/GameLeftSide';
 import {} from 'react-spinners';
-import {
-  NavigateFunction,
-  useLocation,
-  useNavigate,
-  useSearchParams
-} from 'react-router-dom';
+import { NavigateFunction, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import reactToDOMCursor from '@/HandUtils/reactToDom';
 import TimerProgress from '@components/TimerProgress';
 import moment from 'moment';
@@ -20,10 +15,7 @@ import Percentage from '@/components/Percentage';
 const handAnalyzer = new HandAnalyzer();
 let skipPrediction = false;
 let score = 0;
-function useGetGameConfig(
-  searchParams: URLSearchParams,
-  navigate: NavigateFunction
-) {
+function useGetGameConfig(searchParams: URLSearchParams, navigate: NavigateFunction) {
   const word = searchParams.get('search');
   searchParams.delete('search');
   let lang = 'am';
@@ -38,11 +30,9 @@ function SearchResult() {
   const { search } = useLocation();
   const searchParams = useSearchParams()[0];
   const { lang, levelWords } = useGetGameConfig(searchParams, navigate);
-  const [lookForLetter, setLookForLetter] =
-    useState<AlphabetDefinationI | null>(null);
+  const [lookForLetter, setLookForLetter] = useState<AlphabetDefinationI | null>(null);
   const [isGameStarted, setIsGameStarted] = useState(false);
-  const [isMediaPipeModelLoading, setIsMediaPipeModelLoading] =
-    useState<boolean>(true);
+  const [isMediaPipeModelLoading, setIsMediaPipeModelLoading] = useState<boolean>(true);
 
   const [startTime, setStartTime] = useState<Date | undefined>();
   const [currentTime, setCurrentTime] = useState<Date | undefined>();
@@ -98,12 +88,7 @@ function SearchResult() {
     }
 
     canvasCtx?.save();
-    canvasCtx?.clearRect(
-      0,
-      0,
-      canvasElement.current.width,
-      canvasElement.current.height
-    );
+    canvasCtx?.clearRect(0, 0, canvasElement.current.width, canvasElement.current.height);
     canvasCtx?.drawImage(
       results.image,
       0,
@@ -116,11 +101,7 @@ function SearchResult() {
       for (const landmarks of results.multiHandLandmarks) {
         for (var i = 0; i < 21; i++) {
           let currentLandmark = landmarks[i];
-          newLandMarks.push([
-            currentLandmark.x,
-            currentLandmark.y,
-            currentLandmark.z
-          ]);
+          newLandMarks.push([currentLandmark.x, currentLandmark.y, currentLandmark.z]);
           // For Left hand we are reverting all the positions
           // if (results.multiHandedness[0].label === "Right") {
           //   newLandMarks[i][0] = newLandMarks[i][0] * -1;
@@ -130,19 +111,16 @@ function SearchResult() {
         let fingerPoseResults = fingerPoseEstimator.estimate(newLandMarks);
         // NOTE: We are only accepting hands of a certain size - to have less false positives
         var handSize =
-          handAnalyzer.findDistanceBetweenTwoLandMarks(
-            newLandMarks[0],
-            newLandMarks[5]
-          ) * 10;
+          handAnalyzer.findDistanceBetweenTwoLandMarks(newLandMarks[0], newLandMarks[5]) * 10;
         if (handSize > 0.7) {
           setIsGameStarted(true);
           drawConnectors(canvasCtx, landmarks, HAND_CONNECTIONS, {
             color: '#ff00ff',
-            lineWidth: 2
+            lineWidth: 2,
           });
           drawLandmarks(canvasCtx, landmarks, {
             color: 'transparent',
-            lineWidth: 0
+            lineWidth: 0,
           });
           if (selectedLetter && !skipPrediction) {
             const response = reactToDOMCursor(
@@ -181,13 +159,13 @@ function SearchResult() {
     let hands = new window.Hands({
       locateFile: (file) => {
         return `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`;
-      }
+      },
     });
     hands.setOptions({
       maxNumHands: 1,
       modelComplexity: 1,
       minDetectionConfidence: 0.5,
-      minTrackingConfidence: 0.5
+      minTrackingConfidence: 0.5,
     });
     return hands;
   }, []);
@@ -225,7 +203,7 @@ function SearchResult() {
         const camera = new window.Camera(videoElement.current, {
           onFrame: async () => {
             await hands.send({ image: videoElement.current });
-          }
+          },
         });
         camera.start();
       }
@@ -260,19 +238,13 @@ function SearchResult() {
         />
         <div className="flex flex-[1]  items-center justify-center w-1/2 aspect-square rounded-lg p-2">
           {isMediaPipeModelLoading && (
-            <img
-              src={girl}
-              className="output_canvas rounded-lg aspect-square w-full object-fill"
-            />
+            <img src={girl} className="output_canvas rounded-lg aspect-square w-full object-fill" />
           )}
-          <video
-            ref={videoElement}
-            className="input_video hidden w-full aspect-square"
-          ></video>
+          <video ref={videoElement} className="input_video hidden w-full aspect-square"></video>
           <canvas
             className="output_canvas rounded-lg aspect-square w-full object-fill"
             style={{
-              display: isMediaPipeModelLoading ? 'none' : 'block'
+              display: isMediaPipeModelLoading ? 'none' : 'block',
             }}
             ref={canvasElement}
           ></canvas>
@@ -281,15 +253,10 @@ function SearchResult() {
       {isGameStarted && (
         <div className="flex items-center gap-10">
           <p>
-            {moment(
-              currentTime - startTime >= 0 ? currentTime - startTime : 0
-            ).format('mm : ss')}
+            {moment(currentTime - startTime >= 0 ? currentTime - startTime : 0).format('mm : ss')}
           </p>
           <TimerProgress percentage={percentage} />
-          <Percentage
-            lookForLetter={lookForLetter}
-            skipPrediction={skipPrediction}
-          />
+          <Percentage lookForLetter={lookForLetter} skipPrediction={skipPrediction} />
           {/* <p>{percentage}%</p> */}
         </div>
       )}

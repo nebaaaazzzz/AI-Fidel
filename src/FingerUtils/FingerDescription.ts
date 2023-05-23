@@ -17,7 +17,7 @@ const Finger = {
     1: 'Index',
     2: 'Middle',
     3: 'Ring',
-    4: 'Pinky'
+    4: 'Pinky',
   },
 
   // Describes mapping of joints based on the 21 points returned by handpose.
@@ -35,45 +35,41 @@ const Finger = {
       [0, 1],
       [1, 2],
       [2, 3],
-      [3, 4]
+      [3, 4],
     ],
     1: [
       [0, 5],
       [5, 6],
       [6, 7],
-      [7, 8]
+      [7, 8],
     ],
     2: [
       [0, 9],
       [9, 10],
       [10, 11],
-      [11, 12]
+      [11, 12],
     ],
     3: [
       [0, 13],
       [13, 14],
       [14, 15],
-      [15, 16]
+      [15, 16],
     ],
     4: [
       [0, 17],
       [17, 18],
       [18, 19],
-      [19, 20]
-    ]
+      [19, 20],
+    ],
   },
 
   getName: function (value: string) {
-    return typeof this.nameMapping[value] !== undefined
-      ? this.nameMapping[value]
-      : false;
+    return typeof this.nameMapping[value] !== undefined ? this.nameMapping[value] : false;
   },
 
   getPoints: function (value: string) {
-    return typeof this.pointsMapping[value] !== undefined
-      ? this.pointsMapping[value]
-      : false;
-  }
+    return typeof this.pointsMapping[value] !== undefined ? this.pointsMapping[value] : false;
+  },
 };
 
 const FingerCurl = {
@@ -84,14 +80,12 @@ const FingerCurl = {
   nameMapping: {
     0: 'No Curl',
     1: 'Half Curl',
-    2: 'Full Curl'
+    2: 'Full Curl',
   },
 
   getName: function (value: string) {
-    return typeof this.nameMapping[value] !== undefined
-      ? this.nameMapping[value]
-      : false;
-  }
+    return typeof this.nameMapping[value] !== undefined ? this.nameMapping[value] : false;
+  },
 };
 
 const FingerDirection = {
@@ -112,14 +106,12 @@ const FingerDirection = {
     4: 'Diagonal Up Right',
     5: 'Diagonal Up Left',
     6: 'Diagonal Down Right',
-    7: 'Diagonal Down Left'
+    7: 'Diagonal Down Left',
   },
 
   getName: function (value: string) {
-    return typeof this.nameMapping[value] !== undefined
-      ? this.nameMapping[value]
-      : false;
-  }
+    return typeof this.nameMapping[value] !== undefined ? this.nameMapping[value] : false;
+  },
 };
 
 export { Finger, FingerCurl, FingerDirection };

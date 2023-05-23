@@ -15,7 +15,6 @@ import { BsArrowLeftShort } from 'react-icons/bs';
 import { useNavigate } from 'react-router-dom';
 import localforage from 'localforage';
 
-
 function autoGenerateUsername() {
   const random = Math.floor(Math.random() * 10000) + 10000;
   return `Guest${random}`;
@@ -36,7 +35,7 @@ const avatarUrls = [
   'https://res.cloudinary.com/dkwc18qwr/image/upload/v1683970016/person13_lve8zw.png',
   'https://res.cloudinary.com/dkwc18qwr/image/upload/v1683970016/person14_nsrder.png',
   'https://res.cloudinary.com/dkwc18qwr/image/upload/v1683970016/person15_xlkjv2.png',
-  'https://res.cloudinary.com/dkwc18qwr/image/upload/v1683970015/person16_bqz8un.png'
+  'https://res.cloudinary.com/dkwc18qwr/image/upload/v1683970015/person16_bqz8un.png',
 ];
 function SelectProfile() {
   const user = useContext(AuthContext);
@@ -47,9 +46,7 @@ function SelectProfile() {
   useEffect(() => {
     (async () => {
       if (user?.user) {
-        setUsername(
-          user.displayName ? user.displayName : autoGenerateUsername()
-        );
+        setUsername(user.displayName ? user.displayName : autoGenerateUsername());
       } else {
         setUsername(autoGenerateUsername());
         localStorage.setItem('displayName', autoGenerateUsername());
@@ -67,53 +64,49 @@ function SelectProfile() {
       <div className=" overflow-auto flex flex-col items-end justify-around md:justify-center  flex-[1.5] md:flex-[1] md:px-20 px-4 ml-0 md:ml-4">
         <h2 className="md:text-xl text-lg self-center mt-20 p-2 md:mt-5 text-white">{t('spa')}</h2>
         <div className="overflow-auto transition-all scrollbar relative custom-glass h-2/3 md:w-11/12 md:max-w-max md:max-h-[400px] md:h-auto max-w-[300px] mr-auto ml-auto flex flex-wrap gap-10 p-5 justify-center mx-2 my-0 md:my-8">
-          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16].map(
-            (i, index) => (
-              <button
-                onClick={async () => {
-                  setSelectedAvatar(avatarUrls[i - 1]);
-                  setSelectedAvatarIndex(index);
-                  if (user?.user) {
-                    const docRef = doc(db, 'users', user.id);
-                    await setDoc(
-                      docRef,
-                      { photo: avatarUrls[i - 1] },
-                      { merge: true }
-                    ).then((res) => {
+          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16].map((i, index) => (
+            <button
+              onClick={async () => {
+                setSelectedAvatar(avatarUrls[i - 1]);
+                setSelectedAvatarIndex(index);
+                if (user?.user) {
+                  const docRef = doc(db, 'users', user.id);
+                  await setDoc(docRef, { photo: avatarUrls[i - 1] }, { merge: true }).then(
+                    (res) => {
                       user.photo = avatarUrls[i - 1];
-                    });
-                  } else {
-                    //TODO store in localstorage for guest user
-                    localStorage.setItem('photo', avatarUrls[i - 1]);
-                    localStorage.setItem('displayName', username);
-                  }
-                }}
-                key={index}
-                style={{
-                  background: '#2E2E2E',
-                  boxShadow:
-                    index == selectedAvatarIndex
-                      ? '0px 0px 26px 4px #FFAF52'
-                      : '0px 0px 12px 4px #00A28D'
-                }}
-                className="rounded-full transition-all px aspect-square md:w-20 w-12 flex items-center justify-center"
-              >
-                {' '}
-                <img
-                  className="w-2/3 aspect-1/1 transition-all object contain"
-                  src={avatarUrls[i - 1]}
-                  alt=""
-                />
-                {/* <img
+                    }
+                  );
+                } else {
+                  //TODO store in localstorage for guest user
+                  localStorage.setItem('photo', avatarUrls[i - 1]);
+                  localStorage.setItem('displayName', username);
+                }
+              }}
+              key={index}
+              style={{
+                background: '#2E2E2E',
+                boxShadow:
+                  index == selectedAvatarIndex
+                    ? '0px 0px 26px 4px #FFAF52'
+                    : '0px 0px 12px 4px #00A28D',
+              }}
+              className="rounded-full transition-all px aspect-square md:w-20 w-12 flex items-center justify-center"
+            >
+              {' '}
+              <img
+                className="w-2/3 aspect-1/1 transition-all object contain"
+                src={avatarUrls[i - 1]}
+                alt=""
+              />
+              {/* <img
                 className="w-2/3 aspect-1/1 object contain"
                 src={`/images/avatar/avatar${i}.png`}
                 alt=""
               /> */}
-              </button>
-            )
-          )}
+            </button>
+          ))}
         </div>
-          {/* <div className='absolute right-0 top-0 scrollbar'></div> */}
+        {/* <div className='absolute right-0 top-0 scrollbar'></div> */}
         <div className="self-center relative -top-5 py-4 hidden md:block">
           <LogoWithTextSM />
         </div>
@@ -124,19 +117,22 @@ function SelectProfile() {
             <div
               style={{
                 background: '#008867',
-                boxShadow: '0px 2px 16px rgba(0, 0, 0, 0.08)'
+                boxShadow: '0px 2px 16px rgba(0, 0, 0, 0.08)',
               }}
               className="rounded-md flex justify-center p-[2px] md:p-2 ml-[1.5rem] md:ml-0 w-[48px] h-[48px] overflow-hidden"
             >
-              <img className="object-contain h-full bg-transparent rounded-full md:hidden block"
+              <img
+                className="object-contain h-full bg-transparent rounded-full md:hidden block"
                 src={selectedAvatar ? selectedAvatar : avatar}
               />
-              <span className='hidden md:block'><RxAvatar size={32} /></span>
+              <span className="hidden md:block">
+                <RxAvatar size={32} />
+              </span>
             </div>
             <div
               style={{
                 background: '#2E2E2E',
-                boxShadow: '0px 2px 26px rgba(0, 0, 0, 0.08)'
+                boxShadow: '0px 2px 26px rgba(0, 0, 0, 0.08)',
               }}
               className="p-2 rounded-md flex-1 mr-[0.35rem]"
             >
@@ -148,11 +144,7 @@ function SelectProfile() {
                     if (userNameUpdated) {
                       if (user?.user) {
                         const docRef = doc(db, 'users', user.id);
-                        await setDoc(
-                          docRef,
-                          { displayName: username },
-                          { merge: true }
-                        );
+                        await setDoc(docRef, { displayName: username }, { merge: true });
                       } else {
                         //TODO store in localstorage for guest user
                         localStorage.setItem('displayName', username);
@@ -172,7 +164,7 @@ function SelectProfile() {
           <div
             style={{
               background: '#2E2E2E',
-              boxShadow: '0px 0px 26px 4px #FFAF52'
+              boxShadow: '0px 0px 26px 4px #FFAF52',
             }}
             className="hidden w-52 h-52 rounded-full md:flex items-center justify-center "
           >
@@ -190,17 +182,17 @@ function SelectProfile() {
             )}
           </div>
           <div className="flex flex-col text-center w-[300px] md:w-full gap-3 mt-[-15px] md:mt-0">
-          <h2 className="md:hidden block text-lg self-center mt-20 w-[200px] text-white">{t('syl')}</h2>
+            <h2 className="md:hidden block text-lg self-center mt-20 w-[200px] text-white">
+              {t('syl')}
+            </h2>
             {[
               { text: 'Amharic', icon: EthiopiaIcon, langCode: 'am' },
-              { text: 'English', icon: UKIcon, langCode: 'en' }
+              { text: 'English', icon: UKIcon, langCode: 'en' },
             ].map(({ text, icon, langCode }, i) => {
               return (
                 <Link
                   key={i}
-                  to={`/select-hand${
-                    search.length ? search + '&' : '?'
-                  }lang=${langCode}`}
+                  to={`/select-hand${search.length ? search + '&' : '?'}lang=${langCode}`}
                   className="flex capitalize items-center btn bg-[#2E2E2E] hover:bg-[#3f3f3f] rounded-md justify-between"
                 >
                   <img src={icon} className="w-1/12 " />

@@ -3,7 +3,7 @@ import React, { MouseEventHandler } from 'react';
 function LeftBottomContainer({
   selectedWord,
   currentWordLength,
-  handleSkip
+  handleSkip,
 }: {
   selectedWord: string;
   currentWordLength: number;

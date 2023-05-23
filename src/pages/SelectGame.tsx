@@ -27,13 +27,13 @@ function SelectGame() {
             ? [
                 {
                   text: t('resume'),
-                  link: `/select-level?level=${configuration?.level}&lang=${configuration?.lang}&hand=${configuration?.hand}&mode=game`
-                }
+                  link: `/select-level?level=${configuration?.level}&lang=${configuration?.lang}&hand=${configuration?.hand}&mode=game`,
+                },
               ]
             : []),
           ...(user?.user
             ? [{ text: t('ng'), link: '/select-profile?mode=game' }]
-            : [{ text: t('ng'), link: '/login?mode=game' }])
+            : [{ text: t('ng'), link: '/login?mode=game' }]),
         ]}
       />
     </div>

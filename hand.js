@@ -26,7 +26,7 @@
       a,
       'object' == typeof window && window,
       'object' == typeof self && self,
-      'object' == typeof global && global
+      'object' == typeof global && global,
     ];
     for (var b = 0; b < a.length; ++b) {
       var c = a[b];
@@ -48,9 +48,7 @@
         a = a[a.length - 1];
         d = c[a];
         b = b(d);
-        b != d &&
-          null != b &&
-          ba(c, a, { configurable: !0, writable: !0, value: b });
+        b != d && null != b && ba(c, a, { configurable: !0, writable: !0, value: b });
       }
   }
   z('Symbol', function (a) {
@@ -90,7 +88,7 @@
           writable: !0,
           value: function () {
             return da(aa(this));
-          }
+          },
         });
     }
     return a;
@@ -103,8 +101,7 @@
     return a;
   }
   function A(a) {
-    var b =
-      'undefined' != typeof Symbol && Symbol.iterator && a[Symbol.iterator];
+    var b = 'undefined' != typeof Symbol && Symbol.iterator && a[Symbol.iterator];
     return b ? b.call(a) : { next: aa(a) };
   }
   function ea(a) {
@@ -121,9 +118,7 @@
       : function (a, b) {
           for (var c = 1; c < arguments.length; c++) {
             var d = arguments[c];
-            if (d)
-              for (var e in d)
-                Object.prototype.hasOwnProperty.call(d, e) && (a[e] = d[e]);
+            if (d) for (var e in d) Object.prototype.hasOwnProperty.call(d, e) && (a[e] = d[e]);
           }
           return a;
         };
@@ -225,8 +220,7 @@
   function ta(a, b, c, d) {
     try {
       var e = b.call(a.h.j, c);
-      if (!(e instanceof Object))
-        throw new TypeError('Iterator result ' + e + ' is not an object');
+      if (!(e instanceof Object)) throw new TypeError('Iterator result ' + e + ' is not an object');
       if (!e.done) return (a.h.m = !1), e;
       var g = e.value;
     } catch (f) {
@@ -358,8 +352,7 @@
       return { resolve: f(this.I), reject: f(this.m) };
     };
     b.prototype.I = function (f) {
-      if (f === this)
-        this.m(new TypeError('A Promise cannot resolve to itself'));
+      if (f === this) this.m(new TypeError('A Promise cannot resolve to itself'));
       else if (f instanceof b) this.L(f);
       else {
         a: switch (typeof f) {
@@ -394,12 +387,7 @@
     b.prototype.v = function (f, h) {
       if (0 != this.i)
         throw Error(
-          'Cannot settle(' +
-            f +
-            ', ' +
-            h +
-            '): Promise already settled in state' +
-            this.i
+          'Cannot settle(' + f + ', ' + h + '): Promise already settled in state' + this.i
         );
       this.i = f;
       this.j = h;
@@ -499,8 +487,7 @@
     };
     b.race = function (f) {
       return new b(function (h, k) {
-        for (var l = A(f), m = l.next(); !m.done; m = l.next())
-          d(m.value).T(h, k);
+        for (var l = A(f), m = l.next(); !m.done; m = l.next()) d(m.value).T(h, k);
       });
     };
     b.all = function (f) {
@@ -518,11 +505,7 @@
             }
             var p = [],
               n = 0;
-            do
-              p.push(void 0),
-                n++,
-                d(k.value).T(r(p.length - 1), m),
-                (k = h.next());
+            do p.push(void 0), n++, d(k.value).T(r(p.length - 1), m), (k = h.next());
             while (!k.done);
           });
     };
@@ -540,7 +523,7 @@
           }
           d = !0;
           return { done: !0, value: void 0 };
-        }
+        },
       };
     e[Symbol.iterator] = function () {
       return e;
@@ -622,9 +605,7 @@
   function za(a, b) {
     a = a.split('.');
     var c = ya;
-    a[0] in c ||
-      'undefined' == typeof c.execScript ||
-      c.execScript('var ' + a[0]);
+    a[0] in c || 'undefined' == typeof c.execScript || c.execScript('var ' + a[0]);
     for (var d; a.length && (d = a.shift()); )
       a.length || void 0 === b
         ? c[d] && c[d] !== Object.prototype[d]
@@ -646,10 +627,7 @@
       }
     : function (a, b) {
         for (
-          var c = a.length,
-            d = Array(c),
-            e = 'string' === typeof a ? a.split('') : a,
-            g = 0;
+          var c = a.length, d = Array(c), e = 'string' === typeof a ? a.split('') : a, g = 0;
           g < c;
           g++
         )
@@ -663,8 +641,7 @@
       c = (3 * b) / 4;
     c % 3
       ? (c = Math.floor(c))
-      : -1 != '=.'.indexOf(a[b - 1]) &&
-        (c = -1 != '=.'.indexOf(a[b - 2]) ? c - 2 : c - 1);
+      : -1 != '=.'.indexOf(a[b - 1]) && (c = -1 != '=.'.indexOf(a[b - 2]) ? c - 2 : c - 1);
     var d = new Uint8Array(c),
       e = 0;
     Ga(a, function (g) {
@@ -678,8 +655,7 @@
         var l = a.charAt(d++),
           m = Ea[l];
         if (null != m) return m;
-        if (!/^[\s\xa0]*$/.test(l))
-          throw Error('Unknown base64 encoding at char: ' + l);
+        if (!/^[\s\xa0]*$/.test(l)) throw Error('Unknown base64 encoding at char: ' + l);
       }
       return k;
     }
@@ -691,18 +667,14 @@
         h = c(64);
       if (64 === h && -1 === e) break;
       b((e << 2) | (g >> 4));
-      64 != f &&
-        (b(((g << 4) & 240) | (f >> 2)), 64 != h && b(((f << 6) & 192) | h));
+      64 != f && (b(((g << 4) & 240) | (f >> 2)), 64 != h && b(((f << 6) & 192) | h));
     }
   }
   function Ha() {
     if (!Ea) {
       Ea = {};
       for (
-        var a =
-            'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'.split(
-              ''
-            ),
+        var a = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'.split(''),
           b = ['+/=', '+/', '-_=', '-_.', '-_'],
           c = 0;
         5 > c;
@@ -750,8 +722,7 @@
       return c.join('');
     }
     for (b = ''; 10240 < a.length; )
-      (b += String.fromCharCode.apply(null, a.subarray(0, 10240))),
-        (a = a.subarray(10240));
+      (b += String.fromCharCode.apply(null, a.subarray(0, 10240))), (a = a.subarray(10240));
     b += String.fromCharCode.apply(null, a);
     return btoa(b);
   }
@@ -772,8 +743,7 @@
     if (!Ja) return Fa(a);
     La.test(a) && (a = a.replace(La, Ma));
     a = atob(a);
-    for (var b = new Uint8Array(a.length), c = 0; c < a.length; c++)
-      b[c] = a.charCodeAt(c);
+    for (var b = new Uint8Array(a.length), c = 0; c < a.length; c++) b[c] = a.charCodeAt(c);
     return b;
   }
   var Oa;
@@ -789,8 +759,7 @@
     a = Math.abs(a);
     var c = a >>> 0;
     a = Math.floor((a - c) / 4294967296);
-    b &&
-      ((c = A(Ta(c, a))), (b = c.next().value), (a = c.next().value), (c = b));
+    b && ((c = A(Ta(c, a))), (b = c.next().value), (a = c.next().value), (c = b));
     G = c >>> 0;
     H = a >>> 0;
   }
@@ -815,21 +784,12 @@
     else {
       var b = +('-' === a[0]);
       H = G = 0;
-      for (
-        var c = a.length, d = b, e = ((c - b) % 6) + b;
-        e <= c;
-        d = e, e += 6
-      )
+      for (var c = a.length, d = b, e = ((c - b) % 6) + b; e <= c; d = e, e += 6)
         (d = Number(a.slice(d, e))),
           (H *= 1e6),
           (G = 1e6 * G + d),
           4294967296 <= G && ((H += (G / 4294967296) | 0), (G %= 4294967296));
-      b &&
-        ((b = A(Ta(G, H))),
-        (a = b.next().value),
-        (b = b.next().value),
-        (G = a),
-        (H = b));
+      b && ((b = A(Ta(G, H))), (a = b.next().value), (b = b.next().value), (G = a), (H = b));
     }
     return new Va(G, H);
   }
@@ -883,13 +843,12 @@
     if ('string' === typeof a) return { buffer: Na(a), C: !1 };
     if (Array.isArray(a)) return { buffer: new Uint8Array(a), C: !1 };
     if (a.constructor === Uint8Array) return { buffer: a, C: !1 };
-    if (a.constructor === ArrayBuffer)
-      return { buffer: new Uint8Array(a), C: !1 };
+    if (a.constructor === ArrayBuffer) return { buffer: new Uint8Array(a), C: !1 };
     if (a.constructor === ib) return { buffer: kb(a) || Pa(), C: !0 };
     if (a instanceof Uint8Array)
       return {
         buffer: new Uint8Array(a.buffer, a.byteOffset, a.byteLength),
-        C: !1
+        C: !1,
       };
     throw Error(
       'Type not convertible to a Uint8Array, expected a Uint8Array, an ArrayBuffer, a base64 encoded string, a ByteString or an Array of numbers'
@@ -904,13 +863,7 @@
   function nb(a, b, c) {
     c = void 0 === c ? {} : c;
     a.S = void 0 === c.S ? !1 : c.S;
-    b &&
-      ((b = lb(b)),
-      (a.i = b.buffer),
-      (a.m = b.C),
-      (a.l = 0),
-      (a.j = a.i.length),
-      (a.h = a.l));
+    b && ((b = lb(b)), (a.i = b.buffer), (a.m = b.C), (a.l = 0), (a.j = a.i.length), (a.h = a.l));
   }
   mb.prototype.reset = function () {
     this.h = this.l;
@@ -970,9 +923,7 @@
   };
   function sb(a, b, c) {
     for (; 0 < c || 127 < b; )
-      a.h.push((b & 127) | 128),
-        (b = ((b >>> 7) | (c << 25)) >>> 0),
-        (c >>>= 7);
+      a.h.push((b & 127) | 128), (b = ((b >>> 7) | (c << 25)) >>> 0), (c >>>= 7);
     a.h.push(b);
   }
   function M(a, b) {
@@ -1007,8 +958,7 @@
     b = c >>> 3;
     c &= 7;
     if (!(0 <= c && 5 >= c)) throw Ya(c, a.j);
-    if (1 > b)
-      throw Error('Invalid field number: ' + b + ' (at position ' + a.j + ')');
+    if (1 > b) throw Error('Invalid field number: ' + b + ' (at position ' + a.j + ')');
     a.l = b;
     a.i = c;
     return !0;
@@ -1069,15 +1019,12 @@
       for (var c = 0; c < b.length; c++) N(a, kb(b[c]) || Pa());
     }
   }
-  var O =
-    'function' === typeof Symbol && 'symbol' === typeof Symbol()
-      ? Symbol()
-      : void 0;
+  var O = 'function' === typeof Symbol && 'symbol' === typeof Symbol() ? Symbol() : void 0;
   function P(a, b) {
     if (O) return (a[O] |= b);
     if (void 0 !== a.A) return (a.A |= b);
     Object.defineProperties(a, {
-      A: { value: b, configurable: !0, writable: !0, enumerable: !1 }
+      A: { value: b, configurable: !0, writable: !0, enumerable: !1 },
     });
     return b;
   }
@@ -1095,7 +1042,7 @@
       : void 0 !== a.A
       ? (a.A = b)
       : Object.defineProperties(a, {
-          A: { value: b, configurable: !0, writable: !0, enumerable: !1 }
+          A: { value: b, configurable: !0, writable: !0, enumerable: !1 },
         });
   }
   function Ab(a) {
@@ -1110,12 +1057,7 @@
   }
   var Db = {};
   function Eb(a) {
-    return (
-      null !== a &&
-      'object' === typeof a &&
-      !Array.isArray(a) &&
-      a.constructor === Object
-    );
+    return null !== a && 'object' === typeof a && !Array.isArray(a) && a.constructor === Object;
   }
   var Fb,
     Gb = [];
@@ -1126,9 +1068,7 @@
   }
   function Ib(a) {
     var b = a.length;
-    (b = b ? a[b - 1] : void 0) && Eb(b)
-      ? (b.g = 1)
-      : ((b = {}), a.push(((b.g = 1), b)));
+    (b = b ? a[b - 1] : void 0) && Eb(b) ? (b.g = 1) : ((b = {}), a.push(((b.g = 1), b)));
   }
   function Jb(a) {
     var b = a.i + a.G;
@@ -1143,9 +1083,7 @@
   }
   function Kb(a, b, c, d) {
     a.j && (a.j = void 0);
-    b >= a.i || d
-      ? (Jb(a)[b] = c)
-      : ((a.o[b + a.G] = c), (a = a.B) && b in a && delete a[b]);
+    b >= a.i || d ? (Jb(a)[b] = c) : ((a.o[b + a.G] = c), (a = a.B) && b in a && delete a[b]);
   }
   function Lb(a, b, c, d) {
     var e = S(a, b);
@@ -1167,10 +1105,7 @@
     var d =
       null == c
         ? c
-        : 'number' === typeof c ||
-          'NaN' === c ||
-          'Infinity' === c ||
-          '-Infinity' === c
+        : 'number' === typeof c || 'NaN' === c || 'Infinity' === c || '-Infinity' === c
         ? Number(c)
         : void 0;
     null != d && d !== c && Kb(a, b, d);
@@ -1209,10 +1144,7 @@
       b = k | 33;
       b = m ? b & -9 : b | 8;
       k != b &&
-        ((m = h),
-        Object.isFrozen(m) && (m = Array.prototype.slice.call(m)),
-        R(m, b),
-        (h = m));
+        ((m = h), Object.isFrozen(m) && (m = Array.prototype.slice.call(m)), R(m, b), (h = m));
       l !== h && Kb(a, c, h);
       (e || (d && f)) && P(g, 2);
       d && Object.freeze(g);
@@ -1220,9 +1152,7 @@
     }
     e ||
       ((e = Object.isFrozen(g)),
-      d && !e
-        ? Object.freeze(g)
-        : !d && e && ((g = Array.prototype.slice.call(g)), (a.h[c] = g)));
+      d && !e ? Object.freeze(g) : !d && e && ((g = Array.prototype.slice.call(g)), (a.h[c] = g)));
     return g;
   }
   function Ob(a, b, c) {
@@ -1245,10 +1175,7 @@
   function V(a, b, c) {
     if (null != c && 'number' !== typeof c)
       throw Error(
-        'Value of float/double field must be a number|null|undefined, found ' +
-          typeof c +
-          ': ' +
-          c
+        'Value of float/double field must be a number|null|undefined, found ' + typeof c + ': ' + c
       );
     U(a, b, c);
   }
@@ -1257,9 +1184,7 @@
     var g = Nb(a, c, b, !1, !1);
     c = null != d ? d : new c();
     a = Lb(a, b, 2, !1);
-    void 0 != e
-      ? (g.splice(e, 0, c), a.splice(e, 0, c.o))
-      : (g.push(c), a.push(c.o));
+    void 0 != e ? (g.splice(e, 0, c), a.splice(e, 0, c.o)) : (g.push(c), a.push(c.o));
     c.C() && zb(a, 8);
     return c;
   }
@@ -1278,8 +1203,7 @@
       case 'object':
         if (a)
           if (Array.isArray(a)) {
-            if (0 !== (Q(a) & 128))
-              return (a = Array.prototype.slice.call(a)), Ib(a), a;
+            if (0 !== (Q(a) & 128)) return (a = Array.prototype.slice.call(a)), Ib(a), a;
           } else {
             if (Ia && null != a && a instanceof Uint8Array) return Ka(a);
             if (a instanceof ib) {
@@ -1319,8 +1243,7 @@
   function Yb(a, b, c) {
     c = void 0 === c ? Cb : c;
     if (null != a) {
-      if (Ia && a instanceof Uint8Array)
-        return a.length ? new ib(new Uint8Array(a), Qa) : jb();
+      if (Ia && a instanceof Uint8Array) return a.length ? new ib(new Uint8Array(a), Qa) : jb();
       if (Array.isArray(a)) {
         var d = Q(a);
         if (d & 2) return a;
@@ -1348,9 +1271,7 @@
         }
         g = (g ? 8 : 0) | 1;
         a = Q(f);
-        (a & g) !== g &&
-          (Object.isFrozen(f) && (f = Array.prototype.slice.call(f)),
-          R(f, a | g));
+        (a & g) !== g && (Object.isFrozen(f) && (f = Array.prototype.slice.call(f)), R(f, a | g));
         b.h || (b.h = {});
         b.h[c] = d;
       } else b.h && (b.h[c] = void 0);
@@ -1384,8 +1305,7 @@
     Sb = void 0;
     a.R && (d.R = a.R.slice());
     g = !!(Q(c) & 16);
-    for (var f = e ? c.length - 1 : c.length, h = 0; h < f; h++)
-      $b(a, d, h - a.G, c[h], !1, g, b);
+    for (var f = e ? c.length - 1 : c.length, h = 0; h < f; h++) $b(a, d, h - a.G, c[h], !1, g, b);
     if (e) for (var k in e) $b(a, d, +k, e[k], !0, g, b);
     return d;
   }
@@ -1445,9 +1365,7 @@
         : (this.i = Number.MAX_VALUE);
     }
     if (!e && this.B && 'g' in this.B)
-      throw Error(
-        'Unexpected "g" flag in sparse object of message that is not a group type.'
-      );
+      throw Error('Unexpected "g" flag in sparse object of message that is not a group type.');
     if (c) {
       b = k && !f && !0;
       e = this.i;
@@ -1548,8 +1466,7 @@
   function lc(a, b) {
     var c = a[b];
     'function' == typeof c && 0 === c.length && ((c = c()), (a[b] = c));
-    return Array.isArray(c) &&
-      (mc in c || nc in c || (0 < c.length && 'function' == typeof c[0]))
+    return Array.isArray(c) && (mc in c || nc in c || (0 < c.length && 'function' == typeof c[0]))
       ? c
       : void 0;
   }
@@ -1699,12 +1616,7 @@
               f = f.i;
               var h = g;
               e = g + e;
-              e =
-                h === e
-                  ? Pa()
-                  : Ra
-                  ? f.slice(h, e)
-                  : new Uint8Array(f.subarray(h, e));
+              e = h === e ? Pa() : Ra ? f.slice(h, e) : new Uint8Array(f.subarray(h, e));
             }
             e = 0 == e.length ? jb() : new ib(e, Qa);
           }
@@ -1715,8 +1627,7 @@
     return a;
   }
   function rc(a, b, c) {
-    for (var d = c.length, e = 1 == d % 2, g = e ? 1 : 0; g < d; g += 2)
-      (0, c[g + 1])(b, a, c[g]);
+    for (var d = c.length, e = 1 == d % 2, g = e ? 1 : 0; g < d; g += 2) (0, c[g + 1])(b, a, c[g]);
     bc(a, b, e ? c[0] : void 0);
   }
   function Ac(a, b) {
@@ -1766,9 +1677,7 @@
               3.4028234663852886e38 < d
                 ? ((H = 0), (G = (c | 2139095040) >>> 0))
                 : 1.1754943508222875e-38 > d
-                ? ((d = Math.round(d / Math.pow(2, -149))),
-                  (H = 0),
-                  (G = (c | d) >>> 0))
+                ? ((d = Math.round(d / Math.pow(2, -149))), (H = 0), (G = (c | d) >>> 0))
                 : ((b = Math.floor(Math.log(d) / Math.LN2)),
                   (d *= Math.pow(2, -b)),
                   (d = Math.round(8388608 * d)),
@@ -1797,8 +1706,7 @@
           g += 7;
         } while (32 > g && k & 128);
         32 < g && (a |= (k & 127) >> 4);
-        for (g = 3; 32 > g && k & 128; g += 7)
-          (k = f[h++]), (a |= (k & 127) << g);
+        for (g = 3; 32 > g && k & 128; g += 7) (k = f[h++]), (a |= (k & 127) << g);
         L(d, h);
         if (128 > k) {
           d = e >>> 0;
@@ -1878,9 +1786,7 @@
                 ? h >= d
                   ? K()
                   : ((m = a[h++]),
-                    194 > l || 128 !== (m & 192)
-                      ? (h--, K())
-                      : e.push(((l & 31) << 6) | (m & 63)))
+                    194 > l || 128 !== (m & 192) ? (h--, K()) : e.push(((l & 31) << 6) | (m & 63)))
                 : 240 > l
                 ? h >= d - 1
                   ? K()
@@ -1900,11 +1806,7 @@
                     128 !== ((g = a[h++]) & 192) ||
                     128 !== ((f = a[h++]) & 192)
                       ? (h--, K())
-                      : ((l =
-                          ((l & 7) << 18) |
-                          ((m & 63) << 12) |
-                          ((g & 63) << 6) |
-                          (f & 63)),
+                      : ((l = ((l & 7) << 18) | ((m & 63) << 12) | ((g & 63) << 6) | (f & 63)),
                         (l -= 65536),
                         e.push(((l >> 10) & 1023) + 55296, (l & 1023) + 56320)))
                 : K(),
@@ -1922,18 +1824,12 @@
           if (fb) {
             if (
               d &&
-              /(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])/.test(
-                b
-              )
+              /(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])/.test(b)
             )
               throw Error('Found an unpaired surrogate');
             b = (eb || (eb = new TextEncoder())).encode(b);
           } else {
-            for (
-              var e = 0, g = new Uint8Array(3 * b.length), f = 0;
-              f < b.length;
-              f++
-            ) {
+            for (var e = 0, g = new Uint8Array(3 * b.length), f = 0; f < b.length; f++) {
               var h = b.charCodeAt(f);
               if (128 > h) g[e++] = h;
               else {
@@ -1977,8 +1873,7 @@
         d = ob(a.h) >>> 0;
         var g = a.h.h + d,
           f = g - c;
-        0 >= f &&
-          ((a.h.j = g), e(b, a, void 0, void 0, void 0), (f = g - a.h.h));
+        0 >= f && ((a.h.j = g), e(b, a, void 0, void 0, void 0), (f = g - a.h.h));
         if (f)
           throw Error(
             'Message parsing ended unexpectedly. Expected to read ' +
@@ -2004,8 +1899,7 @@
             e(b[d], a);
             f = a;
             var h = g.pop();
-            for (h = f.i + f.h.length() - h; 127 < h; )
-              g.push((h & 127) | 128), (h >>>= 7), f.i++;
+            for (h = f.i + f.h.length() - h; 127 < h; ) g.push((h & 127) | 128), (h >>>= 7), f.i++;
             g.push(h);
             f.i++;
           }
@@ -2046,11 +1940,7 @@
       var b = new xb();
       rc(this, b, qc(a));
       N(b, b.h.end());
-      for (
-        var c = new Uint8Array(b.i), d = b.j, e = d.length, g = 0, f = 0;
-        f < e;
-        f++
-      ) {
+      for (var c = new Uint8Array(b.i), d = b.j, e = d.length, g = 0, f = 0; f < e; f++) {
         var h = d[f];
         c.set(h, g);
         g += h.length;
@@ -2099,9 +1989,7 @@
     a.shaderSource(c, b);
     a.compileShader(c);
     if (!a.getShaderParameter(c, a.COMPILE_STATUS))
-      throw Error(
-        'Could not compile WebGL shader.\n\n' + a.getShaderInfoLog(c)
-      );
+      throw Error('Could not compile WebGL shader.\n\n' + a.getShaderInfoLog(c));
     return c;
   }
   function Uc(a) {
@@ -2111,7 +1999,7 @@
         index: null == c ? 0 : c,
         score: W(b, 2),
         label: null != S(b, 3) ? Rb(S(b, 3), '') : void 0,
-        displayName: null != S(b, 4) ? Rb(S(b, 4), '') : void 0
+        displayName: null != S(b, 4) ? Rb(S(b, 4), '') : void 0,
       };
     });
   }
@@ -2120,7 +2008,7 @@
       x: W(a, 1),
       y: W(a, 2),
       z: W(a, 3),
-      visibility: null != Mb(a, 4) ? W(a, 4) : void 0
+      visibility: null != Mb(a, 4) ? W(a, 4) : void 0,
     };
   }
   function Wc(a) {
@@ -2138,15 +2026,12 @@
     if ('function' === typeof a.h.canvas.transferToImageBitmap)
       return Promise.resolve(a.h.canvas.transferToImageBitmap());
     if (c) return Promise.resolve(a.h.canvas);
-    if ('function' === typeof createImageBitmap)
-      return createImageBitmap(a.h.canvas);
+    if ('function' === typeof createImageBitmap) return createImageBitmap(a.h.canvas);
     void 0 === a.j && (a.j = document.createElement('canvas'));
     return new Promise(function (d) {
       a.j.height = a.h.canvas.height;
       a.j.width = a.h.canvas.width;
-      a.j
-        .getContext('2d', {})
-        .drawImage(a.h.canvas, 0, 0, a.h.canvas.width, a.h.canvas.height);
+      a.j.getContext('2d', {}).drawImage(a.h.canvas, 0, 0, a.h.canvas.width, a.h.canvas.height);
       d(a.j);
     });
   }
@@ -2168,36 +2053,26 @@
       c.attachShader(g, e);
       c.linkProgram(g);
       if (!c.getProgramParameter(g, c.LINK_STATUS))
-        throw Error(
-          'Could not compile WebGL program.\n\n' + c.getProgramInfoLog(g)
-        );
+        throw Error('Could not compile WebGL program.\n\n' + c.getProgramInfoLog(g));
       d = a.s = g;
       c.useProgram(d);
       e = c.getUniformLocation(d, 'sampler0');
       a.l = {
         O: c.getAttribLocation(d, 'aVertex'),
         N: c.getAttribLocation(d, 'aTex'),
-        xa: e
+        xa: e,
       };
       a.v = c.createBuffer();
       c.bindBuffer(c.ARRAY_BUFFER, a.v);
       c.enableVertexAttribArray(a.l.O);
       c.vertexAttribPointer(a.l.O, 2, c.FLOAT, !1, 0, 0);
-      c.bufferData(
-        c.ARRAY_BUFFER,
-        new Float32Array([-1, -1, -1, 1, 1, 1, 1, -1]),
-        c.STATIC_DRAW
-      );
+      c.bufferData(c.ARRAY_BUFFER, new Float32Array([-1, -1, -1, 1, 1, 1, 1, -1]), c.STATIC_DRAW);
       c.bindBuffer(c.ARRAY_BUFFER, null);
       a.u = c.createBuffer();
       c.bindBuffer(c.ARRAY_BUFFER, a.u);
       c.enableVertexAttribArray(a.l.N);
       c.vertexAttribPointer(a.l.N, 2, c.FLOAT, !1, 0, 0);
-      c.bufferData(
-        c.ARRAY_BUFFER,
-        new Float32Array([0, 1, 0, 0, 1, 0, 1, 1]),
-        c.STATIC_DRAW
-      );
+      c.bufferData(c.ARRAY_BUFFER, new Float32Array([0, 1, 0, 0, 1, 0, 1, 1]), c.STATIC_DRAW);
       c.bindBuffer(c.ARRAY_BUFFER, null);
       c.uniform1i(e, 0);
     }
@@ -2214,10 +2089,7 @@
     c.enableVertexAttribArray(d.N);
     c.bindBuffer(c.ARRAY_BUFFER, a.u);
     c.vertexAttribPointer(d.N, 2, c.FLOAT, !1, 0, 0);
-    c.bindFramebuffer(
-      c.DRAW_FRAMEBUFFER ? c.DRAW_FRAMEBUFFER : c.FRAMEBUFFER,
-      null
-    );
+    c.bindFramebuffer(c.DRAW_FRAMEBUFFER ? c.DRAW_FRAMEBUFFER : c.FRAMEBUFFER, null);
     c.clearColor(0, 0, 0, 0);
     c.clear(c.COLOR_BUFFER_BIT);
     c.colorMask(!0, !0, !0, !0);
@@ -2231,8 +2103,8 @@
     this.h = a;
   }
   var ad = new Uint8Array([
-    0, 97, 115, 109, 1, 0, 0, 0, 1, 4, 1, 96, 0, 0, 3, 2, 1, 0, 10, 9, 1, 7, 0,
-    65, 0, 253, 15, 26, 11
+    0, 97, 115, 109, 1, 0, 0, 0, 1, 4, 1, 96, 0, 0, 3, 2, 1, 0, 10, 9, 1, 7, 0, 65, 0, 253, 15, 26,
+    11,
   ]);
   function bd(a, b) {
     return b + a;
@@ -2294,17 +2166,12 @@
       var b =
         window.location.pathname
           .toString()
-          .substring(0, window.location.pathname.toString().lastIndexOf('/')) +
-        '/';
+          .substring(0, window.location.pathname.toString().lastIndexOf('/')) + '/';
     else if ('undefined' !== typeof location)
       b =
-        location.pathname
-          .toString()
-          .substring(0, location.pathname.toString().lastIndexOf('/')) + '/';
-    else
-      throw Error(
-        'solutions can only be loaded on a web page or in a web worker'
-      );
+        location.pathname.toString().substring(0, location.pathname.toString().lastIndexOf('/')) +
+        '/';
+    else throw Error('solutions can only be loaded on a web page or in a web worker');
     this.ha = b;
     if (a.options) {
       b = A(Object.keys(a.options));
@@ -2339,7 +2206,7 @@
             return (
               cd('createMediapipeSolutionsWasm', { locateFile: a.locateFile }),
               cd('createMediapipeSolutionsPackedAssets', {
-                locateFile: a.locateFile
+                locateFile: a.locateFile,
               }),
               (f = b.filter(function (n) {
                 return void 0 !== n.data;
@@ -2391,9 +2258,7 @@
               D(p, Promise.all([l, k, m]), 7)
             );
           if ('function' !== typeof importScripts)
-            throw Error(
-              'solutions can only be loaded on a web page or in a web worker'
-            );
+            throw Error('solutions can only be loaded on a web page or in a web worker');
           d = b
             .filter(function (n) {
               return void 0 === n.simd || (n.simd && c) || (!n.simd && !c);
@@ -2411,7 +2276,7 @@
           g = a.i.GL.createContext(a.m, {
             antialias: !1,
             alpha: !1,
-            ua: 'undefined' !== typeof WebGL2RenderingContext ? 2 : 1
+            ua: 'undefined' !== typeof WebGL2RenderingContext ? 2 : 1,
           });
           a.i.GL.makeContextCurrent(g);
           p.h = 4;
@@ -2421,10 +2286,7 @@
           r = a.m.getContext('webgl2', {});
           if (!r && ((r = a.m.getContext('webgl', {})), !r))
             return (
-              alert(
-                'Failed to create WebGL canvas context when passing video frame.'
-              ),
-              p.return()
+              alert('Failed to create WebGL canvas context when passing video frame.'), p.return()
             );
           a.K = r;
           a.i.canvas = a.m;
@@ -2438,8 +2300,7 @@
     var b, c, d, e, g, f, h, k;
     return E(function (l) {
       if (1 == l.h) {
-        if (a.h.graph && a.h.graph.url && a.fa === a.h.graph.url)
-          return l.return();
+        if (a.h.graph && a.h.graph.url && a.fa === a.h.graph.url) return l.return();
         a.u = !0;
         if (!a.h.graph || !a.h.graph.url) {
           l.h = 2;
@@ -2450,12 +2311,10 @@
       }
       2 != l.h && ((b = l.i), a.j.loadGraph(b));
       c = A(Object.keys(a.D));
-      for (d = c.next(); !d.done; d = c.next())
-        (e = d.value), a.j.overrideFile(e, a.D[e]);
+      for (d = c.next(); !d.done; d = c.next()) (e = d.value), a.j.overrideFile(e, a.D[e]);
       a.D = {};
       if (a.h.listeners)
-        for (g = A(a.h.listeners), f = g.next(); !f.done; f = g.next())
-          (h = f.value), jd(a, h);
+        for (g = A(a.h.listeners), f = g.next(); !f.done; f = g.next()) (h = f.value), jd(a, h);
       k = a.l;
       a.l = {};
       a.setOptions(k);
@@ -2505,7 +2364,7 @@
                 {
                   valueNumber: 1 === k.type ? a[h] : 0,
                   valueBoolean: 0 === k.type ? a[h] : !1,
-                  valueString: 2 === k.type ? a[h] : ''
+                  valueString: 2 === k.type ? a[h] : '',
                 }
               )),
               e.push(h)));
@@ -2545,8 +2404,7 @@
           if (a.H) {
             e = new a.i.GraphOptionChangeRequestList();
             g = A(a.H);
-            for (f = g.next(); !f.done; f = g.next())
-              (h = f.value), e.push_back(h);
+            for (f = g.next(); !f.done; f = g.next()) (h = f.value), e.push_back(h);
             a.j.changeOptions(e);
             e.delete();
             a.H = void 0;
@@ -2559,11 +2417,7 @@
   x.initialize = function () {
     var a = this;
     return E(function (b) {
-      return 1 == b.h
-        ? D(b, gd(a), 2)
-        : 3 != b.h
-        ? D(b, id(a), 3)
-        : D(b, kd(a), 0);
+      return 1 == b.h ? D(b, gd(a), 2) : 3 != b.h ? D(b, id(a), 3) : D(b, kd(a), 0);
     });
   };
   function hd(a, b) {
@@ -2616,15 +2470,11 @@
                     var q = c.s[k.stream];
                     q || ((q = new Xc(c.i, c.K)), (c.s[k.stream] = q));
                     0 === q.m && (q.m = q.i.createTexture());
-                    if (
-                      'undefined' !== typeof HTMLVideoElement &&
-                      n instanceof HTMLVideoElement
-                    ) {
+                    if ('undefined' !== typeof HTMLVideoElement && n instanceof HTMLVideoElement) {
                       var t = n.videoWidth;
                       var w = n.videoHeight;
                     } else
-                      'undefined' !== typeof HTMLImageElement &&
-                      n instanceof HTMLImageElement
+                      'undefined' !== typeof HTMLImageElement && n instanceof HTMLImageElement
                         ? ((t = n.naturalWidth), (w = n.naturalHeight))
                         : ((t = n.width), (w = n.height));
                     w = { glName: q.m, width: t, height: w };
@@ -2633,14 +2483,7 @@
                     t.canvas.height = w.height;
                     t.activeTexture(t.TEXTURE0);
                     q.i.bindTexture2d(q.m);
-                    t.texImage2D(
-                      t.TEXTURE_2D,
-                      0,
-                      t.RGBA,
-                      t.RGBA,
-                      t.UNSIGNED_BYTE,
-                      n
-                    );
+                    t.texImage2D(t.TEXTURE_2D, 0, t.RGBA, t.RGBA, t.UNSIGNED_BYTE, n);
                     q.i.bindTexture2d(0);
                     q = w;
                     break a;
@@ -2671,7 +2514,7 @@
                           J = B.addNormalizedLandmark;
                           I = w;
                           u = Object.assign({}, u, {
-                            visibility: u.visibility ? u.visibility : 0
+                            visibility: u.visibility ? u.visibility : 0,
                           });
                           var C = new Lc();
                           V(C, 1, u.x);
@@ -2705,9 +2548,7 @@
               m = k.stream;
               switch (k.type) {
                 case 'video':
-                  e.pushTexture2d(
-                    Object.assign({}, l, { stream: m, timestamp: d })
-                  );
+                  e.pushTexture2d(Object.assign({}, l, { stream: m, timestamp: d }));
                   break;
                 case 'detections':
                   r = l;
@@ -2738,10 +2579,7 @@
           for (f = g.next(); !f.done; f = g.next())
             (h = f.value),
               (k = c[h]),
-              'string' !== typeof k &&
-                'texture' === k.type &&
-                void 0 !== b[k.stream] &&
-                ++e;
+              'string' !== typeof k && 'texture' === k.type && void 0 !== b[k.stream] && ++e;
           1 < e && (a.M = !1);
           l = A(Object.keys(c));
           f = l.next();
@@ -2752,17 +2590,13 @@
           }
           m = f.value;
           r = c[m];
-          if ('string' === typeof r)
-            return (t = d), (w = m), D(v, md(a, m, b[r]), 14);
+          if ('string' === typeof r) return (t = d), (w = m), D(v, md(a, m, b[r]), 14);
           p = b[r.stream];
           if ('detection_list' === r.type) {
             if (p) {
               var B = p.getRectList();
               for (
-                var J = p.getLandmarksList(),
-                  I = p.getClassificationsList(),
-                  u = [],
-                  C = 0;
+                var J = p.getLandmarksList(), I = p.getClassificationsList(), u = [], C = 0;
                 C < B.size();
                 ++C
               ) {
@@ -2781,10 +2615,10 @@
                     height: rd,
                     width: sd,
                     rotation: td,
-                    pa: Rb(S(T, 6), Aa)
+                    pa: Rb(S(T, 6), Aa),
                   },
                   ea: Ob(Pc(J.get(C)), Lc, 1).map(Vc),
-                  ba: Uc(Kc(I.get(C)))
+                  ba: Uc(Kc(I.get(C))),
                 };
                 u.push(T);
               }
@@ -2818,8 +2652,7 @@
             v.h = 7;
             break;
           }
-          if ('texture' !== r.type)
-            throw Error("Unknown output config type: '" + r.type + "'");
+          if ('texture' !== r.type) throw Error("Unknown output config type: '" + r.type + "'");
           n = a.v[m];
           n || ((n = new Xc(a.i, a.K)), (a.v[m] = n));
           return D(v, Yc(n, p, a.M), 13);
@@ -2843,14 +2676,10 @@
   function md(a, b, c) {
     var d;
     return E(function (e) {
-      return 'number' === typeof c ||
-        c instanceof Uint8Array ||
-        c instanceof a.i.Uint8BlobList
+      return 'number' === typeof c || c instanceof Uint8Array || c instanceof a.i.Uint8BlobList
         ? e.return(c)
         : c instanceof a.i.Texture2dDataOut
-        ? ((d = a.v[b]),
-          d || ((d = new Xc(a.i, a.K)), (a.v[b] = d)),
-          e.return(Yc(d, c, a.M)))
+        ? ((d = a.v[b]), d || ((d = new Xc(a.i, a.K)), (a.v[b] = d)), e.return(Yc(d, c, a.M)))
         : e.return(void 0);
     });
   }
@@ -2874,14 +2703,11 @@
             r = m(r);
             for (var p = 0; p < b.wants.length; ++p) {
               var n = k[d[p]];
-              'object' === typeof n &&
-                n.hasOwnProperty &&
-                n.hasOwnProperty('delete') &&
-                n.delete();
+              'object' === typeof n && n.hasOwnProperty && n.hasOwnProperty('delete') && n.delete();
             }
             r && (a.I = r);
           }));
-      }
+      },
     });
     a.j.attachMultiListener(e, g);
     e.delete();
@@ -2896,7 +2722,7 @@
     ta: 2,
     0: 'BOOL',
     1: 'NUMBER',
-    2: 'STRING'
+    2: 'STRING',
   });
   function nd(a) {
     void 0 === a && (a = 0);
@@ -2912,7 +2738,7 @@
           { url: 'hands_solution_packed_assets_loader.js' },
           { simd: !1, url: 'hands_solution_wasm_bin.js' },
           { simd: !0, url: 'hands_solution_simd_wasm_bin.js' },
-          { data: !0, url: nd(c.modelComplexity) }
+          { data: !0, url: nd(c.modelComplexity) },
         ];
       },
       graph: { url: 'hands.binarypb' },
@@ -2923,19 +2749,19 @@
             'multi_hand_landmarks',
             'multi_hand_world_landmarks',
             'image_transformed',
-            'multi_handedness'
+            'multi_handedness',
           ],
           outs: {
             image: 'image_transformed',
             multiHandLandmarks: {
               type: 'proto_list',
               stream: 'multi_hand_landmarks',
-              transform: Wc
+              transform: Wc,
             },
             multiHandWorldLandmarks: {
               type: 'proto_list',
               stream: 'multi_hand_world_landmarks',
-              transform: Wc
+              transform: Wc,
             },
             multiHandedness: {
               type: 'proto_list',
@@ -2944,17 +2770,17 @@
                 return c.map(function (d) {
                   return Uc(Kc(d))[0];
                 });
-              }
-            }
-          }
-        }
+              },
+            },
+          },
+        },
       ],
       options: {
         useCpuInference: {
           type: 0,
           graphOptionXref: {
             calculatorType: 'InferenceCalculator',
-            fieldName: 'use_cpu_inference'
+            fieldName: 'use_cpu_inference',
           },
           default:
             'object' !== typeof window || void 0 === window.navigator
@@ -2962,31 +2788,30 @@
               : 'iPad Simulator;iPhone Simulator;iPod Simulator;iPad;iPhone;iPod'
                   .split(';')
                   .includes(navigator.platform) ||
-                (navigator.userAgent.includes('Mac') &&
-                  'ontouchend' in document)
+                (navigator.userAgent.includes('Mac') && 'ontouchend' in document),
         },
         selfieMode: {
           type: 0,
           graphOptionXref: {
             calculatorType: 'GlScalerCalculator',
             calculatorIndex: 1,
-            fieldName: 'flip_horizontal'
-          }
+            fieldName: 'flip_horizontal',
+          },
         },
         maxNumHands: {
           type: 1,
           graphOptionXref: {
             calculatorType: 'ConstantSidePacketCalculator',
             calculatorName: 'ConstantSidePacketCalculator',
-            fieldName: 'int_value'
-          }
+            fieldName: 'int_value',
+          },
         },
         modelComplexity: {
           type: 1,
           graphOptionXref: {
             calculatorType: 'ConstantSidePacketCalculator',
             calculatorName: 'ConstantSidePacketCalculatorModelComplexity',
-            fieldName: 'int_value'
+            fieldName: 'int_value',
           },
           onChange: function (c) {
             var d, e, g;
@@ -3001,7 +2826,7 @@
               b.h.overrideFile(e, g);
               return f.return(!0);
             });
-          }
+          },
         },
         minDetectionConfidence: {
           type: 1,
@@ -3009,19 +2834,18 @@
             calculatorType: 'TensorsToDetectionsCalculator',
             calculatorName:
               'handlandmarktrackinggpu__palmdetectiongpu__TensorsToDetectionsCalculator',
-            fieldName: 'min_score_thresh'
-          }
+            fieldName: 'min_score_thresh',
+          },
         },
         minTrackingConfidence: {
           type: 1,
           graphOptionXref: {
             calculatorType: 'ThresholdingCalculator',
-            calculatorName:
-              'handlandmarktrackinggpu__handlandmarkgpu__ThresholdingCalculator',
-            fieldName: 'threshold'
-          }
-        }
-      }
+            calculatorName: 'handlandmarktrackinggpu__handlandmarkgpu__ThresholdingCalculator',
+            fieldName: 'threshold',
+          },
+        },
+      },
     });
   }
   x = od.prototype;
@@ -3072,7 +2896,7 @@
     [0, 17],
     [17, 18],
     [18, 19],
-    [19, 20]
+    [19, 20],
   ]);
   za('VERSION', '0.4.1675469240');
 }).call(this);

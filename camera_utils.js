@@ -25,7 +25,7 @@
       a,
       'object' == typeof window && window,
       'object' == typeof self && self,
-      'object' == typeof global && global
+      'object' == typeof global && global,
     ];
     for (var b = 0; b < a.length; ++b) {
       var e = a[b];
@@ -47,9 +47,7 @@
         a = a[a.length - 1];
         f = e[a];
         b = b(f);
-        b != f &&
-          null != b &&
-          q(e, a, { configurable: !0, writable: !0, value: b });
+        b != f && null != b && q(e, a, { configurable: !0, writable: !0, value: b });
       }
   }
   v('Symbol', function (a) {
@@ -89,7 +87,7 @@
           writable: !0,
           value: function () {
             return w(n(this));
-          }
+          },
         });
     }
     return a;
@@ -102,8 +100,7 @@
     return a;
   }
   function x(a) {
-    var b =
-      'undefined' != typeof Symbol && Symbol.iterator && a[Symbol.iterator];
+    var b = 'undefined' != typeof Symbol && Symbol.iterator && a[Symbol.iterator];
     return b ? b.call(a) : { next: n(a) };
   }
   function y() {
@@ -153,8 +150,7 @@
   function D(a, b, e, f) {
     try {
       var h = b.call(a.g.g, e);
-      if (!(h instanceof Object))
-        throw new TypeError('Iterator result ' + h + ' is not an object');
+      if (!(h instanceof Object)) throw new TypeError('Iterator result ' + h + ' is not an object');
       if (!h.done) return (a.g.i = !1), h;
       var l = h.value;
     } catch (c) {
@@ -283,8 +279,7 @@
       return { resolve: c(this.A), reject: c(this.l) };
     };
     b.prototype.A = function (c) {
-      if (c === this)
-        this.l(new TypeError('A Promise cannot resolve to itself'));
+      if (c === this) this.l(new TypeError('A Promise cannot resolve to itself'));
       else if (c instanceof b) this.C(c);
       else {
         a: switch (typeof c) {
@@ -319,12 +314,7 @@
     b.prototype.u = function (c, d) {
       if (0 != this.h)
         throw Error(
-          'Cannot settle(' +
-            c +
-            ', ' +
-            d +
-            '): Promise already settled in state' +
-            this.h
+          'Cannot settle(' + c + ', ' + d + '): Promise already settled in state' + this.h
         );
       this.h = c;
       this.i = d;
@@ -424,8 +414,7 @@
     };
     b.race = function (c) {
       return new b(function (d, g) {
-        for (var k = x(c), m = k.next(); !m.done; m = k.next())
-          f(m.value).s(d, g);
+        for (var k = x(c), m = k.next(); !m.done; m = k.next()) f(m.value).s(d, g);
       });
     };
     b.all = function (c) {
@@ -443,11 +432,7 @@
             }
             var p = [],
               r = 0;
-            do
-              p.push(void 0),
-                r++,
-                f(g.value).s(G(p.length - 1), m),
-                (g = d.next());
+            do p.push(void 0), r++, f(g.value).s(G(p.length - 1), m), (g = d.next());
             while (!g.done);
           });
     };
@@ -459,9 +444,7 @@
       : function (a, b) {
           for (var e = 1; e < arguments.length; e++) {
             var f = arguments[e];
-            if (f)
-              for (var h in f)
-                Object.prototype.hasOwnProperty.call(f, h) && (a[h] = f[h]);
+            if (f) for (var h in f) Object.prototype.hasOwnProperty.call(f, h) && (a[h] = f[h]);
           }
           return a;
         };
@@ -510,8 +493,8 @@
                 video: {
                   facingMode: b.facingMode,
                   width: b.width,
-                  height: b.height
-                }
+                  height: b.height,
+                },
               })
               .then(function (f) {
                 O(a, f);
@@ -553,9 +536,7 @@
   }
   var R = ['Camera'],
     S = L;
-  R[0] in S ||
-    'undefined' == typeof S.execScript ||
-    S.execScript('var ' + R[0]);
+  R[0] in S || 'undefined' == typeof S.execScript || S.execScript('var ' + R[0]);
   for (var T; R.length && (T = R.shift()); )
     R.length || void 0 === N
       ? S[T] && S[T] !== Object.prototype[T]

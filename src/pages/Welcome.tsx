@@ -34,19 +34,21 @@ const Welcome = () => {
         <BsArrowLeftShort size={28} />
         <span className=" mt-0.5">{t('bc')}</span>
       </div>
-      <div className=''>
+      <div className="">
         <img
           src={circleDashed}
           className="absolute md:top-[-10rem] md:right-[-7rem] csl:top-[-9rem] csl:right-[-6rem] cml:top-[-13rem] cml:right-[-7rem] object-contain aspect-square md:w-6/12 w-[400px] right-[-55vw] top-[6rem]"
         />
       </div>
-      <div className='absolute md:hidden border-8 z-10 border-white w-[220px] h-[220px] rounded-full top-[-120px] right-[-50px]'></div>
+      <div className="absolute md:hidden border-8 z-10 border-white w-[220px] h-[220px] rounded-full top-[-120px] right-[-50px]"></div>
       <div className="absolute md:w-32 w-[340px] aspect-square md:top-32 top-[-100px] md:left-0 csl:left-2 cml:left-5 cml:top-[100px] left-[-90px] rounded-full  bg-primary"></div>
       <div className="grow text-5xl transition-all cxm:text-5xl cvs:text-[55px] cvs:top-[20%] cxl:top-[17%] cxl:text-6xl md:top-[25%] md:text-5xl absolute md:hidden text-white text-center flex flex-col top-[25%]">
         <h1 className="m-1 font-semibold text-white">{t('welcome')} </h1>
-        <h1 className="m-1 font-semibold text-white block md:hidden">{t('tyr')} {' '} {isLevelOne ? t("f") : " "}</h1>
+        <h1 className="m-1 font-semibold text-white block md:hidden">
+          {t('tyr')} {isLevelOne ? t('f') : ' '}
+        </h1>
         {/* <h1 className="m-1 font-semibold text-white hidden md:block">{t('tyr')}</h1> */}
-          {/* {isLevelOne ? t('tyrf') : t('tyr')} */}
+        {/* {isLevelOne ? t('tyrf') : t('tyr')} */}
         <h1 className="m-1 font-semibold text-white">{t('lesson')}</h1>
       </div>
       <div
@@ -56,7 +58,7 @@ const Welcome = () => {
             'linear-gradient(150.11deg, rgba(217, 217, 217, 0.87) -8.45%, rgba(255, 255, 255, 0.2175) -8.45%, rgba(255, 255, 255, 0.0783) 113.16%)',
           boxShadow: '0px 4px 23px 10px rgba(0, 0, 0, 0.13)',
           backdropFilter: 'blur(29px)',
-          borderRadius: '49px'
+          borderRadius: '49px',
         }}
       >
         <div className=""></div>
@@ -65,7 +67,7 @@ const Welcome = () => {
             className="rounded-full w-32 h-32 p-5 -mt-14 flex items-center justify-center"
             style={{
               background: '#2E2E2E',
-              boxShadow: '0px 0px 46px 4px #FFAF52'
+              boxShadow: '0px 0px 46px 4px #FFAF52',
             }}
           >
             <img
@@ -75,9 +77,7 @@ const Welcome = () => {
           </div>
           <div className="grow text-2xl text-white text-center flex flex-col justify-evenly my-10 md:my-0">
             <h1 className="m-1 font-semibold text-white">{t('welcome')} </h1>
-            <h1 className="m-1 font-semibold text-white">
-              {isLevelOne ? t('tyrf') : t('tyr')}
-            </h1>
+            <h1 className="m-1 font-semibold text-white">{isLevelOne ? t('tyrf') : t('tyr')}</h1>
             <h1 className="m-1 font-semibold text-white">{t('lesson')}</h1>
           </div>
         </div>
@@ -97,7 +97,10 @@ const Welcome = () => {
             ))}
         </div>
       </div>
-      <Link to={`/game${search}`} className="flex absolute md:relative cxl:bottom-[25%] bottom-[20%] md:bottom-[0%] gap-3 items-center ">
+      <Link
+        to={`/game${search}`}
+        className="flex absolute md:relative cxl:bottom-[25%] bottom-[20%] md:bottom-[0%] gap-3 items-center "
+      >
         <h1 className="text-white ml-10 text-sm md:text-xl">{t('gs')}</h1>
         <img src={LeftArrowIcon} className="w-2/12" />
       </Link>

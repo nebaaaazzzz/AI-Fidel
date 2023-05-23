@@ -944,5 +944,5 @@ export default [
 
   'zone',
   'zonk',
-  'zoom'
+  'zoom',
 ];

@@ -5,14 +5,7 @@ import editIcon from '@assets/icons/edit-icon.png';
 import trophyIcon from '@assets/icons/trophy-icon.png';
 import avatarIcon from '@assets/icons/avatar-icon.png';
 import famecontrollerIcon from '@assets/icons/gamecontroller-icon.png';
-const images = [
-  appIcon,
-  checklistIcon,
-  editIcon,
-  famecontrollerIcon,
-  trophyIcon,
-  avatarIcon
-];
+const images = [appIcon, checklistIcon, editIcon, famecontrollerIcon, trophyIcon, avatarIcon];
 function SideBar() {
   return (
     <div
@@ -21,7 +14,7 @@ function SideBar() {
         backdropFilter: ' blur(19.5px)',
         border: '4px solid rgba(255, 255, 255, 0.09)',
         background:
-          'linear-gradient(104.13deg, rgba(78, 78, 78, 0.4) 17.81%, rgba(52, 52, 52, 0.45) 90.16%);'
+          'linear-gradient(104.13deg, rgba(78, 78, 78, 0.4) 17.81%, rgba(52, 52, 52, 0.45) 90.16%);',
       }}
       className="absolute w-14 h-3/4 top-28 left-9  bg flex px-3 flex-col justify-between py-4 "
     >

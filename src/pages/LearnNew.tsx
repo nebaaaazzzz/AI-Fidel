@@ -21,18 +21,14 @@ function LearnNew() {
             boxShadow: '0px 4px 23px 10px rgba(0, 0, 0, 0.13)',
             backdropFilter: 'blur(29px)',
             borderRadius: '20px',
-            border: '3px solid rgba(255, 255, 255, 0.09)'
+            border: '3px solid rgba(255, 255, 255, 0.09)',
           }}
           className="px-14"
         >
           <img src={standingGirl} className="object-contain w-44" />
         </div>
-        <button className="btn self-stretch rounded-md bg-[#2E2E2E]">
-          Hello
-        </button>
-        <button className="btn self-stretch rounded-md btn-accent">
-          continue
-        </button>
+        <button className="btn self-stretch rounded-md bg-[#2E2E2E]">Hello</button>
+        <button className="btn self-stretch rounded-md btn-accent">continue</button>
       </div>
       <div></div>
     </div>

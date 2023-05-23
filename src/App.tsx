@@ -30,12 +30,14 @@ import { loadingAtom } from './store/store';
 import loadingGif from '@assets/images/loading.gif';
 import HandContextProvider from './context/HandContext';
 
-
 function App() {
   const [loading] = useAtom(loadingAtom);
-  if (loading) return <div className=' fixed top-0 right-0 left-0 bottom-0'>
-    <img src={loadingGif} alt="" />
-  </div>
+  if (loading)
+    return (
+      <div className=" fixed top-0 right-0 left-0 bottom-0">
+        <img src={loadingGif} alt="" />
+      </div>
+    );
   return (
     <div data-theme="forest">
       <ToastContainer />
@@ -67,14 +69,14 @@ function App() {
                   <Route path="edit-profile" element={<EditProfile />} />
                   <Route path="profile" element={<ProfilePage />} />
                   <Route path="result" element={<Result />} />
-                  <Route path='change-language' element={<ChangeLanguage />} />
+                  <Route path="change-language" element={<ChangeLanguage />} />
                 </Route>
                 <Route path="*" element={<p>path not found</p>} />
               </Route>
             </Routes>
           </BrowserRouter>
         </AuthContextProvider>
-        </HandContextProvider>
+      </HandContextProvider>
     </div>
   );
 }

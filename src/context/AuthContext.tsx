@@ -16,9 +16,7 @@ function AuthContextProvider({ children }) {
     })();
   }, [user]);
   return (
-    <AuthContext.Provider value={{ ...dbUser, loading, user }}>
-      {children}
-    </AuthContext.Provider>
+    <AuthContext.Provider value={{ ...dbUser, loading, user }}>{children}</AuthContext.Provider>
   );
 }
 

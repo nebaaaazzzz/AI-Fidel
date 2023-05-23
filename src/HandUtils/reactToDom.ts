@@ -39,23 +39,22 @@ function predict(lookForLetter, fingerPoseResults, result: Coords3D) {
     return {
       countCorrectFingers: 0,
       lookForLetter,
-      message: 'Letter not founnd'
+      message: 'Letter not founnd',
     };
   }
   let fingerData = {
     handSize: 0,
-    handRotation: 0
+    handRotation: 0,
   };
 
-  fingerData.handSize =
-    handAnalyzer.findDistanceBetweenTwoLandMarks(result[0], result[5]) * 10;
+  fingerData.handSize = handAnalyzer.findDistanceBetweenTwoLandMarks(result[0], result[5]) * 10;
 
   fingerData.handRotation = handAnalyzer.getHandRotationFromIndex(result);
   if (fingerData.handSize < 0.7) {
     return {
       lookForLetter,
       countCorrectFingers: 0,
-      message: 'put your hand close to the camera'
+      message: 'put your hand close to the camera',
     };
   }
 
@@ -81,7 +80,7 @@ function predict(lookForLetter, fingerPoseResults, result: Coords3D) {
       return {
         lookForLetter,
         countCorrectFingers: 0,
-        message: 'your hand rotation must be up'
+        message: 'your hand rotation must be up',
       };
     }
   }
@@ -93,7 +92,7 @@ function predict(lookForLetter, fingerPoseResults, result: Coords3D) {
       return {
         lookForLetter,
         countCorrectFingers: 0,
-        message: 'your hand rotation must be down'
+        message: 'your hand rotation must be down',
       };
     }
   }
@@ -105,7 +104,7 @@ function predict(lookForLetter, fingerPoseResults, result: Coords3D) {
       return {
         lookForLetter,
         countCorrectFingers: 0,
-        message: 'your hand rotation must be side'
+        message: 'your hand rotation must be side',
       };
     }
   }
@@ -125,10 +124,7 @@ function predict(lookForLetter, fingerPoseResults, result: Coords3D) {
           if (lookFor.special === 'betweenRingAndPointerBase') {
             // We are in this take not looking at tips _ but instead at the base of the finger
 
-            if (
-              result[4][0] > result[9][0] - 0.002 &&
-              result[4][0] < result[17][0] + 0.002
-            ) {
+            if (result[4][0] > result[9][0] - 0.002 && result[4][0] < result[17][0] + 0.002) {
               lookFor.percentageCorrect = 1;
             }
           } else if (lookFor.special === 'betweenRingAndLittleBase') {
@@ -136,47 +132,34 @@ function predict(lookForLetter, fingerPoseResults, result: Coords3D) {
             // We are in this take not looking at tips _ but instead at the base of the finger
             if (result[4][0] > result[7][0] && result[4][0] < result[17][0]) {
               // Lets also make sure that the thumbs 'tip' is higher on the Y axis than the Tips of the fingers
-              if (
-                result[4][1] < result[16][1] &&
-                result[4][1] < result[20][1]
-              ) {
+              if (result[4][1] < result[16][1] && result[4][1] < result[20][1]) {
                 lookFor.percentageCorrect = 1;
               }
             }
           } else if (lookFor.special === 'betweenMiddleAndRing') {
             // Used for N
-            if (
-              result[4][0] > result[10][0] - 0.001 &&
-              result[4][0] < result[14][0] + 0.001
-            ) {
+            if (result[4][0] > result[10][0] - 0.001 && result[4][0] < result[14][0] + 0.001) {
               // Lets also make sure that the thumbs 'tip' is higher on the Y axis than the Tips of the fingers
               //if (result[4][1] < result[16][1] && result[4][1] < result[12][1]) {
               lookFor.percentageCorrect = 1;
               //	}
             }
           } else if (lookFor.special === 'betweenIndexAndMiddle') {
-            if (
-              result[4][0] > result[6][0] - 0.004 &&
-              result[4][0] < result[10][0] + 0.004
-            ) {
+            if (result[4][0] > result[6][0] - 0.004 && result[4][0] < result[10][0] + 0.004) {
               lookFor.percentageCorrect = 1;
             }
           } else if (lookFor.special === 'thumbBendOverOtherFingers') {
             if (result[4][0] > result[8][0] - 0.03 * fingerData.handSize) {
               lookFor.percentageCorrect = 1;
             }
-          } else if (
-            lookFor.special === 'thumbBendOverOtherFingersAndUnderOtherFingers'
-          ) {
+          } else if (lookFor.special === 'thumbBendOverOtherFingersAndUnderOtherFingers') {
             // Used for the letter E - to make sure it doesnt look too much like a T -
             if (result[4][0] > result[5][0] && result[4][0] < result[17][0]) {
               //if (result[4][1] > result[8][1] && result[4][1] > result[12][1] && result[4][1] > result[16][1]) {
               lookFor.percentageCorrect = 1;
               //}
             }
-          } else if (
-            lookFor.special === 'thumbBendOverOtherFingersAndOverOtherFingers'
-          ) {
+          } else if (lookFor.special === 'thumbBendOverOtherFingersAndOverOtherFingers') {
             // FIXME: NOT USED
             // Used for the letter T - to make sure it doesnt look too much like a E -
             if (
@@ -227,10 +210,7 @@ function predict(lookForLetter, fingerPoseResults, result: Coords3D) {
               lookFor.percentageCorrect = 1;
             }
           } else if (lookFor.special === 'distanceBetweenThumbAndPointer') {
-            let distancePinch = handAnalyzer.findDistanceBetweenTwoLandMarks(
-              result[4],
-              result[8]
-            );
+            let distancePinch = handAnalyzer.findDistanceBetweenTwoLandMarks(result[4], result[8]);
             let distanceWithHandSize = 0.02 * fingerData.handSize;
 
             if (distancePinch > distanceWithHandSize) {
@@ -239,10 +219,7 @@ function predict(lookForLetter, fingerPoseResults, result: Coords3D) {
               lookFor.percentageCorrect = distancePinch / distanceWithHandSize;
             }
           } else if (lookFor.special === 'pinchThumbAndPointer') {
-            let distancePinch = handAnalyzer.findDistanceBetweenTwoLandMarks(
-              result[4],
-              result[8]
-            );
+            let distancePinch = handAnalyzer.findDistanceBetweenTwoLandMarks(result[4], result[8]);
             let distanceWithHandSize = 0.045 * fingerData.handSize;
 
             if (distancePinch < distanceWithHandSize) {
@@ -267,40 +244,36 @@ function predict(lookForLetter, fingerPoseResults, result: Coords3D) {
             }
           } else if (lookFor.special === 'indexAndMiddleMustBeClose') {
             // Used on U
-            let distanceIndexAndMiddle =
-              handAnalyzer.findDistanceBetweenTwoLandMarks(
-                result[12],
-                result[8]
-              );
+            let distanceIndexAndMiddle = handAnalyzer.findDistanceBetweenTwoLandMarks(
+              result[12],
+              result[8]
+            );
             let distanceWithHandSize = 0.045 * fingerData.handSize;
             if (distanceIndexAndMiddle < distanceWithHandSize) {
               lookFor.percentageCorrect = 1;
             }
           } else if (lookFor.special === 'indexAndMiddleMustBeApart') {
             // Used on V
-            let distanceIndexAndMiddle =
-              handAnalyzer.findDistanceBetweenTwoLandMarks(
-                result[12],
-                result[8]
-              );
+            let distanceIndexAndMiddle = handAnalyzer.findDistanceBetweenTwoLandMarks(
+              result[12],
+              result[8]
+            );
             let distanceWithHandSize = 0.02 * fingerData.handSize;
             if (distanceIndexAndMiddle > distanceWithHandSize) {
               lookFor.percentageCorrect = 1;
             }
           } else if (lookFor.special === 'indexAndMiddleAndRingMustBeApart') {
             // Used on W
-            let distanceIndexAndMiddle =
-              handAnalyzer.findDistanceBetweenTwoLandMarks(
-                result[16],
-                result[12]
-              );
+            let distanceIndexAndMiddle = handAnalyzer.findDistanceBetweenTwoLandMarks(
+              result[16],
+              result[12]
+            );
             let distanceWithHandSize = 0.015 * fingerData.handSize;
 
             if (distanceIndexAndMiddle > distanceWithHandSize) {
               lookFor.percentageCorrect = 1;
             } else {
-              lookFor.percentageCorrect =
-                (distanceIndexAndMiddle - 0.01) / distanceWithHandSize;
+              lookFor.percentageCorrect = (distanceIndexAndMiddle - 0.01) / distanceWithHandSize;
             }
           }
         }
@@ -310,8 +283,7 @@ function predict(lookForLetter, fingerPoseResults, result: Coords3D) {
           // 60 / 180
           let maxDistance = 180 - lookFor.curlMin; // 120 (is also the max distance
           let calculateExactDistance = angle - lookFor.curlMin; // 60 - 180
-          lookFor.percentageCorrect =
-            (maxDistance - calculateExactDistance) / maxDistance;
+          lookFor.percentageCorrect = (maxDistance - calculateExactDistance) / maxDistance;
         } else if (angle && angle < lookFor.curlMax) {
           // Needs to be bend less
           //indexPercentageCorrect = indexFingerAngle / lookForLetter.index.curlMax;
@@ -352,27 +324,27 @@ function specialCharacterDetection(
     indexFingerAngle,
     middleFingerAngle,
     ringFingerAngle,
-    littleFingerAngle
+    littleFingerAngle,
   ];
 
   let count = 0;
   //FIXME improve the percentage
   let lookForLetter = {
     thumb: {
-      percentageCorrect: 0
+      percentageCorrect: 0,
     },
     index: {
-      percentageCorrect: 0
+      percentageCorrect: 0,
     },
     middle: {
-      percentageCorrect: 0
+      percentageCorrect: 0,
     },
     ring: {
-      percentageCorrect: 0
+      percentageCorrect: 0,
     },
     little: {
-      percentageCorrect: 0
-    }
+      percentageCorrect: 0,
+    },
   };
   let fingers = ['thumb', 'index', 'middle', 'ring', 'little'];
   for (let i = 0; i < 5; i++) {

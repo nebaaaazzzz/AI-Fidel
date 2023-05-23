@@ -1,7 +1,7 @@
 import localforage from 'localforage';
 export const configLocalForage = () => {
   localforage.config({
-    driver: localforage.LOCALSTORAGE
+    driver: localforage.LOCALSTORAGE,
   });
 };
 export const storeSessionInfo = async (
@@ -16,7 +16,7 @@ export const storeSessionInfo = async (
 
 export const setLanguage = async (lang: string): Promise<void> => {
   await localforage.setItem('lang', lang);
-}
+};
 export const storeLevelScore = async (
   level: string,
   score: number | string,
@@ -50,6 +50,6 @@ export const getSessionInfo = async (): Promise<{
   return {
     lang,
     hand,
-    level
+    level,
   };
 };

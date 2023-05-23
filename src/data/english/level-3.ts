@@ -42,5 +42,5 @@ export default [
   'her',
 
   'his',
-  'rub'
+  'rub',
 ];

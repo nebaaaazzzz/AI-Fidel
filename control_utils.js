@@ -25,7 +25,7 @@
       a,
       'object' == typeof window && window,
       'object' == typeof self && self,
-      'object' == typeof global && global
+      'object' == typeof global && global,
     ];
     for (var b = 0; b < a.length; ++b) {
       var c = a[b];
@@ -47,9 +47,7 @@
         a = a[a.length - 1];
         d = c[a];
         b = b(d);
-        b != d &&
-          null != b &&
-          t(c, a, { configurable: !0, writable: !0, value: b });
+        b != d && null != b && t(c, a, { configurable: !0, writable: !0, value: b });
       }
   }
   v('Symbol', function (a) {
@@ -89,7 +87,7 @@
           writable: !0,
           value: function () {
             return ba(q(this));
-          }
+          },
         });
     }
     return a;
@@ -102,8 +100,7 @@
     return a;
   }
   function w(a) {
-    var b =
-      'undefined' != typeof Symbol && Symbol.iterator && a[Symbol.iterator];
+    var b = 'undefined' != typeof Symbol && Symbol.iterator && a[Symbol.iterator];
     return b ? b.call(a) : { next: q(a) };
   }
   function x(a) {
@@ -120,9 +117,7 @@
       : function (a, b) {
           for (var c = 1; c < arguments.length; c++) {
             var d = arguments[c];
-            if (d)
-              for (var f in d)
-                Object.prototype.hasOwnProperty.call(d, f) && (a[f] = d[f]);
+            if (d) for (var f in d) Object.prototype.hasOwnProperty.call(d, f) && (a[f] = d[f]);
           }
           return a;
         };
@@ -188,8 +183,7 @@
   function E(a, b, c, d) {
     try {
       var f = b.call(a.g.h, c);
-      if (!(f instanceof Object))
-        throw new TypeError('Iterator result ' + f + ' is not an object');
+      if (!(f instanceof Object)) throw new TypeError('Iterator result ' + f + ' is not an object');
       if (!f.done) return (a.g.l = !1), f;
       var g = f.value;
     } catch (e) {
@@ -321,8 +315,7 @@
       return { resolve: e(this.F), reject: e(this.l) };
     };
     b.prototype.F = function (e) {
-      if (e === this)
-        this.l(new TypeError('A Promise cannot resolve to itself'));
+      if (e === this) this.l(new TypeError('A Promise cannot resolve to itself'));
       else if (e instanceof b) this.H(e);
       else {
         a: switch (typeof e) {
@@ -357,12 +350,7 @@
     b.prototype.u = function (e, h) {
       if (0 != this.h)
         throw Error(
-          'Cannot settle(' +
-            e +
-            ', ' +
-            h +
-            '): Promise already settled in state' +
-            this.h
+          'Cannot settle(' + e + ', ' + h + '): Promise already settled in state' + this.h
         );
       this.h = e;
       this.i = h;
@@ -462,8 +450,7 @@
     };
     b.race = function (e) {
       return new b(function (h, k) {
-        for (var m = w(e), l = m.next(); !l.done; l = m.next())
-          d(l.value).v(h, k);
+        for (var m = w(e), l = m.next(); !l.done; l = m.next()) d(l.value).v(h, k);
       });
     };
     b.all = function (e) {
@@ -481,11 +468,7 @@
             }
             var n = [],
               p = 0;
-            do
-              n.push(void 0),
-                p++,
-                d(k.value).v(r(n.length - 1), l),
-                (k = h.next());
+            do n.push(void 0), p++, d(k.value).v(r(n.length - 1), l), (k = h.next());
             while (!k.done);
           });
     };
@@ -522,7 +505,7 @@
           }
           d = !0;
           return { done: !0, value: void 0 };
-        }
+        },
       };
     f[Symbol.iterator] = function () {
       return f;
@@ -549,16 +532,11 @@
                   return h;
                 };
           var f = [],
-            g =
-              'undefined' != typeof Symbol &&
-              Symbol.iterator &&
-              b[Symbol.iterator];
+            g = 'undefined' != typeof Symbol && Symbol.iterator && b[Symbol.iterator];
           if ('function' == typeof g) {
             b = g.call(b);
-            for (var e = 0; !(g = b.next()).done; )
-              f.push(c.call(d, g.value, e++));
-          } else
-            for (g = b.length, e = 0; e < g; e++) f.push(c.call(d, b[e], e));
+            for (var e = 0; !(g = b.next()).done; ) f.push(c.call(d, g.value, e++));
+          } else for (g = b.length, e = 0; e < g; e++) f.push(c.call(d, b[e], e));
           return f;
         };
   });
@@ -593,8 +571,7 @@
       : function (b) {
           var c = [],
             d;
-          for (d in b)
-            Object.prototype.hasOwnProperty.call(b, d) && c.push(b[d]);
+          for (d in b) Object.prototype.hasOwnProperty.call(b, d) && c.push(b[d]);
           return c;
         };
   });
@@ -602,9 +579,7 @@
   function I(a, b) {
     a = a.split('.');
     var c = la;
-    a[0] in c ||
-      'undefined' == typeof c.execScript ||
-      c.execScript('var ' + a[0]);
+    a[0] in c || 'undefined' == typeof c.execScript || c.execScript('var ' + a[0]);
     for (var d; a.length && (d = a.shift()); )
       a.length || void 0 === b
         ? c[d] && c[d] !== Object.prototype[d]
@@ -622,9 +597,7 @@
   function K(a, b, c) {
     a = document.createElement(a);
     b && a.classList.add(b);
-    if (c)
-      for (b = w(c), c = b.next(); !c.done; c = b.next())
-        a.appendChild(c.value);
+    if (c) for (b = w(c), c = b.next(); !c.done; c = b.next()) a.appendChild(c.value);
     return a;
   }
   function L(a, b) {
@@ -646,8 +619,8 @@
       f = L('dropdown-wrapper', [
         (d = L('dropdown', [
           L('dropdown-trigger', [(this.g = M()), L('arrow')]),
-          (this.options = L('dropdown-options'))
-        ]))
+          (this.options = L('dropdown-options')),
+        ])),
       ]);
     f.onclick = function () {
       a.B && a.B();
@@ -656,11 +629,7 @@
         a.A && a.A();
       };
     };
-    for (
-      var g = {}, e = w(a.options), h = e.next();
-      !h.done;
-      g = { s: g.s }, h = e.next()
-    )
+    for (var g = {}, e = w(a.options), h = e.next(); !h.done; g = { s: g.s }, h = e.next())
       (g.s = h.value),
         (h = void 0),
         this.options.appendChild((h = M('dropdown-option'))),
@@ -684,8 +653,7 @@
       var f = a.h[d.value];
       if (d.value === b && !f.classList.contains('selected'))
         return (
-          (b = a.options.querySelector('.selected')) &&
-            b.classList.remove('selected'),
+          (b = a.options.querySelector('.selected')) && b.classList.remove('selected'),
           f.classList.add('selected'),
           (a.g.textContent = f.textContent),
           a.config.onclick(d),
@@ -696,9 +664,7 @@
   }
   function P(a, b) {
     var c = a.options.querySelector('.selected');
-    c &&
-      (c.classList.remove('selected'),
-      (a.g.textContent = void 0 === b ? '' : b));
+    c && (c.classList.remove('selected'), (a.g.textContent = void 0 === b ? '' : b));
   }
   function Q(a) {
     this.config = a;
@@ -726,12 +692,11 @@
         },
         A: function () {
           f.style.zIndex = '100';
-        }
+        },
       },
       f
     );
-    0 < this.config.options.length &&
-      O(c, b[this.config.field] || this.config.options[0].value);
+    0 < this.config.options.length && O(c, b[this.config.field] || this.config.options[0].value);
   };
   Q.prototype.update = function () {};
   function R() {
@@ -759,8 +724,7 @@
   R.prototype.update = function () {};
   R.prototype.tick = function () {
     var a = Math.floor(performance.now() / 1e3);
-    1 <= a - this.i &&
-      (oa(this, this.counter), (this.i = a), (this.counter = 0));
+    1 <= a - this.i && (oa(this, this.counter), (this.i = a), (this.counter = 0));
     ++this.counter;
   };
   function oa(a, b) {
@@ -798,9 +762,7 @@
     c.classList.add('control-panel-slider');
     var f = c.appendChild(document.createElement('span'));
     f.classList.add('label');
-    (this.g = c.appendChild(document.createElement('span'))).classList.add(
-      'callout'
-    );
+    (this.g = c.appendChild(document.createElement('span'))).classList.add('callout');
     var g = (this.h = c.appendChild(document.createElement('input')));
     g.classList.add('value');
     g.type = 'range';
@@ -809,9 +771,7 @@
         (g.max = '' + b.range[1]),
         (g.step = void 0 === b.step ? 'any' : '' + b.step))
       : b.discrete &&
-        ((g.min = '0'),
-        (g.max = '' + (Object.keys(b.discrete).length - 1)),
-        (g.step = '1'));
+        ((g.min = '0'), (g.max = '' + (Object.keys(b.discrete).length - 1)), (g.step = '1'));
     g.oninput = function () {
       pa(d, Number(g.value));
     };
@@ -845,7 +805,7 @@
     ra = {
       allowVideo: !0,
       allowImage: !0,
-      examples: { videos: [], images: [] }
+      examples: { videos: [], images: [] },
     };
   function T(a) {
     return (
@@ -880,7 +840,7 @@
           m.enqueue(p);
           A.g = 0;
         });
-      }
+      },
     });
     a.readable.pipeThrough(c).pipeTo(b.writable);
     return new MediaStream([b]);
@@ -965,7 +925,7 @@
         (b = this.config.onFrame
           ? this.config.onFrame(this.video, {
               width: this.video.videoWidth,
-              height: this.video.videoHeight
+              height: this.video.videoHeight,
             })
           : null)),
       b
@@ -1015,7 +975,7 @@
           O: r,
           start: function () {
             return Aa(a, r);
-          }
+          },
         };
       });
       f =
@@ -1030,7 +990,7 @@
                 video: a.video,
                 start: function () {
                   Ba(a, r.src);
-                }
+                },
               };
             });
       h =
@@ -1045,16 +1005,10 @@
                 image: a.g,
                 start: function () {
                   Ca(a, r.src);
-                }
+                },
               };
             });
-      return l.return(
-        [].concat(
-          x(b),
-          x(null != (k = f) ? k : []),
-          x(null != (m = h) ? m : [])
-        )
-      );
+      return l.return([].concat(x(b), x(null != (k = f) ? k : []), x(null != (m = h) ? m : [])));
     });
   }
   function Da(a, b) {
@@ -1077,7 +1031,7 @@
               ? void 0
               : d.call(c, b, {
                   width: b.naturalWidth,
-                  height: b.naturalHeight
+                  height: b.naturalHeight,
                 }),
             2
           )
@@ -1093,10 +1047,7 @@
   function Fa(a) {
     var b, c, d;
     return G(function (f) {
-      if (1 == f.g)
-        return (
-          (a.h.parent.style.display = 'flex'), va(a, 0), D(f, a.video.play(), 2)
-        );
+      if (1 == f.g) return (a.h.parent.style.display = 'flex'), va(a, 0), D(f, a.video.play(), 2);
       a.C();
       a.l = !0;
       V(a);
@@ -1118,17 +1069,9 @@
               {},
               { deviceId: b.deviceId },
               null != (c = a.config.cameraOptions) ? c : {}
-            )
+            ),
           }),
-          D(
-            h,
-            null == (f = a.config)
-              ? void 0
-              : null == (e = (g = f).M)
-              ? void 0
-              : e.call(g),
-            2
-          ))
+          D(h, null == (f = a.config) ? void 0 : null == (e = (g = f).M) ? void 0 : e.call(g), 2))
         : 3 != h.g
         ? D(h, ya(a), 3)
         : h.return(
@@ -1177,7 +1120,7 @@
         },
         A: function () {
           a.o.style.zIndex = '100';
-        }
+        },
       },
       b
     );
@@ -1199,26 +1142,19 @@
           e = g.type.toLowerCase();
           h = e.substring(0, e.indexOf('/'));
           var l;
-          (l =
-            'undefined' !== typeof MediaSource && g instanceof MediaSource) ||
+          (l = 'undefined' !== typeof MediaSource && g instanceof MediaSource) ||
             ((l = g.type.match(/^([^;]+)(?:;\w+=(?:\w+|"[\w;,= ]+"))*$/i)),
             (l =
               2 === (null == l ? void 0 : l.length) &&
-              (/^image\/(?:bmp|gif|jpeg|jpg|png|tiff|webp|x-icon|heic|heif)$/i.test(
-                l[1]
-              ) ||
-                /^video\/(?:mpeg|mp4|ogg|webm|x-matroska|quicktime|x-ms-wmv)$/i.test(
-                  l[1]
-                ) ||
+              (/^image\/(?:bmp|gif|jpeg|jpg|png|tiff|webp|x-icon|heic|heif)$/i.test(l[1]) ||
+                /^video\/(?:mpeg|mp4|ogg|webm|x-matroska|quicktime|x-ms-wmv)$/i.test(l[1]) ||
                 /^audio\/(?:3gpp2|3gpp|aac|L16|midi|mp3|mp4|mpeg|oga|ogg|opus|x-m4a|x-matroska|x-wav|wav|webm)$/i.test(
                   l[1]
                 ))));
           if (!l) throw Error('');
           l = new J(URL.createObjectURL(g));
           k = l.toString();
-          'image' === h
-            ? (P(a.m, g.name), Ca(a, k))
-            : 'video' === h && (P(a.m, g.name), Ba(a, k));
+          'image' === h ? (P(a.m, g.name), Ca(a, k)) : 'video' === h && (P(a.m, g.name), Ba(a, k));
         }
         m.g = 0;
       });
@@ -1238,7 +1174,7 @@
                   return G(function (d) {
                     return D(d, Ea(a, a.g), 0);
                   });
-                }
+                },
               }),
               0
             ))
@@ -1263,7 +1199,7 @@
                     video: a.video,
                     start: function () {
                       return Fa(a);
-                    }
+                    },
                   }),
                   2
                 ))
@@ -1324,7 +1260,7 @@
         (h = N(c)),
         (g = L('video-track')),
         (f = L('video-slider-ball')),
-        (b = M('video-time'))
+        (b = M('video-time')),
       ]))
     );
     a.h = { parent: e, J: f, track: g, time: b };
@@ -1355,9 +1291,7 @@
       document.addEventListener('mouseup', m);
     };
     h.onclick = function () {
-      a.video.paused
-        ? (a.video.play(), (h.src = c))
-        : (a.video.pause(), (h.src = d));
+      a.video.paused ? (a.video.play(), (h.src = c)) : (a.video.pause(), (h.src = d));
     };
     a.C = function () {
       a.video.paused && (h.src = d);
@@ -1381,7 +1315,7 @@
     if (this.g && !this.l && this.config.onFrame)
       this.config.onFrame(this.g, {
         width: this.g.naturalWidth,
-        height: this.g.naturalHeight
+        height: this.g.naturalHeight,
       });
   };
   function W(a) {
@@ -1432,7 +1366,7 @@
     a = [L('hamburger-menu'), L('hamburger-menu'), L('hamburger-menu')];
     var d = L('control-panel-shell', [
       (this.g = L('control-panel')),
-      (this.l = L('control-panel-expander', a))
+      (this.l = L('control-panel-expander', a)),
     ]);
     this.l.onclick = function () {
       c.h = !c.h;

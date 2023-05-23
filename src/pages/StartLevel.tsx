@@ -23,7 +23,7 @@ function StartLevel() {
                 style={{
                   background: '#2E2E2E',
                   boxShadow: '0px 2px 26px rgba(0, 0, 0, 0.08)',
-                  borderRadius: '6px'
+                  borderRadius: '6px',
                 }}
                 className="w-10 md:w-14 aspect-square flex items-center justify-center text-white text-2xl"
               >

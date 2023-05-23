@@ -22,7 +22,7 @@ export class Alphabet {
         special: 'thumbToTheLeft',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: 'Straigten it - and make sure it is close to index finger'
+        helpText: 'Straigten it - and make sure it is close to index finger',
       },
       index: {
         curlMin: fullCurlMinMoreForgiving,
@@ -30,7 +30,7 @@ export class Alphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.bend
+        helpText: this._helpTexts.bend,
       },
       middle: {
         curlMin: fullCurlMinMoreForgiving,
@@ -38,7 +38,7 @@ export class Alphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.bend
+        helpText: this._helpTexts.bend,
       },
       ring: {
         curlMin: fullCurlMinMoreForgiving,
@@ -46,7 +46,7 @@ export class Alphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.bend
+        helpText: this._helpTexts.bend,
       },
       little: {
         curlMin: fullCurlMinMoreForgiving,
@@ -54,8 +54,8 @@ export class Alphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.bend
-      }
+        helpText: this._helpTexts.bend,
+      },
     };
     var b = {
       letterNumber: 2,
@@ -67,7 +67,7 @@ export class Alphabet {
         special: 'thumbBendOverOtherFingers',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: 'Bend it so its inside your palm'
+        helpText: 'Bend it so its inside your palm',
       },
       index: {
         curlMin: noCurl,
@@ -75,7 +75,7 @@ export class Alphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.straight
+        helpText: this._helpTexts.straight,
       },
       middle: {
         curlMin: noCurl,
@@ -83,7 +83,7 @@ export class Alphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.straight
+        helpText: this._helpTexts.straight,
       },
       ring: {
         curlMin: noCurl,
@@ -91,7 +91,7 @@ export class Alphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.straight
+        helpText: this._helpTexts.straight,
       },
       little: {
         curlMin: noCurl,
@@ -99,8 +99,8 @@ export class Alphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.straight
-      }
+        helpText: this._helpTexts.straight,
+      },
     };
     var c = {
       letterNumber: 3,
@@ -112,7 +112,7 @@ export class Alphabet {
         special: 'distanceBetweenThumbAndPointer',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: "Bend it - but make sure it doesn't touch your pointer finger"
+        helpText: "Bend it - but make sure it doesn't touch your pointer finger",
       },
       index: {
         curlMin: halfCurlMin + 15,
@@ -120,7 +120,7 @@ export class Alphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.bend
+        helpText: this._helpTexts.bend,
       },
       middle: {
         curlMin: halfCurlMin + 15,
@@ -128,7 +128,7 @@ export class Alphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.bend
+        helpText: this._helpTexts.bend,
       },
       ring: {
         curlMin: halfCurlMin + 15,
@@ -136,7 +136,7 @@ export class Alphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.bend
+        helpText: this._helpTexts.bend,
       },
       little: {
         curlMin: halfCurlMin + 15,
@@ -144,8 +144,8 @@ export class Alphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.bend
-      }
+        helpText: this._helpTexts.bend,
+      },
     };
     var d = {
       letterNumber: 4,
@@ -157,7 +157,7 @@ export class Alphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.bend
+        helpText: this._helpTexts.bend,
       },
       index: {
         curlMin: noCurl,
@@ -165,7 +165,7 @@ export class Alphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.bend
+        helpText: this._helpTexts.bend,
       },
       middle: {
         curlMin: fullCurlMinMoreForgiving,
@@ -173,7 +173,7 @@ export class Alphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.bend
+        helpText: this._helpTexts.bend,
       },
       ring: {
         curlMin: fullCurlMinMoreForgiving,
@@ -181,7 +181,7 @@ export class Alphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.straight
+        helpText: this._helpTexts.straight,
       },
       little: {
         curlMin: fullCurlMinMoreForgiving,
@@ -189,8 +189,8 @@ export class Alphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.bend
-      }
+        helpText: this._helpTexts.bend,
+      },
     };
     /*
 		changed this 'thumbBendOverOtherFingersAndUnderOtherFingers' to something else
@@ -205,7 +205,7 @@ export class Alphabet {
         special: 'thumbBendOverOtherFingers',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: 'Bend it so its placed below the other fingers'
+        helpText: 'Bend it so its placed below the other fingers',
       },
       index: {
         curlMin: fullCurlMinMoreForgiving,
@@ -213,7 +213,7 @@ export class Alphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.bend
+        helpText: this._helpTexts.bend,
       },
       middle: {
         curlMin: fullCurlMinMoreForgiving,
@@ -221,7 +221,7 @@ export class Alphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.bend
+        helpText: this._helpTexts.bend,
       },
       ring: {
         curlMin: fullCurlMinMoreForgiving,
@@ -229,7 +229,7 @@ export class Alphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.bend
+        helpText: this._helpTexts.bend,
       },
       little: {
         curlMin: fullCurlMinMoreForgiving,
@@ -237,8 +237,8 @@ export class Alphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.bend
-      }
+        helpText: this._helpTexts.bend,
+      },
     };
     var f = {
       letterNumber: 6,
@@ -250,7 +250,7 @@ export class Alphabet {
         special: 'pinchThumbAndPointer',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: 'Pinch the thumb and pointer finger together'
+        helpText: 'Pinch the thumb and pointer finger together',
       },
       index: {
         curlMin: noCurl,
@@ -258,7 +258,7 @@ export class Alphabet {
         special: 'pinchThumbAndPointer',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.bend
+        helpText: this._helpTexts.bend,
       },
       middle: {
         curlMin: noCurl,
@@ -266,7 +266,7 @@ export class Alphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.straight
+        helpText: this._helpTexts.straight,
       },
       ring: {
         curlMin: noCurl,
@@ -274,7 +274,7 @@ export class Alphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.straight
+        helpText: this._helpTexts.straight,
       },
       little: {
         curlMin: noCurl,
@@ -282,8 +282,8 @@ export class Alphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.straight
-      }
+        helpText: this._helpTexts.straight,
+      },
     };
 
     // FIXME - Need to look for rotation
@@ -301,7 +301,7 @@ export class Alphabet {
         percentageCorrect: 0,
         special: 'none',
         currentAngle: null,
-        helpText: 'Make sure its straight and aligns with the pointer finger'
+        helpText: 'Make sure its straight and aligns with the pointer finger',
       },
       index: {
         curlMin: noCurl,
@@ -309,7 +309,7 @@ export class Alphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.straight
+        helpText: this._helpTexts.straight,
       },
       middle: {
         curlMin: fullCurlMinMoreForgiving,
@@ -317,7 +317,7 @@ export class Alphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.bend
+        helpText: this._helpTexts.bend,
       },
       ring: {
         curlMin: fullCurlMinMoreForgiving,
@@ -325,7 +325,7 @@ export class Alphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.bend
+        helpText: this._helpTexts.bend,
       },
       little: {
         curlMin: fullCurlMinMoreForgiving,
@@ -333,8 +333,8 @@ export class Alphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.bend
-      }
+        helpText: this._helpTexts.bend,
+      },
     };
     var h = {
       letterNumber: 8,
@@ -345,36 +345,36 @@ export class Alphabet {
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       index: {
         curlMin: noCurl,
         curlMax: 100,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       middle: {
         curlMin: noCurl,
         curlMax: 100,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       ring: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       little: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
-      }
+        currentAngle: null,
+      },
     };
     var i = {
       letterNumber: 9,
@@ -385,36 +385,36 @@ export class Alphabet {
         curlMax: fullCurlMax,
         special: 'thumbBendOverOtherFingers',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       index: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       middle: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       ring: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       little: {
         curlMin: noCurl,
         curlMax: halfCurlMin,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
-      }
+        currentAngle: null,
+      },
     };
     // FIXME - add motion detection on the J
     var j = {
@@ -427,36 +427,36 @@ export class Alphabet {
         curlMax: fullCurlMax,
         special: 'thumbBendOverOtherFingers',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       index: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       middle: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       ring: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       little: {
         curlMin: noCurl,
         curlMax: halfCurlMin,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
-      }
+        currentAngle: null,
+      },
     };
     var k = {
       letterNumber: 11,
@@ -467,36 +467,36 @@ export class Alphabet {
         curlMax: halfCurlMin,
         special: 'thumbBendOverOtherFingers',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       index: {
         curlMin: noCurl,
         curlMax: halfCurlMin,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       middle: {
         curlMin: halfCurlMin + 20,
         curlMax: halfCurlMin - 70,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       ring: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       little: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
-      }
+        currentAngle: null,
+      },
     };
 
     var l = {
@@ -508,36 +508,36 @@ export class Alphabet {
         curlMax: halfCurlMin - 20,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       index: {
         curlMin: noCurl,
         curlMax: halfCurlMin,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       middle: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       ring: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       little: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
-      }
+        currentAngle: null,
+      },
     };
 
     var m = {
@@ -549,36 +549,36 @@ export class Alphabet {
         curlMax: fullCurlMax,
         special: 'betweenRingAndLittleBase',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       index: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       middle: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       ring: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       little: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
-      }
+        currentAngle: null,
+      },
     };
 
     var n = {
@@ -590,36 +590,36 @@ export class Alphabet {
         curlMax: fullCurlMax,
         special: 'betweenMiddleAndRing',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       index: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       middle: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       ring: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       little: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
-      }
+        currentAngle: null,
+      },
     };
 
     var o = {
@@ -631,36 +631,36 @@ export class Alphabet {
         curlMax: halfCurlMin - 30,
         special: 'pinchThumbAndPointer',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       index: {
         curlMin: halfCurlMin,
         curlMax: 10,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       middle: {
         curlMin: halfCurlMin,
         curlMax: 10,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       ring: {
         curlMin: halfCurlMin,
         curlMax: 10,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       little: {
         curlMin: halfCurlMin,
         curlMax: 10,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
-      }
+        currentAngle: null,
+      },
     };
 
     var p = {
@@ -672,36 +672,36 @@ export class Alphabet {
         curlMax: halfCurlMin - 20,
         special: 'betweenIndexAndMiddle',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       index: {
         curlMin: noCurl,
         curlMax: halfCurlMin - 20,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       middle: {
         curlMin: noCurl,
         curlMax: halfCurlMin - 20,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       ring: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       little: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
-      }
+        currentAngle: null,
+      },
     };
 
     var q = {
@@ -713,36 +713,36 @@ export class Alphabet {
         curlMax: fullCurlMax,
         special: 'thumbPointerAlignOnYAxis',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       index: {
         curlMin: noCurl,
         curlMax: 100,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       middle: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       ring: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       little: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
-      }
+        currentAngle: null,
+      },
     };
 
     var r = {
@@ -754,36 +754,36 @@ export class Alphabet {
         curlMax: fullCurlMax,
         special: 'thumbBendOverOtherFingers',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       index: {
         curlMin: noCurl,
         curlMax: halfCurlMin,
         special: 'crossIndexAndMiddle',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       middle: {
         curlMin: noCurl,
         curlMax: halfCurlMin,
         special: 'crossIndexAndMiddle',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       ring: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       little: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
-      }
+        currentAngle: null,
+      },
     };
 
     var s = {
@@ -795,36 +795,36 @@ export class Alphabet {
         curlMax: fullCurlMax,
         special: 'betweenIndexAndMiddleLetterS',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       index: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       middle: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       ring: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       little: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
-      }
+        currentAngle: null,
+      },
     };
 
     var t = {
@@ -836,36 +836,36 @@ export class Alphabet {
         curlMax: fullCurlMax,
         special: 'betweenIndexAndMiddleLetterT',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       index: {
         curlMin: halfCurlMin,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       middle: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       ring: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       little: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
-      }
+        currentAngle: null,
+      },
     };
 
     var u = {
@@ -877,36 +877,36 @@ export class Alphabet {
         curlMax: fullCurlMax,
         special: 'thumbBendOverOtherFingers',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       index: {
         curlMin: noCurl,
         curlMax: halfCurlMin,
         special: 'indexAndMiddleMustBeClose',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       middle: {
         curlMin: noCurl,
         curlMax: halfCurlMin,
         special: 'indexAndMiddleMustBeClose',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       ring: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       little: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
-      }
+        currentAngle: null,
+      },
     };
 
     var v = {
@@ -918,36 +918,36 @@ export class Alphabet {
         curlMax: fullCurlMax,
         special: 'thumbBendOverOtherFingers',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       index: {
         curlMin: noCurl,
         curlMax: halfCurlMin,
         special: 'indexAndMiddleMustBeApart',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       middle: {
         curlMin: noCurl,
         curlMax: halfCurlMin,
         special: 'indexAndMiddleMustBeApart',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       ring: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       little: {
         curlMin: halfCurlMin,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
-      }
+        currentAngle: null,
+      },
     };
 
     var w = {
@@ -959,36 +959,36 @@ export class Alphabet {
         curlMax: fullCurlMax,
         special: 'thumbBendOverOtherFingers',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       index: {
         curlMin: noCurl,
         curlMax: halfCurlMin,
         special: 'indexAndMiddleAndRingMustBeApart',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       middle: {
         curlMin: noCurl,
         curlMax: halfCurlMin,
         special: 'indexAndMiddleAndRingMustBeApart',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       ring: {
         curlMin: noCurl,
         curlMax: halfCurlMin,
         special: 'indexAndMiddleAndRingMustBeApart',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       little: {
         curlMin: halfCurlMin,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
-      }
+        currentAngle: null,
+      },
     };
 
     var x = {
@@ -1000,36 +1000,36 @@ export class Alphabet {
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       index: {
         curlMin: halfCurlMin + 20,
         curlMax: fullCurlMin + 20,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       middle: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       ring: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       little: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
-      }
+        currentAngle: null,
+      },
     };
 
     var y = {
@@ -1041,36 +1041,36 @@ export class Alphabet {
         curlMax: noCurl - 30,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       index: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       middle: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       ring: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       little: {
         curlMin: noCurl,
         curlMax: fullCurlMin,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
-      }
+        currentAngle: null,
+      },
     };
 
     // FIXME : Needs a movement in a Z shape
@@ -1083,36 +1083,36 @@ export class Alphabet {
         curlMax: 100,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       index: {
         curlMin: noCurl,
         curlMax: halfCurlMin,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       middle: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       ring: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       little: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
-      }
+        currentAngle: null,
+      },
     };
 
     // Missing z,p,q,j,h
@@ -1143,7 +1143,7 @@ export class Alphabet {
       w,
       x,
       y,
-      z
+      z,
     ];
   }
 

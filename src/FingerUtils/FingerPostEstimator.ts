@@ -13,9 +13,9 @@ export class FingerPoseEstimator {
         // direction estimation
         DISTANCE_VOTE_POWER: 1.1,
         SINGLE_ANGLE_VOTE_POWER: 0.9,
-        TOTAL_ANGLE_VOTE_POWER: 1.6
+        TOTAL_ANGLE_VOTE_POWER: 1.6,
       },
-      ...options
+      ...options,
     };
   }
   estimate(landmarks) {
@@ -61,11 +61,7 @@ export class FingerPoseEstimator {
 
       // check if finger is curled
       //let fingerCurled = this.estimateFingerCurlWithoutZ(startPoint, midPoint, endPoint);
-      let fingerCurled = this.estimateFingerCurl(
-        startPoint,
-        midPoint,
-        endPoint
-      );
+      let fingerCurled = this.estimateFingerCurl(startPoint, midPoint, endPoint);
 
       let fingerPosition = this.calculateFingerDirection(
         startPoint,
@@ -84,22 +80,12 @@ export class FingerPoseEstimator {
   // point1, point2 are 2d or 3d point arrays (xy[z])
   // returns either a single scalar (2d) or array of two slopes (3d)
   getSlopes(point1, point2) {
-    let slopeXY = this.calculateSlope(
-      point1[0],
-      point1[1],
-      point2[0],
-      point2[1]
-    );
+    let slopeXY = this.calculateSlope(point1[0], point1[1], point2[0], point2[1]);
     if (point1.length == 2) {
       return slopeXY;
     }
 
-    let slopeYZ = this.calculateSlope(
-      point1[1],
-      point1[2],
-      point2[1],
-      point2[2]
-    );
+    let slopeYZ = this.calculateSlope(point1[1], point1[2], point2[1], point2[2]);
     return [slopeXY, slopeYZ];
   }
 
@@ -233,12 +219,7 @@ export class FingerPoseEstimator {
     return { fingerCurl: fingerCurl, angle: angleOfCurve };
   }
 
-  estimateHorizontalDirection(
-    start_end_x_dist,
-    start_mid_x_dist,
-    mid_end_x_dist,
-    max_dist_x
-  ) {
+  estimateHorizontalDirection(start_end_x_dist, start_mid_x_dist, mid_end_x_dist, max_dist_x) {
     let estimatedDirection;
     if (max_dist_x == Math.abs(start_end_x_dist)) {
       if (start_end_x_dist > 0) {
@@ -263,12 +244,7 @@ export class FingerPoseEstimator {
     return estimatedDirection;
   }
 
-  estimateVerticalDirection(
-    start_end_y_dist,
-    start_mid_y_dist,
-    mid_end_y_dist,
-    max_dist_y
-  ) {
+  estimateVerticalDirection(start_end_y_dist, start_mid_y_dist, mid_end_y_dist, max_dist_y) {
     let estimatedDirection;
     if (max_dist_y == Math.abs(start_end_y_dist)) {
       if (start_end_y_dist < 0) {
@@ -373,9 +349,7 @@ export class FingerPoseEstimator {
     let start_end_dist = Math.sqrt(
       start_end_x_dist * start_end_x_dist + start_end_y_dist * start_end_y_dist
     );
-    let mid_end_dist = Math.sqrt(
-      mid_end_x_dist * mid_end_x_dist + mid_end_y_dist * mid_end_y_dist
-    );
+    let mid_end_dist = Math.sqrt(mid_end_x_dist * mid_end_x_dist + mid_end_y_dist * mid_end_y_dist);
 
     let max_dist = Math.max(start_mid_dist, start_end_dist, mid_end_dist);
     let calc_start_point_x = startPoint[0],
@@ -393,19 +367,13 @@ export class FingerPoseEstimator {
     let calcEndPoint = [calc_end_point_x, calc_end_point_y];
 
     let totalAngle = this.getSlopes(calcStartPoint, calcEndPoint);
-    let votes = this.angleOrientationAt(
-      totalAngle,
-      this.options.TOTAL_ANGLE_VOTE_POWER
-    );
+    let votes = this.angleOrientationAt(totalAngle, this.options.TOTAL_ANGLE_VOTE_POWER);
     voteVertical += votes[0];
     voteDiagonal += votes[1];
     voteHorizontal += votes[2];
 
     for (let fingerSlope of fingerSlopes) {
-      let votes = this.angleOrientationAt(
-        fingerSlope,
-        this.options.SINGLE_ANGLE_VOTE_POWER
-      );
+      let votes = this.angleOrientationAt(fingerSlope, this.options.SINGLE_ANGLE_VOTE_POWER);
       voteVertical += votes[0];
       voteDiagonal += votes[1];
       voteHorizontal += votes[2];

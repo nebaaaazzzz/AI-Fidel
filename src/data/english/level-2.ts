@@ -26,5 +26,5 @@ export default [
   'hi',
   'bi',
   'ex',
-  'ok'
+  'ok',
 ];

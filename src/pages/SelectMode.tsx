@@ -18,11 +18,9 @@ function SelectMode() {
         btns={[
           {
             text: t('education'),
-            link: user?.user
-              ? '/select-profile?mode=learn'
-              : '/login?mode=learn'
+            link: user?.user ? '/select-profile?mode=learn' : '/login?mode=learn',
           },
-          { text: t('game'), link: '/select-game' }
+          { text: t('game'), link: '/select-game' },
         ]}
       />
     </div>

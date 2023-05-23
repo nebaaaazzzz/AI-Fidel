@@ -8,9 +8,7 @@ function ImageAndWordContainer({ selectedLetter }: { selectedLetter: string }) {
         src={`/spellingamharic/${selectedLetter}.png`}
         className="w-7/12 object-contain"
       />
-      <h1 className="text-[12rem] text-primary font-light leading-10 ">
-        {selectedLetter}
-      </h1>
+      <h1 className="text-[12rem] text-primary font-light leading-10 ">{selectedLetter}</h1>
     </div>
   );
 }

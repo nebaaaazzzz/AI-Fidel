@@ -7,12 +7,7 @@ import girl from '@assets/images/girl.png';
 import loading from '@assets/images/loading.gif';
 import GameLeftSide from '@components/GameLeftSide';
 import {} from 'react-spinners';
-import {
-  NavigateFunction,
-  useLocation,
-  useNavigate,
-  useSearchParams
-} from 'react-router-dom';
+import { NavigateFunction, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import getLanguageWords from '@/data';
 import { getLevelWords } from '@/utils';
 import { getLevelAmharicWords } from '@/utils/amharicindex';
@@ -29,10 +24,7 @@ import { HandContext } from '@/context/HandContext';
 const handAnalyzer = new HandAnalyzer();
 let skipPrediction = false;
 let score = 0;
-function useGetGameConfig(
-  searchParams: URLSearchParams,
-  navigate: NavigateFunction
-) {
+function useGetGameConfig(searchParams: URLSearchParams, navigate: NavigateFunction) {
   const hand = searchParams.get('hand');
   let level = searchParams.get('level');
   const lang = searchParams.get('lang');
@@ -62,19 +54,12 @@ function Game() {
   const { search } = useLocation();
   const searchParams = useSearchParams()[0];
   // const userAgent = navigator.userAgent
-  const { hand: loadHands } = useContext(HandContext)
-  const {
-    lang,
-    hand: handDirection,
-    level,
-    levelWords
-  } = useGetGameConfig(searchParams, navigate);
-  const [singleLevelWord, setSingleLevelWord] = useState(levelWords)
-  const [lookForLetter, setLookForLetter] =
-    useState<AlphabetDefinationI | null>(null);
+  const { hand: loadHands } = useContext(HandContext);
+  const { lang, hand: handDirection, level, levelWords } = useGetGameConfig(searchParams, navigate);
+  const [singleLevelWord, setSingleLevelWord] = useState(levelWords);
+  const [lookForLetter, setLookForLetter] = useState<AlphabetDefinationI | null>(null);
   const [isGameStarted, setIsGameStarted] = useState(false);
-  const [isMediaPipeModelLoading, setIsMediaPipeModelLoading] =
-    useState<boolean>(true);
+  const [isMediaPipeModelLoading, setIsMediaPipeModelLoading] = useState<boolean>(true);
 
   const [startTime, setStartTime] = useState<Date | undefined>();
   const [currentTime, setCurrentTime] = useState<Date | undefined>();
@@ -136,12 +121,7 @@ function Game() {
     canvasCtx?.save();
     if (canvasCtx) {
       canvasCtx.globalAlpha = 0.9; // Adjust the alpha value (0.5) as desired
-      canvasCtx.clearRect(
-        0,
-        0,
-        canvasElement.current.width,
-        canvasElement.current.height
-      );
+      canvasCtx.clearRect(0, 0, canvasElement.current.width, canvasElement.current.height);
       canvasCtx.globalCompositeOperation = 'source-over';
       canvasCtx.drawImage(
         results.image,
@@ -152,23 +132,14 @@ function Game() {
       );
       canvasCtx.globalCompositeOperation = 'source-atop';
       canvasCtx.fillStyle = 'rgba(0, 0, 0, 1)'; // Adjust the alpha value (1) as desired
-      canvasCtx.fillRect(
-        0,
-        0,
-        canvasElement.current.width,
-        canvasElement.current.height
-      );
+      canvasCtx.fillRect(0, 0, canvasElement.current.width, canvasElement.current.height);
     }
     if (results.multiHandLandmarks.length && results.multiHandedness.length) {
       let newLandMarks = [];
       for (const landmarks of results.multiHandLandmarks) {
         for (var i = 0; i < 21; i++) {
           let currentLandmark = landmarks[i];
-          newLandMarks.push([
-            currentLandmark.x,
-            currentLandmark.y,
-            currentLandmark.z
-          ]);
+          newLandMarks.push([currentLandmark.x, currentLandmark.y, currentLandmark.z]);
           // For Left hand we are reverting all the positions
           // if (results.multiHandedness[0].label === "Right") {
           //   newLandMarks[i][0] = newLandMarks[i][0] * -1;
@@ -181,19 +152,16 @@ function Game() {
         let fingerPoseResults = fingerPoseEstimator.estimate(newLandMarks);
         // NOTE: We are only accepting hands of a certain size - to have less false positives
         var handSize =
-          handAnalyzer.findDistanceBetweenTwoLandMarks(
-            newLandMarks[0],
-            newLandMarks[5]
-          ) * 10;
+          handAnalyzer.findDistanceBetweenTwoLandMarks(newLandMarks[0], newLandMarks[5]) * 10;
         if (handSize > 0.7) {
           setIsGameStarted(true);
           drawConnectors(canvasCtx, landmarks, HAND_CONNECTIONS, {
             color: '#ff00ff',
-            lineWidth: 2
+            lineWidth: 2,
           });
           drawLandmarks(canvasCtx, landmarks, {
             color: 'transparent',
-            lineWidth: 0
+            lineWidth: 0,
           });
           if (selectedLetter && !skipPrediction) {
             const response = reactToDOMCursor(
@@ -269,7 +237,7 @@ function Game() {
         const camera = new window.Camera(videoElement.current, {
           onFrame: async () => {
             await hands.send({ image: videoElement.current });
-          }
+          },
         });
         camera.start();
       }
@@ -301,12 +269,12 @@ function Game() {
     <div className="flex justify-center flex-col items-center h-[75vh] md:h-[70vh] mt-[4vh]">
       <div className="flex flex-col justify-between items-center md:flex-row overflow-hidden ig:bg-blue-500 h-[80vh] gap-4 md:h-auto w-[90%] cxm:w-full md:w-10/12 relative">
         {showModal && <Modal wordIndex={wordIndex} nextWord={selectedWord} />}
-        {
-          level == "1" ? (  <PlaceYourHand
+        {level == '1' ? (
+          <PlaceYourHand
             isMediaPipeModelLoading={isMediaPipeModelLoading}
             isGameStarted={isGameStarted}
-          />)  : (null)
-        }
+          />
+        ) : null}
         <GameLeftSide
           score={score}
           isGameStarted={isGameStarted}
@@ -316,21 +284,19 @@ function Game() {
           selectedWord={selectedWord}
           handDirection={handDirection}
         />
-        <div className={`flex ig:bg-red-500 h-[45%] md:h-[250px] cml:h-[300px] w-[240px] cxs:w-[300px] md:min-w-[240px] cml:min-w-[280px] md:w-[45%] items-center rounded-3xl justify-center overflow-hidden md:rounded-lg   ${handDirection == "left" ? 'order-1' :''}`}>
+        <div
+          className={`flex ig:bg-red-500 h-[45%] md:h-[250px] cml:h-[300px] w-[240px] cxs:w-[300px] md:min-w-[240px] cml:min-w-[280px] md:w-[45%] items-center rounded-3xl justify-center overflow-hidden md:rounded-lg   ${
+            handDirection == 'left' ? 'order-1' : ''
+          }`}
+        >
           {isMediaPipeModelLoading && (
-            <img
-              src={girl}
-              className="output_canvas rounded-lg aspect-square w-full object-fill"
-            />
+            <img src={girl} className="output_canvas rounded-lg aspect-square w-full object-fill" />
           )}
-          <video
-            ref={videoElement}
-            className="input_video hidden w-full aspect-square"
-          ></video>
+          <video ref={videoElement} className="input_video hidden w-full aspect-square"></video>
           <canvas
             className="output_canvas transition-all rounded-lg aspect-square w-full h-full object-fill transform scale-150"
             style={{
-              display: isMediaPipeModelLoading ? 'none' : 'block'
+              display: isMediaPipeModelLoading ? 'none' : 'block',
             }}
             ref={canvasElement}
           ></canvas>
@@ -338,16 +304,11 @@ function Game() {
       </div>
       {isGameStarted && (
         <div className=" absolute top-[40%] mt-0 md:mt-4 md:relative md:top-0 w-[80%] cxm:w-[50%] md:w-[70%] flex items-center gap-2 ml-auto mr-auto justify-between md:gap-10 ig:bg-blue-400">
-          <p className='text-xs md:text-sm csl:text-md text-center w-[110px]'>
-            {moment(
-              currentTime - startTime >= 0 ? currentTime - startTime : 0
-            ).format('mm : ss')}
+          <p className="text-xs md:text-sm csl:text-md text-center w-[110px]">
+            {moment(currentTime - startTime >= 0 ? currentTime - startTime : 0).format('mm : ss')}
           </p>
           <TimerProgress percentage={percentage} />
-          <Percentage
-            lookForLetter={lookForLetter}
-            skipPrediction={skipPrediction}
-          />
+          <Percentage lookForLetter={lookForLetter} skipPrediction={skipPrediction} />
           {/* <p>{percentage}%</p> */}
         </div>
       )}
@@ -360,7 +321,7 @@ function Game() {
         </button>
       ) : (
         <div className="fixed flex justify-center items-center h-[100vh] w-[100vw] top-0 bottom-0 left-0 right-0 z-50 object-cover overflow-hidden opacity-90">
-          <img src={loading} alt="loading" className='w-full h-full min-w-[1000px]' />
+          <img src={loading} alt="loading" className="w-full h-full min-w-[1000px]" />
         </div>
       )}
     </div>

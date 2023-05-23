@@ -16,18 +16,8 @@ function SelectLanguage() {
         Choose the language you want to use for fingerspelling
       </h1>
       <div className="flex gap-10 z-30">
-        <LinkwithQuery
-          path={'/select-level'}
-          query="lang=en"
-          text="English"
-          ref={null}
-        />
-        <LinkwithQuery
-          path={'/select-level'}
-          query="lang=am"
-          text="Amharic"
-          ref={null}
-        />
+        <LinkwithQuery path={'/select-level'} query="lang=en" text="English" ref={null} />
+        <LinkwithQuery path={'/select-level'} query="lang=am" text="Amharic" ref={null} />
       </div>
     </div>
   );

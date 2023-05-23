@@ -22,11 +22,9 @@ function Login() {
         btns={[
           {
             text: mode == 'game' ? t('paag') : t('laag'),
-            link: `/select-profile${search}`
+            link: `/select-profile${search}`,
           },
-          ...(!user?.user
-            ? [{ text: t('lwg'), to: `/select-profile${search}` }]
-            : [])
+          ...(!user?.user ? [{ text: t('lwg'), to: `/select-profile${search}` }] : []),
         ]}
       />
     </div>

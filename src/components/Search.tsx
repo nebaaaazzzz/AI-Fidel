@@ -82,10 +82,7 @@ function Search() {
         {filterdWords?.slice(0, 6).map((word, i) => {
           return (
             <React.Fragment key={i}>
-              <Link
-                to={`/game${search}&search=${word}`}
-                className="text-center text-white"
-              >
+              <Link to={`/game${search}&search=${word}`} className="text-center text-white">
                 {word}
               </Link>
               <div className="w-full h-[0.1px] bg-slate-200"></div>

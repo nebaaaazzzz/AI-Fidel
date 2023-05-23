@@ -3,7 +3,7 @@ import { AlphabetDefinationI } from '../type';
 
 function Percentage({
   lookForLetter,
-  skipPrediction
+  skipPrediction,
 }: {
   lookForLetter: AlphabetDefinationI | null;
   skipPrediction: boolean;
@@ -19,7 +19,9 @@ function Percentage({
     lookForLetter?.little?.percentageCorrect;
   let avg = sum / 5;
 
-  return <p className="w-[70px] text-white text-center text-sm md:text-md">{(avg * 100).toFixed(2)}%</p>;
+  return (
+    <p className="w-[70px] text-white text-center text-sm md:text-md">{(avg * 100).toFixed(2)}%</p>
+  );
 }
 
 export default Percentage;

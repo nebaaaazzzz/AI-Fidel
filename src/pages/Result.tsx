@@ -39,10 +39,7 @@ const Result = () => {
                     width="1"
                     height="1"
                   >
-                    <use
-                      xlinkHref="#image0_584_125"
-                      transform="scale(0.0027027 0.0013947)"
-                    />
+                    <use xlinkHref="#image0_584_125" transform="scale(0.0027027 0.0013947)" />
                   </pattern>
                   <clipPath id="clip0_584_125">
                     <rect
@@ -76,9 +73,7 @@ const Result = () => {
         <div>
           <input type="range" min={0} max={100} />
         </div>
-        <button className="btn text-center  rounded-xl bg-[#008867]   mt-5  w-[3/4]">
-          ቀጥል
-        </button>
+        <button className="btn text-center  rounded-xl bg-[#008867]   mt-5  w-[3/4]">ቀጥል</button>
       </div>
     </>
   );

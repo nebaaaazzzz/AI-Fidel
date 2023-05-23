@@ -13,10 +13,9 @@ import { db } from '@/config/firebase';
 import { doc, getDoc } from 'firebase/firestore';
 import { useState } from 'react';
 
-
 function StartingRight({ header1, header2, btns, firstPage }) {
   const [loading, setLoading] = useAtom(loadingAtom);
-  const [errorCount, setErrorCount] = useState(0)
+  const [errorCount, setErrorCount] = useState(0);
   const navigate = useNavigate();
   const { search } = useLocation();
   const { t } = useTranslation();
@@ -41,7 +40,7 @@ function StartingRight({ header1, header2, btns, firstPage }) {
             email: result.user.email,
             photo: result.user.photoURL,
             phoneNumber: result.user.phoneNumber,
-            id: result.user.uid
+            id: result.user.uid,
           };
           setLoading(true);
           await addDocToCollection('users', user);
@@ -61,11 +60,11 @@ function StartingRight({ header1, header2, btns, firstPage }) {
         // Handle Errors here.
         const errorCode = error.code;
         const errorMessage = error.message;
-        setErrorCount((prev) => prev + 1)
-        if (errorCount > 3) { 
-          toastError("There might be an issue with your internet connection please try guest mode");
+        setErrorCount((prev) => prev + 1);
+        if (errorCount > 3) {
+          toastError('There might be an issue with your internet connection please try guest mode');
         } else {
-          toastError("Something went wrong please try agian");
+          toastError('Something went wrong please try agian');
         }
         // The email of the user's account used.
         const email = error.customData.email;
@@ -77,10 +76,10 @@ function StartingRight({ header1, header2, btns, firstPage }) {
   return (
     <div className="md:flex-1 transition-all md:top-0 top-[-15px] relative m-[-30px] overflow-hidden flex md:h-screen justify-center items-center">
       <div className="flex gap-2 md:gap-5 w-9/12  flex-col justify-center">
-        <div className='hidden md:block'>
+        <div className="hidden md:block">
           <Logo />
         </div>
-        <div className='mt-12 md:mt-4'>
+        <div className="mt-12 md:mt-4">
           <h1 className="text-white text-2xl cxs:text-3xl md:text-4xl font-bold text-center">
             {header1}
           </h1>
@@ -89,12 +88,16 @@ function StartingRight({ header1, header2, btns, firstPage }) {
           </h1>
         </div>
         <div className="flex flex-col items-center justify-center b text-sm md:text-md">
-          <p className="block text-center text-xs md:text-sm    font-normal">{t('lslwml')}{' '}<br className='hidden cvs:block md:hidden'/>{t('urcml')}{' '}<br className='hidden cvs:block md:hidden'/>{t('hps')} </p>
+          <p className="block text-center text-xs md:text-sm    font-normal">
+            {t('lslwml')} <br className="hidden cvs:block md:hidden" />
+            {t('urcml')} <br className="hidden cvs:block md:hidden" />
+            {t('hps')}{' '}
+          </p>
           {/* <p className="font-[100] text-center text-sm block md:hidden ">The platforms that you are going to use for adobe premier pro. </p> */}
         </div>
         <div className="flex w-11/12 mt-2 md:mt-2 items-center self-center flex-col md:gap-4 gap-[1.5vh]">
-        {/* className={'btn w-full py-0 h-[10px] text-md md:text-lg capitalize bg-yellow-200 rounded-2xl md:rounded-md`'}> */}
-        {/* <div
+          {/* className={'btn w-full py-0 h-[10px] text-md md:text-lg capitalize bg-yellow-200 rounded-2xl md:rounded-md`'}> */}
+          {/* <div
           className={'bg-yellow-200'}>
             Test
         </div> */}
@@ -102,7 +105,7 @@ function StartingRight({ header1, header2, btns, firstPage }) {
             return (
               <Link
                 {...(to ? { onClick: () => loginWithGoogle(to) } : {})}
-                {...(text === "New Game" ? { onClick: () => clearStorage() } : {})}
+                {...(text === 'New Game' ? { onClick: () => clearStorage() } : {})}
                 key={i}
                 to="/"
                 {...(link ? { to: link } : { to: '.' + search })}
@@ -127,9 +130,7 @@ function StartingRight({ header1, header2, btns, firstPage }) {
           ) : null}
         </div>
       </div>
-      <p className="font-extralight text-[12px] text-[#a4a4a4] fixed bottom-3">
-        {t('pbal')}
-      </p>
+      <p className="font-extralight text-[12px] text-[#a4a4a4] fixed bottom-3">{t('pbal')}</p>
     </div>
   );
 }

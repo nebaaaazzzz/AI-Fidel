@@ -4,13 +4,13 @@ export const levels = [
 
   ['g', 'h', 'm', 'n', 'x'],
 
-  ['p', 'q', 'j', 'z']
+  ['p', 'q', 'j', 'z'],
 ];
 function getRandomWordFromLevelWords(levelWords: string[]): string[] {
   const levelWordsLength = levelWords.length;
   let randomWordIndexArr: number[] = [];
   let randomWordArr: string[] = [];
-  while(randomWordIndexArr.length < 10) {
+  while (randomWordIndexArr.length < 10) {
     const randomIndex = Math.floor(Math.random() * levelWordsLength);
     if (!randomWordIndexArr.includes(randomIndex)) {
       randomWordIndexArr.push(randomIndex);
@@ -23,10 +23,7 @@ function getRandomWordFromLevelWords(levelWords: string[]): string[] {
   // console.log(randomWordArr)
   return randomWordArr;
 }
-export function getLevelWords(
-  passedWords: string[],
-  levelIndex: number
-): string[] {
+export function getLevelWords(passedWords: string[], levelIndex: number): string[] {
   const words = [...passedWords];
   let levelWords: string[] = []; //to hold all words in levelIndex
   let levelLetters: string[] = []; /*contain level word from levelIndex to 0 concatinated */
@@ -36,7 +33,7 @@ export function getLevelWords(
   }
 
   if (levelIndex == 1) {
-    return getRandomWordFromLevelWords(words)
+    return getRandomWordFromLevelWords(words);
   } else {
     for (let wordIndex in words) {
       let skip = false;
@@ -50,11 +47,9 @@ export function getLevelWords(
         words.splice(Number(wordIndex), 1);
       }
     }
-  
+
     return getRandomWordFromLevelWords(levelWords);
   }
-
-  
 }
 // if (!words[wordIndex].includes(letter)) {
 //   levelWords.push(words[wordIndex]);
