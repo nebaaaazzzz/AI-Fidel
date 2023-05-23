@@ -328,7 +328,7 @@ function Game() {
             className="input_video hidden w-full aspect-square"
           ></video>
           <canvas
-            className="output_canvas transition-all rounded-lg aspect-square w-full h-full object-fill"
+            className="output_canvas transition-all rounded-lg aspect-square w-full h-full object-fill transform scale-150"
             style={{
               display: isMediaPipeModelLoading ? 'none' : 'block'
             }}
