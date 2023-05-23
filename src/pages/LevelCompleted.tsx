@@ -132,11 +132,11 @@ function LevelCompleted() {
         <Link 
           to={level == "4" ? `/final-score-board?${localStorage.getItem("avg")}` : `/keep-up-score-board${search}`} 
           className="py-2 btn-primary capitalize mb-2 md:mb-5 rounded-lg md:rounded-md w-full text-lg font-[500] md:font-normal md:text-xl text-white text-center">
-            {mode == "game" ? `Level ${level}` : "Completed"}
+            {mode == "game" ? `${t("l")} ${level}` : t("c")}
         </Link>
         {mode == "learn" && (
           <p className="text-white mt-0 md:mt-[-20px] font-bold text-center rounded-md w-full ">
-            {t("level")} {level}
+            {t("l")} {level}
           </p>
         )}
         {/* {mode == 'game' ? (
@@ -190,7 +190,7 @@ function LevelCompleted() {
         <img src={stars} className="object-contain w-36  md:w-52" />
 
         <p className="font-bold">
-          {mode == "game" ? "you scored" : "you have learned"}
+          {mode == "game" ? t("ys") : t("yhl")}
         </p>
         <h1 className="text-white font-bold md:font-extrabold text-4xl md:text-6xl">
           {parseFloat(((Number(score) * 100) / factor).toFixed(2)) > 100

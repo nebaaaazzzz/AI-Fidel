@@ -50,8 +50,8 @@ function SelectLevel() {
     })();
   }, [user]);
   return (
-    <div className="flex h-[80vh] flex-col justify-around md:mt-[-10px] gap-6 items-center mt-4 csl:mt-0 md:items-stretch">
-      <div className="flex overflow-visible w-full justify-center md:justify-between items-center md:items-stretch px-0 pl-10 py-2 md:py-4">
+    <div className="flex h-[80vh] w-full md:w-[95%] csl:w-full mr-auto ml-auto flex-col justify-around md:mt-[-10px] gap-6 items-center mt-4 csl:mt-0 md:items-stretch">
+      <div className="flex overflow-visible w-full justify-center md:justify-between items-center md:items-stretch px-0 pl-6 py-2 md:py-4">
         <div className="absolute md:flex md:relative md:top-0 md:left-0 top-[25px] left-[40px] prose flex-col items-start md:mr-0">
           <button
             className="flex capitalize justify-between -ml-6"
@@ -69,9 +69,9 @@ function SelectLevel() {
             )}
           </div>
         </div>
-        <div className="flex items-center flex-row md:flex-col gap-2 md:mr-auto md:ml-auto mt-12 md:mt-0 md:p-0">
+        <div className="flex items-center justify-center w-full flex-row md:flex-col gap-6 md:mr-auto md:ml-auto mt-12 md:mt-0 md:p-0">
           <div
-            className={`rounded-full flex items-center justify-center w-20 h-20 md:w-32 md:h-32 aspect-square ${
+            className={`rounded-full flex items-center justify-center w-32 h-32 aspect-square ${
               user ? '' : 'p-4'
             }`}
             style={{
@@ -93,13 +93,9 @@ function SelectLevel() {
               />
             )}
           </div>
-          <div className='pl-4 text-sm'>
-            <p className='block md:hidden'>Hello</p>
             <h2 className='text-left md:text-center text-white text-md md:text-2xl font-[500] pt-0 md:pt-2'>{user?.user ? user.displayName : localStorage.getItem("displayName")}</h2>
-            {/* <p className='opacity-50 text-sm text-center hidden md:block'>ablazelabs@gmail.com</p> */}
-          </div>
         </div>
-        <div className="hidden md:flex mr-5 w-14 self-stretch flex-col justify-between">
+        <div className="hidden md:flex mr-0 items-end w-12 self-stretch flex-col justify-between">
             {socialMediaIcons.map((Icon, i) => {
               return <Icon key={i} size={20} color="white" />;
             })}

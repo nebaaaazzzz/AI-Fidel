@@ -92,7 +92,7 @@ function StartingRight({ header1, header2, btns, firstPage }) {
           <p className="block text-center text-xs md:text-sm    font-normal">{t('lslwml')}{' '}<br className='hidden cvs:block md:hidden'/>{t('urcml')}{' '}<br className='hidden cvs:block md:hidden'/>{t('hps')} </p>
           {/* <p className="font-[100] text-center text-sm block md:hidden ">The platforms that you are going to use for adobe premier pro. </p> */}
         </div>
-        <div className="flex w-11/12 mt-2 md:mt-2 items-center self-center flex-col md:gap-4 gap-2">
+        <div className="flex w-11/12 mt-2 md:mt-2 items-center self-center flex-col md:gap-4 gap-[1.5vh]">
         {/* className={'btn w-full py-0 h-[10px] text-md md:text-lg capitalize bg-yellow-200 rounded-2xl md:rounded-md`'}> */}
         {/* <div
           className={'bg-yellow-200'}>
@@ -106,7 +106,7 @@ function StartingRight({ header1, header2, btns, firstPage }) {
                 key={i}
                 to="/"
                 {...(link ? { to: link } : { to: '.' + search })}
-                className={`w-full py-[10px] md:py-[10px] font-semibold text-center text-sm md:text-lg capitalize ${
+                className={`w-full py-[1.3vh] md:py-[10px] font-semibold text-center text-sm md:text-lg capitalize ${
                   i == 0 ? 'btn-accent' : 'btn-primary'
                 } rounded-xl md:rounded-md`}
               >
@@ -116,7 +116,7 @@ function StartingRight({ header1, header2, btns, firstPage }) {
           })}
           {firstPage ? (
             <button
-              className="p-2 px-4 md:px-8 items-center flex md:py-[10px] font-semibold text-center border-[1px] w-full capitalize rounded-md text-sm md:text-lg border-[#fff] justify-between"
+              className="p-[1.3vh] px-4 md:px-8 items-center flex md:py-[10px] font-semibold text-center border-[1px] w-full capitalize rounded-md text-sm md:text-lg border-[#fff] justify-between"
               onClick={() => navigate(-1)}
             >
               <BsArrowLeftShort />
