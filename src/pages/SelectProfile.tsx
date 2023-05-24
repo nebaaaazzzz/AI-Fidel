@@ -45,7 +45,10 @@ function SelectProfile() {
   const navigate = useNavigate();
   useEffect(() => {
     // localStorage.removeItem("level")
+    
+    const language = localStorage?.getItem("language")
     localStorage.clear()
+    if (language) localStorage.setItem("language", language)
   }, [])
   useEffect(() => {
     (async () => {
