@@ -5,14 +5,17 @@ import { getSessionInfo } from '../utils/localsession';
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '@/context/AuthContext';
 import { useTranslation } from 'react-i18next';
+import { useAtom } from 'jotai';
+import { handAtom } from '../store/store';
+import { langAtom } from '../store/store'
 
 function SelectGame() {
   const { t } = useTranslation();
   const user = useContext(AuthContext);
-  const [configuration, setConfiguration] = useState<any>();
+  const [level, setLevel] = useState<any>();
   useEffect(() => {
     (async () => {
-      setConfiguration(await getSessionInfo());
+      setLevel(localStorage.getItem('level'));
     })();
   }, []);
   return (
@@ -23,11 +26,11 @@ function SelectGame() {
         header2={t('bc')}
         firstPage="true"
         btns={[
-          ...(configuration?.level
+          ...(level
             ? [
                 {
                   text: t('resume'),
-                  link: `/select-level?level=${configuration?.level}&lang=${configuration?.lang}&hand=${configuration?.hand}&mode=game`,
+                  link: `/select-level?level=${level}&lang=${langAtom}&hand=${handAtom}&mode=game`,
                 },
               ]
             : []),
