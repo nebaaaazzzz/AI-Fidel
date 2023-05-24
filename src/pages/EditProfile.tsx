@@ -93,7 +93,7 @@ const EditProfile = () => {
           </div>
           <div className="">
             <div className="flex flex-col gap-5">
-              <Link to="/profile" className={`${!guestMode ? 'hidden' : ''}`}>
+              <Link to="/profile">
                 <div className=" bg-[#2E2E2E] rounded-md flex  py-2 px-5 justify-between cursor-pointer">
                   <div className=" mt-[4px] ml-3">
                     <MdModeEdit size="18px" />

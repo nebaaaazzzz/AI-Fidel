@@ -34,10 +34,14 @@ const ParentScoreBoard = ({ children }) => {
             <span>{t('bc')}</span>
             <div></div>
           </button> */}
-          <button className="flex justify-center flex-[30%] sm:flex-[70%] items-center button-glass text-xl md:text-2xl font-bold md:font-extrabold py-2 sm:py-1 w-full cvs:w-auto csl:w-[72%] mr-auto ml-auto md:w-full px-4 md:px-8" onClick={() => navigate(-1)}>
+          <div className='w-full flex justify-center'>
+            <button className="md:flex hidden justify-around w-[55%] mt-1 button-glass text-2xl font-extrabold uppercase py-1" onClick={() => navigate(-1)}>
+              <div className='mt-[2px]'>
                 <BsArrowLeftShort size={26} />
-                <span>{t('bc')}</span>
-              </button>
+              </div>
+              <span>{t('bc')}</span>
+            </button>
+          </div>
           {/* <Link
             className="md:flex hidden justify-center w-full mt-1"
             to={completedAll ? '/' : '/select-level?mode=game'}
@@ -85,16 +89,16 @@ const ParentScoreBoard = ({ children }) => {
         </div>
         <div className="flex flex-col md:ml-[5vw] md:mr-[5vw] w-[90vw] csl:w-[68%]">
           <div className=" flex flex-col w-[90%] mx-auto h-full">
-            <button className="bg-[#F8B936] block uppercase w-full ml-auto mr-auto rounded-md text-[#FFF] text-lg md:text-2xl font-bold border-[4px] border-[#FAFF00] py-1 shadow-[0px_2px_10px_rgba(254,198,0,.8)] cursor-default">
+            <button className="bg-[#F8B936] mb-4 md:mb-0 block uppercase w-full ml-auto mr-auto rounded-md text-[#FFF] text-lg md:text-2xl font-bold border-[4px] border-[#FAFF00] py-1 shadow-[0px_2px_10px_rgba(254,198,0,.8)] cursor-default">
               {t('sb')}
             </button>
-            <div className="mb-7 bg-transparent md:bg-[#2E2E2E] border-transparent md:border-[#FAFF00] border-[3px]  md:mt-7 rounded-md pt-7 px-0 md:px-4">
+            <div className="mb-7 bg-[#2E2E2E] border-[#FAFF00] border-[3px]  md:mt-7 rounded-md pt-7 px-2 md:px-4">
               {children}
             </div>
 
             {/* Mobile responsive version */}
-            <div className="flex flex-row gap-2 sm:gap-1 cvs:gap-3 justify-between items-stretch cxs:items-center">
-              <button className="flex csl:hidden justify-between flex-[30%] items-center button-glass text-xl md:text-2xl font-bold md:font-extrabold  py-[1px] md:py-1 csl:w-[93%] mr-auto ml-auto md:w-full px-4 md:px-8">
+            <div className="flex flex-row transition-all gap-2 sm:gap-1 cvs:gap-3 justify-between items-stretch cxs:items-center">
+              {/* <button className="flex csl:hidden justify-between flex-[30%] items-center button-glass text-xl md:text-2xl font-bold md:font-extrabold  py-[1px] md:py-1 csl:w-[93%] mr-auto ml-auto md:w-full px-4 md:px-8">
                 <span className=" ml-2">{completedAll ? t('h') : t('next')}</span>
                 <div className="flex gap-6  justify-center">
                   {completedAll ? (
@@ -134,6 +138,12 @@ const ParentScoreBoard = ({ children }) => {
                     </svg>
                   )}
                 </div>
+              </button> */}
+
+
+              <button className="flex csl:hidden justify-between flex-[30%] items-center button-glass text-xl md:text-2xl font-bold md:font-extrabold  py-[4px] md:py-1 csl:w-[93%] mr-auto ml-auto md:w-full px-4 md:px-8" onClick={() => navigate(-1)}>
+                <BsArrowLeftShort size={26} />
+                <span>{t('bc')}</span>
               </button>
 
               <div className="w-2/6 block sm:hidden"></div>
