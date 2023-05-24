@@ -118,6 +118,7 @@ function Game() {
       setIsMediaPipeModelLoading(false);
     }
 
+    // console.log(results.image)
     canvasCtx?.save();
     if (canvasCtx) {
       canvasCtx.globalAlpha = 0.9; // Adjust the alpha value (0.5) as desired
@@ -170,6 +171,8 @@ function Game() {
               selectedLetter,
               lang
             );
+
+        
 
             if (response.countCorrectFingers == 5) {
               //stop detecting hand this value change after a delay
@@ -294,7 +297,7 @@ function Game() {
           )}
           <video ref={videoElement} className="input_video hidden w-full aspect-square"></video>
           <canvas
-            className="output_canvas transition-all rounded-lg aspect-square w-full h-full object-fill transform scale-150"
+            className="output_canvas transition-all rounded-lg aspect-square w-full h-full object-fill transform scale-[1.7]"
             style={{
               display: isMediaPipeModelLoading ? 'none' : 'block',
             }}
