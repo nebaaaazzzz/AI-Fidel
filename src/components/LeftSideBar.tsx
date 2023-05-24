@@ -26,7 +26,7 @@ function LeftSideBar() {
     { image: trophyIcon, to: '/keep-up-score-board' },
     {
       image: famecontrollerIcon,
-      to: `/select-level?mode=game&lang=${lang ? lang : "en"}&hand=${hand ? hand  : "right"}`
+      to: `/select-level?mode=game&lang=${lang}&hand=${hand}`
     },
   ];
 
