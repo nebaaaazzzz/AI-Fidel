@@ -44,6 +44,10 @@ function SelectProfile() {
   const { t } = useTranslation();
   const navigate = useNavigate();
   useEffect(() => {
+    // localStorage.removeItem("level")
+    localStorage.clear()
+  }, [])
+  useEffect(() => {
     (async () => {
       if (user?.user) {
         setUsername(user.displayName ? user.displayName : autoGenerateUsername());
