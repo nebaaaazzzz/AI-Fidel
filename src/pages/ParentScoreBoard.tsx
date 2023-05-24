@@ -24,8 +24,8 @@ const ParentScoreBoard = ({ children }) => {
   return (
     <div className="change-bg flex flex-col justify-around h-[100vh]">
       <Header />
-      <div className="flex gap-82 mt-8 md:mt-16 transition-all csl:mt-[-20px] justify-center csl:justify-start w-auto ml-auto mr-auto csl:w-auto flex-col md:flex-row h-[75vh] csl:ml-10  md:mr-20">
-        <div className="w-[34%] flex flex-col justify-center items-center md:hidden csl:block min-w-[300px]">
+      <div className="flex gap-82 mt-8 db- ig:bg-white md:mt-16 transition-all csl:mt-[-5vh] justify-center csl:justify-start w-auto ml-auto mr-auto csl:w-auto flex-col md:flex-row h-[75vh] csl:ml-10  md:mr-20">
+        <div className="w-[34%] db- ig:bg-red-500 my-auto flex flex-col justify-center items-center md:hidden csl:block min-w-[300px]">
           <div className="hidden md:block h-[425px] w-auto mx-auto">
             <img src={completedAll ? allcomplete : keepup} className="h-full ml-auto mr-auto" />
           </div>
@@ -35,7 +35,7 @@ const ParentScoreBoard = ({ children }) => {
             <div></div>
           </button> */}
           <div className='w-full flex justify-center'>
-            <button className="md:flex hidden justify-around w-[55%] mt-1 button-glass text-2xl font-extrabold uppercase py-1" onClick={() => navigate(-1)}>
+            <button className="md:flex hidden justify-between pl-2 md:pl-4 px-4 md:px-8 w-[55%] mt-0 button-glass text-2xl font-extrabold uppercase py-1 " onClick={() => navigate(-1)}>
               <div className='mt-[2px]'>
                 <BsArrowLeftShort size={26} />
               </div>
@@ -87,13 +87,15 @@ const ParentScoreBoard = ({ children }) => {
             </button>
           </Link> */}
         </div>
-        <div className="flex flex-col md:ml-[5vw] md:mr-[5vw] w-[90vw] csl:w-[68%]">
+        <div className="flex db- ig:bg-orange-500 my-auto flex-col md:ml-[5vw] md:mr-[5vw] w-[90vw] csl:w-[68%]">
           <div className=" flex flex-col w-[90%] mx-auto h-full">
-            <button className="bg-[#F8B936] mb-4 md:mb-0 block uppercase w-full ml-auto mr-auto rounded-md text-[#FFF] text-lg md:text-2xl font-bold border-[4px] border-[#FAFF00] py-1 shadow-[0px_2px_10px_rgba(254,198,0,.8)] cursor-default">
-              {t('sb')}
-            </button>
-            <div className="mb-7 bg-[#2E2E2E] border-[#FAFF00] border-[3px]  md:mt-7 rounded-md pt-7 px-2 md:px-4">
-              {children}
+            <div className='h-[425px] flex flex-col justify-between'>
+              <button className="bg-[#F8B936] mb-4 md:mb-0 block uppercase w-full ml-auto mr-auto rounded-md text-[#FFF] text-lg md:text-2xl font-bold border-[4px] border-[#FAFF00] py-1 shadow-[0px_2px_10px_rgba(254,198,0,.8)] cursor-default">
+                {t('sb')}
+              </button>
+              <div className="mb-7 h-[90%] bg-[#2E2E2E] border-[#FAFF00] border-[3px]  md:mt-7 rounded-md pt-7 px-2 md:px-4">
+                {children}
+              </div>
             </div>
 
             {/* Mobile responsive version */}
@@ -141,8 +143,10 @@ const ParentScoreBoard = ({ children }) => {
               </button> */}
 
 
-              <button className="flex csl:hidden justify-between flex-[30%] items-center button-glass text-xl md:text-2xl font-bold md:font-extrabold  py-[4px] md:py-1 csl:w-[93%] mr-auto ml-auto md:w-full px-4 md:px-8" onClick={() => navigate(-1)}>
-                <BsArrowLeftShort size={26} />
+              <button className="flex csl:hidden justify-between flex-[30%] items-center button-glass text-xl md:text-2xl font-bold md:font-extrabold  py-[4px] md:py-1 csl:w-[93%] mr-auto ml-auto md:w-full px-4 pl-2 md:pl-4 md:px-8" onClick={() => navigate(-1)}>
+                <div className=' '>
+                  <BsArrowLeftShort size={26} />
+                </div>
                 <span>{t('bc')}</span>
               </button>
 
