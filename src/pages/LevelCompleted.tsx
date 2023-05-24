@@ -80,7 +80,7 @@ function LevelCompleted() {
     (async () => {
       if (Number(level) == 4) {
         // await storeSessionInfo(lang, hand, level);
-        localStorage.setItem('level', level);
+        if (mode === 'game') localStorage.setItem('level', level);
         let levelScores = {};
         for (let i = 1; i < 4; i++) {
           let levelScore;
