@@ -26,12 +26,11 @@ function LeftSideBar() {
     { image: trophyIcon, to: '/keep-up-score-board' },
     {
       image: famecontrollerIcon,
-      to: `/select-level?mode=game&lang=${lang}&hand=${hand}`
+      to: `/select-level?mode=game&lang=${lang ? lang : "en"}&hand=${hand ? hand  : "right"}`
     },
   ];
 
   // console.log(RegExp(location.search.replace('&', '').replace('=', ' ')).test('learn'), location.pathname, location.search)
-  console.log(Boolean(location.search.match(/learn/)));
   return (
     <div
       style={{
