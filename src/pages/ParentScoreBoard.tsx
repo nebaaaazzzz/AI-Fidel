@@ -75,7 +75,7 @@ const ParentScoreBoard = ({ children }) => {
         </div>
         <div className="flex flex-col md:ml-[5vw] md:mr-[5vw] w-[90vw] csl:w-[68%]">
           <div className=" flex flex-col w-[90%] mx-auto h-full">
-            <button className="bg-[#F8B936] block uppercase w-full ml-auto mr-auto rounded-md text-[#FFF] text-lg md:text-2xl font-bold border-[4px] border-[#FAFF00] py-1 shadow-[0px_2px_10px_rgba(254,198,0,.8)]">
+            <button className="bg-[#F8B936] block uppercase w-full ml-auto mr-auto rounded-md text-[#FFF] text-lg md:text-2xl font-bold border-[4px] border-[#FAFF00] py-1 shadow-[0px_2px_10px_rgba(254,198,0,.8)] cursor-default">
               {t('sb')}
             </button>
             <div className="mb-7 bg-transparent md:bg-[#2E2E2E] border-transparent md:border-[#FAFF00] border-[3px]  md:mt-7 rounded-md pt-7 px-0 md:px-4">
