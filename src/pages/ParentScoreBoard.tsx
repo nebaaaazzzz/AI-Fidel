@@ -2,11 +2,11 @@ import Header from '@/components/Header';
 import { AiFillHome } from 'react-icons/ai';
 import { RxInstagramLogo } from 'react-icons/rx';
 import { FaTiktok } from 'react-icons/fa';
-import { BsFacebook } from 'react-icons/bs';
+import { BsArrowLeftShort, BsFacebook } from 'react-icons/bs';
 // import complete from '@/assets/icons/complete.svg';
 import allcomplete from '@/assets/icons/allcomplete.png';
 import keepup from '@/assets/icons/keepup.png';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 const ParentScoreBoard = ({ children }) => {
@@ -20,6 +20,7 @@ const ParentScoreBoard = ({ children }) => {
     parseInt(levelThree) > 0 &&
     parseInt(levelFour) > 0;
   const { t } = useTranslation();
+  const navigate = useNavigate()
   return (
     <div className="change-bg flex flex-col justify-around h-[100vh]">
       <Header />
@@ -28,7 +29,16 @@ const ParentScoreBoard = ({ children }) => {
           <div className="hidden md:block h-[425px] w-auto mx-auto">
             <img src={completedAll ? allcomplete : keepup} className="h-full ml-auto mr-auto" />
           </div>
-          <Link
+          {/* <button className="flex capitalize justify-between -ml-6" onClick={() => navigate(-1)}>
+            <BsArrowLeftShort size={26} />
+            <span>{t('bc')}</span>
+            <div></div>
+          </button> */}
+          <button className="flex justify-center flex-[30%] sm:flex-[70%] items-center button-glass text-xl md:text-2xl font-bold md:font-extrabold py-2 sm:py-1 w-full cvs:w-auto csl:w-[72%] mr-auto ml-auto md:w-full px-4 md:px-8" onClick={() => navigate(-1)}>
+                <BsArrowLeftShort size={26} />
+                <span>{t('bc')}</span>
+              </button>
+          {/* <Link
             className="md:flex hidden justify-center w-full mt-1"
             to={completedAll ? '/' : '/select-level?mode=game'}
           >
@@ -71,7 +81,7 @@ const ParentScoreBoard = ({ children }) => {
               )}
               <span className=" ml-2">{completedAll ? t('h') : t('next')}</span>
             </button>
-          </Link>
+          </Link> */}
         </div>
         <div className="flex flex-col md:ml-[5vw] md:mr-[5vw] w-[90vw] csl:w-[68%]">
           <div className=" flex flex-col w-[90%] mx-auto h-full">
