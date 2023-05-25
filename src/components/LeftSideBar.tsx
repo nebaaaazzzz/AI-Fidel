@@ -28,8 +28,7 @@ function LeftSideBar() {
       image: famecontrollerIcon,
       to: `/select-level?mode=game&lang=${lang ? lang : "en"}&hand=${hand ? hand  : "right"}`
     },
-    { image: trophyIcon, to: '/learn-keep-up-score-board' },
-    { image: trophyIcon, to : '/game-keep-up-score-board' },
+    { image: trophyIcon, to: '/score-board' },
   ];
 
   // console.log(RegExp(location.search.replace('&', '').replace('=', ' ')).test('learn'), location.pathname, location.search)
