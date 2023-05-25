@@ -24,12 +24,12 @@ function LeftSideBar() {
   const images = [
     { image: appIcon, to: '/' },
     { image: checklistIcon, to: `/select-level?mode=learn&lang=${lang}&hand=${hand}` },
-    { image: trophyIcon, to: '/learn-keep-up-score-board' },
-    { image: trophyIcon, to : '/game-keep-up-score-board' },
     {
       image: famecontrollerIcon,
-      to: `/select-level?mode=game&lang=${lang}&hand=${hand}`
+      to: `/select-level?mode=game&lang=${lang ? lang : "en"}&hand=${hand ? hand  : "right"}`
     },
+    { image: trophyIcon, to: '/learn-keep-up-score-board' },
+    { image: trophyIcon, to : '/game-keep-up-score-board' },
   ];
 
   // console.log(RegExp(location.search.replace('&', '').replace('=', ' ')).test('learn'), location.pathname, location.search)
@@ -51,7 +51,7 @@ function LeftSideBar() {
             key={index}
             style={{
               boxShadow:
-                index == 0 ? '' : (index == 1 && Boolean(location.search.match(/learn/)) || index == 3 && Boolean(location.search.match(/game/))) ? ` 0px 0px 20px 5px #F8B936` : ` 0px 5px 20px 5px rgba(0, 136, 103,0.9)`
+                index == 0 ? '' : (index == 1 && Boolean(location.search.match(/learn/)) || index == 2 && Boolean(location.search.match(/game/))) ? ` 0px 0px 20px 5px #F8B936` : ` 0px 5px 20px 5px rgba(0, 136, 103,0.9)`
                 // index == 0 ? '' : ` 0px 5px 20px 5px rgba(0, 136, 103,0.9)`
             }}
           >
@@ -62,7 +62,7 @@ function LeftSideBar() {
                 key={index}
               />
             </Link>
-            {index != 0 ? (index == 1 && Boolean(location.search.match(/learn/)) || index == 3 && Boolean(location.search.match(/game/))) ? (
+            {index != 0 ? (index == 1 && Boolean(location.search.match(/learn/)) || index == 2 && Boolean(location.search.match(/game/))) ? (
               <p
                 style={{
                   backdropFilter: 'blur(100px)'
