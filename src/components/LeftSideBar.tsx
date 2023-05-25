@@ -10,6 +10,7 @@ import { useAtom } from 'jotai';
 import { AuthContext } from '@/context/AuthContext';
 import { useContext } from 'react';
 import { useLocation } from 'react-router-dom';
+import { MdScoreboard } from 'react-icons/md'
 
 function LeftSideBar() {
   const [lang] = useAtom(langAtom);
@@ -23,7 +24,8 @@ function LeftSideBar() {
   const images = [
     { image: appIcon, to: '/' },
     { image: checklistIcon, to: `/select-level?mode=learn&lang=${lang}&hand=${hand}` },
-    { image: trophyIcon, to: '/keep-up-score-board' },
+    { image: trophyIcon, to: '/learn-keep-up-score-board' },
+    { image: trophyIcon, to : '/game-keep-up-score-board' },
     {
       image: famecontrollerIcon,
       to: `/select-level?mode=game&lang=${lang}&hand=${hand}`
