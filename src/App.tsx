@@ -23,6 +23,7 @@ import EditProfile from './pages/EditProfile';
 import ProfilePage from './pages/ProfilePage';
 import Result from './pages/Result';
 import LevelScoreBoard from './pages/LevelScoreBoard';
+import ScoreBoard from './pages/ScoreBoard';
 import { ChangeLanguage } from './pages/ChangeLanguage';
 import LearnKeepUpScoreBoard from './pages/LearnKeepUpScoreBoard';
 import GameKeepUpScoreBoard from './pages/GameKeepUpScoreBoard';
@@ -56,6 +57,7 @@ function App() {
                 <Route path="complete" element={<Complete />} />
                 <Route path="final-score-board" element={<FinalScoreBoard />} />
                 <Route path="level-score-board" element={<LevelScoreBoard />} />
+                <Route  path='score-board'  element={<ScoreBoard />} />
                 <Route path="learn-keep-up-score-board" element={<LearnKeepUpScoreBoard />} />
                 <Route path="game-keep-up-score-board" element={<GameKeepUpScoreBoard />} />
                 <Route element={<RootLayout />}>
