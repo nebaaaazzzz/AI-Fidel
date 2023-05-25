@@ -136,7 +136,7 @@ function LevelCompleted() {
         <Link
           to={
             level == '4'
-              ? `/final-score-board?${localStorage.getItem(`${mode}_avg`)}`
+              ? `/final-score-board?score=${localStorage.getItem(`${mode}_avg`)}&mode=${mode}`
               : `/${mode}-keep-up-score-board${search}`
           }
           className="py-2 btn-primary capitalize mb-2 md:mb-5 rounded-lg md:rounded-md w-full text-lg font-[500] md:font-normal md:text-xl text-white text-center"
