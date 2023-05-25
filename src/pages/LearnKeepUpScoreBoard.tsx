@@ -28,7 +28,7 @@ const LearnKeepUpScoreBoard = () => {
     ? localStorage.getItem(`levelTwoScore_learn_${localStorage.getItem('displayName')}`)
     : '0';
   let levelThree = localStorage.getItem(`levelThreeScore_learn_${localStorage.getItem('displayName')}`)
-    ? localStorage.getItem(`levelThreeScore_${mode}_${localStorage.getItem('displayName')}`)
+    ? localStorage.getItem(`levelThreeScore_learn_${localStorage.getItem('displayName')}`)
     : '0';
   let levelFour = localStorage.getItem(`levelFourScore_learn_${localStorage.getItem('displayName')}`)
     ? localStorage.getItem(`levelFourScore_learn_${localStorage.getItem('displayName')}`)
@@ -63,11 +63,11 @@ const LearnKeepUpScoreBoard = () => {
   return (
     <div className="">
       {/* <button  onClick={() => navigate(-1)} >Back</button> */}
-      <ParentScoreBoard>
+      {/* <ParentScoreBoard> */}
         {results.map((result, index) => {
           return <LevelScore key={index} level={result.level} score={result.score} />;
         })}
-      </ParentScoreBoard>
+      {/* </ParentScoreBoard> */}
     </div>
   );
 };

@@ -63,11 +63,11 @@ let levelFour = localStorage.getItem(`levelFourScore_game_${localStorage.getItem
   return (
     <div className="">
       {/* <button  onClick={() => navigate(-1)} >Back</button> */}
-      <ParentScoreBoard>
+      {/* <ParentScoreBoard> */}
         {results.map((result, index) => {
           return <LevelScore key={index} level={result.level} score={result.score} />;
         })}
-      </ParentScoreBoard>
+      {/* </ParentScoreBoard> */}
     </div>
   );
 };
