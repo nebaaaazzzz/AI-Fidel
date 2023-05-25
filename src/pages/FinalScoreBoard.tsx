@@ -1,11 +1,22 @@
 import ParentScoreBoard from './ParentScoreBoard';
 import stars from '@assets/icons/starts.png';
 import { useTranslation } from 'react-i18next';
+import { useSearchParams } from 'react-router-dom';
+
+const useGetSearchParams = (searchParams: URLSearchParams) => {
+  const mode = searchParams.get('mode');
+  const score = searchParams.get('score');
+  // searchParams.delete('points');
+
+  return { mode, score };
+};
 
 const FinalScoreBoard = () => {
   const { t } = useTranslation();
+  const searchParams = useSearchParams()[0];
+  const { mode, score } = useGetSearchParams(searchParams);
 
-  let totalScore = localStorage.getItem('avg') ? parseFloat(localStorage.getItem('avg')).toFixed(2) : '00.0'
+  let totalScore = score
 
   return (
     <ParentScoreBoard>
