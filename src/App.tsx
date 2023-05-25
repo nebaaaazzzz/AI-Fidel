@@ -24,7 +24,8 @@ import ProfilePage from './pages/ProfilePage';
 import Result from './pages/Result';
 import LevelScoreBoard from './pages/LevelScoreBoard';
 import { ChangeLanguage } from './pages/ChangeLanguage';
-import KeepUpScoreBoard from './pages/KeepUpScoreBoard';
+import LearnKeepUpScoreBoard from './pages/LearnKeepUpScoreBoard';
+import GameKeepUpScoreBoard from './pages/GameKeepUpScoreBoard';
 import { useAtom } from 'jotai';
 import { loadingAtom } from './store/store';
 import loadingGif from '@assets/images/loading.gif';
@@ -55,7 +56,8 @@ function App() {
                 <Route path="complete" element={<Complete />} />
                 <Route path="final-score-board" element={<FinalScoreBoard />} />
                 <Route path="level-score-board" element={<LevelScoreBoard />} />
-                <Route path="keep-up-score-board" element={<KeepUpScoreBoard />} />
+                <Route path="learn-keep-up-score-board" element={<LearnKeepUpScoreBoard />} />
+                <Route path="game-keep-up-score-board" element={<GameKeepUpScoreBoard />} />
                 <Route element={<RootLayout />}>
                   <Route path="select-hand" element={<SelectHand />} />
                   <Route path="select-level" element={<SelectLevel />} />
