@@ -10,10 +10,10 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 const ParentScoreBoard = ({ children }) => {
-  let levelOne = localStorage.getItem(`levelOneScore_${localStorage.getItem('displayName')}`);
-  let levelTwo = localStorage.getItem(`levelTwoScore_${localStorage.getItem('displayName')}`);
-  let levelThree = localStorage.getItem(`levelThreeScore_${localStorage.getItem('displayName')}`);
-  let levelFour = localStorage.getItem(`levelFourScore_${localStorage.getItem('displayName')}`);
+  let levelOne = localStorage.getItem(`levelOneScore_learn_${localStorage.getItem('displayName')}`);
+  let levelTwo = localStorage.getItem(`levelTwoScore_learn_${localStorage.getItem('displayName')}`);
+  let levelThree = localStorage.getItem(`levelThreeScore_learn_${localStorage.getItem('displayName')}`);
+  let levelFour = localStorage.getItem(`levelFourScore_learn_${localStorage.getItem('displayName')}`);
   let completedAll =
     parseInt(levelOne) > 0 &&
     parseInt(levelTwo) > 0 &&
@@ -152,7 +152,7 @@ const ParentScoreBoard = ({ children }) => {
 
               <div className="w-2/6 block sm:hidden"></div>
 
-              <button className="flex justify-between flex-[30%] sm:flex-[70%] items-center button-glass text-xl md:text-2xl font-bold md:font-extrabold py-2 sm:py-1 w-full cvs:w-auto csl:w-[93%] mr-auto ml-auto md:w-full px-4 md:px-8  mt-12">
+              <button className="flex justify-between flex-[30%] sm:flex-[70%] items-center button-glass text-xl md:text-2xl font-bold md:font-extrabold py-2 sm:py-1 w-full cvs:w-auto csl:w-[93%] mr-auto ml-auto md:w-full px-4 md:px-8 mt-12">
                 <span className="sm:flex hidden">{t('swf')}</span>
                 <div className="flex gap-6 justify-center w-full sm:w-auto">
                   <RxInstagramLogo />
