@@ -45,33 +45,33 @@ function LevelCompleted() {
   const factor = lang == 'en' ? (mode == 'learn' ? Number(level) * 10 : 40) : 40;
   if (level == '1')
     localStorage.setItem(
-      `levelOneScore_${localStorage.getItem('displayName')}`,
+      `levelOneScore_${mode}_${localStorage.getItem('displayName')}`,
       ((Number(score) * 100) / factor).toFixed(2)
     );
   if (level == '2')
     localStorage.setItem(
-      `levelTwoScore_${localStorage.getItem('displayName')}`,
+      `levelTwoScore_${mode}_${localStorage.getItem('displayName')}`,
       ((Number(score) * 100) / factor).toFixed(2)
     );
   if (level == '3')
     localStorage.setItem(
-      `levelThreeScore_${localStorage.getItem('displayName')}`,
+      `levelThreeScore_${mode}_${localStorage.getItem('displayName')}`,
       ((Number(score) * 100) / factor).toFixed(2)
     );
   if (level == '4')
     localStorage.setItem(
-      `levelFourScore_${localStorage.getItem('displayName')}`,
+      `levelFourScore_${mode}_${localStorage.getItem('displayName')}`,
       ((Number(score) * 100) / factor).toFixed(2)
     );
   // searchParams.delete('level');
   if (level == '4') {
     const avg =
-      (Number(localStorage.getItem(`levelOneScore_${localStorage.getItem('displayName')}`)) +
-        Number(localStorage.getItem(`levelTwoScore_${localStorage.getItem('displayName')}`)) +
-        Number(localStorage.getItem(`levelThreeScore_${localStorage.getItem('displayName')}`)) +
-        Number(localStorage.getItem(`levelFourScore_${localStorage.getItem('displayName')}`))) /
+      (Number(localStorage.getItem(`levelOneScore_${mode}_${localStorage.getItem('displayName')}`)) +
+        Number(localStorage.getItem(`levelTwoScore_${mode}_${localStorage.getItem('displayName')}`)) +
+        Number(localStorage.getItem(`levelThreeScore_${mode}_${localStorage.getItem('displayName')}`)) +
+        Number(localStorage.getItem(`levelFourScore_${mode}_${localStorage.getItem('displayName')}`))) /
       4;
-    localStorage.setItem('avg', String(avg));
+    localStorage.setItem(`${mode}_avg`, String(avg));
   }
   useEffect(() => {
     if (mode === 'game') localStorage.setItem('level', level);
@@ -136,8 +136,8 @@ function LevelCompleted() {
         <Link
           to={
             level == '4'
-              ? `/final-score-board?${localStorage.getItem('avg')}`
-              : `/keep-up-score-board${search}`
+              ? `/final-score-board?${localStorage.getItem(`${mode}_avg`)}`
+              : `/${mode}-keep-up-score-board${search}`
           }
           className="py-2 btn-primary capitalize mb-2 md:mb-5 rounded-lg md:rounded-md w-full text-lg font-[500] md:font-normal md:text-xl text-white text-center"
         >
