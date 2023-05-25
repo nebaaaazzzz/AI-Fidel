@@ -20,6 +20,8 @@ import Percentage from '@/components/Percentage';
 import { useTranslation } from 'react-i18next';
 import { useContext } from 'react';
 import { HandContext } from '@/context/HandContext';
+import { HAND_CONNECTIONS } from '@mediapipe/hands';
+import {drawIncorrectFingers} from '@/HandUtils/colorIncorrectFingers'
 
 const handAnalyzer = new HandAnalyzer();
 let skipPrediction = false;
@@ -111,6 +113,10 @@ function Game() {
       setCurrentWordLength(currentWordLength + 1);
     }
   };
+
+  
+
+  
   const onResults = async (results) => {
     let canvasCtx = canvasElement?.current?.getContext('2d');
     setCountPrediction(countPrediction++);
@@ -157,7 +163,7 @@ function Game() {
         if (handSize > 0.7) {
           setIsGameStarted(true);
           drawConnectors(canvasCtx, landmarks, HAND_CONNECTIONS, {
-            color: '#ff00ff',
+            color: '#048565',
             lineWidth: 2,
           });
           drawLandmarks(canvasCtx, landmarks, {
@@ -185,7 +191,7 @@ function Game() {
               }, 300);
             } else {
               setLookForLetter(response?.lookForLetter);
-
+              drawIncorrectFingers(canvasCtx, landmarks, response, HAND_CONNECTIONS);
               // console.log(response.message);
             }
           } else {

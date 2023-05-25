@@ -40,6 +40,7 @@ function predict(lookForLetter, fingerPoseResults, result: Coords3D) {
       countCorrectFingers: 0,
       lookForLetter,
       message: 'Letter not founnd',
+      incorrectFingers: [],
     };
   }
   let fingerData = {
@@ -55,6 +56,7 @@ function predict(lookForLetter, fingerPoseResults, result: Coords3D) {
       lookForLetter,
       countCorrectFingers: 0,
       message: 'put your hand close to the camera',
+      incorrectFingers: [],
     };
   }
 
@@ -71,6 +73,7 @@ function predict(lookForLetter, fingerPoseResults, result: Coords3D) {
   lookForLetter.little.currentAngle = littleFingerAngle;
 
   let countCorrectFingers = 0;
+  let incorrectFingers = [];
 
   let isHandAngleCorrect = false;
   if (lookForLetter.rotation === 'up') {
@@ -81,6 +84,7 @@ function predict(lookForLetter, fingerPoseResults, result: Coords3D) {
         lookForLetter,
         countCorrectFingers: 0,
         message: 'your hand rotation must be up',
+        incorrectFingers: [],
       };
     }
   }
@@ -105,6 +109,7 @@ function predict(lookForLetter, fingerPoseResults, result: Coords3D) {
         lookForLetter,
         countCorrectFingers: 0,
         message: 'your hand rotation must be side',
+        incorrectFingers: [],
       };
     }
   }
@@ -278,6 +283,7 @@ function predict(lookForLetter, fingerPoseResults, result: Coords3D) {
           }
         }
       } else {
+        incorrectFingers.push(finger);
         if (angle && angle > lookFor.curlMin) {
           // Needs more bend
           // 60 / 180
@@ -304,7 +310,7 @@ function predict(lookForLetter, fingerPoseResults, result: Coords3D) {
     lookForLetter.thumb.percentageCorrect = 0;
   }
 
-  return { countCorrectFingers, lookForLetter, message: '' };
+  return { countCorrectFingers, lookForLetter, message: '', incorrectFingers };
 }
 function specialCharacterDetection(
   letter: number[],
@@ -313,6 +319,7 @@ function specialCharacterDetection(
   countCorrectFingers: number;
   lookForLetter: any;
   message: string;
+  incorrectFingers: string[];
 } {
   let thumbAngle = fingerPoseResults.curls[0].angle;
   let indexFingerAngle = fingerPoseResults.curls[1].angle;
@@ -353,13 +360,6 @@ function specialCharacterDetection(
       count++;
     }
   }
-  // console.log(
-  //   thumbAngle,
-  //   indexFingerAngle,
-  //   middleFingerAngle,
-  //   ringFingerAngle,
-  //   littleFingerAngle
-  // );
-  return { countCorrectFingers: count, lookForLetter, message: '' };
+  return { countCorrectFingers: count, lookForLetter, message: '', incorrectFingers: [] };
 }
 export default reactToDOMCursor;
