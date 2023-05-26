@@ -1,5 +1,5 @@
 export const levels = [
-    ['ث', 'ا', 'ع', ' م', ' ل ', ' ك  ', ' ج ', ' ص ', ' ت ', ' ي ']
+    ['ث', 'ا', 'ع', 'م', 'ل', 'ك', 'ج', 'ص', 'ت', 'ي']
   ];
   function getRandomWordFromLevelArabicWords(levelWords: string[]): string[] {
     if (levelWords.length < 10) {
@@ -39,6 +39,6 @@ export const levels = [
       }
     }
   
-    return getRandomWordFromLevelArabicWords(levelWords);
+    return getRandomWordFromLevelArabicWords(passedWords);
   }
   

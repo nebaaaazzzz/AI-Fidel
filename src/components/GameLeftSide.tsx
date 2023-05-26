@@ -57,4 +57,3 @@ function GameLeftSide({
 }
 
 export default GameLeftSide;
-
