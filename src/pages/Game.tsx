@@ -11,6 +11,7 @@ import { NavigateFunction, useLocation, useNavigate, useSearchParams } from 'rea
 import getLanguageWords from '@/data';
 import { getLevelWords } from '@/utils';
 import { getLevelAmharicWords } from '@/utils/amharicindex';
+import { getLevelArabicWords } from '@/utils/arabicindex';
 import reactToDOMCursor from '@/HandUtils/reactToDom';
 import { storeSessionInfo } from '@/utils/localsession';
 import TimerProgress from '@components/TimerProgress';
@@ -42,6 +43,9 @@ function useGetGameConfig(searchParams: URLSearchParams, navigate: NavigateFunct
   }
   if (lang == 'am') {
     levelWords = getLevelAmharicWords(languageWords, level);
+  }
+  if (lang == 'ar') {
+    levelWords = getLevelArabicWords(languageWords, level);
   }
   if (searchWord) {
     level = searchWord.length;
