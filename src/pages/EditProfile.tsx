@@ -12,7 +12,7 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { getAuth, signOut } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AuthContext } from '@/context/AuthContext';
 import { useContext } from 'react';
 import { FacebookShareButton, TwitterShareButton, InstapaperShareButton } from 'react-share';
@@ -22,10 +22,16 @@ const EditProfile = () => {
   const navigate = useNavigate();
   const auth = getAuth();
   const user = useContext(AuthContext);
+  const [isGuest, setIsGuest] = useState(true);
   const [loading, setLoading] = useState(false);
   const { i18n } = useTranslation();
   const guestMode = localStorage.getItem('guestMode');
 
+  useEffect(() => {
+    if (user?.user) {
+      setIsGuest(false);
+    }
+  }, [user])
   const handleSignOut = () => {
     signOut(auth)
       .then(() => {
@@ -120,8 +126,7 @@ const EditProfile = () => {
                 </div>
               </Link>
               <div
-                className={`bg-[#2E2E2E] rounded-md flex py-2 px-5 justify-between cursor-pointer  ${!user?.user} ? 'hidden' : ''
-                }`}
+                className={`flex justify-between mt-6 bg-[#008867] py-2 px-3 rounded-md cursor-pointer btn w-full ${isGuest ? 'hidden' : ''}`}
               >
                 <div className=" mt-[4px] ml-3">
                   <IoMdNotificationsOutline size="20px" />
@@ -135,9 +140,7 @@ const EditProfile = () => {
               </div>
             </div>
             <div
-              className={`flex justify-between mt-6 bg-[#008867] py-2 px-3 rounded-md cursor-pointer btn w-full 
-                ${!user?.user} ? 'hidden' : ''
-              }`}
+              className={`flex justify-between mt-6 bg-[#008867] py-2 px-3 rounded-md cursor-pointer btn w-full ${isGuest ? 'hidden' : ''}`}
               onClick={handleSignOut}
             >
               <div className="mt-1 ml-6">
