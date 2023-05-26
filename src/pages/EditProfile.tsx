@@ -126,7 +126,7 @@ const EditProfile = () => {
                 </div>
               </Link>
               <div
-                className={`flex justify-between mt-6 bg-[#008867] py-2 px-3 rounded-md cursor-pointer btn w-full ${isGuest ? 'hidden' : ''}`}
+                className={`bg-[#2E2E2E] rounded-md flex py-2 px-5 justify-between cursor-pointer  ${isGuest ? 'hidden' : ''}`}
               >
                 <div className=" mt-[4px] ml-3">
                   <IoMdNotificationsOutline size="20px" />
