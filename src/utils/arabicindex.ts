@@ -39,6 +39,6 @@ export const levels = [
       }
     }
   
-    return getRandomWordFromLevelArabicWords(passedWords);
+    return [...passedWords];
   }
   

@@ -32,12 +32,12 @@ const reactToDOMCursor = (
     // let lookForLetter = alphabet.getSpecificLetter(letter);
     lookForLetter = amharicAlphabet.getSpecificLetter(letter);
   } else if (lang === 'ar') {
-    if (arabicAlphabet.specialCharacterArray[letter]) {
-      return specialCharacterDetection(
-        arabicAlphabet.specialCharacterArray[letter],
-        fingerPoseResults
-      );
-    }
+    // if (arabicAlphabet.specialCharacterArray[letter]) {
+    //   return specialCharacterDetection(
+    //     arabicAlphabet.specialCharacterArray[letter],
+    //     fingerPoseResults
+    //   );
+    // }
     // let lookForLetter = alphabet.getSpecificLetter(letter);
     lookForLetter = arabicAlphabet.getSpecificLetter(letter);
   } else {
