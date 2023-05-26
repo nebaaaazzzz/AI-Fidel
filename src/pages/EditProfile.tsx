@@ -120,8 +120,7 @@ const EditProfile = () => {
                 </div>
               </Link>
               <div
-                className={`bg-[#2E2E2E] rounded-md flex py-2 px-5 justify-between cursor-pointer  ${
-                  !guestMode ? 'hidden' : ''
+                className={`bg-[#2E2E2E] rounded-md flex py-2 px-5 justify-between cursor-pointer  ${!user?.user} ? 'hidden' : ''
                 }`}
               >
                 <div className=" mt-[4px] ml-3">
@@ -136,8 +135,8 @@ const EditProfile = () => {
               </div>
             </div>
             <div
-              className={`flex justify-between mt-6 bg-[#008867] py-2 px-3 rounded-md cursor-pointer btn w-full ${
-                !guestMode ? 'hidden' : ''
+              className={`flex justify-between mt-6 bg-[#008867] py-2 px-3 rounded-md cursor-pointer btn w-full 
+                ${!user?.user} ? 'hidden' : ''
               }`}
               onClick={handleSignOut}
             >
