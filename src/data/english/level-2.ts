@@ -9,7 +9,7 @@ export default [
   'us',
   'at',
   'un',
-  'go',
+  // 'go',
   'an',
   'my',
   'up',
@@ -26,5 +26,5 @@ export default [
   'hi',
   'bi',
   'ex',
-  'ok'
+  'ok',
 ];

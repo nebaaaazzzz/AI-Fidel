@@ -4,33 +4,36 @@ import { HandAnalyzer } from '../HandUtils/HandAnalyzer';
 import { useMemo, useRef, useEffect, useState } from 'react';
 import PlaceYourHand from '@components/PlaceYourHand';
 import girl from '@assets/images/girl.png';
+import loading from '@assets/images/loading.gif';
 import GameLeftSide from '@components/GameLeftSide';
 import {} from 'react-spinners';
-import {
-  NavigateFunction,
-  useNavigate,
-  useSearchParams
-} from 'react-router-dom';
+import { NavigateFunction, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import getLanguageWords from '@/data';
 import { getLevelWords } from '@/utils';
 import { getLevelAmharicWords } from '@/utils/amharicindex';
+import { getLevelArabicWords } from '@/utils/arabic.index';
 import reactToDOMCursor from '@/HandUtils/reactToDom';
 import { storeSessionInfo } from '@/utils/localsession';
 import TimerProgress from '@components/TimerProgress';
+import Modal from '@/components/Modal/Modal';
 import moment from 'moment';
 import Percentage from '@/components/Percentage';
+import { useTranslation } from 'react-i18next';
+import { useContext } from 'react';
+import { HandContext } from '@/context/HandContext';
+import { HAND_CONNECTIONS } from '@mediapipe/hands';
+import {drawIncorrectFingers} from '@/HandUtils/colorIncorrectFingers'
+
 const handAnalyzer = new HandAnalyzer();
 let skipPrediction = false;
 let score = 0;
-function useGetGameConfig(
-  searchParams: URLSearchParams,
-  navigate: NavigateFunction
-) {
+function useGetGameConfig(searchParams: URLSearchParams, navigate: NavigateFunction) {
   const hand = searchParams.get('hand');
-  const level = searchParams.get('level');
+  let level = searchParams.get('level');
   const lang = searchParams.get('lang');
   const mode = searchParams.get('mode');
-  if (!hand || !level || !lang || !mode) {
+  const searchWord = searchParams.get('search');
+  if (!hand || !lang || !mode || (!level && !searchWord)) {
     navigate('/');
   }
   const languageWords = getLanguageWords(lang, mode, level);
@@ -41,23 +44,29 @@ function useGetGameConfig(
   if (lang == 'am') {
     levelWords = getLevelAmharicWords(languageWords, level);
   }
+
+  if ( lang == 'ar' ) {
+    levelWords = getLevelArabicWords(languageWords, level);
+  }
+  if (searchWord) {
+    level = searchWord.length;
+    levelWords.unshift(searchWord);
+    levelWords.pop();
+  }
   return { mode, hand, level, lang, levelWords };
 }
 function Game() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
+  const { search } = useLocation();
   const searchParams = useSearchParams()[0];
-  const {
-    lang,
-    mode,
-    hand: handDirection,
-    level,
-    levelWords
-  } = useGetGameConfig(searchParams, navigate);
-  const [lookForLetter, setLookForLetter] =
-    useState<AlphabetDefinationI | null>(null);
+  // const userAgent = navigator.userAgent
+  const { hand: loadHands } = useContext(HandContext);
+  const { lang, hand: handDirection, level, levelWords } = useGetGameConfig(searchParams, navigate);
+  const [singleLevelWord, setSingleLevelWord] = useState(levelWords);
+  const [lookForLetter, setLookForLetter] = useState<AlphabetDefinationI | null>(null);
   const [isGameStarted, setIsGameStarted] = useState(false);
-  const [isMediaPipeModelLoading, setIsMediaPipeModelLoading] =
-    useState<boolean>(true);
+  const [isMediaPipeModelLoading, setIsMediaPipeModelLoading] = useState<boolean>(true);
 
   const [startTime, setStartTime] = useState<Date | undefined>();
   const [currentTime, setCurrentTime] = useState<Date | undefined>();
@@ -90,21 +99,29 @@ function Game() {
   const handleSkip = () => {
     //level compelted go to level completed page
 
-    if (wordIndex == 9) {
-      navigate(`/level-completed?level=${level}&points=${score}&lang}`);
+    if (wordIndex == singleLevelWord.length - 1) {
+      navigate(`/level-completed${search}&points=${score}`);
       score = 0;
+      // if (userAgent.includes('Chrome') || userAgent.includes('Brave'))  reloadMediaPipeFiles();
     }
+    setTimeout(() => {
+      skipPrediction = false;
+    }, 100);
     if (currentWordLength == selectedWord?.length && selectedWord) {
-      setSelectWord(levelWords[wordIndex + 1]);
+      setSelectWord(singleLevelWord[wordIndex + 1]);
       setCurrentWordLength(1);
       setWordIndex((prevWordIndex) => prevWordIndex + 1);
-      setSelectedLetter(levelWords[wordIndex + 1][0]);
+      setSelectedLetter(singleLevelWord[wordIndex + 1][0]);
     } else if (currentWordLength != selectedWord?.length && selectedWord) {
       setCurrentWordLength(currentWordLength + 1);
       setSelectedLetter(selectedWord[currentWordLength]);
       setCurrentWordLength(currentWordLength + 1);
     }
   };
+
+  
+
+  
   const onResults = async (results) => {
     let canvasCtx = canvasElement?.current?.getContext('2d');
     setCountPrediction(countPrediction++);
@@ -112,30 +129,29 @@ function Game() {
       setIsMediaPipeModelLoading(false);
     }
 
+    // console.log(results.image)
     canvasCtx?.save();
-    canvasCtx?.clearRect(
-      0,
-      0,
-      canvasElement.current.width,
-      canvasElement.current.height
-    );
-    canvasCtx?.drawImage(
-      results.image,
-      0,
-      0,
-      canvasElement.current.width,
-      canvasElement.current.height
-    );
+    if (canvasCtx) {
+      canvasCtx.globalAlpha = 0.9; // Adjust the alpha value (0.5) as desired
+      canvasCtx.clearRect(0, 0, canvasElement.current.width, canvasElement.current.height);
+      canvasCtx.globalCompositeOperation = 'source-over';
+      canvasCtx.drawImage(
+        results.image,
+        0,
+        0,
+        canvasElement.current.width,
+        canvasElement.current.height
+      );
+      canvasCtx.globalCompositeOperation = 'source-atop';
+      canvasCtx.fillStyle = 'rgba(0, 0, 0, 1)'; // Adjust the alpha value (1) as desired
+      canvasCtx.fillRect(0, 0, canvasElement.current.width, canvasElement.current.height);
+    }
     if (results.multiHandLandmarks.length && results.multiHandedness.length) {
       let newLandMarks = [];
       for (const landmarks of results.multiHandLandmarks) {
         for (var i = 0; i < 21; i++) {
           let currentLandmark = landmarks[i];
-          newLandMarks.push([
-            currentLandmark.x,
-            currentLandmark.y,
-            currentLandmark.z
-          ]);
+          newLandMarks.push([currentLandmark.x, currentLandmark.y, currentLandmark.z]);
           // For Left hand we are reverting all the positions
           // if (results.multiHandedness[0].label === "Right") {
           //   newLandMarks[i][0] = newLandMarks[i][0] * -1;
@@ -148,19 +164,16 @@ function Game() {
         let fingerPoseResults = fingerPoseEstimator.estimate(newLandMarks);
         // NOTE: We are only accepting hands of a certain size - to have less false positives
         var handSize =
-          handAnalyzer.findDistanceBetweenTwoLandMarks(
-            newLandMarks[0],
-            newLandMarks[5]
-          ) * 10;
+          handAnalyzer.findDistanceBetweenTwoLandMarks(newLandMarks[0], newLandMarks[5]) * 10;
         if (handSize > 0.7) {
           setIsGameStarted(true);
           drawConnectors(canvasCtx, landmarks, HAND_CONNECTIONS, {
-            color: '#ff00ff',
-            lineWidth: 2
+            color: '#048565',
+            lineWidth: 2,
           });
           drawLandmarks(canvasCtx, landmarks, {
             color: 'transparent',
-            lineWidth: 0
+            lineWidth: 0,
           });
           if (selectedLetter && !skipPrediction) {
             const response = reactToDOMCursor(
@@ -170,21 +183,26 @@ function Game() {
               lang
             );
 
+        
+
             if (response.countCorrectFingers == 5) {
               //stop detecting hand this value change after a delay
-              skipPrediction = true;
               score++;
               skipPrediction = true;
               //this time out to delay change of current letter after detecting the hand
               setTimeout(() => {
+                setLookForLetter(null);
                 handleSkip();
-              }, 200);
-            } else if (response?.message) {
+              }, 300);
+            } else {
+              setLookForLetter(response?.lookForLetter);
+              drawIncorrectFingers(canvasCtx, landmarks, response, HAND_CONNECTIONS);
               // console.log(response.message);
             }
-            if (response?.lookForLetter) {
-              setLookForLetter(response?.lookForLetter);
-            }
+          } else {
+            // setTimeout(()=>{
+            //    setLookForLetter(null);
+            // }, 600)
           }
         } else {
           setLookForLetter(null);
@@ -195,26 +213,18 @@ function Game() {
     }
     canvasCtx?.restore();
   };
+  const reloadMediaPipeFiles = () => {
+    window.location.reload();
+  };
   const hands = useMemo(() => {
-    let hands = new window.Hands({
-      locateFile: (file) => {
-        return `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`;
-      }
-    });
-    hands.setOptions({
-      maxNumHands: 1,
-      modelComplexity: 1,
-      minDetectionConfidence: 0.5,
-      minTrackingConfidence: 0.5
-    });
-    return hands;
+    return loadHands;
   }, []);
   useEffect(() => {
-    if (wordIndex !== 0 && wordIndex !== levelWords.length - 1) {
+    if (wordIndex !== 0 && wordIndex !== singleLevelWord.length - 1) {
       setShowModal(true);
       setTimeout(() => {
         setShowModal(false);
-      }, 1000);
+      }, 1500);
     }
   }, [wordIndex]);
   useEffect(() => {
@@ -223,9 +233,7 @@ function Game() {
       hands.onResults(onResults);
     }
     if (countPrediction != 0) {
-      setTimeout(() => {
-        skipPrediction = false;
-      }, 2000);
+      // to fast predict the next letter decrease time
     }
     let intervalId = setInterval(() => {
       if (startTime) {
@@ -236,7 +244,6 @@ function Game() {
       clearInterval(intervalId);
     };
   }, [selectedLetter, currentWordLength]);
-
   useEffect(() => {
     (async () => {
       storeSessionInfo(lang, handDirection, level);
@@ -244,31 +251,44 @@ function Game() {
         const camera = new window.Camera(videoElement.current, {
           onFrame: async () => {
             await hands.send({ image: videoElement.current });
-          }
+          },
         });
         camera.start();
       }
 
       if (isGameStarted) {
-        setSelectWord(levelWords[0]);
-        setSelectedLetter(levelWords[0][0]);
+        setSelectWord(singleLevelWord[0]);
+        setShowModal(true);
+        setSelectedLetter(singleLevelWord[0][0]);
         setTimeout(() => {
           setShowModal(false);
         }, 1000);
       }
     })();
   }, [isGameStarted]);
+  useEffect(() => {
+    const twoMinutesInMilliseconds = 120000; // 2 minutes in milliseconds
+    const elapsedTime = currentTime - startTime;
+
+    if (elapsedTime >= twoMinutesInMilliseconds) {
+      handleSkip();
+    }
+  }, [currentTime, startTime]);
   const percentage = (((currentTime - startTime) / 180000) * 100).toFixed(2);
   // if (percentage >= 100) {
   //   handleSkip();
   // }
+  // console.log(window.Hands)
   return (
-    <div className="flex flex-col -mt-10 items-center">
-      <div className="flex gap-10">
-        <PlaceYourHand
-          isMediaPipeModelLoading={isMediaPipeModelLoading}
-          isGameStarted={isGameStarted}
-        />
+    <div className="flex justify-center flex-col items-center h-[75vh] md:h-[70vh] mt-[4vh]">
+      <div className="flex flex-col justify-between items-center md:flex-row overflow-hidden ig:bg-blue-500 h-[80vh] gap-4 md:h-auto w-[90%] cxm:w-full md:w-10/12 relative">
+        {showModal && <Modal wordIndex={wordIndex} nextWord={selectedWord} />}
+        {level == '1' ? (
+          <PlaceYourHand
+            isMediaPipeModelLoading={isMediaPipeModelLoading}
+            isGameStarted={isGameStarted}
+          />
+        ) : null}
         <GameLeftSide
           score={score}
           isGameStarted={isGameStarted}
@@ -276,45 +296,48 @@ function Game() {
           isMediaPipeModelLoading={isMediaPipeModelLoading}
           selectedLetter={selectedLetter}
           selectedWord={selectedWord}
+          handDirection={handDirection}
         />
-        <div className="flex flex-1 items-center justify-center w-96 aspect-square rounded-lg p-10">
+        <div
+          className={`flex ig:bg-red-500 h-[45%] md:h-[250px] cml:h-[300px] w-[240px] cxs:w-[300px] md:min-w-[240px] cml:min-w-[280px] md:w-[45%] items-center rounded-3xl justify-center overflow-hidden md:rounded-lg   ${
+            handDirection == 'left' ? 'order-1' : ''
+          }`}
+        >
           {isMediaPipeModelLoading && (
-            <img
-              src={girl}
-              className="output_canvas rounded-lg aspect-square w-full object-fill"
-            />
+            <img src={girl} className="output_canvas rounded-lg aspect-square w-full object-fill" />
           )}
-          <video
-            ref={videoElement}
-            className="input_video hidden w-full aspect-square"
-          ></video>
+          <video ref={videoElement} className="input_video hidden w-full aspect-square"></video>
           <canvas
-            className="output_canvas rounded-lg aspect-square w-full object-fill"
+            className="output_canvas transition-all rounded-lg aspect-square w-full h-full object-fill transform scale-[1.7]"
             style={{
-              display: isMediaPipeModelLoading ? 'none' : 'block'
+              display: isMediaPipeModelLoading ? 'none' : 'block',
             }}
             ref={canvasElement}
           ></canvas>
         </div>
       </div>
       {isGameStarted && (
-        <div className="flex items-center gap-10">
-          <p>{moment(currentTime - startTime).format('mm : ss')}</p>
+        <div className=" absolute top-[40%] mt-0 md:mt-4 md:relative md:top-0 w-[80%] cxm:w-[50%] md:w-[70%] flex items-center gap-2 ml-auto mr-auto justify-between md:gap-10 ig:bg-blue-400">
+          <p className="text-xs md:text-sm csl:text-md text-center w-[110px]">
+            {moment(currentTime - startTime >= 0 ? currentTime - startTime : 0).format('mm : ss')}
+          </p>
           <TimerProgress percentage={percentage} />
-          <Percentage
-            lookForLetter={lookForLetter}
-            skipPrediction={skipPrediction}
-          />
+          <Percentage lookForLetter={lookForLetter} skipPrediction={skipPrediction} />
           {/* <p>{percentage}%</p> */}
         </div>
       )}
-
-      <button
-        onClick={handleSkip}
-        className="btn mt-10 btn-primary rounded-md btn-wide "
-      >
-        ፊደሉን ዝለል{' '}
-      </button>
+      {!isMediaPipeModelLoading ? (
+        <button
+          onClick={handleSkip}
+          className="md:mt-10 transition-all mt-0 w-[240px] cxs:w-[300px] btn-primary h-[30px] md:h-[40px] pb-[10px] pt-[5px] md:p-0 md:relative absolute bottom-[11%] mr-auto ml-auto md:bottom-0 md:right-0 rounded-md"
+        >
+          {t('skip')}{' '}
+        </button>
+      ) : (
+        <div className="fixed flex justify-center items-center h-[100vh] w-[100vw] top-0 bottom-0 left-0 right-0 z-50 object-cover overflow-hidden opacity-90">
+          <img src={loading} alt="loading" className="w-full h-full min-w-[1000px]" />
+        </div>
+      )}
     </div>
   );
 }

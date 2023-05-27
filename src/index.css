@@ -2,6 +2,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 body {
   width: 100vw;
   height: 100vh;
@@ -9,13 +10,72 @@ body {
   font-family: 'Poppins', sans-serif;
   overflow: hidden;
 }
+@media screen and (max-width: 768px) {
+  body {
+    overflow: hidden;
+  }
+}
 html {
   background-color: #0d0d0d;
 }
 /* div {
   background-color: #0d0d0d;
 } */
+
+.large-glass {
+  border-radius: 16px;
+  background: linear-gradient(
+    150.11deg,
+    rgba(217, 217, 217, 0.87) -8.45%,
+    rgba(255, 255, 255, 0.2175) -8.45%,
+    rgba(255, 255, 255, 0.0783) 113.16%
+  );
+  box-shadow: 0px 0px 18px 10px rgba(0, 0, 0, 0.13);
+  backdrop-filter: blur(29px);
+  /* Note: backdrop-filter has minimal browser support */
+  border-radius: 45px;
+  border: solid rgba(255, 255, 255, 0.09) 2px;
+}
+
 .custom-glass {
+  background: linear-gradient(
+    150.11deg,
+    rgba(217, 217, 217, 0.87) -8.45%,
+    rgba(255, 255, 255, 0.2175) -8.45%,
+    rgba(255, 255, 255, 0.0783) 113.16%
+  );
+  box-shadow: 0px 0px 18px 10px rgba(0, 0, 0, 0.13);
+  backdrop-filter: blur(29px);
+  /* Note: backdrop-filter has minimal browser support */
+  border-radius: 49px;
+  border: solid rgba(255, 255, 255, 0.09) 2px;
+}
+
+.button-glass {
+  background: #2e2e2e;
+  border: 2px solid rgba(195, 195, 195, 0.99);
+  box-shadow: 0px 0px 8px #dcdcdc;
+  border-radius: 10px;
+}
+
+.profile-glass {
+  background: linear-gradient(
+    150.11deg,
+    rgba(217, 217, 217, 0.87) -8.45%,
+    rgba(255, 255, 255, 0.2175) -8.45%,
+    rgba(255, 255, 255, 0.0783) 113.16%
+  );
+  box-shadow: 0px 4px 23px 10px rgba(0, 0, 0, 0.13);
+  backdrop-filter: blur(29px);
+  /* Note: backdrop-filter has minimal browser support */
+  border-radius: 15px;
+  border: solid rgba(255, 255, 255, 0.09) 2px;
+}
+.custom-glass.smrounded {
+  border-radius: 20px;
+}
+
+.box-glass {
   background: linear-gradient(
     150.11deg,
     rgba(217, 217, 217, 0.87) -8.45%,
@@ -26,8 +86,82 @@ html {
   backdrop-filter: blur(29px);
   /* Note: backdrop-filter has minimal browser support */
   border-radius: 49px;
-  border: solid rgba(255, 255, 255, 0.09) 2px;
+  border: solid rgba(250, 255, 0, 1) 3px;
 }
-.custom-glass.smrounded {
-  border-radius: 20px;
+
+.scrollbar {
+  /* scrollbar-color: rgb(12, 97, 76) rgb(49, 49, 49);
+  scrollbar-width: thin;
+  scroll-padding: 8rem; */
+  scrollbar-width: none;
+}
+
+.nav-bar {
+  border-radius: 17px;
+  backdrop-filter: blur(19.5px);
+  border: 4px solid rgba(255, 255, 255, 0.09);
+  background: linear-gradient(
+    104.13deg,
+    rgba(78, 78, 78, 0.4) 17.81%,
+    rgba(52, 52, 52, 0.45) 90.16%
+  );
+}
+
+.nav-button {
+}
+
+.nav-button:hover,
+.non-active:hover {
+  box-shadow: 0px 0px 20px 5px #e1aa34;
+  background-color: #9f7721;
+}
+
+.non-active {
+  background-color: rgb(20, 83, 67);
+  box-shadow: 0px 5px 20px 5px rgba(0, 136, 103, 0.9);
+}
+
+.active,
+.active:focus,
+.nav-button:focus,
+.non-active:focus {
+  background-color: transparent;
+  box-shadow: 0px 0px 20px 5px transparent;
+}
+
+/* Hide the scrollbar track */
+::-webkit-scrollbar-track,
+scrollbar-track {
+  background: linear-gradient(180deg, rgb(57, 57, 57), rgb(43, 43, 43));
+  border-radius: 9999px;
+  margin-block: 2.5rem;
+}
+
+/* Set the width of the scrollbar */
+::-webkit-scrollbar,
+scrollbar-width {
+  width: 6px;
+  height: 6px;
+}
+
+/* Set the width of the scrollbar thumb */
+::-webkit-scrollbar-thumb,
+scrollbar-thumb {
+  width: 6px;
+  background-color: rgb(12, 97, 76);
+  border-radius: 9999px;
+  border: 0.025rem solid rgb(23, 184, 143);
+}
+
+/* Set the color of the scrollbar thumb on hover */
+::-webkit-scrollbar-thumb:hover,
+scrollbar-thumb:hover {
+  background-color: rgb(18, 132, 104);
+}
+
+.ig-change-bg {
+  /* background-color: firebrick; */
+  background-image: url('./assets/images/fidelbg.png');
+  background-size: contain;
+  background-color: black;
 }

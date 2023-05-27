@@ -42,9 +42,7 @@ function StartLevel() {
       <h1 className="text-8xl text-[#683aff]">Level {level}</h1>
       <h1 className="text-xl  text-[rgb(104,58,255)]">
         እነዢን የአማርኛ ሆሄ ይማሩ{' '}
-        <span className="text-[#683aff] ml-5">
-          {levels[level - 1].join(' , ').toUpperCase()}
-        </span>
+        <span className="text-[#683aff] ml-5">{levels[level - 1].join(' , ').toUpperCase()}</span>
       </h1>
       <h1 className="text-xl text-[#683aff] text-center ">
         ጨዋታዉ ሲጀምር ምስሉን ተመክተዉ <h2>እጆትን እንደ ምስሉ ያርጉ</h2>
@@ -52,12 +50,12 @@ function StartLevel() {
       <div className="card">
         <Link
           style={{
-            textTransform: 'none'
+            textTransform: 'none',
           }}
           ref={buttonRef}
-          to={`/game?level=${level}&hand=${searchParams[0].get(
-            'hand'
-          )}&lang=${searchParams[0].get('lang')}`}
+          to={`/game?level=${level}&hand=${searchParams[0].get('hand')}&lang=${searchParams[0].get(
+            'lang'
+          )}`}
           className="btn my-2 h-14 hover:bg-white hover:text-[#683aff] rounded-3xl text-xl border-none text-white px-20 bg-[#683aff]"
         >
           Turn On Webcam

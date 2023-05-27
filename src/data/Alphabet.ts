@@ -1,18 +1,18 @@
 import { AlphabetDefinationI } from '../type';
 
 export class Alphabet {
-  private alphabetArray: AlphabetDefinationI[] = [];
+  private alphabetArray = [];
 
   private _helpTexts = { straight: 'Straigthen it', bend: 'Bend it' };
 
   constructor() {
-    let noCurl = 180;
-    let halfCurlMin = 130;
-    let fullCurlMinMoreForgiving = 90;
-    let fullCurlMin = 60;
-    let fullCurlMax = 0;
+    var noCurl = 180;
+    var halfCurlMin = 130;
+    var fullCurlMinMoreForgiving = 90;
+    var fullCurlMin = 60;
+    var fullCurlMax = 0;
 
-    let a: AlphabetDefinationI = {
+    var a = {
       letterNumber: 1,
       letter: 'a',
       rotation: 'up',
@@ -22,7 +22,7 @@ export class Alphabet {
         special: 'thumbToTheLeft',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: 'Straigten it - and make sure it is close to index finger'
+        helpText: 'Straigten it - and make sure it is close to index finger',
       },
       index: {
         curlMin: fullCurlMinMoreForgiving,
@@ -30,7 +30,7 @@ export class Alphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.bend
+        helpText: this._helpTexts.bend,
       },
       middle: {
         curlMin: fullCurlMinMoreForgiving,
@@ -38,7 +38,7 @@ export class Alphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.bend
+        helpText: this._helpTexts.bend,
       },
       ring: {
         curlMin: fullCurlMinMoreForgiving,
@@ -46,7 +46,7 @@ export class Alphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.bend
+        helpText: this._helpTexts.bend,
       },
       little: {
         curlMin: fullCurlMinMoreForgiving,
@@ -54,10 +54,10 @@ export class Alphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.bend
-      }
+        helpText: this._helpTexts.bend,
+      },
     };
-    let b: AlphabetDefinationI = {
+    var b = {
       letterNumber: 2,
       letter: 'b',
       rotation: 'up',
@@ -67,7 +67,7 @@ export class Alphabet {
         special: 'thumbBendOverOtherFingers',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: 'Bend it so its inside your palm'
+        helpText: 'Bend it so its inside your palm',
       },
       index: {
         curlMin: noCurl,
@@ -75,7 +75,7 @@ export class Alphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.straight
+        helpText: this._helpTexts.straight,
       },
       middle: {
         curlMin: noCurl,
@@ -83,7 +83,7 @@ export class Alphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.straight
+        helpText: this._helpTexts.straight,
       },
       ring: {
         curlMin: noCurl,
@@ -91,7 +91,7 @@ export class Alphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.straight
+        helpText: this._helpTexts.straight,
       },
       little: {
         curlMin: noCurl,
@@ -99,10 +99,10 @@ export class Alphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.straight
-      }
+        helpText: this._helpTexts.straight,
+      },
     };
-    let c: AlphabetDefinationI = {
+    var c = {
       letterNumber: 3,
       letter: 'c',
       rotation: 'up',
@@ -112,7 +112,7 @@ export class Alphabet {
         special: 'distanceBetweenThumbAndPointer',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: "Bend it - but make sure it doesn't touch your pointer finger"
+        helpText: "Bend it - but make sure it doesn't touch your pointer finger",
       },
       index: {
         curlMin: halfCurlMin + 15,
@@ -120,7 +120,7 @@ export class Alphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.bend
+        helpText: this._helpTexts.bend,
       },
       middle: {
         curlMin: halfCurlMin + 15,
@@ -128,7 +128,7 @@ export class Alphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.bend
+        helpText: this._helpTexts.bend,
       },
       ring: {
         curlMin: halfCurlMin + 15,
@@ -136,7 +136,7 @@ export class Alphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.bend
+        helpText: this._helpTexts.bend,
       },
       little: {
         curlMin: halfCurlMin + 15,
@@ -144,10 +144,10 @@ export class Alphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.bend
-      }
+        helpText: this._helpTexts.bend,
+      },
     };
-    let d: AlphabetDefinationI = {
+    var d = {
       letterNumber: 4,
       letter: 'd',
       rotation: 'up',
@@ -157,7 +157,7 @@ export class Alphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.bend
+        helpText: this._helpTexts.bend,
       },
       index: {
         curlMin: noCurl,
@@ -165,7 +165,7 @@ export class Alphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.bend
+        helpText: this._helpTexts.bend,
       },
       middle: {
         curlMin: fullCurlMinMoreForgiving,
@@ -173,7 +173,7 @@ export class Alphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.bend
+        helpText: this._helpTexts.bend,
       },
       ring: {
         curlMin: fullCurlMinMoreForgiving,
@@ -181,7 +181,7 @@ export class Alphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.straight
+        helpText: this._helpTexts.straight,
       },
       little: {
         curlMin: fullCurlMinMoreForgiving,
@@ -189,13 +189,13 @@ export class Alphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.bend
-      }
+        helpText: this._helpTexts.bend,
+      },
     };
     /*
-          changed this 'thumbBendOverOtherFingersAndUnderOtherFingers' to something else
-           */
-    let e: AlphabetDefinationI = {
+		changed this 'thumbBendOverOtherFingersAndUnderOtherFingers' to something else
+		 */
+    var e = {
       letterNumber: 5,
       letter: 'e',
       rotation: 'up',
@@ -205,7 +205,7 @@ export class Alphabet {
         special: 'thumbBendOverOtherFingers',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: 'Bend it so its placed below the other fingers'
+        helpText: 'Bend it so its placed below the other fingers',
       },
       index: {
         curlMin: fullCurlMinMoreForgiving,
@@ -213,7 +213,7 @@ export class Alphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.bend
+        helpText: this._helpTexts.bend,
       },
       middle: {
         curlMin: fullCurlMinMoreForgiving,
@@ -221,7 +221,7 @@ export class Alphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.bend
+        helpText: this._helpTexts.bend,
       },
       ring: {
         curlMin: fullCurlMinMoreForgiving,
@@ -229,7 +229,7 @@ export class Alphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.bend
+        helpText: this._helpTexts.bend,
       },
       little: {
         curlMin: fullCurlMinMoreForgiving,
@@ -237,10 +237,10 @@ export class Alphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.bend
-      }
+        helpText: this._helpTexts.bend,
+      },
     };
-    let f: AlphabetDefinationI = {
+    var f = {
       letterNumber: 6,
       letter: 'f',
       rotation: 'up',
@@ -250,7 +250,7 @@ export class Alphabet {
         special: 'pinchThumbAndPointer',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: 'Pinch the thumb and pointer finger together'
+        helpText: 'Pinch the thumb and pointer finger together',
       },
       index: {
         curlMin: noCurl,
@@ -258,7 +258,7 @@ export class Alphabet {
         special: 'pinchThumbAndPointer',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.bend
+        helpText: this._helpTexts.bend,
       },
       middle: {
         curlMin: noCurl,
@@ -266,7 +266,7 @@ export class Alphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.straight
+        helpText: this._helpTexts.straight,
       },
       ring: {
         curlMin: noCurl,
@@ -274,7 +274,7 @@ export class Alphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.straight
+        helpText: this._helpTexts.straight,
       },
       little: {
         curlMin: noCurl,
@@ -282,16 +282,16 @@ export class Alphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.straight
-      }
+        helpText: this._helpTexts.straight,
+      },
     };
 
     // FIXME - Need to look for rotation
     /*
-          Removed from thumb:
-                  special: 'thumbPointerAlignOnYAxis',
-           */
-    let g: AlphabetDefinationI = {
+		Removed from thumb:
+				special: 'thumbPointerAlignOnYAxis',
+		 */
+    var g = {
       letterNumber: 7,
       letter: 'g',
       rotation: 'side',
@@ -301,7 +301,7 @@ export class Alphabet {
         percentageCorrect: 0,
         special: 'none',
         currentAngle: null,
-        helpText: 'Make sure its straight and aligns with the pointer finger'
+        helpText: 'Make sure its straight and aligns with the pointer finger',
       },
       index: {
         curlMin: noCurl,
@@ -309,7 +309,7 @@ export class Alphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.straight
+        helpText: this._helpTexts.straight,
       },
       middle: {
         curlMin: fullCurlMinMoreForgiving,
@@ -317,7 +317,7 @@ export class Alphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.bend
+        helpText: this._helpTexts.bend,
       },
       ring: {
         curlMin: fullCurlMinMoreForgiving,
@@ -325,7 +325,7 @@ export class Alphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.bend
+        helpText: this._helpTexts.bend,
       },
       little: {
         curlMin: fullCurlMinMoreForgiving,
@@ -333,10 +333,10 @@ export class Alphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.bend
-      }
+        helpText: this._helpTexts.bend,
+      },
     };
-    let h: AlphabetDefinationI = {
+    var h = {
       letterNumber: 8,
       letter: 'h',
       rotation: 'side',
@@ -345,38 +345,38 @@ export class Alphabet {
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       index: {
         curlMin: noCurl,
         curlMax: 100,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       middle: {
         curlMin: noCurl,
         curlMax: 100,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       ring: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       little: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
-      }
+        currentAngle: null,
+      },
     };
-    let i: AlphabetDefinationI = {
+    var i = {
       letterNumber: 9,
       letter: 'i',
       rotation: 'up',
@@ -385,39 +385,39 @@ export class Alphabet {
         curlMax: fullCurlMax,
         special: 'thumbBendOverOtherFingers',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       index: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       middle: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       ring: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       little: {
         curlMin: noCurl,
         curlMax: halfCurlMin,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
-      }
+        currentAngle: null,
+      },
     };
     // FIXME - add motion detection on the J
-    let j: AlphabetDefinationI = {
+    var j = {
       letterNumber: 10,
       letter: 'j',
       rotation: 'up',
@@ -427,38 +427,38 @@ export class Alphabet {
         curlMax: fullCurlMax,
         special: 'thumbBendOverOtherFingers',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       index: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       middle: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       ring: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       little: {
         curlMin: noCurl,
         curlMax: halfCurlMin,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
-      }
+        currentAngle: null,
+      },
     };
-    let k: AlphabetDefinationI = {
+    var k = {
       letterNumber: 11,
       letter: 'k',
       rotation: 'up',
@@ -467,39 +467,39 @@ export class Alphabet {
         curlMax: halfCurlMin,
         special: 'thumbBendOverOtherFingers',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       index: {
         curlMin: noCurl,
         curlMax: halfCurlMin,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       middle: {
         curlMin: halfCurlMin + 20,
         curlMax: halfCurlMin - 70,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       ring: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       little: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
-      }
+        currentAngle: null,
+      },
     };
 
-    let l: AlphabetDefinationI = {
+    var l = {
       letterNumber: 12,
       letter: 'l',
       rotation: 'up',
@@ -508,39 +508,39 @@ export class Alphabet {
         curlMax: halfCurlMin - 20,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       index: {
         curlMin: noCurl,
         curlMax: halfCurlMin,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       middle: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       ring: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       little: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
-      }
+        currentAngle: null,
+      },
     };
 
-    let m: AlphabetDefinationI = {
+    var m = {
       letterNumber: 13,
       letter: 'm',
       rotation: 'up',
@@ -549,39 +549,39 @@ export class Alphabet {
         curlMax: fullCurlMax,
         special: 'betweenRingAndLittleBase',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       index: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       middle: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       ring: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       little: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
-      }
+        currentAngle: null,
+      },
     };
 
-    let n: AlphabetDefinationI = {
+    var n = {
       letterNumber: 14,
       letter: 'n',
       rotation: 'up',
@@ -590,39 +590,39 @@ export class Alphabet {
         curlMax: fullCurlMax,
         special: 'betweenMiddleAndRing',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       index: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       middle: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       ring: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       little: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
-      }
+        currentAngle: null,
+      },
     };
 
-    let o: AlphabetDefinationI = {
+    var o = {
       letterNumber: 15,
       letter: 'o',
       rotation: 'up',
@@ -631,39 +631,39 @@ export class Alphabet {
         curlMax: halfCurlMin - 30,
         special: 'pinchThumbAndPointer',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       index: {
         curlMin: halfCurlMin,
         curlMax: 10,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       middle: {
         curlMin: halfCurlMin,
         curlMax: 10,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       ring: {
         curlMin: halfCurlMin,
         curlMax: 10,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       little: {
         curlMin: halfCurlMin,
         curlMax: 10,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
-      }
+        currentAngle: null,
+      },
     };
 
-    let p: AlphabetDefinationI = {
+    var p = {
       letterNumber: 16,
       letter: 'p',
       rotation: 'down',
@@ -672,39 +672,39 @@ export class Alphabet {
         curlMax: halfCurlMin - 20,
         special: 'betweenIndexAndMiddle',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       index: {
         curlMin: noCurl,
         curlMax: halfCurlMin - 20,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       middle: {
         curlMin: noCurl,
         curlMax: halfCurlMin - 20,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       ring: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       little: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
-      }
+        currentAngle: null,
+      },
     };
 
-    let q: AlphabetDefinationI = {
+    var q = {
       letterNumber: 17,
       letter: 'q',
       rotation: 'down',
@@ -713,39 +713,39 @@ export class Alphabet {
         curlMax: fullCurlMax,
         special: 'thumbPointerAlignOnYAxis',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       index: {
         curlMin: noCurl,
         curlMax: 100,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       middle: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       ring: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       little: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
-      }
+        currentAngle: null,
+      },
     };
 
-    let r: AlphabetDefinationI = {
+    var r = {
       letterNumber: 17,
       letter: 'r',
       rotation: 'up',
@@ -754,39 +754,39 @@ export class Alphabet {
         curlMax: fullCurlMax,
         special: 'thumbBendOverOtherFingers',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       index: {
         curlMin: noCurl,
         curlMax: halfCurlMin,
         special: 'crossIndexAndMiddle',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       middle: {
         curlMin: noCurl,
         curlMax: halfCurlMin,
         special: 'crossIndexAndMiddle',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       ring: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       little: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
-      }
+        currentAngle: null,
+      },
     };
 
-    let s: AlphabetDefinationI = {
+    var s = {
       letterNumber: 18,
       letter: 's',
       rotation: 'up',
@@ -795,39 +795,39 @@ export class Alphabet {
         curlMax: fullCurlMax,
         special: 'betweenIndexAndMiddleLetterS',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       index: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       middle: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       ring: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       little: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
-      }
+        currentAngle: null,
+      },
     };
 
-    let t: AlphabetDefinationI = {
+    var t = {
       letterNumber: 18,
       letter: 't',
       rotation: 'up',
@@ -836,39 +836,39 @@ export class Alphabet {
         curlMax: fullCurlMax,
         special: 'betweenIndexAndMiddleLetterT',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       index: {
         curlMin: halfCurlMin,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       middle: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       ring: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       little: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
-      }
+        currentAngle: null,
+      },
     };
 
-    let u: AlphabetDefinationI = {
+    var u = {
       letterNumber: 19,
       letter: 'u',
       rotation: 'up',
@@ -877,39 +877,39 @@ export class Alphabet {
         curlMax: fullCurlMax,
         special: 'thumbBendOverOtherFingers',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       index: {
         curlMin: noCurl,
         curlMax: halfCurlMin,
         special: 'indexAndMiddleMustBeClose',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       middle: {
         curlMin: noCurl,
         curlMax: halfCurlMin,
         special: 'indexAndMiddleMustBeClose',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       ring: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       little: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
-      }
+        currentAngle: null,
+      },
     };
 
-    let v: AlphabetDefinationI = {
+    var v = {
       letterNumber: 20,
       letter: 'v',
       rotation: 'up',
@@ -918,39 +918,39 @@ export class Alphabet {
         curlMax: fullCurlMax,
         special: 'thumbBendOverOtherFingers',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       index: {
         curlMin: noCurl,
         curlMax: halfCurlMin,
         special: 'indexAndMiddleMustBeApart',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       middle: {
         curlMin: noCurl,
         curlMax: halfCurlMin,
         special: 'indexAndMiddleMustBeApart',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       ring: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       little: {
         curlMin: halfCurlMin,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
-      }
+        currentAngle: null,
+      },
     };
 
-    let w: AlphabetDefinationI = {
+    var w = {
       letterNumber: 21,
       letter: 'w',
       rotation: 'up',
@@ -959,39 +959,39 @@ export class Alphabet {
         curlMax: fullCurlMax,
         special: 'thumbBendOverOtherFingers',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       index: {
         curlMin: noCurl,
         curlMax: halfCurlMin,
         special: 'indexAndMiddleAndRingMustBeApart',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       middle: {
         curlMin: noCurl,
         curlMax: halfCurlMin,
         special: 'indexAndMiddleAndRingMustBeApart',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       ring: {
         curlMin: noCurl,
         curlMax: halfCurlMin,
         special: 'indexAndMiddleAndRingMustBeApart',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       little: {
         curlMin: halfCurlMin,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
-      }
+        currentAngle: null,
+      },
     };
 
-    let x: AlphabetDefinationI = {
+    var x = {
       letterNumber: 22,
       letter: 'x',
       rotation: 'up',
@@ -1000,39 +1000,39 @@ export class Alphabet {
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       index: {
         curlMin: halfCurlMin + 20,
         curlMax: fullCurlMin + 20,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       middle: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       ring: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       little: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
-      }
+        currentAngle: null,
+      },
     };
 
-    let y: AlphabetDefinationI = {
+    var y = {
       letterNumber: 23,
       letter: 'y',
       rotation: 'up',
@@ -1041,40 +1041,40 @@ export class Alphabet {
         curlMax: noCurl - 30,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       index: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       middle: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       ring: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       little: {
         curlMin: noCurl,
         curlMax: fullCurlMin,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
-      }
+        currentAngle: null,
+      },
     };
 
     // FIXME : Needs a movement in a Z shape
-    let z: AlphabetDefinationI = {
+    var z = {
       letterNumber: 24,
       letter: 'z',
       rotation: 'up',
@@ -1083,36 +1083,36 @@ export class Alphabet {
         curlMax: 100,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       index: {
         curlMin: noCurl,
         curlMax: halfCurlMin,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       middle: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       ring: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       little: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
-      }
+        currentAngle: null,
+      },
     };
 
     // Missing z,p,q,j,h
@@ -1143,16 +1143,18 @@ export class Alphabet {
       w,
       x,
       y,
-      z
+      z,
     ];
   }
+
+  public getLetter = () => {};
 
   public getRandomLetter = () => {
     var getRandom = Math.floor(Math.random() * this.alphabetArray.length);
     return this.alphabetArray[getRandom];
   };
 
-  public getSpecificLetter = (findLetter: string) => {
+  public getSpecificLetter = (findLetter) => {
     var length = this.alphabetArray.length;
     for (var i = 0; i < length; i++) {
       var currentLetter = this.alphabetArray[i];
