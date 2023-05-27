@@ -56,12 +56,15 @@ const ParentScoreBoard = ({ children }) => {
 
             {/* Mobile responsive version */}
             <div className="flex bg-transparent flex-row transition-all gap-2 sm:gap-1 cvs:gap-3 -mt-12  justify-between items-stretch cxs:items-center">
-              <button className="flex csl:hidden justify-between flex-[30%] items-center button-glass text-xl md:text-2xl font-bold md:font-extrabold  py-[4px] md:py-1 csl:w-[93%] mr-auto ml-auto md:w-full px-4 pl-2 md:pl-4 md:px-8" onClick={() => navigate(-1)}>
-                <div className=' '>
-                  <BsArrowLeftShort size={26} />
-                </div>
-                <span>{t('bc')}</span>
-              </button>
+             
+
+
+            <button className="flex csl:hidden flex-[20%] justify-between pl-2 md:pl-4 px-4 md:px-8 w-[55%] mt-12 button-glass text-[20px] font-bold uppercase py-[6px] " onClick={() => navigate(-1)}>
+              <div className='mt-[2px]'>
+                <BsArrowLeftShort size={26} />
+              </div>
+              <span>{t('bc')}</span>
+            </button>
 
               <div className="w-2/6 block sm:hidden"></div>
 
