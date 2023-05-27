@@ -174,7 +174,7 @@ function SelectProfile() {
               background: '#2E2E2E',
               boxShadow: '0px 0px 26px 4px #FFAF52',
             }}
-            className="hidden w-52 h-52 rounded-full md:flex items-center justify-center "
+            className="hidden w-44 h-44 -mt-7 rounded-full md:flex items-center justify-center "
           >
             {user?.user && !Boolean(selectedAvatar) ? (
               <img
@@ -202,7 +202,7 @@ function SelectProfile() {
                 <Link
                   key={i}
                   to={`/select-hand${search.length ? search + '&' : '?'}lang=${langCode}`}
-                  className="flex capitalize items-center py-[0.7vh] px-[5px] bg-[#2E2E2E] hover:bg-[#3f3f3f] rounded-md justify-between"
+                  className="flex capitalize items-center py-1 h-[5vh] md:py-2 md:h-12 px-[5px] bg-[#2E2E2E] hover:bg-[#3f3f3f] rounded-md justify-between"
                 >
                   <img src={icon} className="w-1/12 rounded-sm" />
                   <p>{text}</p>
@@ -211,10 +211,10 @@ function SelectProfile() {
               );
             })}
             <button
-              className="py-[0.7vh] px-[5px] border-[1px] flex w-full capitalize rounded-md text-lg border-[#fff] justify-center relative"
+              className="py-1 h-[5vh] md:py-2 md:h-12 px-[5px] border-[1px] flex w-full capitalize rounded-md text-lg border-[#fff] justify-center items-center relative"
               onClick={() => navigate(-1)}
             >
-              <BsArrowLeftShort className="absolute left-5 top-2" />
+              <BsArrowLeftShort className="absolute left-5 md:top-[0.9rem] top-[0.4rem]" />
               {/* <img src={leftArrow} alt="" className="h-4 w-4" /> */}
               <span className=" ml-7">{t('bc')}</span>
               <div></div>

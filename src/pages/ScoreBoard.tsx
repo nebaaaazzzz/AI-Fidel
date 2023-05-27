@@ -21,7 +21,7 @@ import { useState } from "react";
     return (
       <ParentScoreBoard>
       <div>
-        <div className="flex space-x-3 border-b w-[100%] -mt-[10px]">
+        <div className="flex space-x-3 border-b w-[100%] -mt-[10px] mb-[1.65rem]">
           {/* Loop through tab data and render button for each. */}
           {tabsData.map((tab, idx) => {
             return (

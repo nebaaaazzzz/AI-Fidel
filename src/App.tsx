@@ -12,6 +12,7 @@ import SelectGame from '@pages/SelectGame';
 import StartLearning from '@pages/StartLearning';
 import SelectProfile from '@/pages/SelectProfile';
 import Welcome from '@pages/Welcome';
+import ComingSoon from '@pages/ComingSoon';
 import LearnNew from '@pages/LearnNew';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -54,6 +55,7 @@ function App() {
                 <Route path="select-profile" element={<SelectProfile />} />
                 {/* <Route path="login" element={<Login />} />  */}
                 <Route path="select-game" element={<SelectGame />} />
+                <Route path="coming-soon" element={<ComingSoon />} />
                 <Route path="complete" element={<Complete />} />
                 <Route path="final-score-board" element={<FinalScoreBoard />} />
                 <Route path="level-score-board" element={<LevelScoreBoard />} />

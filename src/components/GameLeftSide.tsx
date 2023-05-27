@@ -70,8 +70,9 @@ function GameLeftSide({
           />
           <h1 className="text-[5rem] w-[50%] text-accent">{selectedLetter}</h1>
         </div>
-        <div className="flex items-center justify-center px-16 py-2  bg-[#2E2E2E] rounded-lg">
+        <div className="flex items-center justify-center px-auto py-2 w-[70%]  bg-[#2E2E2E] rounded-lg">
           <p className="text-white">{lang == 'ar' ? words[selectedWord] : selectedWord}</p>
+          {/* <p className="text-white">{lang == 'ar' ? `${words[selectedLetter]}: ${selectedWord}` : selectedWord}</p> */}
         </div>
       </div>
     );
