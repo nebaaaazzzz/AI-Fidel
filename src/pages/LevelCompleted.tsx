@@ -42,7 +42,7 @@ function LevelCompleted() {
   const { mode, hand, level, lang, points: score } = useGetSearchParams(searchParams);
   const [points, setPoints] = useState<number | string>(0);
   const [levelesScore, setLevelsScore] = useState<Record<string, number>>();
-  const factor = lang == 'en' ? (mode == 'learn' ? Number(level) * 10 : 40) : 40;
+  const factor = lang == 'en' ? (mode == 'learn' ? Number(level) * 10 : 40) : lang == 'ar' ? (mode == 'learn' ? Number(level) * 10 : 40) :   40;
   if (level == '1')
     localStorage.setItem(
       `levelOneScore_${mode}_${localStorage.getItem('displayName')}`,
@@ -116,7 +116,6 @@ function LevelCompleted() {
         // setPoints(va);
         console.log(user?.user);
         if (user?.user && mode == 'game') {
-          console.log('This is working');
           await updateUserFirebaseLevel(user.id, level);
         }
       }
@@ -136,8 +135,8 @@ function LevelCompleted() {
         <Link
           to={
             level == '4'
-              ? `/final-score-board?score=${localStorage.getItem(`${mode}_avg`)}&mode=${mode}`
-              : `/${mode}-keep-up-score-board${search}`
+              ? `/score-board?score=${localStorage.getItem(`${mode}_avg`)}&mode=${mode}`
+              :   `/score-board`
           }
           className="py-2 btn-primary capitalize mb-2 md:mb-5 rounded-lg md:rounded-md w-full text-lg font-[500] md:font-normal md:text-xl text-white text-center"
         >
