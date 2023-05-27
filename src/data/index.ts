@@ -1,5 +1,6 @@
 import amharicWords from './amharicwords';
 import englishWords from './englishwords';
+import arabicwords from './arabicwords';
 function getLanguageWords(lang: string, mode: string, level: string) {
   if (lang == 'en') {
     if (mode == 'learn') {
@@ -7,8 +8,10 @@ function getLanguageWords(lang: string, mode: string, level: string) {
     } else {
       return englishWords['level4'];
     }
-  } else {
+  } else if (lang == 'am') {
     return amharicWords;
+  } else {
+    return arabicwords;
   }
 }
 
