@@ -5,21 +5,20 @@ export const levels = [
   ['ظ', 'غ', 'ف', 'ق'],
 ];
 function getRandomWordFromLevelArabicWords(levelWords: string[]): string[] {
-  if (levelWords.length < 10) {
-    return levelWords;
-  }
   const levelWordsLength = levelWords.length;
+  let randomWordIndexArr: number[] = [];
   let randomWordArr: string[] = [];
-  const set = new Set();
-  let randomWordIndexArr = [];
-  let numberToCompare = levelWords.length > 9 ? 10 : levelWords.length;
-  while (randomWordIndexArr.length < numberToCompare) {
-    set.add(Math.floor(Math.random() * levelWordsLength));
-    randomWordIndexArr = Array.from(set);
+  while (randomWordIndexArr.length < 10) {
+    const randomIndex = Math.floor(Math.random() * levelWordsLength);
+    if (!randomWordIndexArr.includes(randomIndex)) {
+      randomWordIndexArr.push(randomIndex);
+    }
   }
+  // console.log(randomWordIndexArr)
   for (let i of randomWordIndexArr) {
     randomWordArr.push(levelWords[i]);
   }
+  // console.log(randomWordArr)
   return randomWordArr;
 }
 export function getLevelArabicWords(passedWords: string[], levelIndex: number): string[] {
@@ -28,19 +27,24 @@ export function getLevelArabicWords(passedWords: string[], levelIndex: number): 
   let levelLetters = levels[levelIndex - 1];
   /*contain level word from levelIndex to 0 concatinated */
 
-  for (let wordIndex in words) {
-    let skip = false;
-    for (let letter of words[wordIndex]) {
-      if (levelLetters.includes(letter)) {
-        skip = true;
-        break;
+  if (levelIndex == 1) {
+    return getRandomWordFromLevelArabicWords(words);
+  } else {
+    for (let wordIndex in words) {
+      let skip = false;
+      for (let letter of words[wordIndex]) {
+        if (levelLetters.includes(letter)) {
+          skip = true;
+          break;
+        }
+      }
+      if (skip) {
+        levelWords.push(words[wordIndex]);
+        words.splice(Number(wordIndex), 1);
       }
     }
-    if (skip) {
-      levelWords.push(words[wordIndex]);
-      words.splice(Number(wordIndex), 1);
-    }
   }
+  
 
   return getRandomWordFromLevelArabicWords(levelWords);
 }
