@@ -24,36 +24,44 @@ import profile13 from '@assets/EditProfile/profile13.png';
 import profile14 from '@assets/EditProfile/profile14.png';
 import profile15 from '@assets/EditProfile/profile15.png';
 import profile16 from '@assets/EditProfile/profile16.png';
+import { seAtom } from '../store/store';
+import { useAtom } from 'jotai';
 import { db } from '@/config/firebase';
 
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useContext } from 'react';
 import { AuthContext } from '@/context/AuthContext';
-import { use } from 'i18next';
+
 import { FacebookShareButton, InstapaperShareButton, TwitterShareButton } from 'react-share';
+import { toastError, toastSuccess } from '@/utils/toast';
 
 const ProfilePage = () => {
-  const user = useContext(AuthContext);
+  const user  = useContext(AuthContext);
+  const [se, setSe] = useAtom(seAtom);
 
   const [currentProfile, setCurrentProfile] = useState(profile1);
-  const [s, setS] = useState(true);
-  const [currentProfileLink, setCurrentProfileLink] = useState(
-    user?.user && s ? user.photo : localStorage.getItem('photo')
-  );
+  const [currentProfileLink, setCurrentProfileLink] = useState('');
 
   const handleChangeProfile = async (profileImage) => {
-    setS(false);
-    setCurrentProfile(profileImage.profile);
     setCurrentProfileLink(profileImage.imgLink);
   };
 
-  useEffect(() => {}, [user]);
+  useEffect(() => {
+    if (user?.user) {
+      setCurrentProfileLink(user.photo);
+    }
+  }, [user]);
 
   const save = async () => {
     if (user?.user) {
-      const docRef = await doc(db, 'users', user.id);
-      setDoc(docRef, { photo: currentProfileLink }, { merge: true });
+      try {
+        const docRef = await doc(db, 'users', user.id);
+        await setDoc(docRef, { photo: currentProfileLink }, { merge: true });
+        toastSuccess('Profile updated successfully!')
+      } catch (error) {
+        toastError("Something went wrong!")
+      }
     } else {
       localStorage.setItem('photo', currentProfileLink);
     }
@@ -181,6 +189,7 @@ const ProfilePage = () => {
           {profileImages.map((img, i) => {
             return (
               <button
+                key={i}
                 onClick={() => handleChangeProfile(img)}
                 className="block w-[50px] h-[50px] min-w-[45px] min-h-[45px] overflow-hidden bg-[#2E2E2E] shadow-[0px_0px_12px_rgba(0,162,141,0.8)] rounded-full m-2"
               >
