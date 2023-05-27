@@ -54,7 +54,7 @@ function LeftSideBar() {
                 // index == 0 ? '' : ` 0px 5px 20px 5px rgba(0, 136, 103,0.9)`
             }}
           >
-            <Link to={to}>
+            <Link to={index === 2 && lang === 'ar' ? '/coming-soon' : to}>
               <img
                 src={image}
                 className="object-contain h-6 mx-auto  rounded-xl"
