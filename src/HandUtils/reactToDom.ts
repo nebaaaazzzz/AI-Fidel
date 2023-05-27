@@ -1,7 +1,7 @@
 import { Coords3D } from '@tensorflow-models/handpose/dist/pipeline';
 import { Alphabet } from '../data/Alphabet';
 import { AmharicAlphabet } from '../data/AmharicAlphabet';
-import { ArabicAlphabet } from '@/data/ArabicAlphaber';
+import { ArabicAlphabet } from '../data/ArabicAlphabet';
 import { AlphabetDefinationI, FingerDefinationI } from '../type';
 import { HandAnalyzer } from './HandAnalyzer';
 
@@ -32,6 +32,12 @@ const reactToDOMCursor = (
     // let lookForLetter = alphabet.getSpecificLetter(letter);
     lookForLetter = amharicAlphabet.getSpecificLetter(letter);
   } else if (lang == 'ar') {
+    if (arabicAlphabet.specialCharacterArray[letter]) {
+      return specialCharacterDetection(
+        arabicAlphabet.specialCharacterArray[letter],
+        fingerPoseResults
+      );
+    }
     lookForLetter = arabicAlphabet.getSpecificLetter(letter);
   } else {
     lookForLetter = alphabet.getSpecificLetter(letter);
@@ -314,6 +320,14 @@ function predict(lookForLetter, fingerPoseResults, result: Coords3D) {
     lookForLetter.thumb.percentageCorrect = 0;
   }
 
+  console.log(
+    thumbAngle,
+    indexFingerAngle,
+    middleFingerAngle,
+    ringFingerAngle,
+    littleFingerAngle,
+  );
+
   return { countCorrectFingers, lookForLetter, message: '', incorrectFingers };
 }
 function specialCharacterDetection(
@@ -364,6 +378,13 @@ function specialCharacterDetection(
       count++;
     }
   }
+  console.log(
+    thumbAngle,
+    indexFingerAngle,
+    middleFingerAngle,
+    ringFingerAngle,
+    littleFingerAngle,
+  );
   return { countCorrectFingers: count, lookForLetter, message: '', incorrectFingers: [] };
 }
 export default reactToDOMCursor;
