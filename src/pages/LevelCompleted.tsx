@@ -226,6 +226,7 @@ function LevelCompleted() {
         {Number(level) !== 4 ? (
           <button
             onClick={() => {
+              if (lang == 'ar') return navigate('/coming-soon')
               searchParams.delete('level');
               searchParams.delete('points');
               navigate(`/game?${searchParams.toString()}&level=${Number(level) + 1}`);

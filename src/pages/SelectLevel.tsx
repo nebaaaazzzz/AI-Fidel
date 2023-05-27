@@ -2,7 +2,7 @@ import { db } from '@/config/firebase';
 import { AuthContext } from '@/context/AuthContext';
 import profile from '@assets/images/avatar/avatar.png';
 import { doc, getDoc } from 'firebase/firestore';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useDebugValue, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { AiFillUnlock, AiOutlineInstagram } from 'react-icons/ai';
 import { GrFacebookOption } from 'react-icons/gr';
@@ -108,9 +108,24 @@ function SelectLevel() {
 }
 
 function buildLevelButtons(searchParams: URLSearchParams, search: string, levelOffset: number, t) {
-  const levels = [1, 2, 3, 4];
+  let level = searchParams.get('level');
+  const lang = searchParams.get('lang');
   const mode = searchParams.get('mode');
+  const hand = searchParams.get('hand')
+  const levels = [1, 2, 3, 4];
+
+  console.log(lang === 'ar' && level == '1' && 'opacity-25')
+  console.log(level)
   if (mode == 'game') {
+    if (lang === 'ar') {
+      return (
+        <div className='relative'>
+          <div className='bg-white bg-opacity-25 backdrop-filter backdrop-blur-lg shadow-md rounded-lg h-64 w-full flex justify-center items-center'>
+            <h3 className='text-yellow-500  text-5xl font-bold drop-shadow-lg'>Coming soon.</h3>
+          </div>
+        </div>
+      )
+    }
     return (
       <>
         {levels.slice(0, Number(levelOffset) + 1).map((i) => {
@@ -147,12 +162,13 @@ function buildLevelButtons(searchParams: URLSearchParams, search: string, levelO
         {levels.map((i) => {
           return (
             <Link
-              to={`/welcome${search}&level=${i}`}
+              to={lang === 'ar' && i != 1 ? `/select-level?mode=${mode}&lang=${lang}&hand=${hand}` : `/welcome${search}&level=${i}`}
               key={i}
-              className="btn btn-accent rounded-md flex justify-start md:justify-center px-5 mr-4 md:mr-0"
+              className={`btn btn-accent rounded-md flex justify-start md:justify-center px-5 mr-4 md:mr-0 ${lang === 'ar' && i != 1 && 'opacity-25 cursor-not-allowed'}`}
+              onClick={e => e.preventDefault}
             >
               <p className=" capitalize">
-                {t('l')} {i}
+                {lang === 'ar' && i != 1 ? "Coming soon" : <>{t('l')} {i}</> }
               </p>
             </Link>
           );
@@ -162,3 +178,5 @@ function buildLevelButtons(searchParams: URLSearchParams, search: string, levelO
   }
 }
 export default SelectLevel;
+
+// <iframe src="https://giphy.com/embed/ZjKh7UhUdhzabpm0DU" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/primevideoin-prime-video-sonakshi-sinha-dahaad-ZjKh7UhUdhzabpm0DU">via GIPHY</a></p>
