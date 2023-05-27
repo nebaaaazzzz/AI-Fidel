@@ -34,7 +34,7 @@ function GameLeftSide({
           <img
             className="w-[50%]"
             src={`/images/${
-              lang == 'am' ? 'amharic' : 'ar' ? 'arabic' : 'english'
+              lang == 'am' ? 'amharic' : lang == 'ar' ? 'arabic' : 'english'
             }/${lang == 'ar' ?  words[selectedLetter] : selectedLetter?.toUpperCase()}.png`}
           />
           <h1 className="text-[5rem] w-[50%] text-accent">{selectedLetter}</h1>
