@@ -21,16 +21,16 @@ import { useState } from "react";
     return (
       <ParentScoreBoard>
       <div>
-        <div className="flex space-x-3 border-b w-[100%]">
+        <div className="flex space-x-3 border-b w-[100%] -mt-[10px]">
           {/* Loop through tab data and render button for each. */}
           {tabsData.map((tab, idx) => {
             return (
               <button
                 key={idx}
-                className={`py-2 border-b-4  w-[50%] transition-colors duration-300 ${
+                className={` border-b-4  w-[50%] transition-colors duration-300 ${
                   idx === activeTabIndex
                     ? 'border-teal-500'
-                    : 'border-transparent hover:border-gray-200'
+                    : 'border-transparent hover:border-gray-200 focus:border-gray-200'
                 }`}
                 // Change the active tab on click.
                 onClick={() => setActiveTabIndex(idx)}

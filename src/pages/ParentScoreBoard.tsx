@@ -42,50 +42,6 @@ const ParentScoreBoard = ({ children }) => {
               <span>{t('bc')}</span>
             </button>
           </div>
-          {/* <Link
-            className="md:flex hidden justify-center w-full mt-1"
-            to={completedAll ? '/' : '/select-level?mode=game'}
-          >
-            <button className="flex justify-center button-glass  text-2xl font-extrabold uppercase  py-1 w-[43%]">
-              {completedAll ? (
-                <AiFillHome className={`mt-[2px]`} />
-              ) : (
-                <svg
-                  className="relative top-[4px]"
-                  width="25pt"
-                  height="25pt"
-                  version="1.1"
-                  viewBox="0 0 700 700"
-                  xmlns="http://www.w3.org/2000/svg"
-                  xmlnsXlink="http://www.w3.org/1999/xlink"
-                >
-                  <g>
-                    <path
-                      fill="#d6cbcb"
-                      d="m340.61 190.7c-64.32 0.070312-125.99 25.656-171.47 71.137-45.48 45.484-71.066 107.15-71.141 171.47 0 5.418 0.17578 10.816 0.52734 16.156 18.895-48.777 52.16-90.664 95.391-120.12 43.23-29.449 94.387-45.074 146.7-44.805l96.535 0.71875c1.6992 0.011719 3.0703 1.3945 3.0703 3.0898v68.195c0 3.3984 1.9609 6.4922 5.0352 7.9453 3.0703 1.4531 6.707 1.0039 9.332-1.1562l144.21-118.6c2.0312-1.6719 3.207-4.1602 3.207-6.7891 0-2.6289-1.1758-5.1211-3.207-6.7891l-144.21-118.6c-2.625-2.1562-6.2617-2.6055-9.332-1.1523-3.0742 1.4492-5.0352 4.543-5.0352 7.9414v68.238c0 1.707-1.3828 3.0898-3.0898 3.0898z"
-                    />
-                    <use x="70" y="728" xlinkHref="#l" />
-                    <use x="111.097656" y="728" xlinkHref="#c" />
-                    <use x="138.714844" y="728" xlinkHref="#b" />
-                    <use x="176.695312" y="728" xlinkHref="#a" />
-                    <use x="214.484375" y="728" xlinkHref="#h" />
-                    <use x="241.253906" y="728" xlinkHref="#b" />
-                    <use x="279.234375" y="728" xlinkHref="#g" />
-                    <use x="338.816406" y="728" xlinkHref="#f" />
-                    <use x="378.902344" y="728" xlinkHref="#e" />
-                    <use x="434.902344" y="728" xlinkHref="#a" />
-                    <use x="472.691406" y="728" xlinkHref="#d" />
-                    <use x="512.777344" y="728" xlinkHref="#k" />
-                    <use x="552.644531" y="728" xlinkHref="#j" />
-                    <use x="605.472656" y="728" xlinkHref="#c" />
-                    <use x="633.089844" y="728" xlinkHref="#a" />
-                    <use x="670.878906" y="728" xlinkHref="#i" />
-                  </g>
-                </svg>
-              )}
-              <span className=" ml-2">{completedAll ? t('h') : t('next')}</span>
-            </button>
-          </Link> */}
         </div>
         <div className="flex db- ig:bg-orange-500 my-auto flex-col md:ml-[5vw] md:mr-[5vw] w-[90vw] csl:w-[68%]">
           <div className=" flex flex-col w-[90%] mx-auto h-full">
@@ -99,56 +55,16 @@ const ParentScoreBoard = ({ children }) => {
             </div>
 
             {/* Mobile responsive version */}
-            <div className="flex flex-row transition-all gap-2 sm:gap-1 cvs:gap-3 justify-between items-stretch cxs:items-center">
-              {/* <button className="flex csl:hidden justify-between flex-[30%] items-center button-glass text-xl md:text-2xl font-bold md:font-extrabold  py-[1px] md:py-1 csl:w-[93%] mr-auto ml-auto md:w-full px-4 md:px-8">
-                <span className=" ml-2">{completedAll ? t('h') : t('next')}</span>
-                <div className="flex gap-6  justify-center">
-                  {completedAll ? (
-                    <AiFillHome className={`mt-[2px]`} />
-                  ) : (
-                    <svg
-                      className="relative top-[4px]"
-                      width="25pt"
-                      height="25pt"
-                      version="1.1"
-                      viewBox="0 0 700 700"
-                      xmlns="http://www.w3.org/2000/svg"
-                      xmlnsXlink="http://www.w3.org/1999/xlink"
-                    >
-                      <g>
-                        <path
-                          fill="#d6cbcb"
-                          d="m340.61 190.7c-64.32 0.070312-125.99 25.656-171.47 71.137-45.48 45.484-71.066 107.15-71.141 171.47 0 5.418 0.17578 10.816 0.52734 16.156 18.895-48.777 52.16-90.664 95.391-120.12 43.23-29.449 94.387-45.074 146.7-44.805l96.535 0.71875c1.6992 0.011719 3.0703 1.3945 3.0703 3.0898v68.195c0 3.3984 1.9609 6.4922 5.0352 7.9453 3.0703 1.4531 6.707 1.0039 9.332-1.1562l144.21-118.6c2.0312-1.6719 3.207-4.1602 3.207-6.7891 0-2.6289-1.1758-5.1211-3.207-6.7891l-144.21-118.6c-2.625-2.1562-6.2617-2.6055-9.332-1.1523-3.0742 1.4492-5.0352 4.543-5.0352 7.9414v68.238c0 1.707-1.3828 3.0898-3.0898 3.0898z"
-                        />
-                        <use x="70" y="728" xlinkHref="#l" />
-                        <use x="111.097656" y="728" xlinkHref="#c" />
-                        <use x="138.714844" y="728" xlinkHref="#b" />
-                        <use x="176.695312" y="728" xlinkHref="#a" />
-                        <use x="214.484375" y="728" xlinkHref="#h" />
-                        <use x="241.253906" y="728" xlinkHref="#b" />
-                        <use x="279.234375" y="728" xlinkHref="#g" />
-                        <use x="338.816406" y="728" xlinkHref="#f" />
-                        <use x="378.902344" y="728" xlinkHref="#e" />
-                        <use x="434.902344" y="728" xlinkHref="#a" />
-                        <use x="472.691406" y="728" xlinkHref="#d" />
-                        <use x="512.777344" y="728" xlinkHref="#k" />
-                        <use x="552.644531" y="728" xlinkHref="#j" />
-                        <use x="605.472656" y="728" xlinkHref="#c" />
-                        <use x="633.089844" y="728" xlinkHref="#a" />
-                        <use x="670.878906" y="728" xlinkHref="#i" />
-                      </g>
-                    </svg>
-                  )}
-                </div>
-              </button> */}
+            <div className="flex bg-transparent flex-row transition-all gap-2 sm:gap-1 cvs:gap-3 -mt-12  justify-between items-stretch cxs:items-center">
+             
 
 
-              <button className="flex csl:hidden justify-between flex-[30%] items-center button-glass text-xl md:text-2xl font-bold md:font-extrabold  py-[4px] md:py-1 csl:w-[93%] mr-auto ml-auto md:w-full px-4 pl-2 md:pl-4 md:px-8" onClick={() => navigate(-1)}>
-                <div className=' '>
-                  <BsArrowLeftShort size={26} />
-                </div>
-                <span>{t('bc')}</span>
-              </button>
+            <button className="flex csl:hidden flex-[20%] justify-between pl-2 md:pl-4 px-4 md:px-8 w-[55%] mt-12 button-glass text-[20px] font-bold uppercase py-[6px] " onClick={() => navigate(-1)}>
+              <div className='mt-[2px]'>
+                <BsArrowLeftShort size={26} />
+              </div>
+              <span>{t('bc')}</span>
+            </button>
 
               <div className="w-2/6 block sm:hidden"></div>
 

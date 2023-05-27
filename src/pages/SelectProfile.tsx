@@ -1,6 +1,7 @@
 import { LogoWithTextSM } from '@/components/Logo';
 import EthiopiaIcon from '@assets/icons/ethiopia-icon.png';
 import UKIcon from '@assets/icons/uk-icon.png';
+import ArabicIcon from '@assets/icons/arabic-icon.png';
 import { RxAvatar } from 'react-icons/rx';
 import { Link, useLocation } from 'react-router-dom';
 import ellipse from '@assets/icons/Ellipse 99.png';
@@ -195,24 +196,25 @@ function SelectProfile() {
             {[
               { text: 'Amharic', icon: EthiopiaIcon, langCode: 'am' },
               { text: 'English', icon: UKIcon, langCode: 'en' },
+              { text: 'Arabic', icon: ArabicIcon, langCode: 'ar' },
             ].map(({ text, icon, langCode }, i) => {
               return (
                 <Link
                   key={i}
                   to={`/select-hand${search.length ? search + '&' : '?'}lang=${langCode}`}
-                  className="flex capitalize items-center btn bg-[#2E2E2E] hover:bg-[#3f3f3f] rounded-md justify-between"
+                  className="flex capitalize items-center py-[0.7vh] px-[5px] bg-[#2E2E2E] hover:bg-[#3f3f3f] rounded-md justify-between"
                 >
-                  <img src={icon} className="w-1/12 " />
+                  <img src={icon} className="w-1/12 rounded-sm" />
                   <p>{text}</p>
                   <div></div>
                 </Link>
               );
             })}
             <button
-              className="btn flex w-full capitalize rounded-md text-lg border-[#fff] justify-center relative"
+              className="py-[0.7vh] px-[5px] border-[1px] flex w-full capitalize rounded-md text-lg border-[#fff] justify-center relative"
               onClick={() => navigate(-1)}
             >
-              <BsArrowLeftShort className="absolute left-5" />
+              <BsArrowLeftShort className="absolute left-5 top-2" />
               {/* <img src={leftArrow} alt="" className="h-4 w-4" /> */}
               <span className=" ml-7">{t('bc')}</span>
               <div></div>

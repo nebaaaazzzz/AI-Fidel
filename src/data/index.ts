@@ -1,4 +1,5 @@
 import amharicWords from './amharicwords';
+import arabicWords from './arabicwords';
 import englishWords from './englishwords';
 import arabicwords from './arabicwords';
 function getLanguageWords(lang: string, mode: string, level: string) {
