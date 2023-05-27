@@ -117,15 +117,6 @@ function buildLevelButtons(searchParams: URLSearchParams, search: string, levelO
   console.log(lang === 'ar' && level == '1' && 'opacity-25')
   console.log(level)
   if (mode == 'game') {
-    if (lang === 'ar') {
-      return (
-        <div className='relative'>
-          <div className='bg-white bg-opacity-25 backdrop-filter backdrop-blur-lg shadow-md rounded-lg h-64 w-full flex justify-center items-center'>
-            <h3 className='text-yellow-500  text-5xl font-bold drop-shadow-lg'>Coming soon.</h3>
-          </div>
-        </div>
-      )
-    }
     return (
       <>
         {levels.slice(0, Number(levelOffset) + 1).map((i) => {
