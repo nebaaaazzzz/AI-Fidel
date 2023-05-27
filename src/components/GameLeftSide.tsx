@@ -18,7 +18,38 @@ function GameLeftSide({
   handDirection: string;
 }) {
   const { t } = useTranslation();
-  let words = {ث: "Thā", ا: "Alif", ع: "Ayn", م: "Mīm", ل: "Lām", ك: "Kāf", ج: "Jīm", ص: "Sād", ت: "Tā", ي: "Yā", ح: "Ḥā", ر: "Rā", ه: "Hā", ط: "Ṭā", ض: "Ḍād", ذ: "Dhāl", ز: "Zāy", س: "Sīn", ش: "Shīn", ف: "Fā", ق: "Qāf", غ: "Ghayn", خ: "Khā", ب: "Bā", ن: "Nūn", و: "Wāw", ظ: "Ẓā", ء: "Hamza", د: "Dāl", ة: "Tāʾ marbūṭah" }
+  let words = {
+    ث: 'Thā',
+    ا: 'Alif',
+    ع: 'Ayn',
+    م: 'Mīm',
+    ل: 'Lām',
+    ك: 'Kāf',
+    ج: 'Jīm',
+    ص: 'Sād',
+    ت: 'Tā',
+    ي: 'Yā',
+    ح: 'Ḥā',
+    ر: 'Rā',
+    ه: 'Hā',
+    ط: 'Ṭā',
+    ض: 'Ḍād',
+    ذ: 'Dhāl',
+    ز: 'Zāy',
+    س: 'Sīn',
+    ش: 'Shīn',
+    ف: 'Fā',
+    ق: 'Qāf',
+    غ: 'Ghayn',
+    خ: 'Khā',
+    ب: 'Bā',
+    ن: 'Nūn',
+    و: 'Wāw',
+    ظ: 'Ẓā',
+    ء: 'Hamza',
+    د: 'Dāl',
+    ة: 'Tāʾ marbūṭah',
+  };
   if (isGameStarted) {
     return (
       <div
@@ -33,14 +64,14 @@ function GameLeftSide({
         <div className="flex items-center text-white">
           <img
             className="w-[50%]"
-            src={`/images/${
-              lang == 'am' ? 'amharic' : lang == 'ar' ? 'arabic' : 'english'
-            }/${lang == 'ar' ?  words[selectedLetter] : selectedLetter?.toUpperCase()}.png`}
+            src={`/images/${lang == 'am' ? 'amharic' : lang == 'ar' ? 'arabic' : 'english'}/${
+              lang == 'ar' ? words[selectedLetter] : selectedLetter?.toUpperCase()
+            }.png`}
           />
           <h1 className="text-[5rem] w-[50%] text-accent">{selectedLetter}</h1>
         </div>
         <div className="flex items-center justify-center px-16 py-2  bg-[#2E2E2E] rounded-lg">
-        <p className="text-white">{lang == 'ar' ? words[selectedWord] : selectedWord}</p>
+          <p className="text-white">{lang == 'ar' ? words[selectedWord] : selectedWord}</p>
         </div>
       </div>
     );
