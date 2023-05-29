@@ -8,22 +8,7 @@ import { MdKeyboardArrowRight } from 'react-icons/md';
 import { MdModeEdit } from 'react-icons/md';
 import { useEffect, useState, useRef } from 'react';
 import { getFirestore, doc, setDoc, getDoc } from 'firebase/firestore';
-import profile1 from '@assets/EditProfile/profile1.png';
-import profile2 from '@assets/EditProfile/profile2.png';
-import profile3 from '@assets/EditProfile/profile3.png';
-import profile4 from '@assets/EditProfile/profile4.png';
-import profile5 from '@assets/EditProfile/profile5.png';
-import profile6 from '@assets/EditProfile/profile6.png';
-import profile7 from '@assets/EditProfile/profile7.png';
-import profile8 from '@assets/EditProfile/profile8.png';
-import profile9 from '@assets/EditProfile/profile9.png';
-import profile10 from '@assets/EditProfile/profile10.png';
-import profile11 from '@assets/EditProfile/profile11.png';
-import profile12 from '@assets/EditProfile/profile12.png';
-import profile13 from '@assets/EditProfile/profile13.png';
-import profile14 from '@assets/EditProfile/profile14.png';
-import profile15 from '@assets/EditProfile/profile15.png';
-import profile16 from '@assets/EditProfile/profile16.png';
+
 import { seAtom } from '../store/store';
 import { useAtom } from 'jotai';
 import { db } from '@/config/firebase';
@@ -39,8 +24,6 @@ import { toastError, toastSuccess } from '@/utils/toast';
 const ProfilePage = () => {
   const user  = useContext(AuthContext);
   const [se, setSe] = useAtom(seAtom);
-
-  const [currentProfile, setCurrentProfile] = useState(profile1);
   const [currentProfileLink, setCurrentProfileLink] = useState('');
 
   const handleChangeProfile = async (profileImage) => {
@@ -68,67 +51,51 @@ const ProfilePage = () => {
   };
   const profileImages = [
     {
-      profile: profile1,
       imgLink: 'https://res.cloudinary.com/dkwc18qwr/image/upload/v1683966847/profile1_xzkxw5.png',
     },
     {
-      profile: profile2,
       imgLink: 'https://res.cloudinary.com/dkwc18qwr/image/upload/v1683964107/person2_kn31qp.png',
     },
     {
-      profile: profile3,
       imgLink: 'https://res.cloudinary.com/dkwc18qwr/image/upload/v1683966847/profile3_allbtw.png',
     },
     {
-      profile: profile4,
       imgLink: 'https://res.cloudinary.com/dkwc18qwr/image/upload/v1683966847/profile4_wbkqdo.png',
     },
     {
-      profile: profile5,
       imgLink: 'https://res.cloudinary.com/dkwc18qwr/image/upload/v1683966847/profile5_ogjenu.png',
     },
     {
-      profile: profile6,
       imgLink: 'https://res.cloudinary.com/dkwc18qwr/image/upload/v1683966847/profile6_e0am5a.png',
     },
     {
-      profile: profile7,
       imgLink: 'https://res.cloudinary.com/dkwc18qwr/image/upload/v1683966847/profile7_diq0j6.png',
     },
     {
-      profile: profile8,
       imgLink: 'https://res.cloudinary.com/dkwc18qwr/image/upload/v1683966848/profile8_bap7kj.png',
     },
     {
-      profile: profile9,
       imgLink: 'https://res.cloudinary.com/dkwc18qwr/image/upload/v1683966848/profile9_d2mxbd.png',
     },
     {
-      profile: profile10,
       imgLink: 'https://res.cloudinary.com/dkwc18qwr/image/upload/v1683970015/person10_ujer0g.png',
     },
     {
-      profile: profile11,
       imgLink: 'https://res.cloudinary.com/dkwc18qwr/image/upload/v1683970015/person11_uziupx.png',
     },
     {
-      profile: profile12,
       imgLink: 'https://res.cloudinary.com/dkwc18qwr/image/upload/v1683970015/person12_u0ulud.png',
     },
     {
-      profile: profile13,
       imgLink: 'https://res.cloudinary.com/dkwc18qwr/image/upload/v1683970016/person13_lve8zw.png',
     },
     {
-      profile: profile14,
       imgLink: 'https://res.cloudinary.com/dkwc18qwr/image/upload/v1683970016/person14_nsrder.png',
     },
     {
-      profile: profile15,
       imgLink: 'https://res.cloudinary.com/dkwc18qwr/image/upload/v1683970016/person15_xlkjv2.png',
     },
     {
-      profile: profile16,
       imgLink: 'https://res.cloudinary.com/dkwc18qwr/image/upload/v1683970015/person16_bqz8un.png',
     },
   ];
