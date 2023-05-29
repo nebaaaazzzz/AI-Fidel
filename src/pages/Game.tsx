@@ -21,8 +21,8 @@ import Percentage from '@/components/Percentage';
 import { useTranslation } from 'react-i18next';
 import { useContext } from 'react';
 import { HandContext } from '@/context/HandContext';
-import { HAND_CONNECTIONS } from '@mediapipe/hands';
-import {drawIncorrectFingers} from '@/HandUtils/colorIncorrectFingers'
+// import { HAND_CONNECTIONS } from '@mediapipe/hands';
+import { drawIncorrectFingers } from '@/HandUtils/colorIncorrectFingers';
 
 const handAnalyzer = new HandAnalyzer();
 let skipPrediction = false;
@@ -45,7 +45,7 @@ function useGetGameConfig(searchParams: URLSearchParams, navigate: NavigateFunct
     levelWords = getLevelAmharicWords(languageWords, level);
   }
 
-  if ( lang == 'ar' ) {
+  if (lang == 'ar') {
     levelWords = getLevelArabicWords(languageWords, level);
   }
   if (searchWord) {
@@ -56,12 +56,35 @@ function useGetGameConfig(searchParams: URLSearchParams, navigate: NavigateFunct
   return { mode, hand, level, lang, levelWords };
 }
 function Game() {
+  const HAND_CONNECTIONS = [
+    [0, 1],
+    [1, 2],
+    [2, 3],
+    [3, 4],
+    [0, 5],
+    [5, 6],
+    [6, 7],
+    [7, 8],
+    [5, 9],
+    [9, 10],
+    [10, 11],
+    [11, 12],
+    [9, 13],
+    [13, 14],
+    [14, 15],
+    [15, 16],
+    [13, 17],
+    [0, 17],
+    [17, 18],
+    [18, 19],
+    [19, 20],
+  ];
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { search } = useLocation();
   const searchParams = useSearchParams()[0];
   // const userAgent = navigator.userAgent
-  const { hand: loadHands } = useContext(HandContext);
+  // const { hand: loadHands } = useContext(HandContext);
   const { lang, hand: handDirection, level, levelWords } = useGetGameConfig(searchParams, navigate);
   const [singleLevelWord, setSingleLevelWord] = useState(levelWords);
   const [lookForLetter, setLookForLetter] = useState<AlphabetDefinationI | null>(null);
@@ -119,9 +142,6 @@ function Game() {
     }
   };
 
-  
-
-  
   const onResults = async (results) => {
     let canvasCtx = canvasElement?.current?.getContext('2d');
     setCountPrediction(countPrediction++);
@@ -183,8 +203,6 @@ function Game() {
               lang
             );
 
-        
-
             if (response.countCorrectFingers == 5) {
               //stop detecting hand this value change after a delay
               score++;
@@ -217,7 +235,19 @@ function Game() {
     window.location.reload();
   };
   const hands = useMemo(() => {
-    return loadHands;
+    let hands = new Hands({
+      locateFile: (file) => {
+        return `/mediapipe/hands/${file}`;
+      },
+    });
+
+    hands.setOptions({
+      maxNumHands: 1,
+      modelComplexity: 1,
+      minDetectionConfidence: 0.5,
+      minTrackingConfidence: 0.5,
+    });
+    return hands;
   }, []);
   useEffect(() => {
     if (wordIndex !== 0 && wordIndex !== singleLevelWord.length - 1) {
