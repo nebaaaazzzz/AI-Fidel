@@ -320,13 +320,13 @@ function predict(lookForLetter, fingerPoseResults, result: Coords3D) {
     lookForLetter.thumb.percentageCorrect = 0;
   }
 
-  console.log(
-    thumbAngle,
-    indexFingerAngle,
-    middleFingerAngle,
-    ringFingerAngle,
-    littleFingerAngle,
-  );
+  // console.log(
+  //   thumbAngle,
+  //   indexFingerAngle,
+  //   middleFingerAngle,
+  //   ringFingerAngle,
+  //   littleFingerAngle,
+  // );
 
   return { countCorrectFingers, lookForLetter, message: '', incorrectFingers };
 }
@@ -378,13 +378,13 @@ function specialCharacterDetection(
       count++;
     }
   }
-  console.log(
-    thumbAngle,
-    indexFingerAngle,
-    middleFingerAngle,
-    ringFingerAngle,
-    littleFingerAngle,
-  );
+  // console.log(
+  //   thumbAngle,
+  //   indexFingerAngle,
+  //   middleFingerAngle,
+  //   ringFingerAngle,
+  //   littleFingerAngle,
+  // );
   return { countCorrectFingers: count, lookForLetter, message: '', incorrectFingers: [] };
 }
 export default reactToDOMCursor;
