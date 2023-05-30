@@ -109,7 +109,7 @@ function Game() {
   /**
    * @description TO to show modal after each word completion
    */
-  const [showModal, setShowModal] = useState(false);
+  const showModal= useRef(false);
 
   /**
    * @description just to count number of frame media pipe detected
@@ -197,7 +197,8 @@ function Game() {
             color: 'transparent',
             lineWidth: 0,
           });
-          if (selectedLetter && !skipPrediction) {
+
+          if (selectedLetter && !skipPrediction && !showModal.current) {
             const response = reactToDOMCursor(
               fingerPoseResults,
               newLandMarks,
@@ -295,9 +296,9 @@ function Game() {
   }, []);
   useEffect(() => {
     if (wordIndex !== 0 && wordIndex !== singleLevelWord.length - 1) {
-      setShowModal(true);
+      showModal.current = true;
       setTimeout(() => {
-        setShowModal(false);
+        showModal.current = false;
       }, 1500);
     }
   }, [wordIndex]);
@@ -332,10 +333,10 @@ function Game() {
 
       if (isGameStarted) {
         setSelectWord(singleLevelWord[0]);
-        setShowModal(true);
+        showModal.current = true;
         setSelectedLetter(singleLevelWord[0][0]);
         setTimeout(() => {
-          setShowModal(false);
+          showModal.current = false;
         }, 1000);
       }
     })();
@@ -356,7 +357,7 @@ function Game() {
   return (
     <div className="flex justify-center csl:justify-between py-0 csl:py-2 flex-col items-center h-[75vh] md:h-[85vh] mt-[4vh] csl:mt-0">
       <div className="flex flex-col justify-between items-center md:flex-row overflow-hidden ig:bg-blue-500 h-[80vh] gap-4 md:h-auto w-[90%] cxm:w-full md:w-11/12 relative">
-        {showModal && <Modal wordIndex={wordIndex} nextWord={selectedWord} />}
+        {showModal.current && <Modal wordIndex={wordIndex} nextWord={selectedWord} />}
         {level == '1' ? (
           <PlaceYourHand
             isMediaPipeModelLoading={isMediaPipeModelLoading}
