@@ -356,11 +356,7 @@ function Game() {
   return (
     <div className="flex justify-between py-2 flex-col items-center h-[75vh] md:h-[85vh]">
       <div className="flex flex-col justify-between items-center md:flex-row overflow-hidden ig:bg-blue-500 h-[80vh] gap-4 md:h-auto w-[90%] cxm:w-full md:w-11/12 relative">
-<<<<<<< HEAD
         {showModal && <Modal wordIndex={wordIndex} nextWord={selectedWord} />}
-=======
-        {!showModal && <Modal wordIndex={wordIndex} nextWord={selectedWord} />}
->>>>>>> 4e97a7428f4f5bfc5e610c2ecf81f62ee89dbad1
         {level == '1' ? (
           <PlaceYourHand
             isMediaPipeModelLoading={isMediaPipeModelLoading}
