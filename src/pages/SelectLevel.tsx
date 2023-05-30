@@ -114,8 +114,6 @@ function buildLevelButtons(searchParams: URLSearchParams, search: string, levelO
   const hand = searchParams.get('hand')
   const levels = [1, 2, 3, 4];
 
-  console.log(lang === 'ar' && level == '1' && 'opacity-25')
-  console.log(level)
   if (mode == 'game') {
     return (
       <>
