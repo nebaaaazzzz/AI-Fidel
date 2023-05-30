@@ -12,7 +12,7 @@ import { BsArrowLeftShort } from 'react-icons/bs';
 import circleDashed from '@assets/images/circle-dashed.png';
 
 
-function SelectHand() {
+const UsePC = ({message}) => {
   const { search } = useLocation();
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -26,11 +26,11 @@ function SelectHand() {
       />
       <div className="absolute hidden md:block w-[14%] aspect-square top-40 left-7 rounded-full  bg-primary"></div>
 
-      <img src={img} alt="" className='absolute top-[15vh] h-12' />
+      <img src={img} alt="" className='absolute top-[20vh] opacity-50 h-12' />
 
       {/* Mobile Part */}
-      <div className="custom-glass h-[50%] flex flex-col gap-8 z-10 mt-[30vh] md:hidden justify-center items-center">
-        <p className='-mt-12 text-center w-11/12'>This experience is not available on mobile devices</p>
+      <div className="custom-glass mx-8 h-[50%] flex flex-col gap-8 z-10 mt-[30vh] md:hidden justify-center items-center">
+        <p className='-mt-12 text-center w-11/12'>This experience is not available on {message}</p>
       </div>  
 
       <p className="font-extralight text-[12px] text-[#a4a4a4] fixed bottom-3">{t('pbal')}</p>
@@ -39,4 +39,4 @@ function SelectHand() {
   );
 }
 
-export default SelectHand
+export default UsePC
