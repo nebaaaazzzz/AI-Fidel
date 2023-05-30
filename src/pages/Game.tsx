@@ -144,6 +144,8 @@ function Game() {
 
   const onResults = async (results) => {
     let canvasCtx = canvasElement?.current?.getContext('2d');
+    const color = '#666666';
+    const lineWidth = 2;
     setCountPrediction(countPrediction++);
     if (countPrediction == 1) {
       setIsMediaPipeModelLoading(false);
@@ -214,8 +216,50 @@ function Game() {
               }, 300);
             } else {
               setLookForLetter(response?.lookForLetter);
-              drawIncorrectFingers(canvasCtx, landmarks, response, HAND_CONNECTIONS);
+              // drawIncorrectFingers(canvasCtx, landmarks, response, HAND_CONNECTIONS);
               // console.log(response.message);
+              const incorrectFingers = response.incorrectFingers
+                ? response.incorrectFingers.join('')
+                : '';
+
+              if (incorrectFingers.includes('thumb')) {
+                // thumb
+                drawConnectors(canvasCtx, landmarks, HAND_CONNECTIONS.slice(0, 4), {
+                  color,
+                  lineWidth,
+                });
+              }
+              // Index
+              if (incorrectFingers.includes('index')) {
+                drawConnectors(canvasCtx, landmarks, HAND_CONNECTIONS.slice(4, 8), {
+                  color,
+                  lineWidth,
+                });
+              }
+
+              // Middle
+              if (incorrectFingers.includes('middle')) {
+                drawConnectors(canvasCtx, landmarks, HAND_CONNECTIONS.slice(8, 12), {
+                  color,
+                  lineWidth,
+                });
+              }
+
+              // Ring
+              if (incorrectFingers.includes('ring')) {
+                drawConnectors(canvasCtx, landmarks, HAND_CONNECTIONS.slice(12, 16), {
+                  color,
+                  lineWidth,
+                });
+              }
+
+              // Pinky
+              if (incorrectFingers.includes('little')) {
+                drawConnectors(canvasCtx, landmarks, HAND_CONNECTIONS.slice(16, 21), {
+                  color,
+                  lineWidth,
+                });
+              }
             }
           } else {
             // setTimeout(()=>{
