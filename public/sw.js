@@ -5,7 +5,13 @@ self.addEventListener('install', (event) => {
 });
 
 self.addEventListener('activate', (event) => {
-  event.waitUntil(self.clients.claim());
+  event.waitUntil(
+    self.clients.claim().then(() => {
+      if (self.registration && self.registration.navigationPreload) {
+        return self.registration.navigationPreload.enable();
+      }
+    })
+  );
 });
 
 self.addEventListener('fetch', (event) => {
