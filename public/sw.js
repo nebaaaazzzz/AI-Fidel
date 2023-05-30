@@ -1,15 +1,19 @@
-const CACHE_NAME = 'Fidel_V1';
+const CACHE_NAME = 'Fidel_V2';
 
 self.addEventListener('install', (event) => {
   event.waitUntil(self.skipWaiting());
 });
 
-self.addEventListener('activate', (event) => {
-  event.waitUntil(
-    self.clients.claim().then(() => {
-      if (self.registration && self.registration.navigationPreload) {
-        return self.registration.navigationPreload.enable();
-      }
+self.addEventListener('activate', (e) => {
+  e.waitUntil(
+    caches.keys().then((cacheName) => {
+      return Promise.all(
+        cacheName.map((cache) => {
+          if (cache !== cacheName) {
+            return caches.delete(cache);
+          }
+        })
+      );
     })
   );
 });
