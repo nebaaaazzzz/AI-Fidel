@@ -354,7 +354,7 @@ function Game() {
   // }
   // console.log(window.Hands)
   return (
-    <div className="flex justify-between py-2 flex-col items-center h-[75vh] md:h-[85vh]">
+    <div className="flex justify-center csl:justify-between py-0 csl:py-2 flex-col items-center h-[75vh] md:h-[85vh] mt-[4vh] csl:mt-0">
       <div className="flex flex-col justify-between items-center md:flex-row overflow-hidden ig:bg-blue-500 h-[80vh] gap-4 md:h-auto w-[90%] cxm:w-full md:w-11/12 relative">
         {showModal && <Modal wordIndex={wordIndex} nextWord={selectedWord} />}
         {level == '1' ? (
