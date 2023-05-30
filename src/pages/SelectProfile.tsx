@@ -203,7 +203,7 @@ function SelectProfile() {
               return (
                 <Link
                   key={i}
-                  to={mode === 'game' ? '/coming-soon' : `/select-hand${search.length ? search + '&' : '?'}lang=${langCode}`}
+                  to={(mode === 'game' && langCode == 'ar') ? '/coming-soon' : `/select-hand${search.length ? search + '&' : '?'}lang=${langCode}`}
                   className="flex capitalize items-center py-1 h-[5vh] md:py-2 md:h-12 px-[5px] bg-[#2E2E2E] hover:bg-[#3f3f3f] rounded-md justify-between"
                 >
                   <img src={icon} className="w-1/12 rounded-sm" />
