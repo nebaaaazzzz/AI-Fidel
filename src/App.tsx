@@ -32,9 +32,11 @@ import { useAtom } from 'jotai';
 import { loadingAtom } from './store/store';
 import loadingGif from '@assets/images/loading.gif';
 import HandContextProvider from './context/HandContext';
+import UsePC from './pages/UsePC';
 
 function App() {
   const [loading] = useAtom(loadingAtom);
+  if (/Android/i.test(navigator.userAgent)) return <UsePC />
   if (loading)
     return (
       <div className=" fixed top-0 right-0 left-0 bottom-0">
