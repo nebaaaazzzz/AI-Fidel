@@ -19,9 +19,6 @@ import Modal from '@/components/Modal/Modal';
 import moment from 'moment';
 import Percentage from '@/components/Percentage';
 import { useTranslation } from 'react-i18next';
-import { useContext } from 'react';
-import { HandContext } from '@/context/HandContext';
-// import { HAND_CONNECTIONS } from '@mediapipe/hands';
 import { drawIncorrectFingers } from '@/HandUtils/colorIncorrectFingers';
 
 const handAnalyzer = new HandAnalyzer();
@@ -279,7 +276,7 @@ function Game() {
     window.location.reload();
   };
   const hands = useMemo(() => {
-    let hands = new Hands({
+    let hands = new window.Hands({
       locateFile: (file) => {
         return `/mediapipe/hands/${file}`;
       },
