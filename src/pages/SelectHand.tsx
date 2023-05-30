@@ -17,11 +17,13 @@ function SelectHand() {
   return (
     <div className="flex gap-10 relative overflow-x-clip h-[calc(100vh-64px)] flex-col w-full  items-center">
       <button
-        className="hidden md:first-letter:flex capitalize  justify-between absolute left-0 top-2"
+        className=" md:first-letter:flex capitalize  justify-between absolute left-0 top-4"
         onClick={() => navigate(-1)}
       >
+        <div className='flex'>
         <BsArrowLeftShort size={26} />
-        <span>{t('bc')}</span>
+        <span className=' mt-[2px]'>{t('bc')}</span>
+        </div>
         <div></div>
       </button>
       <div className="absolute transition-all md:hidden border-8 border-white cxs:w-[240px] w-[200px] cxs:h-[240px] h-[200px] rounded-full cxs:top-[-60px] top-[-70px] right-[-70px]"></div>
