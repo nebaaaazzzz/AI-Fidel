@@ -33,6 +33,8 @@ const ProfilePage = () => {
   useEffect(() => {
     if (user?.user) {
       setCurrentProfileLink(user.photo);
+    } else {
+      setCurrentProfileLink(localStorage.getItem('photo'));
     }
   }, [user]);
 
@@ -42,11 +44,14 @@ const ProfilePage = () => {
         const docRef = await doc(db, 'users', user.id);
         await setDoc(docRef, { photo: currentProfileLink }, { merge: true });
         toastSuccess('Profile updated successfully!')
+        navigate('/edit-profile')
       } catch (error) {
         toastError("Something went wrong!")
       }
     } else {
       localStorage.setItem('photo', currentProfileLink);
+      toastSuccess('Profile updated successfully!')
+      navigate('/edit-profile')
     }
   };
   const profileImages = [
