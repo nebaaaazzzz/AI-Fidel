@@ -38,11 +38,11 @@ function App() {
   const [loading] = useAtom(loadingAtom);
 
   const userAgent = navigator.userAgent;
-  const isOpera = userAgent.includes('OPR');
+  const isSafari = userAgent.includes('Safari');
 
   const isMobile = /Android|iPhone/i.test(navigator.userAgent);
   if (isMobile) return <UsePC message="mobile devices" />;
-  // if (isOpera) return <UsePC message="opera browsers" />
+  if (isSafari) return <UsePC message="opera browsers" />
 
   if (loading)
     return (
