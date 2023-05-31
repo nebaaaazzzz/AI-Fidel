@@ -352,8 +352,8 @@ function Game() {
   // }
   // console.log(window.Hands)
   return (
-    <div className="flex justify-center csl:justify-between py-0 csl:py-2 flex-col items-center h-[75vh] md:h-[85vh] mt-[4vh] csl:mt-0">
-      <div className="flex flex-col justify-between items-center md:flex-row overflow-hidden ig:bg-blue-500 h-[80vh] gap-4 md:h-auto w-[90%] cxm:w-full md:w-11/12 relative">
+    <div className="flex justify-center csl:justify-between py-0 csl:py-2 flex-col items-center h-[75vh] md:h-[80vh] mt-[4vh] csl:mt-0">
+      <div className="flex flex-col justify-between items-center md:flex-row overflow-hidden ig:bg-blue-500 h-[80vh] gap-4 md:h-[70%] w-[90%] cxm:w-full md:w-11/12 relative">
         {showModal.current && <Modal wordIndex={wordIndex} nextWord={selectedWord} />}
         {level == '1' ? (
           <PlaceYourHand
@@ -371,7 +371,7 @@ function Game() {
           handDirection={handDirection}
         />
         <div
-          className={`flex ig:bg-red-500 h-[45%] md:h-[250px] cml:h-[600px] w-[240px] cxs:w-[300px] md:min-w-[240px] cml:min-w-[280px] md:w-[45%] items-center rounded-3xl justify-center overflow-hidden md:rounded-lg   ${
+          className={`flex ig:bg-red-500 h-[45%] md:h-[250px] cml:h-[100%] w-[240px] cxs:w-[300px] md:min-w-[240px] cml:min-w-[280px] md:w-[45%] items-center rounded-3xl justify-center overflow-hidden md:rounded-lg   ${
             handDirection == 'left' ? 'order-1' : ''
           }`}
         >

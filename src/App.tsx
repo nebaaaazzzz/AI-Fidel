@@ -36,7 +36,14 @@ import UsePC from './pages/UsePC';
 
 function App() {
   const [loading] = useAtom(loadingAtom);
-  if (/Android/i.test(navigator.userAgent)) return <UsePC />
+
+  const userAgent = navigator.userAgent;
+  const isOpera = userAgent.includes('OPR');
+
+  const isMobile = /Android|iPhone/i.test(navigator.userAgent);
+  if (isMobile) return <UsePC message="mobile devices" />;
+  // if (isOpera) return <UsePC message="opera browsers" />
+
   if (loading)
     return (
       <div className=" fixed top-0 right-0 left-0 bottom-0">
@@ -57,6 +64,7 @@ function App() {
                 <Route path="select-profile" element={<SelectProfile />} />
                 {/* <Route path="login" element={<Login />} />  */}
                 <Route path="select-game" element={<SelectGame />} />
+                {/* <Route path="use-pc" element={<UsePC message="mobile devices" />} /> */}
                 <Route path="coming-soon" element={<ComingSoon />} />
                 <Route path="complete" element={<Complete />} />
                 <Route path="final-score-board" element={<FinalScoreBoard />} />
