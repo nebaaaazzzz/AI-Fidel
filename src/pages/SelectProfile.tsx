@@ -14,7 +14,7 @@ import { useTranslation } from 'react-i18next';
 import { useAtom } from 'jotai';
 import { BsArrowLeftShort } from 'react-icons/bs';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import localforage from 'localforage';
+import { langAtom } from '../store/store';
 
 function autoGenerateUsername() {
   const random = Math.floor(Math.random() * 10000) + 10000;
@@ -46,6 +46,10 @@ function SelectProfile() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const mode = searchParams.get('mode');
+  const { i18n } = useTranslation();
+  const [lang, setLang] = useAtom(langAtom);
+  const [amharic, setAmharic] = useState(false);
+  const [english, setEnglish] = useState(true);
   useEffect(() => {
     // localStorage.removeItem("level")
     
@@ -68,6 +72,22 @@ function SelectProfile() {
   const [userNameUpdated, setUsernameUpdated] = useState(false);
   const { search } = useLocation();
   const [selectedAvatarIndex, setSelectedAvatarIndex] = useState<number>();
+  const changeLangtoAmh = () => {
+    i18n.changeLanguage('am');
+    setLang('am');
+    localStorage.setItem('language', 'am');
+    setAmharic(true);
+    setEnglish(false);
+    return;
+  };
+  const changeLangtoEng = () => {
+    i18n.changeLanguage('en');
+    setLang('en');
+    setEnglish(true);
+    setAmharic(false);
+    localStorage.setItem('language', 'en');
+    return;
+  };
   // localStorage.setItem('displayName', username);
   return (
     <div className="overflow-auto transition-all flex md:flex-row flex-col change-bg h-screen">
@@ -205,7 +225,7 @@ function SelectProfile() {
                   key={i}
                   to={(mode === 'game' && langCode == 'ar') ? '/coming-soon' : `/select-hand${search.length ? search + '&' : '?'}lang=${langCode}`}
                   className="flex capitalize items-center py-1 h-[5vh] md:py-2 md:h-12 px-[5px] bg-[#2E2E2E] hover:bg-[#3f3f3f] rounded-md justify-between"
-                >
+                onClick={langCode == 'en' || langCode == 'ar' ? changeLangtoEng : changeLangtoAmh }>
                   <img src={icon} className="w-1/12 rounded-sm" />
                   <p>{text}</p>
                   <div></div>
