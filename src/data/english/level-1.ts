@@ -5,7 +5,7 @@ export default [
   'd',
   'e',
   'f',
-  'g',
+  // 'g',
   'h',
   'i',
   'j',
@@ -24,5 +24,5 @@ export default [
   'w',
   'x',
   'y',
-  'z'
+  'z',
 ];

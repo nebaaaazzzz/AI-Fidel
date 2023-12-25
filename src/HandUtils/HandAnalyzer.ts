@@ -5,11 +5,7 @@ export class HandAnalyzer {
   public getHandRotation(landmarks: Coords3D) {
     // Calculate the rotation based on the base and the palm
     let handRotation =
-      (Math.atan2(
-        landmarks[0][1] - landmarks[5][1],
-        landmarks[0][0] - landmarks[5][0]
-      ) *
-        180) /
+      (Math.atan2(landmarks[0][1] - landmarks[5][1], landmarks[0][0] - landmarks[5][0]) * 180) /
         Math.PI -
       90;
     return -handRotation;
@@ -18,11 +14,7 @@ export class HandAnalyzer {
   public getHandRotationFromIndex(landmarks: Coords3D) {
     // Calculate the rotation based on the base and the palm
     let handRotation =
-      (Math.atan2(
-        landmarks[5][1] - landmarks[6][1],
-        landmarks[5][0] - landmarks[6][0]
-      ) *
-        180) /
+      (Math.atan2(landmarks[5][1] - landmarks[6][1], landmarks[5][0] - landmarks[6][0]) * 180) /
         Math.PI -
       90;
     return -handRotation;
@@ -59,7 +51,7 @@ export class HandAnalyzer {
       ringToPinky: this.findDistanceBetweenTwoLandMarks(ring, pinky),
       indexToPinky:
         this.findDistanceBetweenTwoLandMarks(index, pinky) -
-        this.findDistanceBetweenTwoLandMarks(indexFirstPos, pinkyFirstPos)
+        this.findDistanceBetweenTwoLandMarks(indexFirstPos, pinkyFirstPos),
     };
   }
 
@@ -83,8 +75,7 @@ export class HandAnalyzer {
     // New way of detecting click - look at if the thumb and pointer angle are close to each other
     let isClicking = false;
     let thumbAngle = fingerPoseResults.directions[0].angle - 90 - handRotation;
-    let pointerAngle =
-      fingerPoseResults.directions[1].angle - 90 - handRotation;
+    let pointerAngle = fingerPoseResults.directions[1].angle - 90 - handRotation;
 
     let thumbAndPointerAngleDistance = thumbAngle - pointerAngle;
     if (thumbAndPointerAngleDistance < 0) {
@@ -95,10 +86,7 @@ export class HandAnalyzer {
     }
 
     // Lets also get the distance between the thumb and the index fingers
-    let thumbAndPointerDistance = this.findDistanceBetweenTwoLandMarks(
-      landmarks[4],
-      landmarks[8]
-    );
+    let thumbAndPointerDistance = this.findDistanceBetweenTwoLandMarks(landmarks[4], landmarks[8]);
     if (thumbAndPointerDistance < 50) {
       isClicking = true;
     }

@@ -36,7 +36,7 @@ function InitialPage() {
             className="relative -top-14  object-contain"
             style={{
               width: 700,
-              height: 700
+              height: 700,
             }}
           />
         )}
@@ -48,8 +48,7 @@ function InitialPage() {
           <h1>with machine Languge</h1>
           {configuration?.level && (
             <h1 className="mt-10">
-              You can continue from where you left off last time by pressing
-              Resume
+              You can continue from where you left off last time by pressing Resume
             </h1>
           )}
 

@@ -3,9 +3,9 @@ import React from 'react';
 function TimerProgress({ percentage }) {
   return (
     <progress
-      className="progress progress-accent w-56"
+      className="progress w-full progress-accent bg-gray-700"
       value={percentage}
-      max="100"
+      max="66"
     ></progress>
   );
 }

@@ -22,7 +22,7 @@ export class AmharicAlphabet {
         special: 'distanceBetweenThumbAndPointer',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: "Bend it - but make sure it doesn't touch your pointer finger"
+        helpText: "Bend it - but make sure it doesn't touch your pointer finger",
       },
       index: {
         curlMin: halfCurlMin + 15,
@@ -30,7 +30,7 @@ export class AmharicAlphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.bend
+        helpText: this._helpTexts.bend,
       },
       middle: {
         curlMin: halfCurlMin + 15,
@@ -38,7 +38,7 @@ export class AmharicAlphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.bend
+        helpText: this._helpTexts.bend,
       },
       ring: {
         curlMin: halfCurlMin + 15,
@@ -46,7 +46,7 @@ export class AmharicAlphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.bend
+        helpText: this._helpTexts.bend,
       },
       little: {
         curlMin: halfCurlMin + 15,
@@ -54,8 +54,8 @@ export class AmharicAlphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.bend
-      }
+        helpText: this._helpTexts.bend,
+      },
     };
 
     let ለ: AlphabetDefinationI = {
@@ -68,7 +68,7 @@ export class AmharicAlphabet {
         special: 'pinchThumbAndPointer',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: 'Pinch the thumb and pointer finger together'
+        helpText: 'Pinch the thumb and pointer finger together',
       },
       index: {
         curlMin: noCurl,
@@ -76,7 +76,7 @@ export class AmharicAlphabet {
         special: 'pinchThumbAndPointer',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.bend
+        helpText: this._helpTexts.bend,
       },
       middle: {
         curlMin: fullCurlMinMoreForgiving,
@@ -84,7 +84,7 @@ export class AmharicAlphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.bend
+        helpText: this._helpTexts.bend,
       },
       ring: {
         curlMin: noCurl,
@@ -92,7 +92,7 @@ export class AmharicAlphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.straight
+        helpText: this._helpTexts.straight,
       },
       little: {
         curlMin: noCurl,
@@ -100,8 +100,8 @@ export class AmharicAlphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.straight
-      }
+        helpText: this._helpTexts.straight,
+      },
     };
     let ሐ: AlphabetDefinationI = {
       letterNumber: 3,
@@ -112,14 +112,14 @@ export class AmharicAlphabet {
         curlMax: fullCurlMax,
         special: 'thumbBendOverOtherFingers',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       index: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       middle: {
         curlMin: noCurl,
@@ -127,22 +127,22 @@ export class AmharicAlphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.straight
+        helpText: this._helpTexts.straight,
       },
       ring: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       little: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
-      }
+        currentAngle: null,
+      },
     };
     // let መ: AlphabetDefinationI = {
     //   letterNumber: 4,
@@ -198,7 +198,7 @@ export class AmharicAlphabet {
         special: 'pinchThumbAndPointer',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: 'Pinch the thumb and pointer finger together'
+        helpText: 'Pinch the thumb and pointer finger together',
       },
       index: {
         curlMin: halfCurlMin,
@@ -206,7 +206,7 @@ export class AmharicAlphabet {
         special: 'pinchThumbAndPointer',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.bend
+        helpText: this._helpTexts.bend,
       },
       middle: {
         curlMin: noCurl,
@@ -214,7 +214,7 @@ export class AmharicAlphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.straight
+        helpText: this._helpTexts.straight,
       },
       ring: {
         curlMin: noCurl,
@@ -222,7 +222,7 @@ export class AmharicAlphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.straight
+        helpText: this._helpTexts.straight,
       },
       little: {
         curlMin: noCurl,
@@ -230,8 +230,8 @@ export class AmharicAlphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.straight
-      }
+        helpText: this._helpTexts.straight,
+      },
     };
     let ረ: AlphabetDefinationI = {
       letterNumber: 6,
@@ -242,36 +242,36 @@ export class AmharicAlphabet {
         curlMax: fullCurlMinMoreForgiving,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       index: {
         curlMin: noCurl,
         curlMax: halfCurlMin,
         special: 'indexAndMiddleMustBeClose',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       middle: {
         curlMin: noCurl,
         curlMax: halfCurlMin,
         special: 'indexAndMiddleMustBeClose',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       ring: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       little: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
-      }
+        currentAngle: null,
+      },
     };
     let ሰ: AlphabetDefinationI = {
       letterNumber: 7,
@@ -283,7 +283,7 @@ export class AmharicAlphabet {
         special: 'thumbBendOverOtherFingers',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: 'Bend it so its inside your palm'
+        helpText: 'Bend it so its inside your palm',
       },
       index: {
         curlMin: noCurl,
@@ -291,7 +291,7 @@ export class AmharicAlphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.straight
+        helpText: this._helpTexts.straight,
       },
       middle: {
         curlMin: noCurl,
@@ -299,7 +299,7 @@ export class AmharicAlphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.straight
+        helpText: this._helpTexts.straight,
       },
       ring: {
         curlMin: noCurl,
@@ -307,7 +307,7 @@ export class AmharicAlphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.straight
+        helpText: this._helpTexts.straight,
       },
       little: {
         curlMin: fullCurlMinMoreForgiving,
@@ -315,8 +315,8 @@ export class AmharicAlphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.bend
-      }
+        helpText: this._helpTexts.bend,
+      },
     };
     let ሸ: AlphabetDefinationI = {
       letterNumber: 8,
@@ -328,7 +328,7 @@ export class AmharicAlphabet {
         special: 'thumbBendOverOtherFingers',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: 'Bend it so its inside your palm'
+        helpText: 'Bend it so its inside your palm',
       },
       index: {
         curlMin: noCurl,
@@ -336,7 +336,7 @@ export class AmharicAlphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.straight
+        helpText: this._helpTexts.straight,
       },
       middle: {
         curlMin: noCurl,
@@ -344,7 +344,7 @@ export class AmharicAlphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.straight
+        helpText: this._helpTexts.straight,
       },
       ring: {
         curlMin: noCurl,
@@ -352,7 +352,7 @@ export class AmharicAlphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.straight
+        helpText: this._helpTexts.straight,
       },
       little: {
         curlMin: noCurl,
@@ -360,8 +360,8 @@ export class AmharicAlphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.straight
-      }
+        helpText: this._helpTexts.straight,
+      },
     };
     let ቀ: AlphabetDefinationI = {
       letterNumber: 9,
@@ -372,36 +372,36 @@ export class AmharicAlphabet {
         curlMax: noCurl - 30,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       index: {
         curlMin: noCurl - 30,
         curlMax: halfCurlMin - 30,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       middle: {
         curlMin: halfCurlMin + 20,
         curlMax: fullCurlMin + 20,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       ring: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       little: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
-      }
+        currentAngle: null,
+      },
     };
     let በ: AlphabetDefinationI = {
       letterNumber: 1,
@@ -413,7 +413,7 @@ export class AmharicAlphabet {
         special: 'distanceBetweenThumbAndPointer',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: "Bend it - but make sure it doesn't touch your pointer finger"
+        helpText: "Bend it - but make sure it doesn't touch your pointer finger",
       },
       index: {
         curlMin: halfCurlMin + 15,
@@ -421,7 +421,7 @@ export class AmharicAlphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.bend
+        helpText: this._helpTexts.bend,
       },
       middle: {
         curlMin: halfCurlMin + 15,
@@ -429,22 +429,22 @@ export class AmharicAlphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.bend
+        helpText: this._helpTexts.bend,
       },
       ring: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       little: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
-      }
+        currentAngle: null,
+      },
     };
     let ተ: AlphabetDefinationI = {
       letterNumber: 11,
@@ -455,36 +455,36 @@ export class AmharicAlphabet {
         curlMax: fullCurlMin,
         special: 'betweenIndexAndMiddleLetterT',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       index: {
         curlMin: halfCurlMin,
         curlMax: fullCurlMinMoreForgiving,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       middle: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       ring: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       little: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
-      }
+        currentAngle: null,
+      },
     };
     let ቸ: AlphabetDefinationI = {
       letterNumber: 12,
@@ -495,7 +495,7 @@ export class AmharicAlphabet {
         curlMax: halfCurlMin,
         special: 'thumbBendOverOtherFingers',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
 
       index: {
@@ -503,29 +503,29 @@ export class AmharicAlphabet {
         curlMax: fullCurlMinMoreForgiving,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       middle: {
         curlMin: halfhalfCurlMin,
         curlMax: halfCurlMin,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       ring: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       little: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
-      }
+        currentAngle: null,
+      },
     };
     let ኀ: AlphabetDefinationI = {
       letterNumber: 13,
@@ -536,36 +536,36 @@ export class AmharicAlphabet {
         curlMax: noCurl - 30,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       index: {
         curlMin: noCurl,
         curlMax: halfCurlMin,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       middle: {
         curlMin: halfCurlMin + 20,
         curlMax: fullCurlMin + 20,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       ring: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       little: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
-      }
+        currentAngle: null,
+      },
     };
     let ነ: AlphabetDefinationI = {
       letterNumber: 14,
@@ -577,36 +577,36 @@ export class AmharicAlphabet {
         special: 'thumbToTheLeft',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: 'Straigten it - and make sure it is close to index finger'
+        helpText: 'Straigten it - and make sure it is close to index finger',
       },
       index: {
         curlMin: noCurl,
         curlMax: halfCurlMin,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       middle: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       ring: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       little: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
-      }
+        currentAngle: null,
+      },
     };
     let ኘ: AlphabetDefinationI = {
       letterNumber: 15,
@@ -618,36 +618,36 @@ export class AmharicAlphabet {
         special: 'thumbToTheLeft',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: 'Straigten it - and make sure it is close to index finger'
+        helpText: 'Straigten it - and make sure it is close to index finger',
       },
       index: {
         curlMin: noCurl,
         curlMax: halfCurlMin,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       middle: {
         curlMin: noCurl,
         curlMax: halfCurlMin,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       ring: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       little: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
-      }
+        currentAngle: null,
+      },
     };
     let አ: AlphabetDefinationI = {
       letterNumber: 16,
@@ -659,7 +659,7 @@ export class AmharicAlphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.straight
+        helpText: this._helpTexts.straight,
       },
 
       index: {
@@ -668,7 +668,7 @@ export class AmharicAlphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.straight
+        helpText: this._helpTexts.straight,
       },
       middle: {
         curlMin: fullCurlMinMoreForgiving,
@@ -676,7 +676,7 @@ export class AmharicAlphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.bend
+        helpText: this._helpTexts.bend,
       },
       ring: {
         curlMin: fullCurlMinMoreForgiving,
@@ -684,7 +684,7 @@ export class AmharicAlphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.bend
+        helpText: this._helpTexts.bend,
       },
       little: {
         curlMin: fullCurlMinMoreForgiving,
@@ -692,8 +692,8 @@ export class AmharicAlphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.bend
-      }
+        helpText: this._helpTexts.bend,
+      },
     }; //need tumb fix
     let ከ: AlphabetDefinationI = {
       letterNumber: 17,
@@ -704,36 +704,36 @@ export class AmharicAlphabet {
         curlMax: fullCurlMax,
         special: 'thumbPointerAlignOnYAxis',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       index: {
         curlMin: noCurl,
         curlMax: halfCurlMin - 20,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       middle: {
         curlMin: halfCurlMin + 20,
         curlMax: fullCurlMin + 20,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       ring: {
         curlMin: halfCurlMin + 20,
         curlMax: fullCurlMin + 20,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       little: {
         curlMin: halfCurlMin + 30,
         curlMax: fullCurlMin + 30,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
-      }
+        currentAngle: null,
+      },
     }; //need some fix
     let ኸ: AlphabetDefinationI = {
       letterNumber: 18,
@@ -744,36 +744,36 @@ export class AmharicAlphabet {
         curlMax: fullCurlMax,
         special: 'thumbPointerAlignOnYAxis',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       index: {
         curlMin: noCurl,
         curlMax: noCurl,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       middle: {
         curlMin: fullCurlMax,
         curlMax: fullCurlMinMoreForgiving,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       ring: {
         curlMin: fullCurlMax,
         curlMax: fullCurlMinMoreForgiving,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       little: {
         curlMin: noCurl,
         curlMax: noCurl,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
-      }
+        currentAngle: null,
+      },
     };
     let ወ: AlphabetDefinationI = {
       letterNumber: 19,
@@ -785,21 +785,21 @@ export class AmharicAlphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.bend
+        helpText: this._helpTexts.bend,
       },
       index: {
         curlMin: halfCurlMin + 20,
         curlMax: fullCurlMin + 20,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       middle: {
         curlMin: halfCurlMin + 20,
         curlMax: fullCurlMin + 20,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       ring: {
         curlMin: fullCurlMinMoreForgiving,
@@ -807,7 +807,7 @@ export class AmharicAlphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.bend
+        helpText: this._helpTexts.bend,
       },
       little: {
         curlMin: fullCurlMinMoreForgiving,
@@ -815,8 +815,8 @@ export class AmharicAlphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.bend
-      }
+        helpText: this._helpTexts.bend,
+      },
     }; // not confertable wit letter "wee"
     let ዐ: AlphabetDefinationI = {
       letterNumber: 20,
@@ -828,7 +828,7 @@ export class AmharicAlphabet {
         special: 'pinchThumbAndPointer',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: 'Pinch the thumb and pointer finger together'
+        helpText: 'Pinch the thumb and pointer finger together',
       },
       index: {
         curlMin: noCurl,
@@ -836,29 +836,29 @@ export class AmharicAlphabet {
         special: 'pinchThumbAndPointer',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.bend
+        helpText: this._helpTexts.bend,
       },
       middle: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       ring: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       little: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
-      }
+        currentAngle: null,
+      },
     };
     let ዘ: AlphabetDefinationI = {
       letterNumber: 21,
@@ -870,28 +870,28 @@ export class AmharicAlphabet {
         special: 'thumbBendOverOtherFingers',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: 'Bend it so its inside your palm'
+        helpText: 'Bend it so its inside your palm',
       },
       index: {
         curlMin: noCurl,
         curlMax: halfCurlMin,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       middle: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       ring: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       little: {
         curlMin: noCurl,
@@ -899,8 +899,8 @@ export class AmharicAlphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.straight
-      }
+        helpText: this._helpTexts.straight,
+      },
     };
     let ዠ: AlphabetDefinationI = {
       letterNumber: 22,
@@ -911,7 +911,7 @@ export class AmharicAlphabet {
         curlMax: fullCurlMax,
         special: 'thumbBendOverOtherFingers',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       index: {
         curlMin: noCurl,
@@ -919,7 +919,7 @@ export class AmharicAlphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.straight
+        helpText: this._helpTexts.straight,
       },
       middle: {
         curlMin: fullCurlMinMoreForgiving,
@@ -927,7 +927,7 @@ export class AmharicAlphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.bend
+        helpText: this._helpTexts.bend,
       },
       ring: {
         curlMin: noCurl,
@@ -935,7 +935,7 @@ export class AmharicAlphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.straight
+        helpText: this._helpTexts.straight,
       },
       little: {
         curlMin: noCurl,
@@ -943,8 +943,8 @@ export class AmharicAlphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.straight
-      }
+        helpText: this._helpTexts.straight,
+      },
     };
     let የ: AlphabetDefinationI = {
       letterNumber: 23,
@@ -955,36 +955,36 @@ export class AmharicAlphabet {
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       index: {
         curlMin: noCurl,
         curlMax: halfCurlMin,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       middle: {
         curlMin: halfCurlMin,
         curlMax: 10,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       ring: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       little: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
-      }
+        currentAngle: null,
+      },
     };
     let ደ: AlphabetDefinationI = {
       letterNumber: 24,
@@ -996,36 +996,36 @@ export class AmharicAlphabet {
         special: 'thumbToTheLeft',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: 'Straigten it - and make sure it is close to index finger'
+        helpText: 'Straigten it - and make sure it is close to index finger',
       },
       index: {
         curlMin: halfCurlMin + 40,
         curlMax: fullCurlMin + 40,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       middle: {
         curlMin: noCurl,
         curlMax: 100,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       ring: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       little: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
-      }
+        currentAngle: null,
+      },
     };
     let ጀ: AlphabetDefinationI = {
       letterNumber: 25,
@@ -1037,36 +1037,36 @@ export class AmharicAlphabet {
         special: 'thumbToTheLeft',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: 'Straigten it - and make sure it is close to index finger'
+        helpText: 'Straigten it - and make sure it is close to index finger',
       },
       index: {
         curlMin: halfCurlMin + 40,
         curlMax: fullCurlMin + 40,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       middle: {
         curlMin: noCurl,
         curlMax: 100,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       ring: {
         curlMin: fullCurlMinMoreForgiving,
         curlMax: fullCurlMax,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       little: {
         curlMin: noCurl,
         curlMax: 100,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
-      }
+        currentAngle: null,
+      },
     };
     let ገ: AlphabetDefinationI = {
       letterNumber: 26,
@@ -1077,7 +1077,7 @@ export class AmharicAlphabet {
         curlMax: halfCurlMin - 20,
         special: 'none',
         percentageCorrect: 0,
-        currentAngle: null
+        currentAngle: null,
       },
       index: {
         curlMin: noCurl,
@@ -1085,7 +1085,7 @@ export class AmharicAlphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.straight
+        helpText: this._helpTexts.straight,
       },
       middle: {
         curlMin: noCurl,
@@ -1093,7 +1093,7 @@ export class AmharicAlphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.straight
+        helpText: this._helpTexts.straight,
       },
       ring: {
         curlMin: noCurl,
@@ -1101,7 +1101,7 @@ export class AmharicAlphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.straight
+        helpText: this._helpTexts.straight,
       },
       little: {
         curlMin: noCurl,
@@ -1109,14 +1109,14 @@ export class AmharicAlphabet {
         special: 'none',
         percentageCorrect: 0,
         currentAngle: null,
-        helpText: this._helpTexts.straight
-      }
+        helpText: this._helpTexts.straight,
+      },
     };
 
     // let  = [144, 132, 142, 144, 130];
     let ጠ = [
-      136.43863867291532, 112.8296581997838, 121.34471772490016,
-      111.74618467364762, 77.39124118185943
+      136.43863867291532, 112.8296581997838, 121.34471772490016, 111.74618467364762,
+      77.39124118185943,
     ];
     // let ጨ = [
     //   147.96269774432142, 133.13289491885138, 140.6874382534127,
@@ -1131,29 +1131,29 @@ export class AmharicAlphabet {
     //   106.92028289113992
     // ];
     let ጨ = [
-      139.83275591345233, 108.25939738094354, 109.4264223494229,
-      99.14595071553254, 74.7086793661234
+      139.83275591345233, 108.25939738094354, 109.4264223494229, 99.14595071553254,
+      74.7086793661234,
     ];
 
     let ፐ = [
-      102.75979872486583, 133.4226316739686, 116.22980698771643,
-      22.70568401341046, 16.795905531561047
+      102.75979872486583, 133.4226316739686, 116.22980698771643, 22.70568401341046,
+      16.795905531561047,
     ];
     let ፈ = [
-      149.11690680905934, 168.76870107528964, 43.36575634382727,
-      40.84501974255949, 62.20122552936269
+      149.11690680905934, 168.76870107528964, 43.36575634382727, 40.84501974255949,
+      62.20122552936269,
     ];
     let ጰ = [
-      146.22580465945668, 60.17367588566625, 49.07085101924445,
-      49.11311026589037, 163.61625326832404
+      146.22580465945668, 60.17367588566625, 49.07085101924445, 49.11311026589037,
+      163.61625326832404,
     ];
     let ጸ = [
-      135.5633700842473, 153.42394192501627, 168.61671007580182,
-      15.774900747594426, 18.509153626720114
+      135.5633700842473, 153.42394192501627, 168.61671007580182, 15.774900747594426,
+      18.509153626720114,
     ];
     let መ = [
-      145.6628240924694, 148.87699696319558, 146.17509462184796,
-      133.56968857408378, 145.3295550500663
+      145.6628240924694, 148.87699696319558, 146.17509462184796, 133.56968857408378,
+      145.3295550500663,
     ];
     this.specialCharacterArray = { ጰ, ፈ, ፐ, ጠ, ጨ, መ };
     // Missing z,p,q,j,h

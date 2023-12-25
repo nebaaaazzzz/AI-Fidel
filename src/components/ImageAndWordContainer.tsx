@@ -8,9 +8,7 @@ function ImageAndWordContainer({ selectedLetter }: { selectedLetter: string }) {
         src={`/spelling/${selectedLetter}.png`}
         className="w-11/12 h-96 object-contain "
       />
-      <h1 className="text-[20rem] text-primary font-light leading-10 ">
-        {selectedLetter}
-      </h1>
+      <h1 className="text-[20rem] text-primary font-light leading-10 ">{selectedLetter}</h1>
     </div>
   );
 }

@@ -4,20 +4,11 @@ import 'react-slideshow-image/dist/styles.css';
 function Left({ word }: { word: string }) {
   return (
     <div className="slide-container absolute" style={{ width: 700 }}>
-      <Fade
-        duration={700}
-        transitionDuration={100}
-        arrows={false}
-        infinite
-        canSwipe={false}
-      >
+      <Fade duration={700} transitionDuration={100} arrows={false} infinite canSwipe={false}>
         {word.split('').map((letter, i) => {
           return (
             <div className="each-fade" key={i}>
-              <img
-                src={`/spelling/lefthand/` + letter.toUpperCase() + '.png'}
-                alt="F"
-              />
+              <img src={`/spelling/lefthand/` + letter.toUpperCase() + '.png'} alt="F" />
             </div>
           );
         })}

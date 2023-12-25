@@ -5,11 +5,11 @@ import RightSideBar from '@components/RightSideBar';
 import { Outlet } from 'react-router';
 function RootLayout() {
   return (
-    <div className="bg-[#0d0d0d]">
+    <div className="ig:bg-[#0d0d0d] change-bg h-[100vh]">
       <Header />
-      <div className="flex gap-10  p-14 md:pt-0 px-6 ">
+      <div className="flex gap-10 p-0 md:p-14 md:pt-0 px-0 md:px-6">
         <LeftSideBar />
-        <div className="flex-[3] flex-shrink">
+        <div className="flex-[3] transition-all flex-shrink overflow-hidden md:mt-12 csl:mt-0">
           <Outlet />
         </div>
         <RightSideBar />

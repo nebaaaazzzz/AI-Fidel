@@ -8,9 +8,7 @@ function Loading({ word }: { word: string }) {
     bg-auto bg-no-repeat bg-center "
     >
       <Bgloading word={word} />
-      <p className="text-center">
-        Please Sleep While Setting Up It May Take a While
-      </p>
+      <p className="text-center">Please Sleep While Setting Up It May Take a While</p>
     </div>
   );
 }
